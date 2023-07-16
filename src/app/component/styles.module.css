@@ -1,0 +1,11 @@
+.circle {
+    transition: fill 2s ease;
+  }
+  
+  .dark .circle {
+    fill: white;
+  }
+  
+  .light .circle {
+    fill: yellow;
+  }
