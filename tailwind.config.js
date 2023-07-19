@@ -12,6 +12,9 @@ module.exports = {
             'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
             'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
          },
+         animation: {
+            'fade-in': 'fadeIn 0.5s ease-in forwards',
+         },
       },
    },
    plugins: [],

@@ -1,11 +1,100 @@
-.circle {
-    transition: fill 2s ease;
+.crescent {
+  position: relative;
+  width: 26px;
+  height: 26px;
+  border-radius: 99%;
+  background-color: rgb(250 204 21);
+  overflow: hidden;
+  transform: rotate(0.53turn);
+  /* animation: rotateCircle 2s ease-out ease; */
+}
+
+.crescent::before {
+  content: "";
+  position: absolute;
+  width: 60%;
+  height: 100%;
+  background: #000000;
+  border-radius: 50%;
+  top: 0%;
+  left: -0%;
+  animation: moonrise 0.3s ease-in;
+}
+
+@keyframes moonrise {
+  0% {
+    width: 100%;
   }
-  
-  .dark .circle {
-    fill: white;
+  25% {
+    width: 90%;
   }
-  
-  .light .circle {
-    fill: yellow;
+  50% {
+    width: 80%;
   }
+  75% {
+    width: 70%;
+  }
+  100% {
+    width: 60%;
+  }
+}
+
+.ray {
+  position: absolute;
+  height: 0.4rem;
+  width: 3px;
+  background-color: rgb(251, 204, 15);
+  opacity: 0;
+  animation: fadeIn 0.3s ease-in forwards;
+ }
+
+.ray__out {
+  position: absolute;
+  height: 0.4rem;
+  width: 0.1rem;
+  background-color: rgb(250 204 21);
+  opacity: 1;
+  animation: fadeOut 0.3s ease-in forwards;
+}
+
+ @keyframes fadeIn {
+  0% {
+     opacity: 0;
+  }
+  100% {
+     opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+ }
+ 100% {
+    opacity: 0;
+ }
+}
+
+.sun {
+  background-color: rgb(250 204 21);
+}
+
+.sun__out {
+  background-color: rgb(250 204 21);
+
+}
+
+@keyframes sunset {
+  0% {
+    width: 0%;
+    height: 0%;
+  }
+  50% {
+    width: 80%;
+    height: 50%;
+  }
+  100% {
+    width: 100%;
+    height: 100%; 
+}
+}
