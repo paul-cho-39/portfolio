@@ -25,3 +25,36 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+::-webkit-scrollbar {
+  width: 7px; /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(218, 218, 218) ; /* Color of the track */
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(43, 56, 83); /* Color of the scroll thumb */
+  border-radius: 10px; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(64, 81, 116); /* Color of the scroll thumb on hover */
+}
+
+
+@media (prefers-color-scheme: dark) { 
+  ::-webkit-scrollbar-track {
+    background: rgb(17, 24, 39) ; /* Color of the track */
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: rgb(43, 56, 83); /* Color of the scroll thumb */
+    border-radius: 10px; 
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Color of the scroll thumb on hover */
+  }
+}

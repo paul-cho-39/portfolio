@@ -140,12 +140,12 @@ const Navbar = () => {
                                  href={item.href}
                                  className={classNames(
                                     item.current
-                                       ? 'dark:hover:text-slate-700'
-                                       : 'dark:hover:text-slate-700',
-                                    'transition-all duration-75 ease-in-out group flex gap-x-3 p-2 text-md font-medium text-gray-700 dark:text-gray-200/80 group-hover:bg-opacity-75'
+                                       ? 'dark:hover:text-slate-700 hover:text-gray-400  '
+                                       : 'dark:hover:text-slate-700 hover:text-gray-400 ',
+                                    'transition-all duration-75 ease-in-out group flex gap-x-3 p-3 text-md font-medium text-gray-700 dark:text-gray-200/80 group-hover:text-opacity-75'
                                  )}
                               >
-                                 <span className='text-sm font-light tracking-tighter'>
+                                 <span className='text-sm font-light tracking-tighter relative bottom-2 left-2'>
                                     {item.num}{' '}
                                  </span>
                                  {item.name}
@@ -162,31 +162,41 @@ const Navbar = () => {
             </div>
          </div>
 
-         <div className='lg:pl-72'>
-            <div className='sticky top-0 z-40 flex lg:h-0 shrink-0 items-center bg-white dark:bg-gray-900 px-4 sm:gap-x-6 sm:px-6 sm:w-full lg:px-8'>
-               <div className='h-14 lg:hidden inline-flex items-center'>
-                  <button
-                     type='button'
-                     className='w-10 h-10 -m-1.5 pl-2 hover:rounded-full hover:bg-gray-300/30'
-                     onClick={() => setSidebarOpen(true)}
-                  >
-                     <span className='sr-only'>Open sidebar</span>
-                     <Bars3Icon
-                        className='w-6 h-6  text-black dark:text-white hover:scale-105'
-                        aria-hidden='true'
-                     />
-                  </button>
-               </div>
+         {/* <div className='lg:pl-72'> */}
+         {/* change navigation to here so that mobile works too? not inside nav(?) */}
+         <div
+            className={classNames(
+               isTop
+                  ? 'h-16'
+                  : scrollDirection === 'down'
+                  ? '-top-20'
+                  : 'top-0 h-14 bg-slate-300/10 dark:bg-neutral-900/20 z-50',
+               'bg- z-40 lg:h-0 shrink-0 fixed transition-all duration-250 ease-in flex flex-1 w-full justify-start px-6'
+            )}
+         >
+            {/* // className='z-40 flex lg:h-0 shrink-0 items-center bg-white dark:bg-gray-900 px-4 sm:gap-x-6 sm:px-6 sm:w-full lg:px-8'> */}
+            <div className='h-14 lg:hidden inline-flex items-center'>
+               <button
+                  type='button'
+                  className='w-10 h-10 -m-1.5 pl-2 hover:rounded-full hover:bg-gray-300/30'
+                  onClick={() => setSidebarOpen(true)}
+               >
+                  <span className='sr-only'>Open sidebar</span>
+                  <Bars3Icon
+                     className='w-6 h-6  text-black dark:text-white hover:scale-105'
+                     aria-hidden='true'
+                  />
+               </button>
             </div>
-
-            {/* TESTING HERE */}
-            <main className='py-4 sm:py-4'>
-               <div className='px-4 sm:px-6 lg:px-8'>
-                  <p className='h-[1000px] w-full'>CHILDREN HERE</p>
-                  <p className='h-[1000px] w-full'>TESTING HERE</p>
-               </div>
-            </main>
          </div>
+
+         {/* TESTING HERE */}
+         <main className='py-28 sm:py-28'>
+            <div className='px-4 sm:px-6 lg:px-8'>
+               <p className='h-[1000px] w-full'>CHILDREN HERE</p>
+               <p className='h-[1000px] w-full'>TESTING HERE</p>
+            </div>
+         </main>
          {/* </div> */}
       </>
    );
