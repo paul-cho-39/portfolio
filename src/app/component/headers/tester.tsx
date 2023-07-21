@@ -2,72 +2,104 @@ import React, { useState, useEffect } from 'react';
 import { FrontPageGenerator, FrontPageGeneratorItem } from '../../../../constants';
 import styles from './../styles.module.css';
 
+// TODO: let's refactor this code
 const Tester = ({ wordGenerator }: { wordGenerator: FrontPageGeneratorItem[] }) => {
    const [state, setState] = useState({
       sentenceIndex: 0,
       wordIndex: 0,
       sentences: wordGenerator.map(() => ''),
       isProcessing: wordGenerator.map(() => false),
-      isFinished: wordGenerator.map(() => false),
+      initialDelayDone: false,
    });
+
+   useEffect(() => {
+      const timer = setTimeout(() => {
+         setState((prevState) => ({
+            ...prevState,
+            initialDelayDone: true,
+         }));
+      }, 500);
+
+      return () => clearTimeout(timer);
+   }, []);
 
    useEffect(() => {
       const currentGenerator = wordGenerator[state.sentenceIndex];
       const words = currentGenerator.words.join(' ').split(' ');
+      if (state.initialDelayDone) {
+         if (state.wordIndex < words.length) {
+            const timer = setTimeout(() => {
+               setState((prevState) => ({
+                  ...prevState,
+                  sentences: prevState.sentences.map((sentence, index) =>
+                     index === state.sentenceIndex
+                        ? sentence + ' ' + words[state.wordIndex]
+                        : sentence
+                  ),
+                  isProcessing: prevState.isProcessing.map((processing, index) =>
+                     index === state.sentenceIndex ? true : processing
+                  ),
+                  wordIndex: prevState.wordIndex + 1,
+               }));
+            }, currentGenerator.duration);
 
-      if (state.wordIndex < words.length) {
-         const timer = setTimeout(() => {
+            return () => clearTimeout(timer);
+         } else if (state.sentenceIndex < wordGenerator.length - 1) {
             setState((prevState) => ({
                ...prevState,
-               sentences: prevState.sentences.map((sentence, index) =>
-                  index === state.sentenceIndex ? sentence + ' ' + words[state.wordIndex] : sentence
+               sentenceIndex: prevState.sentenceIndex + 1,
+               wordIndex: 0,
+               isProcessing: prevState.isProcessing.map(
+                  (processing, index) => index === state.sentenceIndex && false
                ),
-               isProcessing: prevState.isProcessing.map((processing, index) =>
-                  index === state.sentenceIndex ? true : processing
-               ),
-               wordIndex: prevState.wordIndex + 1,
             }));
-         }, currentGenerator.duration);
+         } else {
+            const processTimer = setTimeout(() => {
+               // clear away any of isProcessing
+               setState((prevState) => ({
+                  ...prevState,
+                  isProcessing: prevState.isProcessing.map(() => false),
+               }));
+            }, 1500);
 
-         return () => clearTimeout(timer);
-      } else if (state.sentenceIndex < wordGenerator.length - 1) {
-         setState((prevState) => ({
-            ...prevState,
-            sentenceIndex: prevState.sentenceIndex + 1,
-            wordIndex: 0,
-            isFinished: prevState.isFinished.map((finish, index) =>
-               index === state.sentenceIndex ? true : finish
-            ),
-            isProcessing: prevState.isProcessing.map(
-               (processing, index) => index === state.sentenceIndex && false
-            ),
-         }));
-      } else {
-         const processTimer = setTimeout(() => {
-            // clear away any of isProcessing
-            setState((prevState) => ({
-               ...prevState,
-               isProcessing: prevState.isProcessing.map(() => false),
-            }));
-         }, 400);
-
-         return () => clearTimeout(processTimer);
+            return () => clearTimeout(processTimer);
+         }
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [state]);
 
+   const renderElementByTag = (tags: string, content: string, className: string) => {
+      switch (tags) {
+         case 'h1':
+            return <h1 className={className}>{content}</h1>;
+         case 'h2':
+            return <h2 className={className}>{content}</h2>;
+         case 'h3':
+            return <h3 className={className}>{content}</h3>;
+         // add any other cases as needed
+         default:
+            return <span className={className}>{content}</span>;
+      }
+   };
+
    return (
       <div className='text-white overflow-hidden'>
-         {state.sentences.map((sentence, index) => (
-            <h1
-               key={index}
-               className={`font-mono text-2xl transition-all  ${
-                  state.isProcessing[index] ? styles.typingText : styles.typingDone
+         {!state.initialDelayDone && (
+            <span
+               className={`font-mono text-4xl ${
+                  !state.initialDelayDone ? styles.typingText : styles.typingDone
                }`}
-            >
-               {sentence}
-            </h1>
-         ))}
+            ></span>
+         )}
+         {state.sentences.map((sentence, index) =>
+            renderElementByTag(
+               wordGenerator[index].tags,
+               sentence,
+               `font-mono text-2xl transition-all duration-75  ${
+                  state.isProcessing[index] ? styles.typingText : styles.typingDone
+               }`
+            )
+         )}
       </div>
    );
 };

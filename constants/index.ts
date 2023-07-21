@@ -38,16 +38,19 @@ export const FrontPageGenerator = [
    {
       words: ['Welcome, my name is'],
       duration: 150,
+      tags: 'span',
       className: '',
    },
    {
       words: ['Paul Cho'],
       duration: 200,
+      tags: 'h1',
       className: '',
    },
    {
       words: ['I build apps and websites'],
       duration: 200,
+      tags: 'h2',
       className: '',
    },
 ];

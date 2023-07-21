@@ -5,9 +5,9 @@ import classNames from '@/app/library/helper';
 import { useScrollDirection } from '@/app/library/hooks/useScrollDirection';
 import ToggleTheme from '../buttons/toggleThemeButton';
 import { ThemeContext } from '../../../../contexts/ThemeContext';
-import FrontCover from '../headers/front';
 import Tester from '../headers/tester';
 import { FrontPageGenerator } from '../../../../constants';
+import TypeWriter from '../effects/typeWriter';
 
 const navigation = [
    { name: 'home', href: '#', num: '01.', current: true },
@@ -197,8 +197,7 @@ const Navbar = () => {
          <main className='py-28 sm:py-28'>
             <div className='px-4 sm:px-6 lg:px-8'>
                <div className='h-[1000px] w-full'>
-                  <Tester wordGenerator={FrontPageGenerator} />
-                  {/* <FrontCover /> */}
+                  <TypeWriter wordGenerator={FrontPageGenerator} />
                </div>
                <p className='h-[1000px] w-full'>TESTING HERE</p>
             </div>

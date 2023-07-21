@@ -139,10 +139,17 @@
 }
 
 @keyframes blinkCaret {
+  0% {
+    opacity: 0;
+  }
   50% { 
     color: transparent;
     background-color: transparent; 
     border-color: transparent;
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }
 
@@ -153,10 +160,11 @@
 
 .typingText::after {
   content: '|';
-  animation: blinkCaret 1s infinite step;
+  margin: 0 auto; 
+  animation: blinkCaret 1.5s linear infinite;
 }
 
 .typingDone {
   white-space: nowrap;
-
+  border-right: none;
 }
