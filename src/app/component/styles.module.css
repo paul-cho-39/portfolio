@@ -130,3 +130,33 @@
     height: 100%; 
 }
 }
+
+
+/* TESTING HERE FOR KEYBOARD TYPES */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blinkCaret {
+  50% { 
+    color: transparent;
+    background-color: transparent; 
+    border-color: transparent;
+  }
+}
+
+.typingText {
+  /* border-right: 0.15em solid black; */
+  white-space: nowrap;
+}
+
+.typingText::after {
+  content: '|';
+  animation: blinkCaret 1s infinite step;
+}
+
+.typingDone {
+  white-space: nowrap;
+
+}

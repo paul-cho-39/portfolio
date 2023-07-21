@@ -5,6 +5,9 @@ import classNames from '@/app/library/helper';
 import { useScrollDirection } from '@/app/library/hooks/useScrollDirection';
 import ToggleTheme from '../buttons/toggleThemeButton';
 import { ThemeContext } from '../../../../contexts/ThemeContext';
+import FrontCover from '../headers/front';
+import Tester from '../headers/tester';
+import { FrontPageGenerator } from '../../../../constants';
 
 const navigation = [
    { name: 'home', href: '#', num: '01.', current: true },
@@ -193,7 +196,10 @@ const Navbar = () => {
          {/* TESTING HERE */}
          <main className='py-28 sm:py-28'>
             <div className='px-4 sm:px-6 lg:px-8'>
-               <p className='h-[1000px] w-full'>CHILDREN HERE</p>
+               <div className='h-[1000px] w-full'>
+                  <Tester wordGenerator={FrontPageGenerator} />
+                  {/* <FrontCover /> */}
+               </div>
                <p className='h-[1000px] w-full'>TESTING HERE</p>
             </div>
          </main>

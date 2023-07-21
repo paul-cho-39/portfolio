@@ -32,5 +32,23 @@ export const ContactItems = [
       Icon: IconComponents['Instagram'],
    },
 ] as const;
-
 export type ContactItemsParams = (typeof ContactItems)[keyof typeof ContactItems];
+
+export const FrontPageGenerator = [
+   {
+      words: ['Welcome, my name is'],
+      duration: 150,
+      className: '',
+   },
+   {
+      words: ['Paul Cho'],
+      duration: 200,
+      className: '',
+   },
+   {
+      words: ['I build apps and websites'],
+      duration: 200,
+      className: '',
+   },
+];
+export type FrontPageGeneratorItem = (typeof FrontPageGenerator)[number];

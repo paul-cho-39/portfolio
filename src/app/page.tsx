@@ -3,6 +3,7 @@
 import { AppProps } from 'next/app';
 import Navbar from './component/nav/navigation';
 import ContactMeFab from './component/fab/contact';
+import FrontCover from './component/headers/front';
 
 export default function Home({ Component, pageProps }: AppProps) {
    return (
