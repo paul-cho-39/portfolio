@@ -2,6 +2,11 @@ import { GithubIcon, LinkedInIcon, InstagramIcon } from '@/app/component/fab/con
 
 export type ColorTheme = 'light' | 'dark';
 
+export type ThemeContextParams = {
+   theme: ColorTheme;
+   setTheme: (value: ColorTheme) => void;
+};
+
 export const Navigation = [
    { name: 'home', href: '#', num: '01.', current: true },
    { name: 'about', href: '#', num: '02.', current: false },

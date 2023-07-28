@@ -6,8 +6,11 @@ import { useScrollDirection } from '@/app/library/hooks/useScrollDirection';
 import ToggleTheme from '../buttons/toggleThemeButton';
 import { ThemeContext } from '../../../../contexts/ThemeContext';
 import Tester from '../headers/tester';
-import { FrontPageGenerator } from '../../../../constants';
+import { FrontPageGenerator, ThemeContextParams } from '../../../../constants';
 import TypeWriter from '../effects/typeWriter';
+import Boxes from '../headers/tester';
+
+import CircleSvg from '../circle';
 
 const navigation = [
    { name: 'home', href: '#', num: '01.', current: true },
@@ -17,13 +20,13 @@ const navigation = [
 ];
 
 // navigation page has to be rewritten using rewrites
+// change the name to Headers
 const Navbar = () => {
    const [sidebarOpen, setSidebarOpen] = useState(false);
    const { scrollDirection, isTop } = useScrollDirection();
 
    // change theme to somewhere else
-   const { theme, setTheme } = useContext(ThemeContext);
-
+   const { theme, setTheme } = useContext(ThemeContext) as ThemeContextParams;
    useEffect(() => {
       if (theme === 'dark') {
          document.documentElement.classList.add('dark');
@@ -198,11 +201,13 @@ const Navbar = () => {
             <div className='px-4 sm:px-6 lg:px-8'>
                <div className='h-[1000px] w-full'>
                   <TypeWriter wordGenerator={FrontPageGenerator} />
+                  <Boxes />
+                  <CircleSvg height={100} width={100} />
                </div>
                <p className='h-[1000px] w-full'>TESTING HERE</p>
             </div>
          </main>
-         {/* </div> */}
+         {/* {/* </div> */}
       </>
    );
 };

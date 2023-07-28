@@ -46,7 +46,7 @@ const TypeWriter = ({ wordGenerator }: { wordGenerator: FrontPageGeneratorItem[]
                ),
                charIndex: prevState.charIndex + 1,
             }));
-         }, 20);
+         }, utils.EACH_LETTER_DURATION);
 
          return () => clearTimeout(timer);
       } else if (state.sentenceIndex < wordGenerator.length - 1) {
@@ -66,7 +66,7 @@ const TypeWriter = ({ wordGenerator }: { wordGenerator: FrontPageGeneratorItem[]
          return () => clearTimeout(nextSentenceTimer);
       } else {
          const processTimer = setTimeout(() => {
-            // clear away any of isProcessing
+            // clearing away any of isProcessing and toggle isFinished
             setState((prevState) => ({
                ...prevState,
                isProcessing: utils.toggleAllProcessingState(prevState.isProcessing),
@@ -79,6 +79,7 @@ const TypeWriter = ({ wordGenerator }: { wordGenerator: FrontPageGeneratorItem[]
    }, [state, wordGenerator]);
 
    return (
+      // maybe this should be a separate component?
       <div className='text-white overflow-hidden'>
          {!state.initialDelayDone && (
             <span

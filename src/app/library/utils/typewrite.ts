@@ -34,4 +34,4 @@ export function toggleAllProcessingState(isProcessing: boolean[]) {
 }
 
 export const FIRST_INIT_DURATION = 500;
-export const LETTER_DURATION = 20;
+export const EACH_LETTER_DURATION = 30;
