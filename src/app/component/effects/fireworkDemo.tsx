@@ -12,7 +12,19 @@ const smoothstep = (low: number, high: number, f: number) => {
    return f * f * (3 - 2 * f);
 };
 
-const Firework = ({ userData, texture, baseColor }) => {
+type UserData = {
+   velocity: THREE.Vector3;
+   ttl: number;
+   update: () => void;
+   reset: () => void;
+};
+
+interface FireworkProps {
+   userData: UserData;
+   baseColor: THREE.Color;
+}
+
+const Firework = ({ userData, baseColor }: FireworkProps) => {
    const ref = useRef<THREE.Mesh<THREE.PlaneGeometry, THREE.ShaderMaterial>>(null!);
    const { fireworkGeom, fireworkMaterial } = useMakeFirework(baseColor);
    const emoljiTexture = useShuffleTexture();
@@ -51,22 +63,16 @@ const Firework = ({ userData, texture, baseColor }) => {
    return <mesh ref={ref} material={fireworkMaterial} geometry={fireworkGeom}></mesh>;
 };
 
-// can try
-// 1) filling in by creating new THREE.planeGeometry and new THREE.ShaderMaterial()
-// 2) when looping over set the shader material there inside the mesh
-// 3) have to loop over each iteration and set the texture
-
 const Fireworks = () => {
    const { size, set, gl, camera } = useThree();
-   const texture = useShuffleTexture();
    const controlsRef = useRef<any>();
    const fireworkPivot = useRef<THREE.Group>(null!);
    const baseColor = useMemo(() => new THREE.Color(), []);
 
    baseColor.r += 0.05 * Math.random();
    baseColor.b += 0.05 * Math.random();
+   const drag = 0.84 + 0.02 * Math.random(); // 0.96
 
-   const drag = 0.92 + 0.02 * Math.random(); // 0.96
    const userData = {
       velocity: new THREE.Vector3(Math.random() - 0.5, Math.random() - 0.1, Math.random() - 0.5),
       ttl: 200,
@@ -113,10 +119,15 @@ const Fireworks = () => {
             args={[25, size.width / size.height, 1, 1000.0]}
             position={[10, -35, 20]}
          />
-         <OrbitControls enableZoom={false} ref={controlsRef} args={[camera, gl.domElement]} />
+         <OrbitControls
+            enableDamping={false}
+            enableZoom={false}
+            ref={controlsRef}
+            args={[camera, gl.domElement]}
+         />
          <group ref={fireworkPivot} userData={userData}>
             {/* // let's try setting firework in a different place */}
-            <Firework userData={userData} texture={texture} baseColor={baseColor} />
+            <Firework userData={userData} baseColor={baseColor} />
          </group>
       </>
    );
