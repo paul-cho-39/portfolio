@@ -12,7 +12,8 @@ import { createRoot } from 'react-dom/client';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Canvas, useFrame, ThreeElements, extend, useThree } from '@react-three/fiber';
 import { Box, useHelper, Plane, Shadow, OrbitControls } from '@react-three/drei';
-import Fireworks, { Background, Monitor } from '../effects/fireworks';
+import Fireworks from '../effects/fireworkDemo';
+import { Monitor } from '../effects/monitor';
 
 function CustomBox(props: ThreeElements['mesh']) {
    const ref = useRef<Mesh>(null);
@@ -171,28 +172,24 @@ const Boxes = ({}) => {
       setCannons((cannons) => [...cannons, ...newCannons]);
    };
 
+   const [reset, setReset] = useState(false);
+
    return (
-      <Canvas frameloop='always' onClick={handleLaunch} camera={{ position: [200, 200, 200] }}>
+      <Canvas
+         gl={{ antialias: true, autoClear: false }}
+         frameloop='demand'
+         onClick={handleLaunch}
+         camera={{
+            position: [10, -35, 30],
+            // args: [45, innerWidth / innerHeight, [1, 1000]]
+         }}
+      >
          {/* <ambientLight intensity={0.3} castShadow /> */}
          <DirectionLight />
          <Monitor />
-         {/* <Control /> */}
-         <Background />
-         {/* {cannons.map((props, i) => (
-            <Fireworks key={i} {...props} />
-         ))} */}
-         {/* <group position={[0, -2, -1]}>
-            <CustomBox position={[3, 3, -2]} />
-            <CustomBox position={[0, 3, 1]} />
-            <Plane
-               args={[4, 4, 10, 10]}
-               rotation={[-Math.PI / 2, 0, 0]}
-               position={[0, 0, 0]}
-               receiveShadow
-            >
-               <Shadow castShadow color='#fffff' opacity={0.5} />
-            </Plane>
-         </group> */}
+         <Fireworks />
+         <Fireworks />
+         <Fireworks />
       </Canvas>
    );
 };

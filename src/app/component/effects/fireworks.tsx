@@ -1,187 +1,200 @@
 import { OrbitControls, shaderMaterial, Stars, Stats } from '@react-three/drei';
 import { extend, useFrame, useThree } from '@react-three/fiber';
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import * as THREE from 'three';
 
-extend({ OrbitControls });
-
-const Controls = () => {
-   const { camera, gl } = useThree();
-   const controlsRef = useRef();
-   useFrame(() => controlsRef.current.update());
-   return (
-      <OrbitControls
-         ref={controlsRef}
-         args={[camera, gl.domElement]}
-         enableZoom={false}
-         enableDamping={false}
-         enablePan={false}
-         autoRotate
-         autoRotateSpeed={Math.sin(Date.now() / 1000) * 2}
-         target={new THREE.Vector3(0, 0, 0)}
-      />
-   );
+type FireworkProps = {
+   gradient: THREE.CanvasTexture;
+   reset: boolean; // default is false
+   texture: THREE.CanvasTexture;
+   //    baseColor: THREE.Color;
 };
 
-// const Fireworks = () => {
-//    const ref = useRef<THREE.Mesh>(null);
-//    const fireworks = [];
-//    const { size, camera, viewport } = useThree();
-//    const dpr = useMemo(() => window.devicePixelRatio, []);
-
-//    // vertexShader: `...`,
-//    // fragmentShader: `...`,
-
-//    //    const fireworkMaterial = shaderMaterial({
-//    //     transparent,
-//    //     depthWrite: false,
-//    //     blendEquation: THREE.AddEquation,
-//    //     vertexShader: {
-//    //         isVector2: true,
-//    //      },
-//    //     uniforms: {
-//    //       resolution: { value: new THREE.Vector2(innerWidth * devicePixelRatio, innerHeight * devicePixelRatio) },
-//    //       color: { value: new THREE.Vector3(baseColor.r, baseColor.g, baseColor.b) },
-//    //       velocity: { value: new THREE.Vector2(0, 0) },
-//    //       map: { value: gradient },
-//    //       pattern: { value: null },
-//    //     },
-//    //   });
-
-//    //    const emojiTexture = useMemo(() => {
-//    //       const emojiCanvas = document.createElement('canvas');
-//    //       emojiCanvas.width = emojiCanvas.height = 256;
-//    //       const g: CanvasRenderingContext2D = emojiCanvas.getContext('2d');
-//    //       g.font = '200px Arial';
-//    //       var emojis = '😎 💀 🌸 💩 🤣 😍 🎉 🍑 🍆'.split(' ');
-//    //       g.fillText(emojis[Math.floor(Math.random() * emojis.length)], 30, 200);
-//    //       var emojiTex = new THREE.CanvasTexture(emojiCanvas);
-//    //       return emojiTex;
-//    //    }, []);
-
-//    const gradientTexture = useMemo(() => {
-//       const canvas = document.createElement('canvas');
-//       canvas.width = canvas.height = 250;
-//       const context = canvas.getContext('2d') as CanvasRenderingContext2D;
-
-//       const gradient = context?.createRadialGradient(
-//          canvas.width / 2,
-//          canvas.height / 2,
-//          0,
-//          canvas.width / 2,
-//          canvas.height / 2,
-//          canvas.width / 2
-//       );
-//       gradient?.addColorStop(0.1, 'red');
-//       gradient?.addColorStop(1, 'blue');
-
-//       context.fillStyle = gradient as CanvasGradient;
-//       context.fillRect(0, 0, canvas.width, canvas.height);
-
-//       const shadowTexture = new THREE.CanvasTexture(canvas);
-//       return shadowTexture;
-//    }, []);
-
-//    return (
-//       <mesh ref={ref} position={[0, 0, -3]}>
-//          {/* <shaderMaterial
-//             transparent
-
-//             uniforms={{
-//                resolution: { value: [size.width * dpr, size.height * dpr] },
-//                color: { value: new THREE.Color(1, 1, 1) },
-//                velocity: { value: [0, 0] },
-//                pattern: { value: emojiTexture },
-//             }}
-//          /> */}
-//          {/* <icosahedronGeometry args={[20, 1]} /> */}
-//          <boxGeometry args={[1, 2, -1]}  />
-//          <meshPhongMaterial color={'#0xffffff'} flatShading vertexColors shininess={0} />
-//       </mesh>
-//    );
-// };
-
-const useGeometry = () => {
-   const circleGeometry = useMemo(() => new THREE.CircleGeometry(2, 32), []);
-   const icosahedronGeometry = useMemo(() => new THREE.IcosahedronGeometry(1, 2), []);
-   //    const ball = useMemo(() => new THREE.IcosahedronGeometry(1, 10), []);
-   const ball = useMemo(() => new THREE.IcosahedronGeometry(1, 10), []);
-
-   const circlePoints = circleGeometry.getAttribute('position').array;
-   const icosahedronPoints = icosahedronGeometry.getAttribute('position').array;
-
-   const combinedPoints = new Float32Array(circlePoints.length + icosahedronPoints.length);
-
-   combinedPoints.set(circlePoints);
-   combinedPoints.set(icosahedronPoints, circlePoints.length);
-
-   const saturn = new THREE.BufferGeometry().setAttribute(
-      'position',
-      new THREE.BufferAttribute(combinedPoints, 3)
-   );
-
-   return { ball, saturn } as const;
+const smoothstep = (low: number, high: number, f: number) => {
+   f = (f - low) / (high - low);
+   f = Math.max(0, Math.min(1, f));
+   return f * f * (3 - 2 * f);
 };
 
-type Props = {
-   maxHeight: number;
-   color: string;
-   position: [number, number, number];
-};
+const Firework = ({ gradient, reset, texture }: FireworkProps) => {
+   const ref = useRef<THREE.Mesh<THREE.PlaneGeometry, THREE.ShaderMaterial>>(null!);
+   const { camera } = useThree();
 
-const Fireworks: React.FC<Props> = ({ maxHeight, color, position }) => {
-   const random = Math.random() * 10;
+   const baseColor = useMemo(() => new THREE.Color(0xffffff), []); // should have the basic color to its background
+   baseColor.r += 0.05 * Math.random();
+   baseColor.b += 0.05 * Math.random();
 
-   const pointsRef = useRef<THREE.Points>(null!);
+   const restart = () => {
+      ttl = 120 + Math.random() * 80;
+      ref.current.position.multiplyScalar(0);
+      velocity.set(Math.random() - 0.5, Math.random() - 0.5, (Math.random() - 0.5) * 0.2);
+      velocity.normalize().multiplyScalar(Math.pow(Math.random(), 0.5));
 
-   const material = useMemo(
-      () =>
-         new THREE.PointsMaterial({
-            size: 1,
-            color: color,
-            blending: THREE.AdditiveBlending,
-            depthTest: false,
-         }),
-      [color]
+      let tempVel = velocity;
+      ref.current.material.uniforms.velocity.value.set(tempVel.x / 2 + 0.5, tempVel.y / 2 + 0.5);
+   };
+
+   const shuffleTexture = () => (ref.current.material.uniforms.pattern.value = texture);
+
+   // geometry and material of the mesh
+   const fireworkGeom = useMemo(() => new THREE.PlaneGeometry(0.6, 0.6), []);
+   const velocity = useMemo(
+      () => new THREE.Vector3(Math.random() - 0.5, Math.random() - 0.1, Math.random() - 0.5),
+      []
    );
+   const drag = 0.96 + 0.02 * Math.random();
+   let ttl = 200;
+   //    const ttl = useRef<number>(200);
 
-   const { ball, saturn } = useGeometry();
+   useFrame(() => {
+      const cameraPos = camera.position;
+      ref.current.lookAt(cameraPos); // the group camera is being looked at
+      ref.current.position.add(velocity); // the group is being added
 
-   useFrame((state, delta) => {
-      const speed = 50 - pointsRef.current.position.y ** 1.1 / 40;
+      velocity.multiplyScalar(drag);
+      velocity.y -= 0.003;
+      velocity.x += (Math.random() - 0.5) * 0.01;
+      velocity.z += (Math.random() - 0.5) * 0.01;
+      ttl--;
 
-      pointsRef.current.position.x +=
-         (Math.cos(random + state.clock.getElapsedTime() * 10) * speed) / 20;
-      pointsRef.current.position.z +=
-         (Math.cos(random + state.clock.getElapsedTime() * 10) * speed) / 20;
-      pointsRef.current.position.y += speed / 2;
+      const scalar = Math.pow(Math.random(), 4) * 14 * smoothstep(-20, 50, ttl);
+      ref.current.material.uniforms.color.value.set(
+         scalar * baseColor.r,
+         scalar * baseColor.g,
+         scalar * baseColor.b
+      );
 
-      pointsRef.current.scale.setScalar(speed > 0.1 ? 1 : pointsRef.current.scale.x + delta * 25);
+      ref.current.scale.setScalar(1 + 10 * smoothstep(120, 190, ttl));
+      ref.current.rotation.z = Math.random() * 6;
 
-      material.opacity = speed > 0.1 ? 1 : material.opacity - delta / 2;
+      console.log('finished!');
    });
 
-   return <points ref={pointsRef} position={position} material={material} geometry={ball}></points>;
-};
+   useEffect(() => {
+      shuffleTexture();
+   }, [shuffleTexture]);
 
-export const Monitor: React.FC<{}> = () => {
-   return (
-      <>
-         <Stats showPanel={0} className='FPS'></Stats>
-         <Stats showPanel={1} className='MS'></Stats>
-         <Stats showPanel={2} className='MB'></Stats>
-      </>
+   const fireworkMaterial = useMemo(
+      () =>
+         new THREE.ShaderMaterial({
+            transparent: true,
+            depthWrite: false,
+            vertexShader: `
+            varying vec2 vUV;
+            void main(){
+                vUV = uv;
+                gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.);
+            }
+            `,
+            fragmentShader: `
+            varying vec2 vUV;
+            uniform vec3 color;
+            uniform vec2 resolution;
+            uniform vec2 velocity;
+            uniform sampler2D map;
+            uniform sampler2D pattern;
+            void main(){
+                gl_FragColor = texture2D(map, vUV);
+                vec2 screenSpace = gl_FragCoord.xy/resolution.xy;
+                gl_FragColor.rgb *= color;
+                gl_FragColor.rgb*=texture2D(pattern, velocity).rgb-0.5;
+                float overage = max(0., length(color)-1.)/4.;
+                gl_FragColor.rgb+=overage*texture2D(map, vUV).rgb;
+            }
+            `,
+
+            uniforms: {
+               resolution: {
+                  value: new THREE.Vector2(
+                     innerWidth * devicePixelRatio,
+                     innerHeight * devicePixelRatio
+                  ),
+               },
+               color: { value: new THREE.Vector3(baseColor.r, baseColor.g, baseColor.b) },
+               velocity: { value: new THREE.Vector2(0, 0) },
+               map: { value: gradient },
+               pattern: { value: null },
+            },
+            blending: THREE.AdditiveBlending,
+         }),
+      []
    );
+
+   return <mesh ref={ref} material={fireworkMaterial} geometry={fireworkGeom}></mesh>;
 };
 
-export const Background: React.FC = () => {
+// updating the fireworks --
+
+const Fireworks = () => {
+   const gradientTexture = useMemo(() => {
+      const canvas = document.createElement('canvas');
+      canvas.width = canvas.height = 512; // change this value
+      const context = canvas.getContext('2d') as CanvasRenderingContext2D;
+
+      const gradient = context.createRadialGradient(256, 256, 0, 256, 256, 256);
+      gradient.addColorStop(0, 'white');
+      gradient.addColorStop(0.1, 'gray');
+      gradient.addColorStop(0.2, '#303030');
+      gradient.addColorStop(1, 'black');
+
+      context.fillStyle = gradient;
+      context.fillRect(0, 0, 512, 512);
+      context.globalCompositeOperation = 'lighter';
+      context.beginPath();
+
+      // reset function here (what would be a safe approach?);
+      // have no idea what the reset does here -- TEST THIS OUT
+
+      for (let i = 0; i < 8; i++) {
+         let radius = (i % 2) * (128 + Math.random() * 64) + 64;
+         let theta = (i / 8) * 2 * Math.PI;
+         context.lineTo(256 + radius * Math.sin(theta), 256 + radius * Math.cos(theta));
+      }
+      context.fill();
+      const texture = new THREE.CanvasTexture(canvas);
+      return texture;
+   }, []);
+
+   const emojiTexture = useMemo(() => {
+      const emojiCanvas = document.createElement('canvas');
+      emojiCanvas.width = emojiCanvas.height = 256;
+      const context = emojiCanvas.getContext('2d') as CanvasRenderingContext2D;
+      context.font = '200px Arial';
+      var emojis = '😎 💀 🌸 💩 🤣 😍 🎉 🍑 🍆'.split(' ');
+      context.fillText(emojis[Math.floor(Math.random() * emojis.length)], 30, 200);
+      var emojiTexture = new THREE.CanvasTexture(emojiCanvas);
+      return emojiTexture;
+   }, []);
+
+   const [reset, setReset] = useState(false); // is this a global value?
+   const [runAnimation, setRunAnimation] = useState(true);
+
+   //    useEffect(() => {
+   //       setTimeout(() => {
+   //          if (runAnimation) {
+   //             setRunAnimation(false);
+   //          }
+   //       }, 10000);
+   //    }, [runAnimation]);
+
+   //    it does seem like
+
    return (
-      <group position={[0, 100, 0]}>
-         <Stars radius={100} depth={250} speed={8} />
-         <mesh position={[0, -100, -5]} rotation={[-Math.PI / 2, 0, 0]}>
-            <planeGeometry args={[400, 400, 25, 25]} />
-            <meshBasicMaterial wireframe wireframeLinecap='' color='gray' />
-         </mesh>
+      <group>
+         {/* the group */}
+         {runAnimation &&
+            Array.from({ length: 2000 }, (_, i) => (
+               // let's try setting firework in a different place
+               <Firework
+                  key={i}
+                  texture={emojiTexture}
+                  reset={reset}
+                  gradient={gradientTexture}
+                  //   material={material}
+                  // geom={geom}
+                  //   baseColor={baseColor}
+               />
+            ))}
       </group>
    );
 };
