@@ -5,10 +5,9 @@ import classNames from '@/app/library/helper';
 import { useScrollDirection } from '@/app/library/hooks/useScrollDirection';
 import ToggleTheme from '../buttons/toggleThemeButton';
 import { ThemeContext } from '../../../../contexts/ThemeContext';
-import Tester from '../headers/tester';
 import { FrontPageGenerator, ThemeContextParams } from '../../../../constants';
 import TypeWriter from '../effects/typeWriter';
-import Boxes from '../headers/tester';
+import UnderlinedLink from '../buttons/underlinedButton';
 
 import CircleSvg from '../circle';
 
@@ -201,7 +200,10 @@ const Navbar = () => {
             <div className='px-4 sm:px-6 lg:px-8'>
                <div className='h-[1000px] w-full'>
                   <TypeWriter wordGenerator={FrontPageGenerator} />
-                  <Boxes />
+                  {/* <Boxes /> */}
+                  <div className='mt-10'>
+                     <UnderlinedLink title={'Link'} />
+                  </div>
                   <CircleSvg height={100} width={100} />
                </div>
                <p className='h-[1000px] w-full'>TESTING HERE</p>

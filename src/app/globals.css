@@ -58,3 +58,18 @@ body {
     background: #555; /* Color of the scroll thumb on hover */
   }
 }
+
+@layer utilities {  
+  .animate-underline {
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 2px;
+    right: 0;
+    position: absolute;
+    background: #2F74D0;
+    transition: width 0.3s ease 0s, right 0.5s ease 0s;
+    width: 0;
+  }
+}

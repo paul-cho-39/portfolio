@@ -10,7 +10,6 @@ const smoothstep = (low: number, high: number, f: number) => {
 
 export const useMakeFirework = (baseColor: THREE.Color) => {
    //    const baseColor = useMemo(() => new THREE.Color(), []);
-
    baseColor.r += 0.05 * Math.random();
    baseColor.b += 0.05 * Math.random();
    const gradientTexture = useMemo(() => {
@@ -91,65 +90,6 @@ export const useMakeFirework = (baseColor: THREE.Color) => {
    );
 
    return { fireworkGeom, fireworkMaterial, baseColor };
-};
-
-export const useFireworkPivot = (
-   camera: THREE.Camera,
-   baseColor: THREE.Color
-   //    fireworkPivot: THREE.Group
-   //    ref: THREE.Mesh<THREE.PlaneGeometry, THREE.ShaderMaterial>
-) => {
-   //    const fireworkPivot = useRef<THREE.Object3D>(null!);
-   const ref = useRef<THREE.Mesh<THREE.PlaneGeometry, THREE.ShaderMaterial>>(null!);
-   var drag = 0.96 + 0.02 * Math.random();
-   const getUserData = (fireworkPivot: THREE.Group) => {
-      const userData = {
-         velocity: new THREE.Vector3(Math.random() - 0.5, Math.random() - 0.1, Math.random() - 0.5),
-         ttl: 200,
-         update: () => {
-            fireworkPivot.lookAt(camera.position);
-            fireworkPivot.position.add(fireworkPivot.userData.velocity);
-            fireworkPivot.userData.velocity.multiplyScalar(drag);
-            fireworkPivot.userData.velocity.y -= 0.003;
-            fireworkPivot.userData.velocity.x += (Math.random() - 0.5) * 0.01;
-            fireworkPivot.userData.velocity.z += (Math.random() - 0.5) * 0.01;
-            fireworkPivot.userData.ttl--;
-            var scalar =
-               Math.pow(Math.random(), 4) * 14 * smoothstep(-20, 50, fireworkPivot.userData.ttl);
-            ref.current.material.uniforms.color.value.set(
-               scalar * baseColor.r,
-               scalar * baseColor.g,
-               scalar * baseColor.b
-            );
-
-            ref.current.scale.setScalar(1 + 10 * smoothstep(120, 190, fireworkPivot.userData.ttl));
-            ref.current.rotation.z = Math.random() * 6;
-         },
-         setTexture: (t: THREE.CanvasTexture) => {
-            ref.current.material.uniforms.pattern.value = t;
-         },
-         reset: () => {
-            fireworkPivot.userData.ttl = 120 + Math.random() * 80;
-            fireworkPivot.position.multiplyScalar(0);
-            fireworkPivot.userData.velocity.set(
-               Math.random() - 0.5,
-               Math.random() - 0.5,
-               (Math.random() - 0.5) * 0.2
-            );
-            fireworkPivot.userData.velocity
-               .normalize()
-               .multiplyScalar(Math.pow(Math.random(), 0.5));
-            var v = fireworkPivot.userData.velocity;
-            ref.current.material.uniforms.velocity.value.set(v.x / 2 + 0.5, v.y / 2 + 0.5);
-         },
-      };
-      return userData;
-   };
-
-   //   fireworkPivot.userData = userData;
-   //   fireworkPivot.userData.velocity.normalize().multiplyScalar(0.3 + Math.pow(Math.random(), 2));
-
-   return { ref, getUserData };
 };
 
 export const useShuffleTexture = () => {
