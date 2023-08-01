@@ -98,7 +98,7 @@ const Navbar = () => {
                                                       item.current
                                                          ? 'bg-sky-200 dark:bg-blue-500'
                                                          : 'text-gray-700 hover:bg-gray-300/30',
-                                                      'group flex gap-x-3 rounded-2xl p-3 text-md leading-6 font-medium dark:text-gray-200'
+                                                      'group flex gap-x-3 rounded-2xl p-4 text-md leading-6 font-medium dark:text-gray-200'
                                                    )}
                                                 >
                                                    <span className='text-sm font-light tracking-tight'>
@@ -140,22 +140,27 @@ const Navbar = () => {
                   >
                      <ul role='list' className='flex flex-row items-center gap-x-3'>
                         {navigation.map((item, index) => (
-                           <li key={item.name}>
-                              <a
-                                 href={item.href}
-                                 className={classNames(
-                                    item.current
-                                       ? 'dark:hover:text-slate-700 hover:text-gray-400  '
-                                       : 'dark:hover:text-slate-700 hover:text-gray-400 ',
-                                    'transition-all duration-75 ease-in-out group flex gap-x-3 p-3 text-md font-medium text-gray-700 dark:text-gray-200/80 group-hover:text-opacity-75'
-                                 )}
-                              >
-                                 <span className='text-sm font-light tracking-tighter relative bottom-2 left-2'>
-                                    {item.num}{' '}
-                                 </span>
-                                 {item.name}
-                              </a>
-                           </li>
+                           <UnderlinedLink key={item.name} href={item.href} title={item.name}>
+                              <span className='text-sm font-light tracking-tighter relative bottom-2 left-2'>
+                                 {item.num}{' '}
+                              </span>
+                           </UnderlinedLink>
+                           // <li key={item.name}>
+                           //    <a
+                           //       href={item.href}
+                           //       className={classNames(
+                           //          item.current
+                           //             ? 'dark:hover:text-slate-700 hover:text-gray-400  '
+                           //             : 'dark:hover:text-slate-700 hover:text-gray-400 ',
+                           //          'transition-all duration-75 ease-in-out group flex gap-x-3 p-3 text-md font-medium text-gray-700 dark:text-gray-200/80 group-hover:text-opacity-75'
+                           //       )}
+                           //    >
+                           //       <span className='text-sm font-light tracking-tighter relative bottom-2 left-2'>
+                           //          {item.num}{' '}
+                           //       </span>
+                           //       {item.name}
+                           //    </a>
+                           // </li>
                         ))}
                         {/* have the position as absolute(?) or maybe just delete this entirely and put it somewhere else */}
                         <li className='absolute inset-8'>
@@ -201,9 +206,7 @@ const Navbar = () => {
                <div className='h-[1000px] w-full'>
                   <TypeWriter wordGenerator={FrontPageGenerator} />
                   {/* <Boxes /> */}
-                  <div className='mt-10'>
-                     <UnderlinedLink title={'Link'} />
-                  </div>
+                  <div className='mt-10'></div>
                   <CircleSvg height={100} width={100} />
                </div>
                <p className='h-[1000px] w-full'>TESTING HERE</p>
