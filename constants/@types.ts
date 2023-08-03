@@ -5,4 +5,8 @@ interface ContactIconParams {
    hoverColor?: string;
 }
 
+export interface ClassNameProps {
+   className?: string;
+}
+
 export type { ContactIconParams };

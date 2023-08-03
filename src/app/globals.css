@@ -6,6 +6,7 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --top-sun: 25%;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -68,12 +69,10 @@ body {
     height: 2px;
     right: 0;
     position: absolute;
-    background: #000000;
+    background: #0045a0;
     /* outline-color: #FFB5FD;
     text-shadow: #6558DD;
     filter: blur(8px); */
-    /* background: url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'500\' height=\'10\' viewBox=\'0 0 10 10\' fill=\'%23ffffff\'%3E%3Cpath d=\'M0 10 V0 Q5 10 10 0 Q5 -10 0 0 Q-5 10 -10 0 Q-5 -10 0 0 Q5 10 10 0\'/%3E%3C/svg%3E") no-repeat;
-    background-size: 10em 100px; */
     transition: width 0.3s ease 0s, right 0.5s ease 0s;
     width: 0;
   }

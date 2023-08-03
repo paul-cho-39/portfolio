@@ -3,6 +3,7 @@
 import { AppProps } from 'next/app';
 import Navbar from './component/nav/navigation';
 import ContactMeFab from './component/fab/contact';
+import { Barlow_Condensed } from 'next/font/google';
 import dynamic from 'next/dynamic';
 import { FrontPageGenerator } from '../../constants';
 import UnderlinedLink from './component/buttons/underlinedButton';
@@ -11,6 +12,12 @@ import UnderlinedLink from './component/buttons/underlinedButton';
 // const DynamicComponentWithNoSSR = dynamic(() => import('../app/component/headers/tester'), {
 //    ssr: false,
 // });
+
+const barlowCondensed = Barlow_Condensed({
+   weight: '700',
+   style: ['normal', 'italic'],
+   subsets: ['latin'],
+});
 
 export default function Home({ Component, pageProps }: AppProps) {
    return (

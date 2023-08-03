@@ -10,6 +10,10 @@ import TypeWriter from '../effects/typeWriter';
 import UnderlinedLink from '../buttons/underlinedButton';
 
 import CircleSvg from '../circle';
+import InitialLogo from '../headers/logo';
+import ProgrammingWindowSvg from '../illustrator/screens';
+import Sunrays from '../effects/sunrays';
+import WindowCanvas from '../effects/scene';
 
 const navigation = [
    { name: 'home', href: '#', num: '01.', current: true },
@@ -204,10 +208,14 @@ const Navbar = () => {
          <main className='py-28 sm:py-28'>
             <div className='px-4 sm:px-6 lg:px-8'>
                <div className='h-[1000px] w-full'>
-                  <TypeWriter wordGenerator={FrontPageGenerator} />
-                  {/* <Boxes /> */}
+                  <InitialLogo />
+                  <ProgrammingWindowSvg className='h-72 w-72 absolute z-10 top-[25%]' />
+                  <WindowCanvas />
+                  {/* <Sunrays /> */}
+                  {/* <TypeWriter wordGenerator={FrontPageGenerator} /> */}
+
                   <div className='mt-10'></div>
-                  <CircleSvg height={100} width={100} />
+                  {/* <CircleSvg height={100} width={100} /> */}
                </div>
                <p className='h-[1000px] w-full'>TESTING HERE</p>
             </div>

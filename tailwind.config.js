@@ -14,6 +14,24 @@ module.exports = {
          },
          animation: {
             'fade-in': 'fadeIn 0.5s ease-in forwards',
+            neon: 'neon 2s ease-in 2s alternate',
+         },
+         fontFamily: {
+            sans: ['var(--font-barlow-condensed)'],
+         },
+         keyframes: {
+            neon: {
+               '0%, 100%': {
+                  textShadow:
+                     '0 0 10px #ff00de, 0 0 20px #ff00de, 0 0 30px #ff00de, 0 0 40px #ff00de',
+                  color: '#6558DD',
+               },
+               '50%': {
+                  textShadow:
+                     '0 0 20px #ff00de, 0 0 30px #ff00de, 0 0 40px #ff00de, 0 0 50px #ff00de, 0 0 60px #ff00de',
+                  color: '#6558DD',
+               },
+            },
          },
       },
    },
