@@ -1,73 +1,142 @@
-import { useMemo } from 'react';
-import { Vector3, BufferGeometry, BufferAttribute, MeshBasicMaterial } from 'three';
+import { useFrame } from '@react-three/fiber';
+import { useEffect, useMemo, useRef } from 'react';
+import { Mesh, Color, BufferAttribute, BufferGeometry, DoubleSide } from 'three';
+import useBirdShader from './birdUniforms';
 
 interface BirdProps {
    count: number;
 }
 
 // the bird is from what (?);
+// const WIDTH = 32;
+// const BIRDS = WIDTH * WIDTH;
 
 const Bird = ({ count = 10 }) => {
-   // const lines = useMemo(
-   //     () =>
-   //         new Array(count).fill().map((_, index) => {
-   //             const v = new THREE.Vector3(5, 0, 0);
-   //         }),
-   //     []
-   // )
-   // the bird is the geometry
+   const ref = useRef<Mesh>(null!);
 
-   // const vertices = useMemo(
-   //     () =>
-   //     [
-   //         new Vector3(5, 0, 0),
-   //         new Vector3(-5, -2, 1),
-   //         new Vector3(-5, 0, 0),
-   //         new Vector3(-5, -2, -1),
-
-   //         new Vector3(0, -2, -6),
-   //         new Vector3(0, 2, -6),
-   //         new Vector3(2, 0, 0),
-   //         new Vector3(-3, 0, 0),
-   //     ],
-   //     []
-   // );
-
-   const vertics = new Float32Array([-5, -2, -1, 0, -2, -6, 0, 2, -6, 2, 0, 0, -3, 0, 0]);
-
-   const faces = new Uint32Array([0, 2, 1, 4, 7, 6, 5, 6, 7]);
+   const trianglesPerBird = 3;
+   const triangles = trianglesPerBird; // 3;
+   const points = triangles * 3;
 
    const geometry = useMemo(() => new BufferGeometry(), []);
-   geometry.setAttribute('position', new BufferAttribute(vertics, 3));
-   geometry.setIndex(new BufferAttribute(faces, 1));
 
-   const material = useMemo(() => new MeshBasicMaterial({ color: 0x000000 }), []);
+   const [vertices, birdColors, references, birdVertex] = useMemo(() => {
+      // this is the attribute that should be passed to the geometry
+      // this is initializing step where the array is equal to 0 for now
+      const vertices = new BufferAttribute(new Float32Array(points * 3), 3); // 27 vertices -- 3 triangles with 3 vertices each
+      const birdColors = new BufferAttribute(new Float32Array(points * 3), 3); // 9216 / 3 rgb so that each color is represented
+      const references = new BufferAttribute(new Float32Array(points * 3), 2); // 9216 / 2 vec2 - what is this?
+      const birdVertex = new BufferAttribute(new Float32Array(points * 3), 1); // 9216
+
+      let vert = 0; // encapsulate this object?
+      function pushVertices(...args: number[]) {
+         for (let i = 0; i < args.length; i++) {
+            vertices.array[vert++] = args[i];
+         }
+      }
+
+      const wingspan = 25;
+      pushVertices(0, 0, -20, 0, 4, -20, 0, 0, 30);
+
+      // WINGS
+      pushVertices(0, 0, -15, -wingspan, 0, 0, 0, 0, 15);
+      pushVertices(0, 0, 15, wingspan, 0, 0, 0, 0, -15);
+
+      // 3072
+      for (let v = 0; v < triangles * 3; v++) {
+         const color = new Color(0xff0000);
+         birdColors.array[v * 3 + 0] = color.r;
+         birdColors.array[v * 3 + 1] = color.g;
+         birdColors.array[v * 3 + 2] = color.b;
+
+         // For a single bird, references might not be needed. If they are still needed for some reason, adjust as necessary.
+         references.array[v * 2] = 0;
+         references.array[v * 2 + 1] = 0;
+
+         birdVertex.array[v] = v % 9;
+      }
+
+      return [vertices, birdColors, references, birdVertex];
+   }, []);
+
+   console.log('bird vertex: ', birdVertex);
+
+   geometry.setAttribute('position', vertices);
+   geometry.setAttribute('birdColor', birdColors);
+   geometry.setAttribute('references', references);
+   geometry.setAttribute('birdVertex', birdVertex);
+
+   const shaderMaterial = useBirdShader();
+
+   console.log('geometry shape is: ', geometry.getAttribute('position'));
+   console.log('Shader has this attribute', shaderMaterial);
+
+   // test this out****
+   useFrame((state, delta) => {
+      shaderMaterial.uniforms.time.value = state.clock.elapsedTime;
+   });
 
    return (
-      <>
-         <mesh geometry={geometry} material={material}></mesh>
-      </>
+      <group>
+         <mesh
+            ref={ref}
+            castShadow
+            receiveShadow
+            position={[0, -2, -1]}
+            scale={[0.3, 0.3, 0.3]}
+            geometry={geometry}
+            material={shaderMaterial}
+         >
+            {/* <meshBasicMaterial attach='material' color={0x00ff00} side={DoubleSide} /> */}
+         </mesh>
+      </group>
    );
 };
 
 export default Bird;
 
-// game plan is to create a bird
-// for the number of birds it will need to
-// 1) FIRST THING IS FIRST: create material with:
-// set of props (curve, width, color)
-// set its position in random
-// random number of birds
+// export function SquareMesh(props) {
+//    const geom = new BufferGeometry();
+//    const wingspan = 20;
 
-// inside the Bird component:
-// 2) set velocity and update position
-// a) this means setting smooth function for animation
-// b) velocity, maxSpeed, acceleration [normalize the velocity]
-// c) collapsing - if the bird colllapses(?)
-// d) depth -> if the bird flies further away from the screen how should the camera be positioned(?)
+//    const vertices = new Float32Array([
+//       0,
+//       -0,
+//       -20,
+//       0,
+//       4,
+//       -20,
+//       0,
+//       0,
+//       30,
+//       0,
+//       0,
+//       -15,
+//       -wingspan,
+//       0,
+//       0,
+//       0,
+//       0,
+//       15,
+//       0,
+//       0,
+//       15,
+//       wingspan,
+//       0,
+//       0,
+//       0,
+//       0,
+//       -15,
+//    ]);
 
-// 3) Would the shape be distorted because of it?
-// a) test this
-// b) have a set target to where it will be flocked
-// c) have to use fragemeentSharderPosition && fragmentShaderVelocity
-// d) directionlight -- how much light is it taking?
+//    // const indices = new Uint16Array([0, 1, 2, 0, 2, 3]);
+//    // geom.setIndex(new BufferAttribute(indices, 1));
+//    geom.setAttribute('position', new BufferAttribute(vertices, 3));
+
+//    console.log('attributes are:', geom.getAttribute('position'));
+//    return (
+//       <mesh position={[0, 0, 10]} geometry={geom} {...props} scale={[1, 1, 1]}>
+//          <meshBasicMaterial attach='material' color={0x00ff00} side={DoubleSide} />
+//       </mesh>
+//    );
+// }

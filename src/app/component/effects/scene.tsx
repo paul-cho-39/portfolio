@@ -17,12 +17,13 @@ const WindowCanvas = () => {
    const [sun] = useState(() => new THREE.Vector3(10, 10, 10));
 
    return (
-      <Canvas camera={{ position: [0, 0, 4], castShadow: true }} shadows='soft'>
-         <fog attach='fog' args={[0x66080d, 5, 100]} />
-         <Lights />
+      <Canvas camera={{ position: [0, 0, 5], castShadow: true }} shadows='soft'>
+         <fog attach='fog' args={[0x66080d, 100, 1000]} />
          <Bird />
-         <Sky distance={100} sunPosition={sun} azimuth={Math.PI * 2} />
-         <Box />
+         {/* <SquareMesh /> */}
+         {/* <Lights /> */}
+         {/* <Sky distance={100} sunPosition={sun} azimuth={Math.PI * 2} /> */}
+         {/* <Box /> */}
       </Canvas>
    );
 };

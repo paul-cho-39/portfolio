@@ -8,6 +8,8 @@ const smoothstep = (low: number, high: number, f: number) => {
    return f * f * (3 - 2 * f);
 };
 
+// TODO: check whether this has to be useCallback not useMemo
+// is function being passed or value?
 export const useMakeFirework = (baseColor: THREE.Color) => {
    //    const baseColor = useMemo(() => new THREE.Color(), []);
    baseColor.r += 0.05 * Math.random();
@@ -32,7 +34,7 @@ export const useMakeFirework = (baseColor: THREE.Color) => {
       // have no idea what the reset does here -- TEST THIS OUT
 
       for (let i = 0; i < 8; i++) {
-         let radius = (i % 2) * (128 + Math.random() * 64) + 64;
+         let radius = (i % 2) * (256 + Math.random() * 128) + 128;
          let theta = (i / 8) * 2 * Math.PI;
          context.lineTo(256 + radius * Math.sin(theta), 256 + radius * Math.cos(theta));
       }
@@ -49,7 +51,7 @@ export const useMakeFirework = (baseColor: THREE.Color) => {
             transparent: true,
             depthWrite: false,
             vertexShader: `
-            varying vec2 vUV;
+            varying vec2 vUV; 
             void main(){
                 vUV = uv;
                 gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.);
@@ -57,6 +59,7 @@ export const useMakeFirework = (baseColor: THREE.Color) => {
             `,
             fragmentShader: `
             varying vec2 vUV;
+
             uniform vec3 color;
             uniform vec2 resolution;
             uniform vec2 velocity;
@@ -86,7 +89,7 @@ export const useMakeFirework = (baseColor: THREE.Color) => {
             },
             blending: THREE.AdditiveBlending,
          }),
-      []
+      [baseColor, gradientTexture]
    );
 
    return { fireworkGeom, fireworkMaterial, baseColor };
