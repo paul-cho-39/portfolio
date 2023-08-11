@@ -34,6 +34,15 @@ const useBirdShader = () => {
             varying vec4 vColor; 
             varying float z;
             varying vec2 vUV;
+
+            vec3 rotateY(vec3 position, float angle) {
+                mat3 rotationMatrix = mat3(
+                    cos(angle),  0.0, sin(angle),
+                    0.0,        1.0, 0.0,
+                    -sin(angle), 0.0, cos(angle)
+                );
+                return rotationMatrix * position;
+            }
                 
             void main() 
             {
@@ -75,9 +84,11 @@ const useBirdShader = () => {
                     0, 0, 1
                 );
 
-                // newPosition = newPosition * maty;
+                // rotate the bird
+                float angle = time;
+                newPosition = rotateY(newPosition, angle); 
                 // newPosition += pos;
-                vUV = uv;
+                // vUV = uv;
                 z = newPosition.z;
                 vColor = vec4( birdColor, 1.0 );
                 
@@ -87,7 +98,7 @@ const useBirdShader = () => {
             fragmentShader: `
             varying vec4 vColor;
             varying float z;    
-            varying vUV
+            // varying vUV;
         
             uniform vec3 color;
             
@@ -96,7 +107,7 @@ const useBirdShader = () => {
         
             void main()
             {
-                vec4 tmpPos = texture2D(texturePosition, uv);
+                // vec4 tmpPos = texture2D(texturePosition, uv);
                 float z2 = 0.2 + (100. - z) / 100. * vColor.x;
                 gl_FragColor = vec4( z2, z2, z2, 1.0 );
             }    

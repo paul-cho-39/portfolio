@@ -3,6 +3,7 @@ import * as THREE from 'three';
 import { useMemo, useRef, useState } from 'react';
 import { useHelper, Sky, SpotLight, useGLTF, Clone } from '@react-three/drei';
 import Bird from './bird';
+import Seagull from './seagull';
 
 // sky and sunlight is toggled on/off whenever light/dark mode
 // add depth to tree, birds
@@ -17,9 +18,11 @@ const WindowCanvas = () => {
    const [sun] = useState(() => new THREE.Vector3(10, 10, 10));
 
    return (
-      <Canvas camera={{ position: [0, 0, 5], castShadow: true }} shadows='soft'>
+      <Canvas camera={{ position: [0, 0, -10], castShadow: true }} shadows='soft'>
          <fog attach='fog' args={[0x66080d, 100, 1000]} />
-         <Bird />
+         <Seagull position={[0, -5, -3]} />
+         <Seagull position={[3, -4, -3]} />
+
          {/* <SquareMesh /> */}
          {/* <Lights /> */}
          {/* <Sky distance={100} sunPosition={sun} azimuth={Math.PI * 2} /> */}

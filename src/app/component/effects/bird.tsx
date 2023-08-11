@@ -2,6 +2,7 @@ import { useFrame } from '@react-three/fiber';
 import { useEffect, useMemo, useRef } from 'react';
 import { Mesh, Color, BufferAttribute, BufferGeometry, DoubleSide } from 'three';
 import useBirdShader from './birdUniforms';
+import { useGLTF } from '@react-three/drei';
 
 interface BirdProps {
    count: number;
@@ -35,12 +36,15 @@ const Bird = ({ count = 10 }) => {
          }
       }
 
-      const wingspan = 25;
-      pushVertices(0, 0, -20, 0, 4, -20, 0, 0, 30);
+      const wingspan = 20;
+      // 1, -1, -20 - face
+      // 0, 3, -20
+      //
+      pushVertices(0, 1, -20, 0, -1, -20, 0, 2, 20);
 
       // WINGS
-      pushVertices(0, 0, -15, -wingspan, 0, 0, 0, 0, 15);
-      pushVertices(0, 0, 15, wingspan, 0, 0, 0, 0, -15);
+      pushVertices(0, 2, -10, -wingspan, 2, 0, 0, 2, 10);
+      pushVertices(0, 2, 10, wingspan, 2, 0, 0, 2, -10);
 
       // 3072
       for (let v = 0; v < triangles * 3; v++) {
@@ -73,6 +77,9 @@ const Bird = ({ count = 10 }) => {
 
    // test this out****
    useFrame((state, delta) => {
+      // console.log('the delta is: ', delta);
+      // useFrame here to influence the motion of the bird
+
       shaderMaterial.uniforms.time.value = state.clock.elapsedTime;
    });
 
@@ -94,49 +101,3 @@ const Bird = ({ count = 10 }) => {
 };
 
 export default Bird;
-
-// export function SquareMesh(props) {
-//    const geom = new BufferGeometry();
-//    const wingspan = 20;
-
-//    const vertices = new Float32Array([
-//       0,
-//       -0,
-//       -20,
-//       0,
-//       4,
-//       -20,
-//       0,
-//       0,
-//       30,
-//       0,
-//       0,
-//       -15,
-//       -wingspan,
-//       0,
-//       0,
-//       0,
-//       0,
-//       15,
-//       0,
-//       0,
-//       15,
-//       wingspan,
-//       0,
-//       0,
-//       0,
-//       0,
-//       -15,
-//    ]);
-
-//    // const indices = new Uint16Array([0, 1, 2, 0, 2, 3]);
-//    // geom.setIndex(new BufferAttribute(indices, 1));
-//    geom.setAttribute('position', new BufferAttribute(vertices, 3));
-
-//    console.log('attributes are:', geom.getAttribute('position'));
-//    return (
-//       <mesh position={[0, 0, 10]} geometry={geom} {...props} scale={[1, 1, 1]}>
-//          <meshBasicMaterial attach='material' color={0x00ff00} side={DoubleSide} />
-//       </mesh>
-//    );
-// }
