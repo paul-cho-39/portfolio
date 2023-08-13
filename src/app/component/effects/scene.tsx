@@ -18,10 +18,14 @@ const WindowCanvas = () => {
    const [sun] = useState(() => new THREE.Vector3(10, 10, 10));
 
    return (
-      <Canvas camera={{ position: [0, 0, -10], castShadow: true }} shadows='soft'>
+      <Canvas
+         frameloop='always'
+         camera={{ position: [0, 0, -10], castShadow: true }}
+         shadows='soft'
+      >
          <fog attach='fog' args={[0x66080d, 100, 1000]} />
-         <Seagull position={[0, -5, -3]} />
-         <Seagull position={[3, -4, -3]} />
+         <Seagull position={[0, 3, 8]} />
+         {/* <Seagull position={[0, 0, 3]} /> */}
 
          {/* <SquareMesh /> */}
          {/* <Lights /> */}
