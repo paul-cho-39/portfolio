@@ -1,6 +1,6 @@
 import { useGLTF, Clone } from '@react-three/drei';
 import { useFrame, useThree } from '@react-three/fiber';
-import { useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import {
    MeshBasicMaterial,
    Vector3,
@@ -23,165 +23,97 @@ import {
 const Seagull = ({ position, count = 10 }: { position: Vector3; count?: number }) => {
    const gltf = useGLTF('/glb/bird.glb');
    const birdRef = useRef<Mesh>(null!);
+   const groupRef = useRef<Group>(null!);
 
-   // the radius should be screen device
-   const radius = 10;
-
-   let velocityX = Math.random() * 0.1;
    let velocityY = Math.random() * 0.05;
 
-   const numPoints = 25; // Number of points for the curve. More points = smoother curve
-   const frequency = 2; // Determines how many waves are there in the path
    const points: Vector3[] = [];
-   const randomY = [2, 4, 6, 8];
 
-   const getPoints = (points: Vector3[], radius: number) => {
-      for (let i = 0; i <= numPoints; i++) {
-         const ratio = i / numPoints;
-         const x = Math.sin(ratio) * radius * 3;
-         const y = randomY[Math.floor(Math.random() * randomY.length)] % i;
-         const z = Math.cos(ratio) * Math.abs(radius); // only want it to go away from the screen
-         points.push(new Vector3(x, y, z));
+   const generateRandomPoints = (numPoints: number) => {
+      const points: Vector3[] = [];
+      let x = 20,
+         y = 0,
+         z = 10; // Starting point
+
+      // Define maximum variation for each coordinate
+      const maxXVariation = 12;
+      const maxYVariation = 1;
+      const maxZVariation = 5;
+
+      for (let i = 0; i < numPoints; i++) {
+         // x += Math.sin(maxXVariation) * radius * 3;
+         x -= Math.sin(i * 0.5) * maxXVariation;
+         y += Math.random() * maxYVariation * 2 - maxYVariation;
+         // z += Math.random() * maxZVariation * 2 - maxZVariation;
+         z += Math.sin(i * 0.2) * maxZVariation;
+
+         points.push(new Vector3(x, y, Math.abs(z)));
       }
-      const reversedPoints = [...points].reverse();
-      points.push(...reversedPoints);
+
+      const reversed = [...points].reverse();
+      points.push(...reversed);
+
+      return points;
    };
 
    const curve = useMemo(() => {
-      getPoints(points, radius);
-      getPoints(points, -radius);
-
-      // const reversedPoints = [...points].reverse();
-      // points.push(...reversedPoints);
+      const secondPoints = generateRandomPoints(50);
+      points.push(...secondPoints);
 
       return new CatmullRomCurve3(points);
-   }, []);
+   }, [points]);
 
-   // const points = [
-   //    new Vector3(0, 0, -1),
-   //    new Vector3(5, 3, -3),
-   //    new Vector3(10, 5, -3),
-   //    new Vector3(10, 3, 0),
-   //    new Vector3(-4, 3, 3),
-   //    new Vector3(-3, 2, 5),
-   //    new Vector3(-5, 3, -3),
-   //    new Vector3(10, 5, -3),
-   //    // new Vector3(10, 0, 30),
-   //    // new Vector3(0, 0, 30),
-   //    // new Vector3(-10, 10, 30),
-   //    // new Vector3(-10, 20, 30),
-   //    // new Vector3(0, 30, 30),
-   //    // new Vector3(10, 30, 30),
-   //    // new Vector3(20, 30, 15),
-   //    // new Vector3(10, 30, 10),
-   //    // new Vector3(0, 30, 10),
-   //    // new Vector3(-10, 20, 10),
-   //    // new Vector3(-10, 10, 10),
-   //    // new Vector3(0, 0, 10),
-   //    // new Vector3(10, -10, 10),
-   //    // new Vector3(20, -15, 10),
-   //    // new Vector3(30, -15, 10),
-   //    // new Vector3(40, -15, 10),
-   //    // new Vector3(50, -15, 10),
-   // ];
-
-   // const curve = useMemo(() => new CatmullRomCurve3(points), []);
-
+   // LETS STORE THIS IN STATE
+   let velocityX = Math.random() * 0.1;
    let targetVelocityX = -velocityX; // The velocity you want to reach
    let velocityChangeSpeed = 0.1; // How fast the velocity changes, tweak this value
    let t = 0; // Parameter for traversing the curve
-   const curveSpeed = 0.0005;
+   const curveSpeed = 0.00025;
+
+   const quaternions = useMemo(() => {
+      const quaternions = []; // Array to store desired orientations
+      for (let i = 0; i < points.length - 1; i++) {
+         let direction = new Vector3().subVectors(points[i + 1], points[i]).normalize();
+         let quaternion = new Quaternion().setFromUnitVectors(new Vector3(15, 0, 5), direction);
+         quaternions.push(quaternion);
+      }
+      return quaternions;
+   }, [points]);
+
+   let changeDirectionPointsX = [];
+   for (let i = 0; i < points.length; i++) {
+      let xValue = 20 - Math.sin(i * 0.5) * 5;
+      if (
+         i == 0 ||
+         Math.abs(xValue - changeDirectionPointsX[changeDirectionPointsX.length - 1]) > 5 * 0.9
+      ) {
+         changeDirectionPointsX.push(xValue);
+      }
+   }
 
    useFrame(() => {
       t += curveSpeed;
 
-      if (t >= 10) {
+      if (t >= 1) {
          t = 0;
 
-         // If at boundary, reverse direction and create a new curve
          targetVelocityX = -velocityX;
          velocityX += (targetVelocityX - velocityX) * velocityChangeSpeed;
 
-         // Generate a new set of points and curve
          points.reverse(); // Reversing so the bird moves back on the opposite direction
       }
 
       birdRef.current.position.copy(curve.getPoint(t));
 
       // For rotation, take the tangent to the curve as the direction of movement
-      let tangent = curve.getTangent(t).normalize();
+      let tangent = curve.getTangent(t + curveSpeed).normalize();
+
       birdRef.current.lookAt(birdRef.current.position.clone().add(tangent));
    });
 
-   // useFrame((state, delta) => {
-   //    if (!birdRef.current) return;
-
-   //    theta += delta * Math.random(); // slowing down effect
-   //    const rand = MathUtils.randFloatSpread(sigma) * Math.random();
-
-   //    // squares this so that time spent at +z is more;
-   //    birdRef.current.position.x += velocityX;
-   //    birdRef.current.position.z += velocityX;
-   //    const z = radius * Math.pow(Math.cos((theta * rand) / rand), 2);
-
-   //    // NO NEED TO CREATE ANOTHER VECTOR3 EVERY TIME!
-   //    let direction = new Vector3(
-   //       birdRef.current.position.x - previousPosition.x,
-   //       0,
-   //       birdRef.current.position.z - previousPosition.z
-   //    ).normalize();
-
-   //    if (
-   //       birdRef.current.position.x > upperBoundaryX ||
-   //       birdRef.current.position.x < lowerBoundaryX
-   //    ) {
-   //       // FOR THIS PART WHY NOT GO AROUND IN A LOOP(?)
-   //       birdRef.current.rotation.y = Math.PI * 1.5;
-   //       velocityX += (targetVelocityX - velocityX) * velocityChangeSpeed;
-   //    }
-
-   //    if (!direction.equals(new Vector3(0, 0, 0))) {
-   //       birdRef.current.lookAt(birdRef.current.position.clone().add(direction));
-   //    }
-
-   //    // birdRef.current.position.x += velocityX;
-   //    // birdRef.current.position.y += 0.05 * Math.sin(theta * 0.001);
-
-   //    // birdRef.current.position.z = z;
-
-   //    previousZ = z;
-   //    previousPosition.set(
-   //       birdRef.current.position.x,
-   //       birdRef.current.position.y,
-   //       birdRef.current.position.z
-   //    );
-
-   //    // setInterval and switch every time wrapped around in a function(?)
-   //    // setInterval(() => changePosition(), 1500);
-   //    // const currentPosition = birdRef.current.position;
-   // });
-
-   // have a target. The target is the center
-   // when touching the seagull it will increase its velocity and move towards the sea direction
-
    return (
-      <group position={[0, 0, 5]}>
-         <primitive ref={birdRef} position={[0, 0, 0]} object={gltf.scene} rotation={[0, 0, 0]} />
-         {/* <mesh ref={birdRef} position={position} rotation={}>
-            <meshBasicMaterial color={'red'} />
-            <boxGeometry args={[2, 3]} />
-         </mesh> */}
-      </group>
+      <primitive ref={birdRef} position={[15, 0, 5]} object={gltf.scene} rotation={[0, 0, 0]} />
    );
 };
 
 export default Seagull;
-
-// export const Sample = () => {
-//    const line = useMemo(() => new LineBasicMaterial, []);
-//    const material = useMemo(() => new Geometry, []);
-//    return (
-//       <mesh>
-//       </mesh>
-//    )
-// }

@@ -22,6 +22,7 @@ const WindowCanvas = () => {
          frameloop='always'
          camera={{ position: [0, 0, -10], castShadow: true }}
          shadows='soft'
+         resize={{ scroll: false }}
       >
          <fog attach='fog' args={[0x66080d, 100, 1000]} />
          <Seagull position={[0, 3, 8]} />
