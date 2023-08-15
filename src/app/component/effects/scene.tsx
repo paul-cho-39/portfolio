@@ -4,6 +4,7 @@ import { useMemo, useRef, useState } from 'react';
 import { useHelper, Sky, SpotLight, useGLTF, Clone } from '@react-three/drei';
 import Bird from './bird';
 import Seagull from './seagull';
+import PalmTrees from './palmTrees';
 
 // sky and sunlight is toggled on/off whenever light/dark mode
 // add depth to tree, birds
@@ -25,8 +26,8 @@ const WindowCanvas = () => {
          resize={{ scroll: false }}
       >
          <fog attach='fog' args={[0x66080d, 100, 1000]} />
-         <Seagull position={[0, 3, 8]} />
-         {/* <Seagull position={[0, 0, 3]} /> */}
+         <Seagull />
+         {/* <PalmTrees /> */}
 
          {/* <SquareMesh /> */}
          {/* <Lights /> */}

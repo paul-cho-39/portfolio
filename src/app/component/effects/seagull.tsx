@@ -1,8 +1,7 @@
-import { useGLTF, Clone } from '@react-three/drei';
+import { useGLTF, Clone, useAnimations } from '@react-three/drei';
 import { useFrame, useThree } from '@react-three/fiber';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import {
-   MeshBasicMaterial,
    Vector3,
    Mesh,
    Group,
@@ -13,19 +12,9 @@ import {
    LineBasicMaterial,
 } from 'three';
 
-// have to establish width -- what is the width and if the velocity is going fast
-// then
-// maximum stack(?) -> how many birds can be alive on the screen at once?
-// using userData to update the bird flap and its position of y-axis?
-
-// there should be a limit
-
-const Seagull = ({ position, count = 10 }: { position: Vector3; count?: number }) => {
+const Seagull = ({ count = 10 }: { count?: number }) => {
    const gltf = useGLTF('/glb/bird.glb');
-   const birdRef = useRef<Mesh>(null!);
-   const groupRef = useRef<Group>(null!);
-
-   let velocityY = Math.random() * 0.05;
+   const birdRef = useRef<Group>(null!);
 
    const points: Vector3[] = [];
 
@@ -70,6 +59,16 @@ const Seagull = ({ position, count = 10 }: { position: Vector3; count?: number }
    let t = 0; // Parameter for traversing the curve
    const curveSpeed = 0.00025;
 
+   const { actions } = useAnimations(gltf.animations, birdRef);
+
+   useEffect(() => {
+      if (actions.flying) {
+         actions?.flying.play();
+         actions?.flying.setDuration(5);
+      }
+   });
+
+   // unnecessary? delete this part?
    const quaternions = useMemo(() => {
       const quaternions = []; // Array to store desired orientations
       for (let i = 0; i < points.length - 1; i++) {
@@ -115,5 +114,7 @@ const Seagull = ({ position, count = 10 }: { position: Vector3; count?: number }
       <primitive ref={birdRef} position={[15, 0, 5]} object={gltf.scene} rotation={[0, 0, 0]} />
    );
 };
+
+useGLTF.preload('/glb/bird.glb');
 
 export default Seagull;
