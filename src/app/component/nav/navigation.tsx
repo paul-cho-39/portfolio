@@ -12,7 +12,6 @@ import UnderlinedLink from '../buttons/underlinedButton';
 import CircleSvg from '../circle';
 import InitialLogo from '../headers/logo';
 import ProgrammingWindowSvg from '../illustrator/screens';
-import Sunrays from '../effects/sunrays';
 import WindowCanvas from '../effects/scene';
 
 const navigation = [
@@ -40,14 +39,6 @@ const Navbar = () => {
 
    return (
       <>
-         {/*
-        This example requires updating your template:
-
-        ```
-        <html class="h-full bg-white">
-        <body class="h-full">
-        ```
-      */}
          <div>
             {/* mobile version */}
             <Transition.Root show={sidebarOpen} as={Fragment}>
@@ -209,13 +200,10 @@ const Navbar = () => {
             <div className='px-4 sm:px-6 lg:px-8'>
                <div className='h-[1000px] w-full'>
                   <InitialLogo />
-                  <ProgrammingWindowSvg className='h-72 w-72 absolute z-10 top-[25%]' />
-                  <WindowCanvas />
-                  {/* <Sunrays /> */}
+                  <WindowCanvas darkMode={theme === 'dark'} />
                   {/* <TypeWriter wordGenerator={FrontPageGenerator} /> */}
 
                   <div className='mt-10'></div>
-                  {/* <CircleSvg height={100} width={100} /> */}
                </div>
                <p className='h-[1000px] w-full'>TESTING HERE</p>
             </div>

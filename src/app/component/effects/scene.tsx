@@ -1,10 +1,10 @@
 import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import { useMemo, useRef, useState } from 'react';
-import { useHelper, Sky, SpotLight, useGLTF, Clone } from '@react-three/drei';
-import Bird from './bird';
+import { useHelper, Sky, SpotLight, useGLTF, Clone, PerspectiveCamera } from '@react-three/drei';
 import Seagull from './seagull';
 import PalmTrees from './palmTrees';
+import Environment from './environment';
 
 // sky and sunlight is toggled on/off whenever light/dark mode
 // add depth to tree, birds
@@ -15,9 +15,7 @@ import PalmTrees from './palmTrees';
 // can it switch between day and night with no problem?
 // vertex shading? fragment shading?
 
-const WindowCanvas = () => {
-   const [sun] = useState(() => new THREE.Vector3(10, 10, 10));
-
+const WindowCanvas = ({ darkMode }) => {
    return (
       <Canvas
          frameloop='always'
@@ -25,13 +23,14 @@ const WindowCanvas = () => {
          shadows='soft'
          resize={{ scroll: false }}
       >
-         <fog attach='fog' args={[0x66080d, 100, 1000]} />
+               <PerspectiveCamera makeDefault position={[0, 0, 5]} near={0.1} far={1000} />
+
          <Seagull />
+         <Environment darkMode={darkMode} />
          {/* <PalmTrees /> */}
 
          {/* <SquareMesh /> */}
          {/* <Lights /> */}
-         {/* <Sky distance={100} sunPosition={sun} azimuth={Math.PI * 2} /> */}
          {/* <Box /> */}
       </Canvas>
    );
@@ -62,17 +61,5 @@ const Lights = () => {
       </>
    );
 };
-
-function Box() {
-   const ref = useRef<THREE.Mesh>(null!);
-   //    useHelper(ref, THREE.BoxHelper, 'green');
-   useFrame(() => (ref.current.rotation.x = ref.current.rotation.y += 0.01));
-   return (
-      <mesh ref={ref}>
-         <boxGeometry attach='geometry' />
-         <meshStandardMaterial attach='material' color='orange' />
-      </mesh>
-   );
-}
 
 export default WindowCanvas;

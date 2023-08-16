@@ -65,7 +65,7 @@ export const vertexShader = `
     }
 `;
 
-const birdFragmentShader = `
+export const birdFragmentShader = `
     varying vec4 vColor;
     varying float z;    
 

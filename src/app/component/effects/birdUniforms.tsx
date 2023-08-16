@@ -2,6 +2,19 @@ import { useMemo } from 'react';
 import { Color, ShaderMaterial } from 'three';
 import { birdFragmentShader, vertexShader } from './birds.glsl';
 
+// because the gpu is heavy on animations, when changing tabs, the animation stops
+// see and test out how the tabs work in the first place
+
+// what would be the texture like? What kind of texture should it contain?
+// because the site will be slower if higher the texture
+
+// whenever the bird is flying, it should be rotation and translate only
+// when moving away the head should be directed out, left <-> right
+// so i believe it is rotating the y-axis math.pi * 1/2 when flying towards the back
+// find out which direction it is flying towards
+
+// lighting -- the further away the bird (from the lighting) the less shade they will recieve
+
 // may be better if it is a hook
 const useBirdShader = () => {
    const colors = useMemo(() => new Color(0xff2200), []);
@@ -54,8 +67,16 @@ const useBirdShader = () => {
 
                 if (birdVertex == 4.0 || birdVertex == 7.0) {
                     // flap wings -- 
+                    float birdFlapTimes = 0.0;
                     float flapAmount = sin(time + tmpPos.w * 10.0) * 5.0; 
+                    
                     newPosition.y += flapAmount;
+                    birdFlapTimes += 1.0;
+
+                    // if the bird flaps its wings more than 4 times
+                    if (birdFlapTimes > 4.0) {
+                        
+                    }
                     // newPosition.y = sin( tmpPos.w ) * 5.0;
                 }
                 
