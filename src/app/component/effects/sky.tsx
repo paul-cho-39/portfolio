@@ -1,22 +1,22 @@
 import { Sky } from '@react-three/drei';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { Vector3 } from 'three';
+import { CanvasTexture, PlaneGeometry, ShaderMaterial, Vector2, Vector3 } from 'three';
 
 interface EnvironmentProps {
    darkMode: boolean;
 }
 
-function Environment({ darkMode }: EnvironmentProps) {
-   const skyRef = useRef<THREE.Mesh>(null!);
-   const invisibleSun = useMemo(() => new Vector3(-10, 40, 40), []);
-   const visibleSun = useMemo(() => new Vector3(0, -2, 40), []);
+function CustomSky({ darkMode }: EnvironmentProps) {
+   const skyRef = useRef<typeof Sky>(null!);
+   const invisibleSun = useMemo(() => new Vector3(-10, 1000, 500), []);
+   const visibleSun = useMemo(() => new Vector3(0, -2, 10), []);
 
    return (
       // here add stars
       <Sky
          ref={skyRef}
+         distance={15000}
          mieCoefficient={0.015}
-         distance={1000}
          sunPosition={darkMode ? visibleSun : invisibleSun}
          turbidity={darkMode ? 8 : 2.75}
          rayleigh={darkMode ? 0 : 0.05}
@@ -26,4 +26,4 @@ function Environment({ darkMode }: EnvironmentProps) {
    );
 }
 
-export default Environment;
+export default CustomSky;

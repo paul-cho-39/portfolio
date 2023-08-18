@@ -1,10 +1,16 @@
 import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import { useMemo, useRef, useState } from 'react';
-import { useHelper, Sky, SpotLight, useGLTF, Clone, PerspectiveCamera } from '@react-three/drei';
+import { useHelper, PerspectiveCamera, OrbitControls } from '@react-three/drei';
 import Seagull from './seagull';
 import PalmTrees from './palmTrees';
-import Environment from './environment';
+import CustomSky from './sky';
+import { Monitor } from './monitor';
+import Ocean from './ocean';
+import Clouds from './cloud';
+
+import { DepthOfField, EffectComposer } from '@react-three/postprocessing';
+import Sphere from './cloudSphere';
 
 // sky and sunlight is toggled on/off whenever light/dark mode
 // add depth to tree, birds
@@ -18,20 +24,18 @@ import Environment from './environment';
 const WindowCanvas = ({ darkMode }) => {
    return (
       <Canvas
+         className=''
          frameloop='always'
-         camera={{ position: [0, 0, -10], castShadow: true }}
-         shadows='soft'
+         // shadows='soft'
+         camera={{ position: [0, 1, 10], fov: 35, near: 1, far: 1000, castShadow: false }}
          resize={{ scroll: false }}
       >
-               <PerspectiveCamera makeDefault position={[0, 0, 5]} near={0.1} far={1000} />
-
+         <Monitor />
+         <Clouds />
+         {/* <Sphere /> */}
+         <OrbitControls enableZoom={false} />
          <Seagull />
-         <Environment darkMode={darkMode} />
-         {/* <PalmTrees /> */}
-
-         {/* <SquareMesh /> */}
-         {/* <Lights /> */}
-         {/* <Box /> */}
+         <Lights />
       </Canvas>
    );
 };

@@ -12,6 +12,8 @@ import {
    LineBasicMaterial,
 } from 'three';
 
+const NUMBER_OF_BIDS = 3;
+
 const Seagull = ({ count = 10 }: { count?: number }) => {
    const gltf = useGLTF('/glb/bird.glb');
    const birdRef = useRef<Group>(null!);
@@ -27,7 +29,7 @@ const Seagull = ({ count = 10 }: { count?: number }) => {
       // Define maximum variation for each coordinate
       const maxXVariation = 12;
       const maxYVariation = 1;
-      const maxZVariation = 5;
+      const maxZVariation = 15;
 
       for (let i = 0; i < numPoints; i++) {
          // x += Math.sin(maxXVariation) * radius * 3;
@@ -110,10 +112,28 @@ const Seagull = ({ count = 10 }: { count?: number }) => {
       birdRef.current.lookAt(birdRef.current.position.clone().add(tangent));
    });
 
+   // set different position.
+   // pass on the prop so that it can be identified with a key? or even pass as a prop?
    return (
-      <primitive ref={birdRef} position={[15, 0, 5]} object={gltf.scene} rotation={[0, 0, 0]} />
+      <primitive ref={birdRef} position={[15, 0, 1000]} object={gltf.scene} rotation={[0, 0, 0]} />
    );
 };
+
+// const Seagulls = () => {
+//    const seagull = useGLTF('/glb/bird.glb');
+
+//    return (
+//       <group>
+//          {Array.from({ length: NUMBER_OF_BIDS }).map((_, index) => {
+//             const cloneSeagull = seagull.scene.clone();
+
+//             // line up the seaguls?
+
+//             return <Seagull key={index} glsl={cloneSeagull} position={}  />
+//          })}
+//       </group>
+//    )
+// }
 
 useGLTF.preload('/glb/bird.glb');
 
