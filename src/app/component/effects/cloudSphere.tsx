@@ -11,7 +11,9 @@ const CloudSphere = ({ position }: { position: Vector3 }) => {
       []
    );
 
-   return <mesh position={position} geometry={geometry} material={material}></mesh>;
+   return (
+      <mesh attach='geometry' position={position} geometry={geometry} material={material}></mesh>
+   );
 };
 
 const Sphere = () => {

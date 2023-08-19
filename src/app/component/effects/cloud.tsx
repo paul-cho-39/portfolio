@@ -2,6 +2,8 @@ import { Point, useTexture } from '@react-three/drei';
 import { extend, useFrame, useThree } from '@react-three/fiber';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Mesh, PlaneGeometry, ShaderLib, ShaderMaterial, UniformsUtils, Vector3 } from 'three';
+import Sphere from './cloudSphere';
+import { generateRandomPosition, generateScale } from '@/app/library/utils/three';
 
 // the source code is from:
 // https://tympanus.net/codrops/2020/01/28/how-to-create-procedural-clouds-using-three-js-sprites/
@@ -17,10 +19,10 @@ const Cloud = ({ scale, position }: { scale: Vector3; position: Vector3 }) => {
          uTime: { value: 0 },
          uTxtShape: { value: t1 },
          uTxtCloudNoise: { value: t2 },
-         uFac1: { value: 25 }, // 17.8
-         uFac2: { value: 48.5 }, //2.7
-         uTimeFactor1: { value: 0.002 },
-         uTimeFactor2: { value: 0.005 }, // 0015
+         uFac1: { value: 52 }, // 17.8
+         uFac2: { value: 2.4 }, //2.7
+         uTimeFactor1: { value: 0.01 },
+         uTimeFactor2: { value: 0.0025 }, // 0015
          uDisplStrenght1: { value: 0.05 },
          uDisplStrenght2: { value: 0.05 },
       }),
@@ -234,55 +236,33 @@ const Cloud = ({ scale, position }: { scale: Vector3; position: Vector3 }) => {
    });
 
    return (
-      <group>
-         <mesh scale={scale} position={position} ref={meshRef} rotation={[0, -Math.PI * 2, 0]}>
-            <planeGeometry attach='geometry' args={[1, 1, 1, 5]} />
-            {/* <coneGeometry attach='geometry' args={[2, 2, 32, 32]} /> */}
-            <primitive object={material} attach='material' />
-         </mesh>
-      </group>
+      <mesh scale={scale} position={position} ref={meshRef} rotation={[0, -Math.PI * 2, 0]}>
+         {/* <Sphere /> */}
+         <planeGeometry attach='geometry' args={[1, 1, 1, 5]} />
+         <primitive object={material} attach='material' />
+      </mesh>
    );
 };
 
-// should change this(?);
-
-// rule #1 keep the aspect ratio w / between 21:9 and 3:1
-// rule #2 first the position is set at 0, 3, -5.
 const TOTAL_CLOUDS = 3;
 const Clouds = () => {
    const [pos] = useState(() => new Vector3(0, 3, -5));
+   const cloudData = useMemo(() => {
+      return Array.from({ length: TOTAL_CLOUDS }).map((_, index) => {
+         return {
+            scale: generateScale(index),
+            position: generateRandomPosition(pos),
+         };
+      });
+   }, [pos]);
+
    return (
       <group>
-         {Array.from({ length: TOTAL_CLOUDS }).map((_, index) => {
-            const newPos = generateRandomPosition(pos);
-            const scale = generateScale(index, 4, 1.5);
-            // generate width & heigtht
-            return <Cloud key={index} scale={scale} position={newPos} />;
-         })}
+         {cloudData.map((data, index) => (
+            <Cloud key={index} scale={data.scale} position={data.position} />
+         ))}
       </group>
    );
 };
 
 export default Clouds;
-
-// store this inside the utils file:
-function generateRandomPosition(pos: Vector3) {
-   const randomOffset = () => (Math.random() - 0.5) * 2;
-   return new Vector3(pos.x + randomOffset(), pos.y + randomOffset(), pos.z + randomOffset());
-}
-
-const ratios = [
-   [3, 1.8],
-   [3, 1],
-   [2, 3],
-];
-
-function generateScale(index: number, baseWidth: number, baseHeight: number) {
-   const [widthRatio, heightRatio] = ratios[index];
-
-   // Use the baseWidth and baseHeight to generate the actual scale values
-   const width = baseWidth * widthRatio;
-   const height = baseHeight * heightRatio;
-
-   return new Vector3(width, height, 1);
-}

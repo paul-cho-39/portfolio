@@ -26,8 +26,8 @@ const WindowCanvas = ({ darkMode }) => {
       <Canvas
          className=''
          frameloop='always'
-         // shadows='soft'
-         camera={{ position: [0, 1, 10], fov: 35, near: 1, far: 1000, castShadow: false }}
+         shadows='soft'
+         camera={{ position: [0, 1, 15], fov: 40, near: 1, far: 1000, castShadow: false }}
          resize={{ scroll: false }}
       >
          <Monitor />

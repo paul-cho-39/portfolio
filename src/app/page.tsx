@@ -7,6 +7,7 @@ import { Barlow_Condensed } from 'next/font/google';
 import dynamic from 'next/dynamic';
 import { FrontPageGenerator } from '../../constants';
 import UnderlinedLink from './component/buttons/underlinedButton';
+import { ArrowDown } from './component/illustrator/arrowDown';
 
 // import Boxes from '../app/component/headers/tester';
 // const DynamicComponentWithNoSSR = dynamic(() => import('../app/component/headers/tester'), {
@@ -22,9 +23,11 @@ const barlowCondensed = Barlow_Condensed({
 export default function Home({ Component, pageProps }: AppProps) {
    return (
       <main className='min-h-screen min-w-screen dark:bg-gray-900'>
-         <Navbar />
-         <div className='w-full h-screen bg:slate-100/2 dark:bg-gray-900 text-white'></div>
+         {/* <Navbar /> */}
+         <div className='w-full h-screen bg-blue-200 dark:bg-gray-900 text-white'></div>
          <ContactMeFab />
+         <ArrowDown />
+         {/* <Boxes /> */}
 
          {/* <TypeWriter wordGenerator={FrontPageGenerator} /> */}
          <div className='z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex'></div>

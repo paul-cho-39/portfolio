@@ -196,7 +196,7 @@ const Navbar = () => {
          </div>
 
          {/* TESTING HERE */}
-         <main className='py-28 sm:py-28'>
+         <main className='py-28 sm:py-28 bg-blue-200'>
             <div className='px-4 sm:px-6 lg:px-8'>
                <div className='h-[1000px] w-full'>
                   <InitialLogo />
