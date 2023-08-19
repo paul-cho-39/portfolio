@@ -23,10 +23,10 @@ const barlowCondensed = Barlow_Condensed({
 export default function Home({ Component, pageProps }: AppProps) {
    return (
       <main className='min-h-screen min-w-screen dark:bg-gray-900'>
-         {/* <Navbar /> */}
+         <Navbar />
          <div className='w-full h-screen bg-blue-200 dark:bg-gray-900 text-white'></div>
          <ContactMeFab />
-         <ArrowDown />
+         {/* <ArrowDown /> */}
          {/* <Boxes /> */}
 
          {/* <TypeWriter wordGenerator={FrontPageGenerator} /> */}
