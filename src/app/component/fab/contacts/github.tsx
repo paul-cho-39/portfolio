@@ -1,4 +1,4 @@
-import { ContactIconParams } from '../../../../../constants/@types';
+import { ContactIconParams } from '../../../constants/@types';
 
 const GithubIcon = ({ className, height, width }: ContactIconParams) => {
    // const color = mode === 'light' ? '#ffffff' : '#00000';

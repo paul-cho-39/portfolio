@@ -1,4 +1,4 @@
-import { ClassNameProps } from '../../../../constants/@types';
+import { ClassNameProps } from '../../constants/@types';
 
 function ProgrammingWindowSvg(props: ClassNameProps) {
    return (

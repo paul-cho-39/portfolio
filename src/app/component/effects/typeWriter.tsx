@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { FrontPageGeneratorItem } from '../../../../constants';
+import { FrontPageGeneratorItem } from '../../constants';
 import * as utils from './../../library/utils/typewrite';
 import styles from './../styles.module.css';
 

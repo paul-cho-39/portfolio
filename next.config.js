@@ -2,11 +2,12 @@
 const nextConfig = {
    transpilePackages: ['three'],
    reactStrictMode: true,
-   webpack: (config, options) => {
+   webpack: (config, { buildId, dev, isServer, defaultLoaders, nextRuntime, webpack }) => {
       config.module.rules.push({
          test: /\.(frag|vert|glsl)$/,
          use: ['raw-loader', 'glslify-loader'],
       });
+
       return config;
    },
 };

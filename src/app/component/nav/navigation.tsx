@@ -1,11 +1,11 @@
 import { Fragment, useContext, useEffect, useRef, useState } from 'react';
 import { Dialog, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import classNames from '@/app/library/helper';
-import { useScrollDirection } from '@/app/library/hooks/useScrollDirection';
+import classNames from '@/library/helper';
+import { useScrollDirection } from '@/library/hooks/useScrollDirection';
 import ToggleTheme from '../buttons/toggleThemeButton';
-import { ThemeContext } from '../../../../contexts/ThemeContext';
-import { FrontPageGenerator, ThemeContextParams } from '../../../../constants';
+import { ThemeContext } from '../../library/contexts/ThemeContext';
+import { FrontPageGenerator, ThemeContextParams } from '../../constants';
 import TypeWriter from '../effects/typeWriter';
 import UnderlinedLink from '../buttons/underlinedButton';
 

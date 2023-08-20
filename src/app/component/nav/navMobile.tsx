@@ -1,7 +1,7 @@
 import { Fragment, useContext, useEffect, useRef, useState } from 'react';
 import { Dialog, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { Navigation } from '../../../../constants';
+import { Navigation } from '../../constants';
 import classNames from '@/app/library/helper';
 
 interface NavMobileProps {

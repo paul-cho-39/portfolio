@@ -1,14 +1,14 @@
-import { ThemeContextProps } from '../../../../contexts/ThemeContext';
+import { useEffect, useState } from 'react';
 import LightThemeIcon from '../themes';
+import { ThemeContextParams } from '@/constants/index';
 
 import styles from './../styles.module.css';
-import { useEffect, useState } from 'react';
 
 const DarkThemeIcon = () => {
    return <div className={`${styles.crescent}`}></div>;
 };
 
-const ToggleTheme = ({ theme, setTheme }: ThemeContextProps) => {
+const ToggleTheme = ({ theme, setTheme }: ThemeContextParams) => {
    const [isTransitioning, setIsTransitioning] = useState(false);
    const toggleTheme = () => {
       setIsTransitioning(true);

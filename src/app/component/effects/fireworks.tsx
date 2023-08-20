@@ -2,7 +2,7 @@ import React, { useMemo, useEffect, useRef, useState } from 'react';
 import { useFrame, useThree, extend } from '@react-three/fiber';
 import * as THREE from 'three';
 import { OrbitControls } from '@react-three/drei';
-import { useMakeFirework, useShuffleTexture } from '@/app/library/hooks/useFireworks';
+import { useMakeFirework, useShuffleTexture } from '@/library/hooks/useFireworks';
 
 extend({ OrbitControls });
 

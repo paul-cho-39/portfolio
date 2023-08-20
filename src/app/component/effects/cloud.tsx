@@ -2,9 +2,9 @@ import { Point, useTexture } from '@react-three/drei';
 import { extend, useFrame, useThree } from '@react-three/fiber';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Mesh, PlaneGeometry, ShaderLib, ShaderMaterial, UniformsUtils, Vector3 } from 'three';
-import { generateRandomPosition, generateScale } from '@/app/library/utils/three';
-import { vertextShader } from '@/app/shaders/cloud.vert';
-import { fragmentShader } from '@/app/shaders/cloud.frag';
+import { generateRandomPosition, generateScale } from '@/library/utils/three';
+import { vertextShader } from '@/library/shaders/cloud.vert';
+import { fragmentShader } from '@/library/shaders/cloud.frag';
 
 const TOTAL_CLOUDS = 3;
 const Clouds = () => {

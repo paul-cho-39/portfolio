@@ -1,4 +1,4 @@
-import { GithubIcon, LinkedInIcon, InstagramIcon } from '@/app/component/fab/contacts';
+import { GithubIcon, LinkedInIcon, InstagramIcon } from '@/components/fab/contacts';
 
 export type ColorTheme = 'light' | 'dark';
 
