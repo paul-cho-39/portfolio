@@ -1,24 +1,52 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { Variants, motion } from 'framer-motion';
 import { Switch } from '@headlessui/react';
 import classNames from '@/app/library/helper';
 
-// game plan:
-// 1) framer-motion for whenever toggling
-// 2) change the icon of the header
-
 export const Toggler = () => {
    const [enabled, setEnabled] = useState(false);
-   const handleToggle = () => {
-      setEnabled(!enabled);
+
+   // create an animation as if the ball is sliding
+   const spring = {
+      type: 'spring',
+      duration: 1,
+      stiffness: 200,
+      damping: 35,
    };
+
+   const iconVariants: Variants = {
+      off: {
+         //  rotate: [0, 180, 360],
+         rotate: 180,
+         transition: {
+            ...spring,
+            rotate: {
+               duration: 0.4,
+               ease: 'linear',
+               repeat: 0,
+            },
+         },
+      },
+      on: {
+         rotate: -90,
+         transition: {
+            ...spring,
+            rotate: {
+               duration: 0.4,
+               ease: 'linear',
+               repeat: 0,
+            },
+         },
+      },
+   };
+
    return (
       <Switch
          checked={enabled}
          onChange={setEnabled}
          className={classNames(
-            !enabled ? 'bg-indigo-600' : 'bg-gray-200',
-            'relative inline-flex h-9 w-14 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2'
+            !enabled ? 'bg-gray-400/10' : 'bg-slate-100',
+            'relative inline-flex h-9 w-16 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-300 ease-in-out focus:outline-none focus:ring-[0.5px] focus:ring-black dark:focus:ring-white focus:ring-offset-2'
          )}
       >
          <span className='sr-only'>Use setting</span>
@@ -30,53 +58,63 @@ export const Toggler = () => {
          {/* change this so that it is justify-end and justify-start? */}
          <motion.span
             layout
+            initial={false}
+            animate={enabled ? 'on' : 'off'}
             transition={spring}
             className={classNames(
-               !enabled ? 'translate-x-5 bg-yellow-50' : 'translate-x-0',
-               'pointer-events-none relative inline-block h-8 w-8 transform rounded-full shadow ring-0 transition duration-200 ease-in-out'
+               !enabled ? 'translate-x-7' : 'translate-x-0',
+               'pointer-events-none relative inline-block h-8 w-8 transform rounded-full shadow ring-0 transition duration-300 ease-in-out'
             )}
          >
             <motion.span
-               layout
                transition={spring}
                className={classNames(
-                  !enabled ? 'opacity-0 duration-100 ease-out' : 'opacity-100 duration-200 ease-in',
+                  !enabled ? 'opacity-0 duration-100 ease-out' : 'opacity-100 duration-300 ease-in',
                   'absolute inset-0 flex h-full w-full items-center justify-center transition-opacity'
                )}
                aria-hidden='true'
             >
                {/* replace with SUN */}
-               <svg className='h-5 w-5 text-gray-400' fill='none' viewBox='0 0 12 12'>
-                  <path
-                     d='M4 8l2-2m0 0l2-2M6 6L4 4m2 2l2 2'
-                     stroke='currentColor'
-                     strokeWidth={2}
-                     strokeLinecap='round'
-                     strokeLinejoin='round'
-                  />
-               </svg>
+               <motion.svg
+                  variants={iconVariants}
+                  className='h-10 w-10'
+                  viewBox='0 0 50 50'
+                  fill='none'
+                  xmlns='http://www.w3.org/2000/svg'
+               >
+                  <defs>
+                     <radialGradient id='sunGradient' cx='0.5' cy='0.5' r='0.5'>
+                        <stop offset='0%' stopColor='#FFFC00' stopOpacity='1' />
+                        <stop offset='50%' stopColor='#FFD700' stopOpacity='1' />
+                        <stop offset='100%' stopColor='#FFA500' stopOpacity='1' />
+                     </radialGradient>
+                  </defs>
+                  <circle cx='25' cy='25' r='20' fill='url(#sunGradient)' />
+               </motion.svg>
             </motion.span>
 
             <span
                className={classNames(
-                  !enabled ? 'opacity-100 duration-200 ease-in' : 'opacity-0 duration-100 ease-out',
+                  !enabled ? 'opacity-100 duration-300 ease-in' : 'opacity-0 duration-100 ease-out',
                   'absolute inset-0 flex h-full w-full items-center justify-center transition-opacity'
                )}
                aria-hidden='true'
             >
                {/* replace with MOON */}
-               <svg className='h-3 w-3 text-indigo-600' fill='currentColor' viewBox='0 0 12 12'>
-                  <path d='M3.707 5.293a1 1 0 00-1.414 1.414l1.414-1.414zM5 8l-.707.707a1 1 0 001.414 0L5 8zm4.707-3.293a1 1 0 00-1.414-1.414l1.414 1.414zm-7.414 2l2 2 1.414-1.414-2-2-1.414 1.414zm3.414 2l4-4-1.414-1.414-4 4 1.414 1.414z' />
-               </svg>
+               <motion.svg
+                  variants={iconVariants}
+                  className='h-10 w-10'
+                  viewBox='0 0 50 50'
+                  fill='#c2c9ca'
+                  xmlns='http://www.w3.org/2000/svg'
+               >
+                  <circle cx='25' cy='25' r='20' fill='#c2c9ca ' />
+                  <circle cx='14' cy='16' r='2' fill='#595959' />
+                  <circle cx='30' cy='15' r='5' fill='#595959' />
+                  <circle cx='26' cy='33' r='4' fill='#595959' />
+               </motion.svg>
             </span>
          </motion.span>
       </Switch>
    );
-};
-
-// create an animation as if the ball is sliding
-const spring = {
-   type: 'spring',
-   stiffness: 700,
-   damping: 30,
 };
