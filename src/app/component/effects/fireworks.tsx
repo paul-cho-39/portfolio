@@ -6,7 +6,7 @@ import { useMakeFirework, useShuffleTexture } from '@/library/hooks/useFireworks
 
 extend({ OrbitControls });
 
-const smoothstep = (low: number, high: number, f: number) => {
+export const smoothstep = (low: number, high: number, f: number) => {
    f = (f - low) / (high - low);
    f = Math.max(0, Math.min(1, f));
    return f * f * (3 - 2 * f);
@@ -71,6 +71,7 @@ const Fireworks = () => {
 
    baseColor.r += 0.05 * Math.random();
    baseColor.b += 0.05 * Math.random();
+
    const drag = 0.84 + 0.02 * Math.random(); // 0.96
 
    const userData = {
@@ -106,25 +107,25 @@ const Fireworks = () => {
          .multiplyScalar(0.3 + Math.pow(Math.random(), 2));
    }, []);
 
-   useEffect(() => {
-      const controls = controlsRef.current;
-      controls.autoRotate = true;
-      set({ camera });
-   }, [camera, set]);
+   // useEffect(() => {
+   //    const controls = controlsRef.current;
+   //    controls.autoRotate = true;
+   //    set({ camera });
+   // }, [camera, set]);
 
    return (
       <>
-         <perspectiveCamera
+         {/* <perspectiveCamera
             args={[25, size.width / size.height, 1, 1000.0]}
             position={[10, -35, 20]}
-         />
-         <OrbitControls
+         /> */}
+         {/* <OrbitControls
             enableDamping={false}
             enableZoom={false}
             ref={controlsRef}
             args={[camera, gl.domElement]}
-         />
-         <group ref={fireworkPivot} userData={userData}>
+         /> */}
+         <group position={[0, -5, 25]} ref={fireworkPivot} userData={userData}>
             <Firework userData={userData} baseColor={baseColor} />
          </group>
       </>

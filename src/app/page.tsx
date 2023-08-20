@@ -21,13 +21,10 @@ const barlowCondensed = Barlow_Condensed({
 export default function Home({ Component, pageProps }: AppProps) {
    return (
       <main className='min-h-screen min-w-screen dark:bg-gray-900'>
-         {/* <Navbar /> */}
+         <Navbar />
          {/* <div className='w-full h-screen bg-gradient-to-br from-blue-500/75 via-blue-300/60 to-blue-100 dark:bg-gray-900 text-white'></div> */}
 
          <ContactMeFab />
-         <div className='flex justify-stretch items-stretch py-16 px-10'>
-            <Toggler />
-         </div>
          {/* <ArrowDown /> */}
 
          <div className='z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex'></div>

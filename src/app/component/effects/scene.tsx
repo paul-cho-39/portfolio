@@ -6,20 +6,9 @@ import Seagull from './seagull';
 import PalmTrees from './palmTrees';
 import CustomSky from './sky';
 import { Monitor } from './monitor';
-import Ocean from './ocean';
+import Sampler from './stars';
 import Clouds from './cloud';
-
-import { DepthOfField, EffectComposer } from '@react-three/postprocessing';
-import Sphere from './cloudSphere';
-
-// sky and sunlight is toggled on/off whenever light/dark mode
-// add depth to tree, birds
-
-// raycasts a bird (when clicked)
-// wherever theres a cloud/
-
-// can it switch between day and night with no problem?
-// vertex shading? fragment shading?
+import Fireworks from './fireworks';
 
 const WindowCanvas = ({ darkMode }) => {
    return (
@@ -30,11 +19,12 @@ const WindowCanvas = ({ darkMode }) => {
          camera={{ position: [0, 1, 15], fov: 40, near: 1, far: 1000, castShadow: false }}
          resize={{ scroll: false }}
       >
-         <Monitor />
-         <Clouds />
-         {/* <Sphere /> */}
-         <OrbitControls enableZoom={false} />
-         <Seagull />
+         <Sampler />
+         {/* <Fireworks /> */}
+         {/* <Monitor /> */}
+         {/* <Clouds /> */}
+         {/* <OrbitControls enableZoom={false} /> */}
+         {/* <Seagull /> */}
          <Lights />
       </Canvas>
    );

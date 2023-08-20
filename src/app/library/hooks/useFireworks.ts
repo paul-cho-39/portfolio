@@ -20,7 +20,7 @@ export const useMakeFirework = (baseColor: THREE.Color) => {
       gradient.addColorStop(1, 'black');
 
       context.fillStyle = gradient;
-      context.fillRect(0, 0, 512, 512);
+      // context.fillRect(0, 0, 512, 512);
       context.globalCompositeOperation = 'lighter';
       context.beginPath();
 
@@ -57,6 +57,7 @@ export const useMakeFirework = (baseColor: THREE.Color) => {
             uniform vec3 color;
             uniform vec2 resolution;
             uniform vec2 velocity;
+
             uniform sampler2D map;
             uniform sampler2D pattern;
             void main(){

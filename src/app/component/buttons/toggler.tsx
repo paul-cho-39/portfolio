@@ -16,8 +16,8 @@ export const Toggler = () => {
 
    const iconVariants: Variants = {
       off: {
-         //  rotate: [0, 180, 360],
-         rotate: 180,
+        //  moon 
+         rotate: 90,
          transition: {
             ...spring,
             rotate: {
@@ -28,6 +28,7 @@ export const Toggler = () => {
          },
       },
       on: {
+        // sun
          rotate: -90,
          transition: {
             ...spring,
