@@ -90,15 +90,17 @@ export const useMakeFirework = (baseColor: THREE.Color) => {
    return { fireworkGeom, fireworkMaterial, baseColor };
 };
 
-export const useShuffleTexture = () => {
+export const useShuffleTexture = (dep?: unknown) => {
    return useMemo(() => {
       const emojiCanvas = document.createElement('canvas');
-      emojiCanvas.width = emojiCanvas.height = 256;
+      emojiCanvas.width = emojiCanvas.height = 512;
       const context = emojiCanvas.getContext('2d') as CanvasRenderingContext2D;
       context.font = '200px Arial';
-      var emojis = '😎 💀 🌸 💩 🤣 😍 🎉 🍑 🍆'.split(' ');
-      context.fillText(emojis[Math.floor(Math.random() * emojis.length)], 30, 200);
+      var emojis = '😎 💀 💩 🤣 😍 🎉 🍑 🍆'.split(' ');
+      context.fillText(emojis[Math.floor(Math.random() * emojis.length)], 50, 180);
       var emojiTexture = new THREE.CanvasTexture(emojiCanvas);
       return emojiTexture;
-   }, []);
+
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, [dep]);
 };

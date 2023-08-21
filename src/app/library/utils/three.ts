@@ -28,3 +28,11 @@ export function generateScale(index: number, baseWidth: number = 1, baseHeight: 
 
    return new Vector3(width, height, 1);
 }
+
+export const smoothstep = (low: number, high: number, f: number) => {
+   f = (f - low) / (high - low);
+   f = Math.max(0, Math.min(1, f));
+   return Math.pow(f, 2) * (3 - 2 * f);
+};
+
+export const drag = (d: number = 0.86) => d + 0.02 * Math.random(); // 0.96

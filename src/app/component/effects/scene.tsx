@@ -3,14 +3,20 @@ import * as THREE from 'three';
 import { useMemo, useRef, useState } from 'react';
 import { useHelper, PerspectiveCamera, OrbitControls } from '@react-three/drei';
 import Seagull from './seagull';
-import PalmTrees from './palmTrees';
-import CustomSky from './sky';
+import CustomSky from './emoljiFirework';
 import { Monitor } from './monitor';
-import Sampler from './stars';
 import Clouds from './cloud';
 import Fireworks from './fireworks';
+import EmoljiFireworks from './emoljiFireworks';
 
-const WindowCanvas = ({ darkMode }) => {
+const TOTAL_FIREWORKS = 50;
+
+interface CanvasProps {
+   darkMode: boolean;
+   isFireworkHovered?: boolean;
+}
+
+const WindowCanvas = ({ darkMode, isFireworkHovered }: CanvasProps) => {
    return (
       <Canvas
          className=''
@@ -19,7 +25,11 @@ const WindowCanvas = ({ darkMode }) => {
          camera={{ position: [0, 1, 15], fov: 40, near: 1, far: 1000, castShadow: false }}
          resize={{ scroll: false }}
       >
-         <Sampler />
+         {isFireworkHovered &&
+            Array.from({ length: TOTAL_FIREWORKS }).map((_, index) => {
+               return <EmoljiFireworks key={index} />;
+            })}
+         {/* <Sampler /> */}
          {/* <Fireworks /> */}
          {/* <Monitor /> */}
          {/* <Clouds /> */}

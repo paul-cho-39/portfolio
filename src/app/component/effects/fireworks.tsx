@@ -125,7 +125,7 @@ const Fireworks = () => {
             ref={controlsRef}
             args={[camera, gl.domElement]}
          /> */}
-         <group position={[0, -5, 25]} ref={fireworkPivot} userData={userData}>
+         <group position={[0, -5, -20]} ref={fireworkPivot} userData={userData}>
             <Firework userData={userData} baseColor={baseColor} />
          </group>
       </>
