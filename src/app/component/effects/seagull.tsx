@@ -27,9 +27,9 @@ const Seagull = ({ count = 10 }: { count?: number }) => {
          z = 10; // Starting point
 
       // Define maximum variation for each coordinate
-      const maxXVariation = 12;
+      const maxXVariation = 8;
       const maxYVariation = 1;
-      const maxZVariation = 15;
+      const maxZVariation = 4;
 
       for (let i = 0; i < numPoints; i++) {
          // x += Math.sin(maxXVariation) * radius * 3;
@@ -115,7 +115,12 @@ const Seagull = ({ count = 10 }: { count?: number }) => {
    // set different position.
    // pass on the prop so that it can be identified with a key? or even pass as a prop?
    return (
-      <primitive ref={birdRef} position={[15, 0, 1000]} object={gltf.scene} rotation={[0, 0, 0]} />
+      <primitive
+         ref={birdRef}
+         // position={[-50, 30, 0]}
+         object={gltf.scene}
+         rotation={[0, 0, 0]}
+      />
    );
 };
 

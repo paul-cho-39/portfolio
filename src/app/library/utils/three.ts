@@ -14,13 +14,13 @@ export function generateRandomPosition(pos: Vector3) {
    );
 }
 
-const ratios = [
-   [4, 1.5],
-   [3, 1],
-   [3, 1.5],
-];
-
 export function generateScale(index: number, baseWidth: number = 1, baseHeight: number = 1) {
+   const ratios = [
+      [4, 1.5],
+      [3, 1],
+      [3, 1.5],
+   ];
+
    const [widthRatio, heightRatio] = ratios[index];
 
    const width = baseWidth * widthRatio;

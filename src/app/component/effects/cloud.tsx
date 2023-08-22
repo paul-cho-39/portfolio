@@ -6,7 +6,7 @@ import { generateRandomPosition, generateScale } from '@/library/utils/three';
 import { vertextShader } from '@/library/shaders/cloud.vert';
 import { fragmentShader } from '@/library/shaders/cloud.frag';
 
-const TOTAL_CLOUDS = 3;
+const TOTAL_CLOUDS = 5;
 const Clouds = () => {
    const [pos] = useState(() => new Vector3(0, 3, -5));
    const cloudData = useMemo(() => {
@@ -27,17 +27,19 @@ const Clouds = () => {
    );
 };
 
-const Cloud = ({ scale, position }: { scale: Vector3; position: Vector3 }) => {
+export const Cloud = ({ scale, position }: { scale: Vector3; position: Vector3 }) => {
    const meshRef = useRef<Mesh>(null!);
 
    const t1 = useTexture('/images/cloud1.png');
    const t2 = useTexture('/images/cloud2.jpg');
+   const t3 = useTexture('/images/waternormals.jpg');
+   const t4 = useTexture('/images/cloud4.jpg');
 
    const uniforms = useMemo(
       () => ({
          uTime: { value: 0 },
-         uTxtShape: { value: t1 },
-         uTxtCloudNoise: { value: t2 },
+         uTxtShape: { value: t4 },
+         uTxtCloudNoise: { value: t4 },
          uFac1: { value: 52 }, // 17.8
          uFac2: { value: 2.4 }, //2.7
          uTimeFactor1: { value: 0.01 },

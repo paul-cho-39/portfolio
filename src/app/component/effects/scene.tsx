@@ -1,12 +1,11 @@
 import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
-import { useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useHelper, PerspectiveCamera, OrbitControls } from '@react-three/drei';
 import Seagull from './seagull';
 import CustomSky from './emoljiFirework';
 import { Monitor } from './monitor';
-import Clouds from './cloud';
-import Fireworks from './fireworks';
+import Clouds, { Cloud } from './cloud';
 import EmoljiFireworks from './emoljiFireworks';
 
 const TOTAL_FIREWORKS = 50;
@@ -17,24 +16,38 @@ interface CanvasProps {
 }
 
 const WindowCanvas = ({ darkMode, isFireworkHovered }: CanvasProps) => {
+   const [scale] = useState(() => new THREE.Vector3(8, 3, 1));
+   const [scale2] = useState(() => new THREE.Vector3(10, 10, 10));
+   const [scale3] = useState(() => new THREE.Vector3(12, 3, 2));
+   const [scale4] = useState(() => new THREE.Vector3(18, 6, 2));
+
+   const [pos] = useState(() => new THREE.Vector3(-5, 3, 10));
+   const [pos2] = useState(() => new THREE.Vector3(0, 5, 50));
+   const [pos3] = useState(() => new THREE.Vector3(5, 2, 60));
+   const [pos4] = useState(() => new THREE.Vector3(10, -5, 40));
+
    return (
       <Canvas
-         className=''
          frameloop='always'
          shadows='soft'
-         camera={{ position: [0, 1, 15], fov: 40, near: 1, far: 1000, castShadow: false }}
+         camera={{ position: [-10, 1, 75], fov: 60, near: 1, far: 1000, castShadow: false }}
          resize={{ scroll: false }}
       >
+         {/* TEST: ensure that every hovered state it will reset back*/}
          {isFireworkHovered &&
             Array.from({ length: TOTAL_FIREWORKS }).map((_, index) => {
                return <EmoljiFireworks key={index} />;
             })}
-         {/* <Sampler /> */}
-         {/* <Fireworks /> */}
-         {/* <Monitor /> */}
+         <Seagull />
+         <Cloud scale={scale} position={pos} />
+         <Cloud scale={scale2} position={pos2} />
+         <Cloud scale={scale3} position={pos3} />
+         <Cloud scale={scale4} position={pos4} />
+
+         <OrbitControls enableZoom={false} />
          {/* <Clouds /> */}
-         {/* <OrbitControls enableZoom={false} /> */}
-         {/* <Seagull /> */}
+         {/* <Sampler /> */}
+         {/* <Monitor /> */}
          <Lights />
       </Canvas>
    );
