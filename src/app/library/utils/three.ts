@@ -63,3 +63,8 @@ const getRandomRatio = () => {
 };
 
 const computeStep = (range: PositionRange, count: number) => (range.high - range.low) / (count - 1);
+
+export const randomizeVelocity = (value: number) => {
+   const ran = Math.random();
+   return ran > 0.5 ? value : -value;
+};

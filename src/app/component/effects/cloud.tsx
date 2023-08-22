@@ -2,11 +2,14 @@ import { Point, useTexture } from '@react-three/drei';
 import { extend, useFrame, useThree } from '@react-three/fiber';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Mesh, PlaneGeometry, ShaderLib, ShaderMaterial, UniformsUtils, Vector3 } from 'three';
-import { generateEvenPosition, generateScale } from '@/library/utils/three';
+import { generateEvenPosition, generateScale, randomizeVelocity } from '@/library/utils/three';
 import { vertextShader } from '@/library/shaders/cloud.vert';
 import { fragmentShader } from '@/library/shaders/cloud.frag';
 
 const TOTAL_CLOUDS = 8;
+// derived from xRange inside generateEvenPosition function
+const BOUNDARY_RIGHT = 9; // x is positive
+const BOUNDARY_LEFT = -15; // x is negative
 
 const Clouds = () => {
    const [pos] = useState(() => new Vector3(0, 3, -5));
@@ -42,27 +45,22 @@ const Clouds = () => {
 };
 
 export const Cloud = ({ scale, position }: { scale: Vector3; position: Vector3 }) => {
-   const meshRef = useRef<Mesh>(null!);
+   const ref = useRef<Mesh>(null!);
 
    const t1 = useTexture('/images/cloud1.png');
-   const t2 = useTexture('/images/cloud2.jpg');
-   const t3 = useTexture('/images/waternormals.jpg');
-   const t4 = useTexture('/images/cloud3.jpg');
+   const t2 = useTexture('/images/cloud3.jpg');
 
-   const uniforms = useMemo(
-      () => ({
-         uTime: { value: 0 },
-         uTxtShape: { value: t1 },
-         uTxtCloudNoise: { value: t4 },
-         uFac1: { value: 86 }, // 17.8
-         uFac2: { value: 1.4 }, //2.7
-         uTimeFactor1: { value: 0.01 },
-         uTimeFactor2: { value: 0.0025 }, // 0015
-         uDisplStrenght1: { value: 0.05 },
-         uDisplStrenght2: { value: 0.05 },
-      }),
-      [t1, t2]
-   );
+   const uniforms = {
+      uTime: { value: 0 },
+      uTxtShape: { value: t1 },
+      uTxtCloudNoise: { value: t2 },
+      uFac1: { value: 24.6 }, // 17.8
+      uFac2: { value: 1.4 }, //2.7
+      uTimeFactor1: { value: 0.001 },
+      uTimeFactor2: { value: 0.0015 }, // 0015
+      uDisplStrenght1: { value: 0.1 },
+      uDisplStrenght2: { value: 0.05 },
+   };
 
    const material = useMemo(
       () =>
@@ -75,17 +73,26 @@ export const Cloud = ({ scale, position }: { scale: Vector3; position: Vector3 }
             vertexShader: vertextShader,
             fragmentShader: fragmentShader,
          }),
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       []
    );
+
+   const velocity = useRef(randomizeVelocity(0.005));
+   console.log('velocity is: ', velocity.current);
 
    useFrame(() => {
       if (material) {
          material.uniforms.uTime.value += 1;
       }
+      ref.current.position.x += velocity.current;
+
+      if (ref.current.position.x < BOUNDARY_LEFT || ref.current.position.x > BOUNDARY_RIGHT) {
+         velocity.current = -velocity.current;
+      }
    });
 
    return (
-      <mesh scale={scale} position={position} ref={meshRef} rotation={[0, -Math.PI * 2, 0]}>
+      <mesh ref={ref} scale={scale} position={position} rotation={[0, -Math.PI * 2, 0]}>
          {/* <Sphere /> */}
          <planeGeometry attach='geometry' args={[1, 1, 1, 5]} />
          <primitive object={material} attach='material' />

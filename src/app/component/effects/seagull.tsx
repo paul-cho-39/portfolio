@@ -18,7 +18,7 @@ const Seagull = ({ count = 10 }: { count?: number }) => {
    const gltf = useGLTF('/glb/bird.glb');
    const birdRef = useRef<Group>(null!);
 
-   const points: Vector3[] = [];
+   const points = useMemo(() => [new Vector3()], []);
 
    const generateRandomPoints = (numPoints: number) => {
       const points: Vector3[] = [];
