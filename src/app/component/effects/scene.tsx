@@ -16,18 +16,7 @@ interface CanvasProps {
 }
 
 const WindowCanvas = ({ darkMode, isFireworkHovered }: CanvasProps) => {
-   const [scale] = useState(() => new THREE.Vector3(4, 2, 1));
-   const [scale2] = useState(() => new THREE.Vector3(10, 8, 5));
-   const [scale3] = useState(() => new THREE.Vector3(12, 3, 2));
-   const [scale4] = useState(() => new THREE.Vector3(18, 6, 2));
-
-   const [pos] = useState(() => new THREE.Vector3(-5, 3, 10));
-   const [pos2] = useState(() => new THREE.Vector3(0, 10, 50));
-   const [pos3] = useState(() => new THREE.Vector3(-15, 2, 60));
-   const [pos4] = useState(() => new THREE.Vector3(-10, -10, 40));
-
    // if using jotai there is no need to pass isFrieworkHovered here
-
    return (
       <Canvas
          frameloop='always'
@@ -42,11 +31,6 @@ const WindowCanvas = ({ darkMode, isFireworkHovered }: CanvasProps) => {
             })}
          <Seagull />
          <Clouds />
-         {/* <Cloud scale={scale} position={pos} />
-         <Cloud scale={scale2} position={pos2} />
-         <Cloud scale={scale3} position={pos3} />
-         <Cloud scale={scale4} position={pos4} /> */}
-
          <OrbitControls enableZoom={false} />
          {/* <Sampler /> */}
          {/* <Monitor /> */}
@@ -55,6 +39,7 @@ const WindowCanvas = ({ darkMode, isFireworkHovered }: CanvasProps) => {
    );
 };
 
+// TODO: work on lightings and reflections of birds more accuratrely
 const Lights = () => {
    const ref = useRef<THREE.DirectionalLight>(null!);
    const pointRef = useRef<THREE.PointLightHelper>(null!);
