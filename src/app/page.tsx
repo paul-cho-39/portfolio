@@ -7,6 +7,7 @@ import { Barlow_Condensed } from 'next/font/google';
 import dynamic from 'next/dynamic';
 import { Toggler } from './component/buttons/toggler';
 import Draggable from './component/draggables/draggable';
+import ProjectCards from './component/draggables/cards';
 
 // import Boxes from '../app/component/headers/tester';
 // const DynamicComponentWithNoSSR = dynamic(() => import('../app/component/headers/tester'), {
@@ -28,10 +29,10 @@ export default function Home({ Component, pageProps }: AppProps) {
          {/* <ArrowDown /> */}
          <div className='grid grid-cols-3 gap-4'>
             <Draggable label='1' />
-            <Draggable label='2' />
-            <Draggable label='3' />
-            <Draggable label='4' />
          </div>
+         <ProjectCards />
+         <ProjectCards />
+
          <div className='z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex'></div>
       </main>
    );
