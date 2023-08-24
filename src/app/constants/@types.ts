@@ -9,4 +9,9 @@ export interface ClassNameProps {
    className?: string;
 }
 
+export interface PositionRange {
+   low: number;
+   high: number;
+}
+
 export type { ContactIconParams };

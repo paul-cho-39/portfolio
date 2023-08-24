@@ -11,6 +11,8 @@ module.exports = {
          backgroundImage: {
             'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
             'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+            'custom-url':
+               'url(https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2102&q=80)',
          },
          animation: {
             'fade-in': 'fadeIn 0.5s ease-in forwards',
@@ -36,7 +38,7 @@ module.exports = {
          screens: {
             sm: '576px',
             md: '720px',
-            lg: '960px',
+            lg: '937px',
             xl: '1200px',
          },
       },

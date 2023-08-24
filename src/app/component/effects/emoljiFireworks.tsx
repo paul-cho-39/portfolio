@@ -31,10 +31,6 @@ interface FireworkProps {
    userData: UserData;
 }
 
-interface FireworksProps {
-   isActive: boolean;
-}
-
 const EmoljiFireworks = () => {
    const { camera } = useThree();
    const groupRef = useRef<Group>(null!);
@@ -127,7 +123,7 @@ export const EmoljiFirework = ({ userData }: FireworkProps) => {
             fragmentShader: fragmentShader,
             uniforms: {
                color: { value: color },
-               uTime: { value: 0.0 },
+               uTime: { value: 0.0 }, // this is not being used
                pattern: { value: newTexture },
                velocity: { value: velocity },
                uRotation: { value: 0.0 },
@@ -148,6 +144,8 @@ export const EmoljiFirework = ({ userData }: FireworkProps) => {
          const tempVel = userData?.velocity;
 
          material.uniforms.velocity.value.set(tempVel.x / 2 + 0.5, tempVel.y / 2 + 0.5);
+
+         // use jotai or global manager to set this part to false which will stop the animation
       }
    }, [ttl.current]);
 
