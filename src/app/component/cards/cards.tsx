@@ -44,13 +44,11 @@ const Cards = ({ projects }: ProjectCardsProps) => {
    useEffect(() => {
       if (!el.current) return;
    }, []);
-   console.log(repositionByIndex(1));
 
    return (
       <>
-         {/* contents */}
          {projects.map((project: ProjectsProps, index: number) => (
-            <div
+            <article
                key={index}
                className={classNames(
                   isOdd(index) ? 'lg:flex-row-reverse ' : 'lg:flex-row',
@@ -94,17 +92,14 @@ const Cards = ({ projects }: ProjectCardsProps) => {
                      {/* CONTENTS HERE */}
                      <div
                         className={classNames(
-                           //    isOdd(index) ? 'md:-top-24 md:px-6' : 'md:-top-16 md:px-4',
-                           //    'lg:px-28 lg:-mx-16 xl:px-64 xl:-mx-36',
-                           'px-4 md:px-20 lg:max-w-xl',
+                           'px-4 md:px-20 lg:max-w-2xl lg:-px-6 xl:max-w-xl ',
                            'flex-grow items-center justify-start align-top self-start '
-                           //   'flex relative inset-0 md:-top-24 z-20 w-full md:px-4 max-w-2xl lg:py-24 xl:mx-2 xl:px-20 xl:flex-auto'
                         )}
                      >
-                        {/* //    className='relative -top-8 sm:-top-14 md:-top-16 z-20 w-full max-w-2xl lg:py-24 lg:px-4 xl:mx-2 xl:px-20 xl:flex-auto group-hover:-translate-y-3 lg:group-hover:translate-y-0'> */}
                         <div className='pb-4'>
                            <h3 className='font-serif text-2xl'>{project.title}</h3>
                         </div>
+
                         {/* description */}
                         <p className='font-medium mb-6 lg:mb-4 tracking-wide leading-5 md:leading-6 lg:leading-7'>
                            {project.description}
@@ -134,10 +129,8 @@ const Cards = ({ projects }: ProjectCardsProps) => {
                               <GithubIcon className='block' width={25} height={25} />
                            </Link>
                         </div>
-                        {/* ... */}
                      </div>
                   </div>
-                  {/* </Link> */}
                </div>
                {/* numbering the project(?) / other details? */}
                {isDisabled && (
@@ -147,7 +140,7 @@ const Cards = ({ projects }: ProjectCardsProps) => {
                      aria-label={`View source code for ${project.title}`}
                   />
                )}
-            </div>
+            </article>
          ))}
       </>
    );

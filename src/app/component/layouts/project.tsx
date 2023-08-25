@@ -1,6 +1,6 @@
 export const ProjectLayout = ({ children }: { children: React.ReactNode }) => {
    return (
-      <div className='mx-auto px-4 my-8 lg:my-0 lg:mb-0 lg:px-20'>
+      <div className='mx-auto px-4 my-8 lg:my-0 lg:mb-0 lg:px-[3.5rem] xl:px-20'>
          <div className='relative z-10 bg-slate-200 sm:mt-28 sm:pb-24 md:px-12 lg:mt-44'>
             <div className='absolute inset-0 overflow-hidden' aria-hidden='true'>
                <div className='absolute left-[calc(50%-19rem)] top-[calc(50%-36rem)] transform-gpu blur-3xl'>

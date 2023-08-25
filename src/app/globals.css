@@ -7,6 +7,7 @@
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
   --top-sun: 25%;
+  --underline: #57659e;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -89,5 +90,12 @@ body {
     filter: blur(0.5px) drop-shadow(1px 5px 5px #6558DD);
     transition: width 0.3s ease 0s, right 0.5s ease 0s;
     width: 0;
+  }
+  .highlighter-bg {
+    background-image: linear-gradient(transparent 50%, var(--underline) 50%, var(--underline) 85%, transparent 85%, transparent 100%);
+    background-repeat: no-repeat;
+    display: inline;
+    line-height: 2;
+    /* background-size: 0 100%; */
   }
 }
