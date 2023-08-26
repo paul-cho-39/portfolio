@@ -3,25 +3,28 @@ import LightThemeIcon from '../themes';
 import { ThemeContextParams } from '@/constants/index';
 
 import styles from './../styles.module.css';
+import { Toggler } from './toggler';
 
 const DarkThemeIcon = () => {
    return <div className={`${styles.crescent}`}></div>;
 };
 
 const ToggleTheme = ({ theme, setTheme }: ThemeContextParams) => {
-   const [isTransitioning, setIsTransitioning] = useState(false);
+   const [themeEnabled, setThemeEnabled] = useState(false);
+
    const toggleTheme = () => {
-      setIsTransitioning(true);
+      setThemeEnabled(true);
       const newTheme = theme === 'light' ? 'dark' : 'light';
       setTheme(newTheme);
       window.localStorage.setItem('theme', newTheme);
-      setIsTransitioning(false);
+      setThemeEnabled(false);
    };
 
    return (
       <>
+         <Toggler enabled={} />
          {/* small should be hidden(?) */}
-         <button className='relative top-0' onClick={toggleTheme}>
+         {/* <button className='relative top-0' onClick={toggleTheme}>
             <span className='sr-only'>{theme} theme</span>
             {isTransitioning ? (
                <DarkThemeIcon />
@@ -30,7 +33,7 @@ const ToggleTheme = ({ theme, setTheme }: ThemeContextParams) => {
             ) : (
                <DarkThemeIcon />
             )}
-         </button>
+         </button> */}
       </>
    );
 };

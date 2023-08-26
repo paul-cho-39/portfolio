@@ -6,13 +6,11 @@ import { useScrollDirection } from '@/library/hooks/useScrollDirection';
 import ToggleTheme from '../buttons/toggleThemeButton';
 import { ThemeContext } from '../../library/contexts/ThemeContext';
 import { FrontPageGenerator, ThemeContextParams } from '../../constants';
-import TypeWriter from '../effects/typeWriter';
 import UnderlinedLink from '../buttons/underlinedButton';
 
-import CircleSvg from '../circle';
 import InitialLogo from '../headers/logo';
-import ProgrammingWindowSvg from '../illustrator/screens';
 import WindowCanvas from '../effects/scene';
+import { Toggler } from '../buttons/toggler';
 
 const navigation = [
    { name: 'home', href: '#', num: '01.', current: true },
@@ -27,7 +25,7 @@ const Navbar = () => {
    const [sidebarOpen, setSidebarOpen] = useState(false);
    const { scrollDirection, isTop } = useScrollDirection();
 
-   // change theme to somewhere else
+   // TODO:change theme to somewhere else
    const { theme, setTheme } = useContext(ThemeContext) as ThemeContextParams;
    useEffect(() => {
       if (theme === 'dark') {
@@ -37,9 +35,11 @@ const Navbar = () => {
       }
    }, [theme]);
 
+   // console.log('what is the current status?', isTop);
+
    return (
-      <>
-         <div>
+      <header>
+         <div className=''>
             {/* mobile version */}
             <Transition.Root show={sidebarOpen} as={Fragment}>
                <Dialog as='div' className='relative z-50 lg:hidden' onClose={setSidebarOpen}>
@@ -67,7 +67,7 @@ const Navbar = () => {
                      >
                         <Dialog.Panel className='relative mr-16 flex w-full max-w-xs flex-1'>
                            {/* Sidebar component, swap this element with another sidebar if you like */}
-                           <div className='flex grow flex-col gap-y-2 overflow-y-auto bg-slate-100 dark:bg-slate-800 px-6 pb-4'>
+                           <div className='flex grow flex-col gap-y-2 overflow-y-auto bg-slate-100 dark:bg-slate-800 lg:bg-transparent px-6 pb-4'>
                               <div className='flex h-14 items-center'>
                                  <button
                                     type='button'
@@ -119,64 +119,62 @@ const Navbar = () => {
 
             {/* Static sidebar for desktop -- switch height, text-color, bg-color, padding when scrolled */}
             {/* so create two navbars that passes props as children */}
-            <div className='hidden mx-auto lg:items-center lg:h-16 lg:flex lg:w-full lg:flex-row'>
+            <div className='hidden mx-auto lg:h-16 lg:flex lg:w-full'>
                {/* Sidebar component, swap this element with another sidebar if you like */}
-               <div className='flex flex-row justify-center px-[40%] w-full h-full'>
+               <div className='flex flex-row items-end justify-end w-full h-full bg-transparent'>
                   <nav
+                     role='navigation'
                      className={classNames(
                         isTop
-                           ? 'h-16'
-                           : scrollDirection === 'down'
-                           ? '-top-20'
-                           : 'top-0 h-14 bg-slate-300/10 dark:bg-neutral-900/20 z-50',
-                        'fixed transition-all duration-250 ease-in flex flex-row flex-1 w-full justify-center'
+                           ? 'h-18 bg-transparent' // opacty bg-blur
+                           : 'h-16',
+                        'z-20 bg-transparent fixed transition-all duration-250 ease-in px-10'
                      )}
-                     // className='flex flex-row flex-1'
                   >
-                     <ul role='list' className='flex flex-row items-center gap-x-3'>
+                     <ul role='list' className='flex flex-row items-center gap-x-1'>
                         {navigation.map((item, index) => (
-                           <UnderlinedLink key={item.name} href={item.href} title={item.name}>
-                              <span className='text-sm font-light tracking-tighter relative bottom-2 left-2'>
-                                 {item.num}{' '}
-                              </span>
-                           </UnderlinedLink>
-                           // <li key={item.name}>
-                           //    <a
-                           //       href={item.href}
-                           //       className={classNames(
-                           //          item.current
-                           //             ? 'dark:hover:text-slate-700 hover:text-gray-400  '
-                           //             : 'dark:hover:text-slate-700 hover:text-gray-400 ',
-                           //          'transition-all duration-75 ease-in-out group flex gap-x-3 p-3 text-md font-medium text-gray-700 dark:text-gray-200/80 group-hover:text-opacity-75'
-                           //       )}
-                           //    >
-                           //       <span className='text-sm font-light tracking-tighter relative bottom-2 left-2'>
-                           //          {item.num}{' '}
-                           //       </span>
-                           //       {item.name}
-                           //    </a>
-                           // </li>
+                           <li className='' key={item.name}>
+                              <a
+                                 href={item.href}
+                                 className={classNames(
+                                    item.current
+                                       ? 'dark:hover:text-slate-700 hover:text-gray-400  '
+                                       : 'dark:hover:text-slate-700 hover:text-gray-400 ',
+                                    'transition-all duration-75 ease-in-out group flex gap-x-3 p-3 text-md font-medium text-gray-700 dark:text-gray-200/80 group-hover:text-opacity-75'
+                                 )}
+                              >
+                                 {/* <span className='text-sm font-light tracking-tighter relative bottom-2 left-2'>
+                                    {item.num}{' '}
+                                 </span> */}
+                                 {item.name}
+                              </a>
+                           </li>
                         ))}
                         {/* have the position as absolute(?) or maybe just delete this entirely and put it somewhere else */}
-                        <li className='absolute inset-8'>
-                           <ToggleTheme theme={theme} setTheme={setTheme} />
+                        <li className='absolute inset-4'>
+                           <Toggler theme={theme} setTheme={setTheme} />
                         </li>
                      </ul>
                   </nav>
                </div>
+               {/* background blur for navigation */}
+               <div className='fixed top-0 bottom-0 h-16 w-full bg-[rgba(19, 19, 19,.15)] z-10 opacity-50 backdrop-blur-lg'></div>
             </div>
          </div>
 
          {/* <div className='lg:pl-72'> */}
          {/* change navigation to here so that mobile works too? not inside nav(?) */}
+
+         {/* this is another mobile version -- should change this into somewhere else? */}
          <div
             className={classNames(
                isTop
                   ? 'h-16'
-                  : scrollDirection === 'down'
-                  ? '-top-20'
-                  : 'top-0 h-14 bg-slate-300/10 dark:bg-neutral-900/20 z-50',
-               'bg- z-40 lg:h-0 shrink-0 fixed transition-all duration-250 ease-in flex flex-1 w-full justify-start px-6'
+                  : // : scrollDirection === 'down'
+                    // ? '-top-20'
+                    //   bg-slate-300/10 dark:bg-neutral-900/20
+                    'top-0 h-14 z-50',
+               'z-40 lg:h-0 shrink-0 fixed transition-all duration-250 ease-in flex flex-1 w-full justify-start px-6'
             )}
          >
             {/* // className='z-40 flex lg:h-0 shrink-0 items-center bg-white dark:bg-gray-900 px-4 sm:gap-x-6 sm:px-6 sm:w-full lg:px-8'> */}
@@ -195,7 +193,7 @@ const Navbar = () => {
             </div>
          </div>
 
-         {/* TESTING HERE */}
+         {/* TESTING HERE THIS CAN BE SAFELY(?) OR wrap around navgiation */}
          <main className='py-28 sm:py-28 bg-blue-200'>
             <div className='px-4 sm:px-6 lg:px-8'>
                <div className='h-[1000px] w-full'>
@@ -209,7 +207,7 @@ const Navbar = () => {
             </div>
          </main>
          {/* {/* </div> */}
-      </>
+      </header>
    );
 };
 

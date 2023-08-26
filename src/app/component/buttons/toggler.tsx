@@ -1,10 +1,32 @@
-import { useState } from 'react';
+import { Dispatch, useState, SetStateAction, useEffect, useLayoutEffect } from 'react';
 import { Variants, motion } from 'framer-motion';
 import { Switch } from '@headlessui/react';
 import classNames from '@/app/library/helper';
+import { ThemeContextParams } from '@/app/constants';
 
-export const Toggler = () => {
-   const [enabled, setEnabled] = useState(false);
+// put this into an object instead;
+type Size = {
+   large: {
+      size: 'h-7 w-16';
+      translateEnabled: 'translate-x-7';
+      ball: 'h-8 w-8';
+   };
+   medium: {
+      size: 'h-6 w-12';
+      translateEnabled: 'translate-x-6';
+      ball: 'h-5 w-5';
+   };
+};
+
+export const Toggler = ({ theme, setTheme }: ThemeContextParams) => {
+   const toggleTheme = () => {
+      const newTheme = theme === 'light' ? 'dark' : 'light';
+      const darkEnabled = theme === 'dark';
+
+      setTheme(newTheme);
+
+      window.localStorage.setItem('theme', newTheme);
+   };
 
    // create an animation as if the ball is sliding
    const spring = {
@@ -16,24 +38,24 @@ export const Toggler = () => {
 
    const iconVariants: Variants = {
       off: {
-        //  moon 
+         //  moon
          rotate: 90,
          transition: {
             ...spring,
             rotate: {
-               duration: 0.4,
+               duration: 0.25,
                ease: 'linear',
                repeat: 0,
             },
          },
       },
       on: {
-        // sun
+         // sun
          rotate: -90,
          transition: {
             ...spring,
             rotate: {
-               duration: 0.4,
+               duration: 0.25,
                ease: 'linear',
                repeat: 0,
             },
@@ -41,13 +63,15 @@ export const Toggler = () => {
       },
    };
 
+   const darkMode = theme === 'light';
+
    return (
       <Switch
-         checked={enabled}
-         onChange={setEnabled}
+         checked={darkMode}
+         onChange={toggleTheme}
          className={classNames(
-            !enabled ? 'bg-gray-400/10' : 'bg-slate-100',
-            'relative inline-flex h-9 w-16 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-300 ease-in-out focus:outline-none focus:ring-[0.5px] focus:ring-black dark:focus:ring-white focus:ring-offset-2'
+            !darkMode ? 'bg-gray-400/10' : 'bg-slate-100',
+            'relative inline-flex h-6 w-12 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-300 ease-in-out focus:outline-none focus:ring-[0.5px] focus:ring-black dark:focus:ring-white focus:ring-offset-2'
          )}
       >
          <span className='sr-only'>Use setting</span>
@@ -60,17 +84,19 @@ export const Toggler = () => {
          <motion.span
             layout
             initial={false}
-            animate={enabled ? 'on' : 'off'}
+            animate={darkMode ? 'on' : 'off'}
             transition={spring}
             className={classNames(
-               !enabled ? 'translate-x-7' : 'translate-x-0',
-               'pointer-events-none relative inline-block h-8 w-8 transform rounded-full shadow ring-0 transition duration-300 ease-in-out'
+               !darkMode ? 'translate-x-6' : 'translate-x-0',
+               'pointer-events-none relative inline-block h-5 w-5 transform rounded-full shadow ring-0 transition duration-300 ease-in-out'
             )}
          >
             <motion.span
                transition={spring}
                className={classNames(
-                  !enabled ? 'opacity-0 duration-100 ease-out' : 'opacity-100 duration-300 ease-in',
+                  !darkMode
+                     ? 'opacity-0 duration-100 ease-out'
+                     : 'opacity-100 duration-300 ease-in',
                   'absolute inset-0 flex h-full w-full items-center justify-center transition-opacity'
                )}
                aria-hidden='true'
@@ -96,7 +122,9 @@ export const Toggler = () => {
 
             <span
                className={classNames(
-                  !enabled ? 'opacity-100 duration-300 ease-in' : 'opacity-0 duration-100 ease-out',
+                  !darkMode
+                     ? 'opacity-100 duration-300 ease-in'
+                     : 'opacity-0 duration-100 ease-out',
                   'absolute inset-0 flex h-full w-full items-center justify-center transition-opacity'
                )}
                aria-hidden='true'

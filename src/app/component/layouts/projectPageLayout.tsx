@@ -45,6 +45,8 @@ export default ProjectLayout;
 // CONDITIONS:
 // use framer-motion for writing the the
 
+// grids - three grids (?) - the main, reference, and reference table?
+
 // create a container for
 // 1) tags 2) reading time 3) site (if there is a site) 4) view source code
 
