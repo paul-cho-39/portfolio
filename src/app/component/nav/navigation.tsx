@@ -11,6 +11,7 @@ import UnderlinedLink from '../buttons/underlinedButton';
 import InitialLogo from '../headers/logo';
 import WindowCanvas from '../effects/scene';
 import { Toggler } from '../buttons/toggler';
+import { Divider } from '../divider';
 
 const navigation = [
    { name: 'home', href: '#', num: '01.', current: true },
@@ -19,8 +20,8 @@ const navigation = [
    { name: 'contact', href: '#', num: '04.', current: false },
 ];
 
-// navigation page has to be rewritten using rewrites
-// change the name to Headers
+// here h-16 / top-16 is the breakpoint for header and main section
+
 const Navbar = () => {
    const [sidebarOpen, setSidebarOpen] = useState(false);
    const { scrollDirection, isTop } = useScrollDirection();
@@ -38,11 +39,11 @@ const Navbar = () => {
    // console.log('what is the current status?', isTop);
 
    return (
-      <header>
+      <header className='bg-transparent'>
          <div className=''>
             {/* mobile version */}
             <Transition.Root show={sidebarOpen} as={Fragment}>
-               <Dialog as='div' className='relative z-50 lg:hidden' onClose={setSidebarOpen}>
+               <Dialog as='div' className='relative z-50 md:hidden' onClose={setSidebarOpen}>
                   <Transition.Child
                      as={Fragment}
                      enter='transition-opacity ease-in-out duration-300'
@@ -119,51 +120,54 @@ const Navbar = () => {
 
             {/* Static sidebar for desktop -- switch height, text-color, bg-color, padding when scrolled */}
             {/* so create two navbars that passes props as children */}
-            <div className='hidden mx-auto lg:h-16 lg:flex lg:w-full'>
-               {/* Sidebar component, swap this element with another sidebar if you like */}
-               <div className='flex flex-row items-end justify-end w-full h-full bg-transparent'>
-                  <nav
-                     role='navigation'
-                     className={classNames(
-                        isTop
-                           ? 'h-18 bg-transparent' // opacty bg-blur
-                           : 'h-16',
-                        'z-20 bg-transparent fixed transition-all duration-250 ease-in px-10'
-                     )}
-                  >
-                     <ul role='list' className='flex flex-row items-center gap-x-1'>
-                        {navigation.map((item, index) => (
-                           <li className='' key={item.name}>
-                              <a
-                                 href={item.href}
-                                 className={classNames(
-                                    item.current
-                                       ? 'dark:hover:text-slate-700 hover:text-gray-400  '
-                                       : 'dark:hover:text-slate-700 hover:text-gray-400 ',
-                                    'transition-all duration-75 ease-in-out group flex gap-x-3 p-3 text-md font-medium text-gray-700 dark:text-gray-200/80 group-hover:text-opacity-75'
-                                 )}
-                              >
-                                 {/* <span className='text-sm font-light tracking-tighter relative bottom-2 left-2'>
+            <div className='hidden mx-auto md:h-16 md:flex md:w-full'>
+               <div className='flex flex-row justify-stretch items-stretch w-full h-full'>
+                  <div className='inline-flex items-center justify-center px-6'>Logo</div>
+                  <div className='flex flex-row items-end justify-end w-full h-full bg-transparent'>
+                     <nav
+                        role='navigation'
+                        className={classNames(
+                           isTop
+                              ? 'h-16 bg-transparent' // opacty bg-blur
+                              : 'h-16',
+                           'z-20 bg-transparent fixed transition-all duration-250 ease-in px-10'
+                        )}
+                     >
+                        <ul
+                           role='list'
+                           className='flex flex-row items-center justify-center gap-x-1 h-full'
+                        >
+                           {navigation.map((item, index) => (
+                              <li className='' key={item.name}>
+                                 <a
+                                    href={item.href}
+                                    className={classNames(
+                                       item.current
+                                          ? 'dark:hover:text-slate-700 hover:text-gray-400  '
+                                          : 'dark:hover:text-slate-700 hover:text-gray-400 ',
+                                       'h-full self-baseline transition-all duration-75 ease-in-out group flex gap-x-3 p-3 text-md font-medium text-gray-700 dark:text-gray-200/80 group-hover:text-opacity-75'
+                                    )}
+                                 >
+                                    {/* <span className='text-sm font-light tracking-tighter relative bottom-2 left-2'>
                                     {item.num}{' '}
                                  </span> */}
-                                 {item.name}
-                              </a>
+                                    {item.name}
+                                 </a>
+                              </li>
+                           ))}
+                           {/* have the position as absolute(?) or maybe just delete this entirely and put it somewhere else */}
+                           <li className=''>
+                              <Toggler theme={theme} setTheme={setTheme} />
                            </li>
-                        ))}
-                        {/* have the position as absolute(?) or maybe just delete this entirely and put it somewhere else */}
-                        <li className=''>
-                           <Toggler theme={theme} setTheme={setTheme} />
-                        </li>
-                     </ul>
-                  </nav>
+                        </ul>
+                     </nav>
+                  </div>
+                  {/* background blur for navigation */}
                </div>
-               {/* background blur for navigation */}
-               <div className='fixed top-0 bottom-0 h-16 w-full bg-[rgba(19, 19, 19,.15)] z-10 opacity-50 backdrop-blur-lg'></div>
             </div>
          </div>
-
-         {/* <div className='lg:pl-72'> */}
-         {/* change navigation to here so that mobile works too? not inside nav(?) */}
+         <div className='fixed top-0 bottom-0 h-16 w-full bg-[rgba(19, 19, 19,.15)] z-10 opacity-90 backdrop-blur-xl blur-lg'></div>
+         <Divider />
 
          {/* this is another mobile version -- should change this into somewhere else? */}
          <div
@@ -174,11 +178,10 @@ const Navbar = () => {
                     // ? '-top-20'
                     //   bg-slate-300/10 dark:bg-neutral-900/20
                     'top-0 h-16 z-50',
-               'z-40 lg:h-0 shrink-0 fixed transition-all duration-250 ease-in flex flex-1 w-full justify-start px-6'
+               'z-40 md:h-0 shrink-0 fixed transition-all duration-250 ease-in flex flex-1 w-full justify-start px-6'
             )}
          >
-            {/* // className='z-40 flex lg:h-0 shrink-0 items-center bg-white dark:bg-gray-900 px-4 sm:gap-x-6 sm:px-6 sm:w-full lg:px-8'> */}
-            <div className='h-14 lg:hidden inline-flex items-center'>
+            <div className='h-14 md:hidden inline-flex items-center'>
                <button
                   type='button'
                   className='w-10 h-10 -m-1.5 pl-2 hover:rounded-full hover:bg-gray-300/30'
