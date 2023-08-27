@@ -39,7 +39,6 @@ const WindowCanvas = ({ darkMode, isFireworkHovered }: CanvasProps) => {
    );
 };
 
-// TODO: work on lightings and reflections of birds more accuratrely
 const Lights = () => {
    const ref = useRef<THREE.DirectionalLight>(null!);
    const pointRef = useRef<THREE.PointLightHelper>(null!);
@@ -50,10 +49,9 @@ const Lights = () => {
    return (
       <>
          <directionalLight
-            castShadow
             ref={ref}
             intensity={0.8}
-            position={[5, 10, 10]}
+            position={[-5, 15, 25]}
             shadow-camera-near={1}
             shadow-camera-far={1000}
             shadow-camera-top={100}
@@ -61,7 +59,7 @@ const Lights = () => {
             shadow-camera-left={-100}
             shadow-camera-right={100}
          />
-         <pointLight castShadow args={[0xfffff, 0.8]} position={[0, 10, 4]} />
+         <pointLight args={[0xfffff, 0.8]} position={[0, 10, 4]} />
       </>
    );
 };

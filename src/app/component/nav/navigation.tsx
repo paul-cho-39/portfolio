@@ -12,6 +12,7 @@ import InitialLogo from '../headers/logo';
 import WindowCanvas from '../effects/scene';
 import { Toggler } from '../buttons/toggler';
 import { Divider } from '../divider';
+import { FrontCoverDescription, FrontCoverTitle } from '../frontcovert';
 
 const navigation = [
    { name: 'home', href: '#', num: '01.', current: true },
@@ -122,7 +123,9 @@ const Navbar = () => {
             {/* so create two navbars that passes props as children */}
             <div className='hidden mx-auto md:h-16 md:flex md:w-full'>
                <div className='flex flex-row justify-stretch items-stretch w-full h-full'>
-                  <div className='inline-flex items-center justify-center px-6'>Logo</div>
+                  <div className='fixed z-20 h-16'>
+                     <div className='h-full inline-flex items-center justify-center px-6'>Logo</div>
+                  </div>
                   <div className='flex flex-row items-end justify-end w-full h-full bg-transparent'>
                      <nav
                         role='navigation'
@@ -172,12 +175,7 @@ const Navbar = () => {
          {/* this is another mobile version -- should change this into somewhere else? */}
          <div
             className={classNames(
-               isTop
-                  ? 'h-16'
-                  : // : scrollDirection === 'down'
-                    // ? '-top-20'
-                    //   bg-slate-300/10 dark:bg-neutral-900/20
-                    'top-0 h-16 z-50',
+               isTop ? 'h-16' : 'top-0 h-16 z-50',
                'z-40 md:h-0 shrink-0 fixed transition-all duration-250 ease-in flex flex-1 w-full justify-start px-6'
             )}
          >
@@ -197,16 +195,26 @@ const Navbar = () => {
          </div>
 
          {/* TESTING HERE THIS CAN BE SAFELY(?) OR wrap around navgiation */}
-         <main className='py-28 sm:py-28 bg-blue-200'>
-            <div className='px-4 sm:px-6 lg:px-8'>
-               <div className='h-[1000px] w-full'>
-                  <InitialLogo />
-                  <WindowCanvas darkMode={theme === 'dark'} />
-                  {/* <TypeWriter wordGenerator={FrontPageGenerator} /> */}
+         <main className='bg-blue-200'>
+            {/* section here */}
+            <div
+               style={{
+                  width: '100%',
+                  height: '100vh',
+               }}
+               className='relative inset-0 z-20'
+            >
+               <WindowCanvas darkMode={theme === 'dark'} />
+               {/* likely to change */}
+               <FrontCoverTitle description="Hi, I'm Paul" />
+               <FrontCoverDescription
+                  className='indent-24 uppercase text-gray-800'
+                  description={
+                     "I'm a self-taught full-stack developer, I've navigated the tech landscape through hands-on experience. My journey into programming has been driven by curiosity and a passion for solving real-world problems"
+                  }
+               />
 
-                  <div className='mt-10'></div>
-               </div>
-               <p className='h-[1000px] w-full'>TESTING HERE</p>
+               <div className='mt-10'></div>
             </div>
          </main>
          {/* {/* </div> */}
