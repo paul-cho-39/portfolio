@@ -151,7 +151,7 @@ const Navbar = () => {
                            </li>
                         ))}
                         {/* have the position as absolute(?) or maybe just delete this entirely and put it somewhere else */}
-                        <li className='absolute inset-4'>
+                        <li className=''>
                            <Toggler theme={theme} setTheme={setTheme} />
                         </li>
                      </ul>
@@ -173,7 +173,7 @@ const Navbar = () => {
                   : // : scrollDirection === 'down'
                     // ? '-top-20'
                     //   bg-slate-300/10 dark:bg-neutral-900/20
-                    'top-0 h-14 z-50',
+                    'top-0 h-16 z-50',
                'z-40 lg:h-0 shrink-0 fixed transition-all duration-250 ease-in flex flex-1 w-full justify-start px-6'
             )}
          >
