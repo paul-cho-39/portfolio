@@ -12,7 +12,7 @@ import InitialLogo from '../headers/logo';
 import WindowCanvas from '../effects/scene';
 import { Toggler } from '../buttons/toggler';
 import { Divider } from '../divider';
-import { FrontCoverDescription, FrontCoverTitle } from '../frontcovert';
+import { FrontCoverDescription, FrontCoverTitle } from '../frontcCover';
 
 const navigation = [
    { name: 'home', href: '#', num: '01.', current: true },
@@ -206,9 +206,15 @@ const Navbar = () => {
             >
                <WindowCanvas darkMode={theme === 'dark'} />
                {/* likely to change */}
-               <FrontCoverTitle description="Hi, I'm Paul" />
                <FrontCoverDescription
-                  className='indent-24 uppercase text-gray-800'
+                  // main="Hi, I'm Paul" + <br /> + "Software Engineer"
+                  main={
+                     <>
+                        <span>{'Paul |'}</span>
+                        <br />
+                        <span>Software Engineer</span>
+                     </>
+                  }
                   description={
                      "I'm a self-taught full-stack developer, I've navigated the tech landscape through hands-on experience. My journey into programming has been driven by curiosity and a passion for solving real-world problems"
                   }

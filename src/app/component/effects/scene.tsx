@@ -43,8 +43,8 @@ const Lights = () => {
    const ref = useRef<THREE.DirectionalLight>(null!);
    const pointRef = useRef<THREE.PointLightHelper>(null!);
 
-   useHelper(ref, THREE.DirectionalLightHelper, 10, 'yellow');
-   useHelper(pointRef, THREE.PointLightHelper, 10, 'red');
+   // useHelper(ref, THREE.DirectionalLightHelper, 10, 'yellow');
+   // useHelper(pointRef, THREE.PointLightHelper, 10, 'red');
 
    return (
       <>
@@ -59,7 +59,7 @@ const Lights = () => {
             shadow-camera-left={-100}
             shadow-camera-right={100}
          />
-         <pointLight args={[0xfffff, 0.8]} position={[0, 10, 4]} />
+         <pointLight ref={pointRef} args={[0xfffff, 0.8]} position={[0, 10, 4]} />
       </>
    );
 };

@@ -20,6 +20,7 @@ module.exports = {
          },
          fontFamily: {
             sans: ['var(--font-barlow-condensed)'],
+            serif: ['var(--font-montserrat-alternative)'],
          },
          keyframes: {
             neon: {
