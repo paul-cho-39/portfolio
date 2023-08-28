@@ -11,7 +11,7 @@ import EmoljiFireworks from './emoljiFireworks';
 const TOTAL_FIREWORKS = 50;
 
 interface CanvasProps {
-   darkMode: boolean;
+   darkMode?: boolean;
    isFireworkHovered?: boolean;
 }
 

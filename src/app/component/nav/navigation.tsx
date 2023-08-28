@@ -3,7 +3,6 @@ import { Dialog, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import classNames from '@/library/helper';
 import { useScrollDirection } from '@/library/hooks/useScrollDirection';
-import ToggleTheme from '../buttons/toggleThemeButton';
 import { ThemeContext } from '../../library/contexts/ThemeContext';
 import { FrontPageGenerator, ThemeContextParams } from '../../constants';
 import UnderlinedLink from '../buttons/underlinedButton';
@@ -12,7 +11,7 @@ import InitialLogo from '../headers/logo';
 import WindowCanvas from '../effects/scene';
 import { Toggler } from '../buttons/toggler';
 import { Divider } from '../divider';
-import { FrontCoverDescription, FrontCoverTitle } from '../frontcCover';
+import { ArrowDown } from '../illustrator/arrowDown';
 
 const navigation = [
    { name: 'home', href: '#', num: '01.', current: true },
@@ -195,8 +194,7 @@ const Navbar = () => {
          </div>
 
          {/* TESTING HERE THIS CAN BE SAFELY(?) OR wrap around navgiation */}
-         <main className='bg-blue-200'>
-            {/* section here */}
+         {/* <main className='bg-blue-200'>
             <div
                style={{
                   width: '100%',
@@ -205,9 +203,7 @@ const Navbar = () => {
                className='relative inset-0 z-20'
             >
                <WindowCanvas darkMode={theme === 'dark'} />
-               {/* likely to change */}
                <FrontCoverDescription
-                  // main="Hi, I'm Paul" + <br /> + "Software Engineer"
                   main={
                      <>
                         <span>{'Paul |'}</span>
@@ -219,11 +215,13 @@ const Navbar = () => {
                      "I'm a self-taught full-stack developer, I've navigated the tech landscape through hands-on experience. My journey into programming has been driven by curiosity and a passion for solving real-world problems"
                   }
                />
+               <ArrowDown />
 
-               <div className='mt-10'></div>
+               <div className='mt-10'>
+                  <div className='h-24 w-24 highlighter-bg'>TESTING</div>
+               </div>
             </div>
-         </main>
-         {/* {/* </div> */}
+         </main> */}
       </header>
    );
 };

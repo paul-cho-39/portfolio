@@ -98,4 +98,7 @@ body {
     line-height: 2;
     /* background-size: 0 100%; */
   }
+  .sky-gradient {
+    background: linear-gradient(to bottom, #184888, #5a8fd4, #97b9e7, #98bfdf);
+  }
 }
