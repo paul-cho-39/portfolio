@@ -78,7 +78,6 @@ export const Cloud = ({ scale, position }: { scale: Vector3; position: Vector3 }
    );
 
    const velocity = useRef(randomizeVelocity(0.005));
-   console.log('velocity is: ', velocity.current);
 
    useFrame(() => {
       if (material) {

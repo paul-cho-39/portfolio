@@ -1,17 +1,21 @@
-import { useAnimation, useInView, useScroll, motion, useMotionValueEvent } from 'framer-motion';
+import {
+   useAnimation,
+   useInView,
+   useScroll,
+   motion,
+   useMotionValueEvent,
+   useAnimate,
+} from 'framer-motion';
 import { useEffect, useRef } from 'react';
 
 const Section = ({ children, id }: { children: React.ReactNode; id?: string }) => {
+   // useAnimate for control?
+   const [scope, animate] = useAnimate();
    const { scrollY, scrollYProgress } = useScroll();
 
    useMotionValueEvent(scrollY, 'change', (latest) => {
       console.log('Page scroll: ', latest);
-   });
-
-   //    useEffect(() => {
-   //       console.log('scrolls progress so far', scrollYProgress);
-   //       console.log('scroll Y: ', scrollY);
-   //    }, [scrollYProgress, scrollY]);
+//    });
 
    const ref = useRef<HTMLDivElement>(null);
    const isInView = useInView(ref);

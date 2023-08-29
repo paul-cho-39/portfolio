@@ -119,6 +119,9 @@ body {
   .sky-gradient {
     background: linear-gradient(to bottom, #184888, #5a8fd4, #97b9e7, #98bfdf);
   }
+  .sky-fade-gradient {
+    background: linear-gradient(to bottom, #97b9e7, #98bfdf, #d3dfef);
+  }
 }
 
 
