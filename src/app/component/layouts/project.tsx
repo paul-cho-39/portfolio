@@ -8,7 +8,7 @@ export const ProjectLayout = ({
    includePolygon?: boolean;
 }) => {
    return (
-      <Container className='lg:my-12'>
+      <Container className='py-16 md:py-20 lg:py-24 px-6'>
          {includePolygon && (
             <div className='relative z-10 bg-slate-200 sm:mt-28 sm:pb-24 md:px-12 lg:mt-44'>
                <div className='absolute inset-0 overflow-hidden' aria-hidden='true'>

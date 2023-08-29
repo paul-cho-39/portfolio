@@ -1,16 +1,18 @@
 import { SectionHeader } from '../headers/sectionHeader';
 import { Container, ContainerInner } from '../layouts/container';
+import Section from '../section';
 
 const About = () => {
    return (
-      <section id='about_me'>
-         <Container className='py-16 md:py-20 lg:py-24'>
+      // <section id='about_me'>
+      <Section id='about_me'>
+         <Container className='mx-12 py-16 md:py-20 lg:py-24 lg:mx-24 xl:mx-48'>
             <SectionHeader title='About Me' />
-            <div className='flex flex-col-reverse lg:flex-row lg:items-stretch lg:justify-stretch bg-yellow-200'>
+            <div className='flex flex-col-reverse lg:flex-row lg:items-stretch lg:justify-stretch'>
                {/* contents */}
-               <div className='w-full my-8 lg:pb-8 h-auto'>
-                  <p className='font-semibold text-xl py-4'>Important Words Here</p>
-                  <p className='px-2 mt-6 text-lg tracking-wide leading-6 md:leading-8 lg:tracking-wider lg:text-xl text-gray-600'>
+               <div className='w-full max-w-lg my-8 lg:pb-8 md:px-6'>
+                  <p className='font-serif font-semibold text-xl py-4'>Important Words Here</p>
+                  <p className='font-serif px-2 mt-6 text-lg tracking-wide leading-6 indent-12 md:leading-8 lg:text-xl text-gray-600'>
                      Quasi est quaerat. Sit molestiae et. Provident ad dolorem occaecati eos iste.
                      Soluta rerum quidem minus ut molestiae velit error quod. Excepturi quidem
                      expedita molestias quas.
@@ -29,8 +31,13 @@ const About = () => {
                </div>
             </div>
          </Container>
-      </section>
+      </Section>
    );
 };
+{
+   /* </section> */
+}
 
 export default About;
+
+// lg:aspect[2:5] lg:w-[18rem]

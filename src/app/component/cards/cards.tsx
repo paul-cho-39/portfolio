@@ -3,13 +3,15 @@ import { Title } from './sectionTitle';
 import { ProjectLayout } from '../layouts/project';
 
 import data from '@/constants/data/projects.json';
+import { SectionHeader } from '../headers/sectionHeader';
 
 const ProjectCards = ({}) => {
    return (
-      <section className='bg-slate-100'>
+      // TODO: change bg-color(?)
+      <section id='projects' className='bg-slate-100'>
          {/* project title here */}
-         <Title title='Some Stuff I Built' />
          <ProjectLayout>
+            <SectionHeader title='Some Stuff I Built' />
             <Cards projects={data.projects} />
          </ProjectLayout>
       </section>
