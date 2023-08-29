@@ -4,14 +4,9 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import classNames from '@/library/helper';
 import { useScrollDirection } from '@/library/hooks/useScrollDirection';
 import { ThemeContext } from '../../library/contexts/ThemeContext';
-import { FrontPageGenerator, ThemeContextParams } from '../../constants';
-import UnderlinedLink from '../buttons/underlinedButton';
 
-import InitialLogo from '../headers/logo';
-import WindowCanvas from '../effects/scene';
 import { Toggler } from '../buttons/toggler';
 import { Divider } from '../divider';
-import { ArrowDown } from '../illustrator/arrowDown';
 
 const navigation = [
    { name: 'home', href: '#', num: '01.', current: true },
@@ -27,7 +22,7 @@ const Navbar = () => {
    const { scrollDirection, isTop } = useScrollDirection();
 
    // TODO:change theme to somewhere else
-   const { theme, setTheme } = useContext(ThemeContext) as ThemeContextParams;
+   const { theme, setTheme } = useContext(ThemeContext);
    useEffect(() => {
       if (theme === 'dark') {
          document.documentElement.classList.add('dark');
@@ -35,8 +30,6 @@ const Navbar = () => {
          document.documentElement.classList.remove('dark');
       }
    }, [theme]);
-
-   // console.log('what is the current status?', isTop);
 
    return (
       <header className='bg-transparent'>
@@ -131,7 +124,7 @@ const Navbar = () => {
                         className={classNames(
                            isTop
                               ? 'h-16 bg-transparent' // opacty bg-blur
-                              : 'h-16',
+                              : 'h-16 z-50',
                            'z-20 bg-transparent fixed transition-all duration-250 ease-in px-10'
                         )}
                      >
@@ -147,7 +140,7 @@ const Navbar = () => {
                                        item.current
                                           ? 'dark:hover:text-slate-700 hover:text-gray-400  '
                                           : 'dark:hover:text-slate-700 hover:text-gray-400 ',
-                                       'h-full self-baseline transition-all duration-75 ease-in-out group flex gap-x-3 p-3 text-md font-medium text-gray-700 dark:text-gray-200/80 group-hover:text-opacity-75'
+                                       'h-full self-baseline transition-all duration-75 ease-in-out group flex gap-x-3 p-3 text-md font-medium text-gray-950 dark:text-gray-200/80 group-hover:text-opacity-75'
                                     )}
                                  >
                                     {/* <span className='text-sm font-light tracking-tighter relative bottom-2 left-2'>
@@ -168,9 +161,10 @@ const Navbar = () => {
                </div>
             </div>
          </div>
-         <div className='fixed top-0 bottom-0 h-16 w-full bg-[rgba(19, 19, 19,.15)] z-10 opacity-90 backdrop-blur-xl blur-lg'></div>
+         {!isTop && (
+            <div className='fixed top-0 bottom-0 h-16 w-full bg-[rgba(19, 19, 19,.15)] z-40 opacity-[0.95] backdrop-blur-xl blur-lg'></div>
+         )}{' '}
          <Divider />
-
          {/* this is another mobile version -- should change this into somewhere else? */}
          <div
             className={classNames(
@@ -192,36 +186,6 @@ const Navbar = () => {
                </button>
             </div>
          </div>
-
-         {/* TESTING HERE THIS CAN BE SAFELY(?) OR wrap around navgiation */}
-         {/* <main className='bg-blue-200'>
-            <div
-               style={{
-                  width: '100%',
-                  height: '100vh',
-               }}
-               className='relative inset-0 z-20'
-            >
-               <WindowCanvas darkMode={theme === 'dark'} />
-               <FrontCoverDescription
-                  main={
-                     <>
-                        <span>{'Paul |'}</span>
-                        <br />
-                        <span>Software Engineer</span>
-                     </>
-                  }
-                  description={
-                     "I'm a self-taught full-stack developer, I've navigated the tech landscape through hands-on experience. My journey into programming has been driven by curiosity and a passion for solving real-world problems"
-                  }
-               />
-               <ArrowDown />
-
-               <div className='mt-10'>
-                  <div className='h-24 w-24 highlighter-bg'>TESTING</div>
-               </div>
-            </div>
-         </main> */}
       </header>
    );
 };

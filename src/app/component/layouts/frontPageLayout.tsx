@@ -1,7 +1,6 @@
 import WindowCanvas from '../effects/scene';
 import { FrontCoverDescription } from '../frontCover';
 import { ArrowDown } from '../illustrator/arrowDown';
-import { Container } from './container';
 
 const FronPageLayout = ({ children }: { children: React.ReactNode }) => {
    return (
@@ -20,9 +19,9 @@ const FronPageLayout = ({ children }: { children: React.ReactNode }) => {
 
 const FrontPage = () => {
    return (
-      <section>
+      <section id='front_page'>
          <FronPageLayout>
-            <WindowCanvas />
+            {/* <WindowCanvas /> */}
             <FrontCoverDescription
                main={
                   <>

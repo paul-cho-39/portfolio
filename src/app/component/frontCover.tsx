@@ -1,7 +1,5 @@
-import classNames from '../library/helper';
 import clsx from 'clsx';
 import { pacifico, montserratAlternatives } from '../fonts';
-import { ReactNode } from 'react';
 
 interface Main {
    main: React.ReactElement;

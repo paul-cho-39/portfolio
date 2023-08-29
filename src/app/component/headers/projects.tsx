@@ -1,9 +1,10 @@
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid';
+import { Container } from '../layouts/container';
 
 //tailwindui.com/components/application-ui/headings/page-headings#component-b909af6c7c5bdafe903d1c16fc81afe1
 
 // TODO: 1) create a back button with better animation
-https: const ProjectHeaders = () => {
+const ProjectHeaders = () => {
    return (
       <div>
          <div>
@@ -85,5 +86,13 @@ https: const ProjectHeaders = () => {
             </div>
          </div>
       </div>
+   );
+};
+
+export const ProjectSampler = () => {
+   return (
+      <Container>
+         <ProjectHeaders />
+      </Container>
    );
 };

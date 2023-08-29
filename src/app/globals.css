@@ -8,6 +8,7 @@
   --background-end-rgb: 255, 255, 255;
   --top-sun: 25%;
   --underline: #57659e;
+  --highlighter-width: 11rem;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -91,14 +92,44 @@ body {
     transition: width 0.3s ease 0s, right 0.5s ease 0s;
     width: 0;
   }
-  .highlighter-bg {
+  .highlighter-bg, .animate-highlight {
     background-image: linear-gradient(transparent 50%, var(--underline) 50%, var(--underline) 85%, transparent 85%, transparent 100%);
     background-repeat: no-repeat;
-    display: inline;
-    line-height: 2;
-    /* background-size: 0 100%; */
+  }
+  
+  .highlighter-bg {
+    background-position: 0% 0;
+    width: var(--highlighter-width);
+    line-height: 2.25rem;
+    font-size: 1.9rem;
+    color: rgb(17 24 39);
+  }
+  
+  .highlighter-bg:hover .animate-highlight {
+    background-position: 100% 0;
+    width: calc(var(--highlighter-width) / 4);
+    right: 0; 
+  }
+  
+  .animate-highlight {
+    transition: width 0.3s ease 0s, right 0.5s ease 0s;
+    -webkit-animation: highlight 0.4s ease-out;
+    animation: highlight 0.5s ease-out;
   }
   .sky-gradient {
     background: linear-gradient(to bottom, #184888, #5a8fd4, #97b9e7, #98bfdf);
+  }
+}
+
+
+@keyframes highlight {
+  from {
+    width: var(--highlighter-width);
+  }
+  50% {
+    width: calc(var(--highlighter-width) / 6);
+  }
+  to {
+    width: var(--highlighter-width);
   }
 }

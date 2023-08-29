@@ -1,12 +1,11 @@
-import { ProjectLayout } from '../layouts/project';
+import { SectionHeader } from '../headers/sectionHeader';
+import { Container, ContainerInner } from '../layouts/container';
 
 const About = () => {
    return (
-      <ProjectLayout>
-         <div className='mx-auto max-w-4xl'>
-            <h2 className='text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl'>
-               About me
-            </h2>
+      <section id='about_me'>
+         <Container className='py-16 md:py-20 lg:py-24'>
+            <SectionHeader title='About Me' />
             <div className='flex flex-col-reverse lg:flex-row lg:items-stretch lg:justify-stretch bg-yellow-200'>
                {/* contents */}
                <div className='w-full my-8 lg:pb-8 h-auto'>
@@ -17,6 +16,7 @@ const About = () => {
                      expedita molestias quas.
                   </p>
                </div>
+
                {/* images */}
                <div className='mb-12 inline-flex justify-center self-center items-center lg:inline-flex lg:justify-center bg-red-500'>
                   {/* TODO: use image here */}
@@ -28,8 +28,8 @@ const About = () => {
                   />
                </div>
             </div>
-         </div>
-      </ProjectLayout>
+         </Container>
+      </section>
    );
 };
 
