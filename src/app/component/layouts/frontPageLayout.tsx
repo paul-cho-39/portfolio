@@ -14,11 +14,10 @@ import {
 import { lerp } from 'three/src/math/MathUtils';
 import classNames from '@/app/library/helper';
 
-const OPACITY_THRESHOLD = 0.2;
+const OPACITY_THRESHOLD = 0.15;
+const SCROLL_THRESHOLD = 0.75;
 
 const FronPageLayout = ({ children }: { children: React.ReactNode }) => {
-   // if detecting scroll, change the position to fixed and then change it to
-   // fixed;
    return (
       <div
          style={{
@@ -35,47 +34,50 @@ const FronPageLayout = ({ children }: { children: React.ReactNode }) => {
 const FrontPage = () => {
    const ref = useRef<HTMLSelectElement>(null);
 
-   // TODO: set margin or play with this number
-
-   // whenever scrolling up (last position)
-   // save the last position and see if there will be difference
-
    const isInView = useInView(ref, {
       margin: '-250px',
    });
-
-   useEffect(() => {
-      console.log('is it in view?: ', isInView);
-   }, [isInView]);
 
    const controls = useAnimation();
    const { scrollY } = useScroll();
    const opacity = useMotionValue(1);
    let currentOpacity = 1;
 
+   // TODO: make this a bit more smooth
    useMotionValueEvent(scrollY, 'change', (latest) => {
       if (!ref.current || !isInView) return;
 
       const sectionHeight = ref.current?.scrollHeight;
       const scrollPercentage = Math.max((sectionHeight - latest) / sectionHeight, 0);
 
-      const targetOpacity = Math.pow(scrollPercentage, 1.5);
+      if (scrollPercentage < SCROLL_THRESHOLD) {
+         // console.log('------*********************-------');
+         // console.log('the current scroll percentage is: ', scrollPercentage);
+         const targetOpacity = Math.pow(scrollPercentage, 2.5);
+         // a better solution would be if it passes a certain threshold
+         // then the opacity takes place?
+         // console.log('the target opacity is: ', targetOpacity);
 
-      currentOpacity = lerp(currentOpacity, targetOpacity, 0.2);
+         currentOpacity = lerp(currentOpacity, targetOpacity, 0.2);
 
-      opacity.set(currentOpacity);
+         // console.log('---------------------------------------');
+         // console.log('the current opacity is then: ', currentOpacity);
 
-      if (currentOpacity <= OPACITY_THRESHOLD) {
-         controls.start({ display: 'none' });
-      } else {
-         controls.start({ display: 'block' });
+         // opacity.set(currentOpacity);
+         opacity.set(targetOpacity);
+
+         if (currentOpacity <= OPACITY_THRESHOLD) {
+            controls.start({ display: 'none' });
+         } else {
+            controls.start({ display: 'block' });
+         }
       }
    });
 
    return (
       <section ref={ref} id='front_page'>
          <FronPageLayout>
-            {/* <motion.div
+            <motion.div
                style={{ opacity: opacity }}
                animate={controls}
                initial={{ display: 'block' }}
@@ -86,7 +88,7 @@ const FrontPage = () => {
                // className='fixed inset-0 sky-fade-gradient -z-10'
             >
                <WindowCanvas />
-            </motion.div> */}
+            </motion.div>
             <FrontCoverDescription
                main={
                   <>

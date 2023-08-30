@@ -28,12 +28,6 @@ const Cards = ({ projects }: ProjectCardsProps) => {
 
    const isDisabled = useDisableBreakPoints();
 
-   // TODO:
-   // a) if it is flex it should come out a bit differently
-   // b) image should come out from the bottom to up
-   // c) card title comes from left to right (depending on flex)
-   // d) card statement opacity
-
    const imgVariants: Variants = {
       offscreen: {
          y: 150,

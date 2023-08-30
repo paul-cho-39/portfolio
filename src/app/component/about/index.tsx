@@ -1,12 +1,12 @@
 import { SectionHeader } from '../headers/sectionHeader';
 import { Container, ContainerInner } from '../layouts/container';
-import Section from '../section';
+import { Description } from './decription';
 
 const About = () => {
    return (
       // <Section id='about_me'>
       <section id='about_me'>
-         <Container className='mx-12 py-16 md:py-20 lg:py-24 lg:mx-24 xl:mx-48'>
+         <Container className='mx-12 py-16 md:py-24 lg:py-36 lg:mx-24 xl:mx-48'>
             <SectionHeader title='About Me' />
             <div className='flex flex-col-reverse lg:flex-row lg:items-stretch lg:justify-stretch'>
                {/* contents */}
