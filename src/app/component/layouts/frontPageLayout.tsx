@@ -75,7 +75,7 @@ const FrontPage = () => {
    return (
       <section ref={ref} id='front_page'>
          <FronPageLayout>
-            <motion.div
+            {/* <motion.div
                style={{ opacity: opacity }}
                animate={controls}
                initial={{ display: 'block' }}
@@ -86,7 +86,7 @@ const FrontPage = () => {
                // className='fixed inset-0 sky-fade-gradient -z-10'
             >
                <WindowCanvas />
-            </motion.div>
+            </motion.div> */}
             <FrontCoverDescription
                main={
                   <>
@@ -99,7 +99,6 @@ const FrontPage = () => {
                   "I'm a self-taught full-stack developer, I've navigated the tech landscape through hands-on experience. My journey into programming has been driven by curiosity and a passion for solving real-world problems"
                }
             />
-            {/* if opacity is down at certain thrshold then this should not appear */}
             <ArrowDown />
          </FronPageLayout>
       </section>

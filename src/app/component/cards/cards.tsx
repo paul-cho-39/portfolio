@@ -9,7 +9,6 @@ const ProjectCards = ({}) => {
    return (
       // TODO: change bg-color(?)
       <section id='projects' className='bg-slate-100'>
-         {/* project title here */}
          <ProjectLayout>
             <SectionHeader title='Some Stuff I Built' />
             <Cards projects={data.projects} />

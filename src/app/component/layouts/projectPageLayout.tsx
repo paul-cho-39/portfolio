@@ -5,6 +5,7 @@ import { Container } from './container';
 import { ArrowLeftIcon } from '@heroicons/react/24/outline';
 
 // TEST THIS OUT -- for back enability
+// put this in a layout page?
 // retrieve the index of the project
 
 interface ProjectLayoutsParam {

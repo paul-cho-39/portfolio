@@ -8,6 +8,7 @@ import About from './component/about';
 import FrontPage from './component/layouts/frontPageLayout';
 import { ProjectSampler } from './component/headers/projects';
 import ProjectCards from './component/cards/cards';
+import ContactPage from './component/contact';
 
 // import Boxes from '../app/component/headers/tester';
 // const DynamicComponentWithNoSSR = dynamic(() => import('../app/component/headers/tester'), {
@@ -24,6 +25,7 @@ export default function Home({ Component, pageProps }: AppProps) {
             <FrontPage />
             <About />
             <ProjectCards />
+            <ContactPage />
          </main>
       </>
    );
