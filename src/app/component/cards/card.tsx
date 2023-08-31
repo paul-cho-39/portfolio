@@ -37,7 +37,7 @@ const Cards = ({ projects }: ProjectCardsProps) => {
          y: 20,
          opacity: 1,
          transition: {
-            duration: 0.6,
+            duration: 0.8,
             type: 'spring',
             bounce: 0.1,
             stiffness: 85,
@@ -47,7 +47,7 @@ const Cards = ({ projects }: ProjectCardsProps) => {
 
    const headerVariants: Variants = {
       hidden: {
-         x: '-3%',
+         x: '-2%',
          opacity: 0,
       },
       visible: {
@@ -55,7 +55,7 @@ const Cards = ({ projects }: ProjectCardsProps) => {
          opacity: 1,
          transition: {
             delay: 0.4,
-            duration: 0.6,
+            duration: 0.5,
          },
       },
    };

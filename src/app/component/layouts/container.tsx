@@ -17,7 +17,7 @@ export const ContainerInner = forwardRef<
    React.ComponentPropsWithoutRef<'div'>
 >(function InnerContainer({ className, children, ...props }, ref) {
    return (
-      <div ref={ref} className={clsx('relative px-4 sm:px-4 lg:px-6', className)} {...props}>
+      <div ref={ref} className={clsx('relative px-2 lg:px-6', className)} {...props}>
          <div className='mx-auto max-w-2xl lg:max-w-6xl'>{children}</div>
       </div>
    );

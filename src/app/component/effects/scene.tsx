@@ -15,6 +15,19 @@ interface CanvasProps {
    isFireworkHovered?: boolean;
 }
 
+// THINGS TO TEST OUT:
+// 1) using orbitcontrol camera to control the zoom as it zooms in
+// 2) the camera has to zoom into the bird
+// 3) so see if the bird can move whenever there is a scroll detected
+// 4) and so the concept is to keep the bird and have it come down and fly around
+// the tree
+
+// 5) if the bird position cannot be defined, then have to try to use
+
+// 6) about me -- sandy(?) or light blue background(?)
+// a) first let's try white, and play with different background
+// 7) contact me ->
+
 const WindowCanvas = ({ darkMode, isFireworkHovered }: CanvasProps) => {
    // if using jotai there is no need to pass isFrieworkHovered here
    return (
@@ -31,7 +44,7 @@ const WindowCanvas = ({ darkMode, isFireworkHovered }: CanvasProps) => {
             })}
          <Seagull />
          <Clouds />
-         <OrbitControls enableZoom={false} />
+         <OrbitControls enableZoom={true} />
          {/* <Sampler /> */}
          {/* <Monitor /> */}
          <Lights />
@@ -59,7 +72,7 @@ const Lights = () => {
             shadow-camera-left={-100}
             shadow-camera-right={100}
          />
-         <pointLight ref={pointRef} args={[0xfffff, 0.8]} position={[0, 10, 4]} />
+         <pointLight args={[0xfffff, 0.5]} position={[0, 10, 4]} />
       </>
    );
 };

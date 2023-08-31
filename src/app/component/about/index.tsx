@@ -1,12 +1,20 @@
 import { SectionHeader } from '../headers/sectionHeader';
 import { Container, ContainerInner } from '../layouts/container';
 import { Description } from './decription';
+import { Skills } from './skills';
 
+// TODO: increase the font size and add in description
 const About = () => {
    return (
       // <Section id='about_me'>
       <section id='about_me'>
-         <Container className='mx-12 py-16 md:py-24 lg:py-36 lg:mx-24 xl:mx-48'>
+         <Container
+            style={{
+               backgroundImage: 'url("/white-brushed.png")',
+               backgroundColor: '#faebd7',
+            }}
+            className='lg:mx-12 py-8 md:py-12 lg:py-14'
+         >
             <SectionHeader title='About Me' />
             <div className='flex flex-col-reverse lg:flex-row lg:items-stretch lg:justify-stretch'>
                {/* contents */}
@@ -30,6 +38,7 @@ const About = () => {
                   />
                </div>
             </div>
+            <Skills />
          </Container>
       </section>
    );

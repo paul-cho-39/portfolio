@@ -77,7 +77,7 @@ const FrontPage = () => {
    return (
       <section ref={ref} id='front_page'>
          <FronPageLayout>
-            <motion.div
+            {/* <motion.div
                style={{ opacity: opacity }}
                animate={controls}
                initial={{ display: 'block' }}
@@ -88,7 +88,7 @@ const FrontPage = () => {
                // className='fixed inset-0 sky-fade-gradient -z-10'
             >
                <WindowCanvas />
-            </motion.div>
+            </motion.div> */}
             <FrontCoverDescription
                main={
                   <>
