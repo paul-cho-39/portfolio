@@ -2,6 +2,7 @@
 import { CircleStackIcon, ComputerDesktopIcon } from '@heroicons/react/24/outline';
 import ReactIcon from '../svg/reactIcon';
 
+// TODO: let's highlight the important part and highlight that part
 const SkillsSection = [
    {
       section: 'Web & Mobile Development',
@@ -23,6 +24,7 @@ const SkillsSection = [
    },
 ] as const;
 
+// TODO: create a divider
 export const Skills = () => {
    return (
       <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4'>
@@ -46,19 +48,3 @@ export const Skills = () => {
       </div>
    );
 };
-
-// <div className='mx-auto h-auto max-h-48 w-full border-2 border-stone-300'>
-// <div className='p-4'>
-//    <div className='flex flex-col bg-yellow-500'>
-//       <h3 className='text-2xl py-4 items-center w-full text-center'>
-//          Software Development
-//       </h3>
-//       <div className='py-2 bg-blue-400'>
-//          <p className='tracking-wide lg:tracking-normal'>
-//             Experienced in both functional and OOP: Dart, Python, Java, JavaScript,
-//             TypeScript.
-//          </p>
-//       </div>
-//    </div>
-// </div>
-// </div>

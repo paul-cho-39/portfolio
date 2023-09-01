@@ -9,13 +9,14 @@ import FrontPage from './component/layouts/frontPageLayout';
 import { ProjectSampler } from './component/headers/projects';
 import ProjectCards from './component/cards/cards';
 import ContactPage from './component/contact';
+import { ProjectImage } from './component/cards/image';
 
 // import Boxes from '../app/component/headers/tester';
 // const DynamicComponentWithNoSSR = dynamic(() => import('../app/component/headers/tester'), {
 //    ssr: false,
 // });
 
-// TODO: dynamically import frontpage since it has the animation there
+// TODO: dynamically import frontpage because of threeJS
 
 export default function Home({ Component, pageProps }: AppProps) {
    return (
@@ -25,6 +26,7 @@ export default function Home({ Component, pageProps }: AppProps) {
             <FrontPage />
             <About />
             <ProjectCards />
+            <ProjectImage />
             <ContactPage />
          </main>
       </>

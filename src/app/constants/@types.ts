@@ -1,7 +1,7 @@
 interface ContactIconParams {
    className: string;
-   height: number;
-   width: number;
+   height?: number;
+   width?: number;
    hoverColor?: string;
 }
 

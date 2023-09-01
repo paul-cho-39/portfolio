@@ -8,7 +8,7 @@ import { SectionHeader } from '../headers/sectionHeader';
 const ProjectCards = ({}) => {
    return (
       // TODO: change bg-color(?)
-      <section id='projects' className='bg-slate-100'>
+      <section id='projects'>
          <ProjectLayout>
             <SectionHeader title='Some Stuff I Built' />
             <Cards projects={data.projects} />
