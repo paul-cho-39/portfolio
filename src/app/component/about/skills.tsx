@@ -1,6 +1,7 @@
 // pretend that the layout is already applied
 import { CircleStackIcon, ComputerDesktopIcon } from '@heroicons/react/24/outline';
 import ReactIcon from '../svg/reactIcon';
+import { Divider } from '../divider';
 
 // TODO: let's highlight the important part and highlight that part
 const SkillsSection = [
@@ -38,8 +39,9 @@ export const Skills = () => {
                      strokeWidth={skill.icons === ReactIcon ? 1 : 0.9}
                      className='h-12 w-12 mb-4'
                   />
-                  <h3 className='text-2xl mb-2'>{skill.section}</h3>
+                  <h3 className='text-2xl mb-2 text-center overflow-x-hidden'>{skill.section}</h3>
                </div>
+               <Divider position='relative' top='top-0' className='bg-[#000333]' />
                <div className='py-2'>
                   <p className='text-center'>{skill.description}</p>
                </div>

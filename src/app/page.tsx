@@ -22,11 +22,10 @@ export default function Home({ Component, pageProps }: AppProps) {
    return (
       <>
          <Navbar />
-         <main className='min-h-screen min-w-screen dark:bg-gray-900'>
+         <main className='min-h-screen min-w-screen'>
             <FrontPage />
             <About />
             <ProjectCards />
-            <ProjectImage />
             <ContactPage />
          </main>
       </>

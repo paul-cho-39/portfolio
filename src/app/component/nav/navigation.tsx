@@ -21,7 +21,7 @@ const Navbar = () => {
    const [sidebarOpen, setSidebarOpen] = useState(false);
    const { scrollDirection, isTop } = useScrollDirection();
 
-   // TODO:change theme to somewhere else
+   // TODO:change theme ONLY when displaying portfolio (for reading)
    const { theme, setTheme } = useContext(ThemeContext);
    useEffect(() => {
       if (theme === 'dark') {
@@ -164,7 +164,7 @@ const Navbar = () => {
          {!isTop && (
             <div className='fixed top-0 bottom-0 h-16 w-full bg-[rgba(19, 19, 19,.15)] z-40 opacity-[0.95] backdrop-blur-xl blur-lg'></div>
          )}{' '}
-         <Divider />
+         <Divider position='fixed' className='bg-slate-200/30' />
          {/* this is another mobile version -- should change this into somewhere else? */}
          <div
             className={classNames(

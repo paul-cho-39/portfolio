@@ -1,25 +1,51 @@
-import Image, { ImageProps } from 'next/image';
 import Link from 'next/link';
 import { GithubIcon } from '../fab/contacts';
-import { useState } from 'react';
+import React, { Dispatch, ImgHTMLAttributes, SetStateAction } from 'react';
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
 import classNames from '@/app/library/helper';
+import { motion, MotionProps, Variants } from 'framer-motion';
 
-interface ProjectImageProps extends ImageProps {
-   src: string;
-   alt: string;
+export type ProjectImageProps = {
    title: string;
-}
+   index: number;
+   isHovered: { idx: number | null; github: boolean; project: boolean };
+   setIsHovered: Dispatch<SetStateAction<ProjectImageProps['isHovered']>>;
 
-export const ProjectImage = () =>
+   // handleHoverImage: (type: 'github' | 'project' | 'none') => void;
+} & ImgHTMLAttributes<HTMLImageElement>;
+
+export const ProjectImage = ({
+   title,
+   index,
+   isHovered,
+   setIsHovered,
+   // handleHoverImage,
+   ...props
+}: ProjectImageProps) =>
    // props?: ImageProps
    {
-      const [isHovered, setIsHovered] = useState({ github: false, project: false });
+      const imgVariants: Variants = {
+         offscreen: {
+            y: 150,
+            opacity: 0,
+         },
+         onscreen: {
+            y: 0,
+            opacity: 1,
+            transition: {
+               duration: 0.8,
+               type: 'spring',
+               bounce: 0.1,
+               stiffness: 85,
+            },
+         },
+      };
 
-      const handleHoverImage = (type: 'github' | 'project' | 'none') => {
-         const newState = { github: false, project: false };
+      const handleHoverImage = (type: 'github' | 'project' | 'none', i: number | null) => {
+         const newState: ProjectImageProps['isHovered'] = { idx: i, github: false, project: false };
 
          if (type !== 'none') {
+            // newState.idx = i;
             newState[type] = true;
          }
 
@@ -27,50 +53,46 @@ export const ProjectImage = () =>
       };
 
       return (
-         <div
-            className='relative group w-[100%] lg:flex-none lg:w-[50%] xl:w-[55%] overflow-hidden'
-            //  className=' group h-[300px] md:h-[400px] lg:h-[500px] lg:flex-none lg:w-[40%] xl:w-[35%] overflow-hidden'
+         <motion.div
+            variants={imgVariants}
+            viewport={{ once: true }}
+            className='relative group aspect-[7/4] w-full sm:w-[29.6rem] md:w-[31.6rem] lg:max-w-md lg:flex-none lg:w-[28rem] overflow-hidden'
+            // className='relative group max-w-xs w-[100%] md:max-w-sm lg:max-w-md lg:flex-none lg:w-[50%] xl:w-[55%] overflow-hidden'
          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
+            {/* eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text */}
             <img
-               src={
-                  'https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3603&q=80'
-               }
-               alt='source'
-               // className='lg:absolute lg:inset-0 h-full w-full object-cover rounded-xl transform group-hover:opacity-60 group-hover:object-top group-hover:rounded-3xl transition-all duration-400 ease-in'
                className='lg:absolute lg:inset-0 h-full w-full object-cover rounded-lg transform group-hover:opacity-60 group-hover:scale-110 group-hover:rounded-3xl transition-all duration-500 ease-in-out'
+               {...props}
             />
-            <div
-               // className='bg-red-500 h-full w-full grid grid-rows-2 opacity-0 group-hover:opacity-95 transition-opacity duration-150 ease-in'
-               className='absolute inset-0 h-full w-full grid grid-rows-2 opacity-0 group-hover:opacity-95 transition-opacity duration-150 ease-in'
-            >
+
+            <div className='absolute inset-0 h-full w-full grid grid-rows-2 opacity-0 group-hover:opacity-95 transition-opacity duration-150 ease-in'>
                <Link
                   // className='row-span-1 border-b-[0.5px] border-slate-800'
                   className={classNames(
-                     isHovered.github ? 'opacity-80' : 'opacity-20',
+                     isHovered && isHovered.github ? 'opacity-80' : 'opacity-20',
                      'row-span-1 border-b-[0.5px] border-slate-800 z-30'
                   )}
                   href='#'
-                  aria-label={`View source code for ${'title'}`}
-                  onMouseEnter={() => handleHoverImage('github')}
-                  onMouseLeave={() => handleHoverImage('none')}
+                  aria-label={`View source code for github`}
+                  onMouseEnter={() => handleHoverImage('github', index)}
+                  onMouseLeave={() => handleHoverImage('none', null)}
                >
                   <GithubIcon className='absolute top-2 right-2 w-8 h-8 hover:stroke-slate-400 hover:fill-slate-400' />
                </Link>
                <Link
                   className={classNames(
-                     isHovered.project ? 'opacity-80' : 'opacity-20',
+                     isHovered && isHovered.project ? 'opacity-80' : 'opacity-20',
                      'row-span-2  z-30'
                   )}
                   href='#'
-                  aria-label={`Go to the project ${'title'}`}
-                  onMouseEnter={() => handleHoverImage('project')}
-                  onMouseLeave={() => handleHoverImage('none')}
+                  aria-label={`Go to the project ${title}`}
+                  onMouseEnter={() => handleHoverImage('project', index)}
+                  onMouseLeave={() => handleHoverImage('none', null)}
                >
                   <ArrowTopRightOnSquareIcon className='absolute top-[53%] right-2 w-8 h-8 hover:stroke-slate-400' />
                </Link>
             </div>
-         </div>
+         </motion.div>
       );
    };
 

@@ -9,7 +9,7 @@ export const ProjectLayout = ({ children }: { children: React.ReactNode }) => {
          }}
          className='py-6'
       >
-         <div className='z-10 sm:mt-28 sm:pb-24 md:px-12 lg:mt-44'>{children}</div>
+         <div className='z-10 mt-8 sm:pb-16 md:px-12 lg:mt-28'>{children}</div>
       </Container>
    );
 };
