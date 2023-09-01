@@ -17,6 +17,7 @@ import { ProjectImage } from './component/cards/image';
 // });
 
 // TODO: dynamically import frontpage because of threeJS
+// TODO: in the front page maybe add framer motion to display the order of components
 
 export default function Home({ Component, pageProps }: AppProps) {
    return (
