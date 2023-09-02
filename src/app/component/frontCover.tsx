@@ -10,7 +10,7 @@ interface Description extends Main {
    description: string;
 }
 
-const FrontCoverTitle = (props: Main) => {
+export const FrontCoverTitle = (props: Main) => {
    return <h1 className={clsx(`${pacifico.className}`, props.className)}>{props.main}</h1>;
 };
 

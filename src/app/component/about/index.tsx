@@ -14,7 +14,7 @@ const About = () => {
          }}
          id='about_me'
       >
-         <Container className='px-4 lg:mx-12 py-8 md:py-12 lg:py-14'>
+         <Container className='px-4 lg:mx-12 py-6 md:py-12 lg:py-14'>
             <SectionHeader title='About Me' />
             <div className='flex flex-col-reverse lg:flex-row lg:items-stretch lg:justify-stretch'>
                {/* contents */}

@@ -64,7 +64,7 @@ const Cards = ({ projects }: ProjectCardsProps) => {
                key={index}
                initial='offscreen'
                whileInView='onscreen'
-               viewport={{ once: true, margin: '-14%' }}
+               viewport={{ once: true, margin: '-16%' }}
                className={classNames(
                   isOdd(index) ? 'lg:flex-row-reverse ' : 'lg:flex-row',
                   'mx-auto flex w-full flex-col items-center mb-2 lg:mb-0'

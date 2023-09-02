@@ -7,7 +7,7 @@ import dynamic from 'next/dynamic';
 import About from './component/about';
 import FrontPage from './component/layouts/frontPageLayout';
 import { ProjectSampler } from './component/headers/projects';
-import ProjectCards from './component/cards/cards';
+import ProjectCards from './component/cards/project';
 import ContactPage from './component/contact';
 import { ProjectImage } from './component/cards/image';
 
