@@ -57,6 +57,12 @@ const Cards = ({ projects }: ProjectCardsProps) => {
    const isSameIndex = (idx: number, type: 'github' | 'project') =>
       isHovered.idx === idx && isHovered[type];
 
+   const isNotHovered = (idx: number) => {
+      return isSameIndex(idx, 'github') || isSameIndex(idx, 'project');
+   };
+
+   console.log('---------is any being hovered?---------', isNotHovered(1));
+
    return (
       <>
          {projects.map((project: ProjectsProps, index: number) => (
@@ -120,7 +126,7 @@ const Cards = ({ projects }: ProjectCardsProps) => {
                                     animate={{ y: 0, opacity: 1 }}
                                     transition={{ type: 'tween', duration: 0.25, ease: 'easeOut' }}
                                  >
-                                    View source code
+                                    View Github Repo
                                     <ArrowRightIcon className='inline w-6 h-4' />
                                  </motion.div>
                               ) : isSameIndex(index, 'project') ? (
@@ -135,9 +141,12 @@ const Cards = ({ projects }: ProjectCardsProps) => {
                                  </motion.div>
                               ) : (
                                  <motion.span
-                                    initial={{ opacity: 1 }}
-                                    animate={{ opacity: 1 }}
-                                    transition={{ duration: 0.5 }}
+                                    initial={{
+                                       opacity: !isNotHovered(index) ? 1 : 0,
+                                       y: !isNotHovered(index) ? 0 : -20,
+                                    }}
+                                    animate={{ y: 0, opacity: 1 }}
+                                    transition={{ type: 'tween', duration: 0.25, ease: 'easeOut' }}
                                  >
                                     {project.section}
                                  </motion.span>

@@ -15,24 +15,24 @@ const ContactPage = () => {
          //    backgroundColor: '#faebd7',
          // }}
       >
-         <Container className='py-8 px-4 lg:mx-12'>
-            <div className='w-full h-full max-w-4xl px-2'>
-               {/* <h3 className='font-sans text-8xlxl pt-4 pb-12'>
-                  <span className='block'>{"Let's"}</span>
-                  <span className='block'>{'Connect'}</span>
-               </h3> */}
-               <FrontCoverTitle
-                  className=' text-5xl md:text-6xl lg:text-7xl pt-4 pb-12'
+         <Container className='py-8 px-4 lg:mx-12 lg:px-8'>
+            <div className='w-full h-full flex flex-col items-center justify-center'>
+               <h3 className='font-sans pt-4 pb-12 text-5xl md:text-6xl lg:text-7xl'>
+                  <span className='block py-1'>{"Let's"}</span>
+                  <span className='block py-1'>{'Connect'}</span>
+               </h3>
+               {/* <FrontCoverTitle
+                  className=' text-5xl md:text-6xl lg:text-7xl py-12'
                   main={
                      <>
-                        <span className='block'>{"Let's"}</span>
-                        <span className='block'>{'Connect'}</span>
+                        <span className='block py-1'>{"Let's"}</span>
+                        <span className='block py-1'>{'Connect'}</span>
                      </>
                   }
-               />
+               /> */}
                <div className='flex flex-col items-center justify-center'>
                   {/* TODO - highlight email */}
-                  <p className='text-xl px-2 py-4 tracking-wide indent-12 lg:leading-normal'>
+                  <p className='text-xl px-2 py-4 tracking-wide lg:leading-normal lg:px-36 lg:text-2xl'>
                      {
                         "Drop a line and say hello! If you're looking for someone to bring some fresh code to your team, or you've got a rad project idea and need a collaborator, hit me up! I'm totally open to new job opportunities and collaborations. Can't wait to hear from you! 🌴👩‍💻✌️"
                      }{' '}
@@ -45,14 +45,14 @@ const ContactPage = () => {
                   </div>
 
                   <Divider position='absolute' top='top-[94%]' className='bg-gray-800' />
-                  <ul role='list' className='flex flex-row gap-x-4'>
-                     <Link href='/'>
+                  <ul role='list' className='flex flex-row gap-x-12'>
+                     <Link role='link' aria-label='Instagram' href='/'>
                         <li>Instagram</li>
                      </Link>
-                     <Link href='/'>
+                     <Link role='link' aria-label='LinkedIn' href='/'>
                         <li>LinkedIn</li>
                      </Link>
-                     <Link href='/'>
+                     <Link role='link' aria-label='Github' href='/'>
                         <li>Github</li>
                      </Link>
                   </ul>

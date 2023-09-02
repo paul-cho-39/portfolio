@@ -18,9 +18,9 @@ const About = () => {
             <SectionHeader title='About Me' />
             <div className='flex flex-col-reverse lg:flex-row lg:items-stretch lg:justify-stretch'>
                {/* contents */}
-               <div className='w-full max-w-4xl px-2 mt-6 my-8 lg:pb-8 md:px-6'>
+               <div className='w-full max-w-4xl px-2 mt-6 my-8 md:px-6 lg:pb-8 lg:pl-8 lg:pr-2 xl:pl-10'>
                   {/* <p className='font-serif font-semibold text-xl py-4'>Important Words Here</p> */}
-                  <p className='font-medium font-serif text-xl lg:text-3xl tracking-wide indent-12 lg:leading-normal text-gray-600'>
+                  <p className='font-serif text-2xl tracking-wide indent-12 lg:leading-normal text-gray-600 xl:text-3xl'>
                      Quasi est quaerat. Sit molestiae et. Provident ad dolorem occaecati eos iste.
                      Soluta rerum quidem minus ut molestiae velit error quod. Excepturi quidem
                      expedita molestias quas.
