@@ -7,7 +7,7 @@ export const useDisableBreakPoints = () => {
 
    useEffect(() => {
       const handleResize = () => {
-         if (window.innerWidth > LARGE_BREAK_POINT) {
+         if (window.innerWidth < LARGE_BREAK_POINT) {
             // You can set this to whatever breakpoint you want
             setIsDisabled(true);
          } else {

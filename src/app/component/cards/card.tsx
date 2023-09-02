@@ -37,6 +37,7 @@ const Cards = ({ projects }: ProjectCardsProps) => {
       project: false,
    });
    const isDisabled = useDisableBreakPoints();
+   console.log('is it disabled?: ', isDisabled);
 
    const headerVariants: Variants = {
       hidden: {
@@ -63,12 +64,10 @@ const Cards = ({ projects }: ProjectCardsProps) => {
                key={index}
                initial='offscreen'
                whileInView='onscreen'
-               viewport={{ once: true }}
+               viewport={{ once: true, margin: '-14%' }}
                className={classNames(
                   isOdd(index) ? 'lg:flex-row-reverse ' : 'lg:flex-row',
-                  // 'bg-red-500',
-                  'gap-x-16 lg:items-stretch',
-                  'mx-auto flex w-full flex-col items-center mb-6 lg:mb-0'
+                  'mx-auto flex w-full flex-col items-center mb-2 lg:mb-0'
                )}
             >
                <div className={classNames('lg:w-full lg:max-w-4xl lg:mb-6 xl:mb-8 py-2')}>
@@ -93,27 +92,27 @@ const Cards = ({ projects }: ProjectCardsProps) => {
                         whileInView='visible'
                         viewport={{ once: true }}
                         className={classNames(
-                           'px-4 lg:max-w-2xl lg:-px-6 xl:max-w-xl ',
-                           'flex-grow items-center justify-start align-top self-start',
-                           'md:py-2'
+                           'lg:max-w-2xl lg:-px-6 xl:max-w-xl ',
+                           'flex-grow items-center justify-start align-top self-start w-full',
+                           'md:py-2 lg:mx-4 '
                         )}
                      >
                         <motion.div
                            variants={headerVariants}
                            className={classNames(
                               isOdd(index) ? 'lg:text-right' : 'lg:text-left',
-                              'pb-4 flex flex-col'
+                              'md:pb-4 flex flex-col w-full'
                            )}
                         >
                            <h3
                               className={classNames(
                                  // isOdd(index) ? 'lg:text-left' : 'lg:text-right',
-                                 'font-serif text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-medium'
+                                 'font-serif text-3xl md:text-3xl lg:text-4xl xl:text-5xl font-medium z-10'
                               )}
                            >
                               {project.title}
                            </h3>
-                           <motion.h4 className='w-full font-serif lg:text-lg capitalize '>
+                           <motion.h4 className='w-full font-serif lg:text-lg capitalize z-10'>
                               {isSameIndex(index, 'github') ? (
                                  <motion.div
                                     layout
@@ -152,7 +151,7 @@ const Cards = ({ projects }: ProjectCardsProps) => {
                            aria-label={project.description}
                            className={classNames(
                               isOdd(index) ? 'lg:text-right' : 'lg:text-left',
-                              'hidden font-serif text-lg lg:mb-4 tracking-wide leading-5 md:leading-6 lg:leading-7 lg:block'
+                              'font-serif text-lg lg:mb-4 tracking-wide leading-5 py-2 md:leading-6 lg:leading-7 lg:block'
                            )}
                         >
                            {project.description}
@@ -173,22 +172,27 @@ const Cards = ({ projects }: ProjectCardsProps) => {
                            {project.badge.map((badge, badgeIndex) => (
                               <li
                                  aria-label={badge}
-                                 className='inline-flex flex-wrap items-center rounded-full bg-gray-100 px-2 py-1 text-sm font-medium text-blue-800'
+                                 className='inline-flex flex-wrap items-center rounded-full bg-gray-100 md:px-2 py-1 text-sm font-medium text-blue-800'
                                  key={badgeIndex}
                               >
                                  {badge}
                               </li>
                            ))}
                         </motion.ul>
-                        {/* <div className='flex flex-row items-start justify-start my-2 lg:hidden'>
+                        {/* <div className='absolute inset-0 bg-blue-500 lg:hidden'> */}
+                        <div className='flex flex-row items-start justify-start my-2 gap-x-2 lg:hidden'>
                            <Link
-                              className='my-2'
+                              // className='my-2'
                               aria-label={`View source code for ${project.title}`}
                               href={'/'}
                            >
-                              <GithubIcon className='block' width={25} height={25} />
+                              <GithubIcon className='w-6 h-6' />
                            </Link>
-                        </div> */}
+                           <Link className='' href={'/'}>
+                              <ArrowTopRightOnSquareIcon className='w-6 h-6' />
+                           </Link>
+                        </div>
+                        {/* </div> */}
                      </motion.div>
                   </div>
                </div>

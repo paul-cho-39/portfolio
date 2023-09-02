@@ -47,7 +47,7 @@ const Navbar = () => {
                         leaveFrom='translate-x-0'
                         leaveTo='translate-x-full'
                      >
-                        <Dialog.Panel className='relative flex w-full max-w-[22rem] flex-1'>
+                        <Dialog.Panel className='relative flex w-full max-w-[14rem] flex-1'>
                            {/* Sidebar component, swap this element with another sidebar if you like */}
                            <div className='flex flex-grow flex-col gap-y-3 overflow-y-hidden bg-[#f2f0f0] dark:bg-slate-800 lg:bg-transparent px-6 pb-5'>
                               <div className='flex flex-row-reverse h-14 items-center'>
@@ -63,35 +63,34 @@ const Navbar = () => {
                                     />
                                  </button>
                               </div>
-                              <nav className='flex flex-1 flex-col'>
+                              <nav className='flex flex-1 flex-col items-center justify-center'>
                                  <ul
                                     role='list'
-                                    className='flex flex-1 flex-col items-center justify-center gap-y-6'
+                                    className='flex flex-col mt-8 space-y-2 text-center'
                                  >
-                                    <li>
-                                       <ul role='list' className='mt-8 -mx-2 space-y-2'>
-                                          {navigation.map((item) => (
-                                             <li key={item.name}>
-                                                <a
-                                                   href={item.href}
-                                                   className={classNames(
-                                                      // item.current
-                                                      //    ? 'bg-sky-200 dark:bg-blue-500'
-                                                      'text-gray-700 hover:bg-gray-300/30',
-                                                      'group flex gap-x-3 rounded-2xl p-4 text-md leading-6 font-medium dark:text-gray-200'
-                                                   )}
-                                                >
-                                                   <span className='font-serif text-lg tracking-tight'>
-                                                      {item.name}
-                                                   </span>
-                                                </a>
-                                             </li>
-                                          ))}
-                                       </ul>
-                                    </li>
-                                    <li className='mt-auto'>
-                                       <span>Made with ♡ by Paul Cho</span>
-                                    </li>
+                                    {navigation.map((item) => (
+                                       <li
+                                          className='inline-flex justify-start items-start mt-auto w-full text-center align-middle self-center'
+                                          key={item.name}
+                                       >
+                                          <a
+                                             href={item.href}
+                                             className={classNames(
+                                                // item.current
+                                                //    ? 'bg-sky-200 dark:bg-blue-500'
+                                                'text-gray-700 hover:bg-gray-300/30',
+                                                'text-center group flex gap-x-3 p-4 leading-6 font-medium dark:text-gray-200'
+                                             )}
+                                          >
+                                             <span className='font-serif text-lg text-center tracking-tight'>
+                                                {item.name}
+                                             </span>
+                                          </a>
+                                       </li>
+                                    ))}
+                                 </ul>
+                                 <ul className='mt-auto text-center'>
+                                    <span>Made with care by Paul Cho</span>
                                  </ul>
                               </nav>
                            </div>

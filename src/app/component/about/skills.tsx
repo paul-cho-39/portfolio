@@ -28,25 +28,29 @@ const SkillsSection = [
 // TODO: create a divider
 export const Skills = () => {
    return (
-      <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4'>
-         {SkillsSection.map((skill, index) => (
-            <div
-               key={index}
-               className='border-2 border-gray-300 rounded-md p-4 h-auto min-h-[200px]'
-            >
-               <div className='flex flex-col items-center'>
-                  <skill.icons
-                     strokeWidth={skill.icons === ReactIcon ? 1 : 0.9}
-                     className='h-12 w-12 mb-4'
-                  />
-                  <h3 className='text-2xl mb-2 text-center overflow-x-hidden'>{skill.section}</h3>
+      <div className='px-2 lg:px-0'>
+         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4'>
+            {SkillsSection.map((skill, index) => (
+               <div
+                  key={index}
+                  className='border-[6px] border-gray-300 rounded-md p-4 h-auto min-h-[200px] sm:max-h-[400px]'
+               >
+                  <div className='flex flex-col items-center'>
+                     <skill.icons
+                        strokeWidth={skill.icons === ReactIcon ? 1 : 0.9}
+                        className='h-12 w-12 mb-4'
+                     />
+                     <h3 className='text-2xl mb-2 text-center overflow-x-hidden'>
+                        {skill.section}
+                     </h3>
+                  </div>
+                  <Divider position='relative' top='top-0' className='bg-[#000333]' />
+                  <div className='py-2'>
+                     <p className='text-center'>{skill.description}</p>
+                  </div>
                </div>
-               <Divider position='relative' top='top-0' className='bg-[#000333]' />
-               <div className='py-2'>
-                  <p className='text-center'>{skill.description}</p>
-               </div>
-            </div>
-         ))}
+            ))}
+         </div>
       </div>
    );
 };
