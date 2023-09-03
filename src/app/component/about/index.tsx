@@ -1,10 +1,14 @@
+import { useDisableBreakPoints } from '@/app/library/hooks/useDisableBreakPoints';
 import { SectionHeader } from '../headers/sectionHeader';
 import { Container, ContainerInner } from '../layouts/container';
+import { PalmTrees } from '../svg/palm-trees';
 import { Description } from './decription';
 import { Skills } from './skills';
 
-// TODO: increase the font size and add in description
 const About = () => {
+   const isMediumDisabled = useDisableBreakPoints();
+
+   console.log('is it allowed', isMediumDisabled);
    return (
       // <Section id='about_me'>
       <section
@@ -12,13 +16,13 @@ const About = () => {
             backgroundImage: 'url("/white-brushed.png")',
             backgroundColor: '#faebd7',
          }}
-         id='about_me'
+         id='about'
       >
          <Container className='px-4 lg:mx-12 py-6 md:py-12 lg:py-14'>
             <SectionHeader title='About Me' />
             <div className='flex flex-col-reverse lg:flex-row lg:items-stretch lg:justify-stretch'>
                {/* contents */}
-               <div className='w-full max-w-4xl px-2 mt-6 my-8 md:px-6 lg:pb-8 lg:pl-8 lg:pr-2 xl:pl-10'>
+               <div className='w-full max-w-4xl px-2 mt-6 my-8 z-10 md:px-6 lg:pb-8 lg:pl-8 lg:pr-2 xl:pl-10'>
                   {/* <p className='font-serif font-semibold text-xl py-4'>Important Words Here</p> */}
                   <p className='font-serif text-2xl tracking-wide indent-12 lg:leading-normal text-gray-600 xl:text-3xl'>
                      Quasi est quaerat. Sit molestiae et. Provident ad dolorem occaecati eos iste.
@@ -39,6 +43,13 @@ const About = () => {
                </div>
             </div>
             <Skills />
+            {isMediumDisabled && (
+               <>
+                  {/* TODO  */}
+                  <PalmTrees className='absolute rotate-[6deg] opacity-30 w-[24rem] h-[24rem] top-6  -right-32 xl:top-4 xl:-right-24' />
+                  <PalmTrees className='absolute -rotate-[6deg] opacity-30 w-[24rem] h-[24rem] top-6 -left-32  xl:top-4 xl:-left-24 -scale-x-100' />
+               </>
+            )}
          </Container>
       </section>
    );

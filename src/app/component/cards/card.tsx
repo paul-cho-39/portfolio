@@ -5,10 +5,9 @@ import { useEffect, useRef, useState } from 'react';
 import { useDisableBreakPoints } from '@/app/library/hooks/useDisableBreakPoints';
 
 import { ArrowTopRightOnSquareIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
-import { SourceCode } from './contents';
 import { motion, Variants } from 'framer-motion';
 import { ProjectImage, ProjectImageProps } from './image';
-import { Divider } from '../divider';
+import MotionTitle from './sectionTitle';
 
 export interface ProjectsProps {
    title: string;
@@ -25,10 +24,7 @@ interface ProjectCardsProps {
    badgeColor?: '';
 }
 
-// TODO: for responsive design have to use javascript to get the correct responsive design for framer motion
-
 const Cards = ({ projects }: ProjectCardsProps) => {
-   const el = useRef<HTMLDivElement>(null);
    const isOdd = (idx: number) => idx % 2 !== 0;
 
    const [isHovered, setIsHovered] = useState<ProjectImageProps['isHovered']>({
@@ -36,8 +32,6 @@ const Cards = ({ projects }: ProjectCardsProps) => {
       github: false,
       project: false,
    });
-   const isDisabled = useDisableBreakPoints();
-   console.log('is it disabled?: ', isDisabled);
 
    const headerVariants: Variants = {
       hidden: {
@@ -60,8 +54,6 @@ const Cards = ({ projects }: ProjectCardsProps) => {
    const isNotHovered = (idx: number) => {
       return isSameIndex(idx, 'github') || isSameIndex(idx, 'project');
    };
-
-   console.log('---------is any being hovered?---------', isNotHovered(1));
 
    return (
       <>
@@ -103,7 +95,15 @@ const Cards = ({ projects }: ProjectCardsProps) => {
                            'md:py-2 lg:mx-4 '
                         )}
                      >
-                        <motion.div
+                        <MotionTitle
+                           variants={headerVariants}
+                           isHovered={isHovered}
+                           title={project.title}
+                           subtitle={project.section}
+                           isOdd={isOdd}
+                           index={index}
+                        />
+                        {/* <motion.div
                            variants={headerVariants}
                            className={classNames(
                               isOdd(index) ? 'lg:text-right' : 'lg:text-left',
@@ -152,7 +152,7 @@ const Cards = ({ projects }: ProjectCardsProps) => {
                                  </motion.span>
                               )}
                            </motion.h4>
-                        </motion.div>
+                        </motion.div> */}
 
                         {/* description */}
                         <motion.p

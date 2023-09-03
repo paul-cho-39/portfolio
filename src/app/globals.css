@@ -19,6 +19,16 @@
   }
 }
 
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+html::selection {
+  background-color: #2c5282;
+  color: white;
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
@@ -93,12 +103,16 @@ body {
     width: 0;
   }
   .highlighter-bg, .animate-highlight {
-    background-image: linear-gradient(transparent 50%, var(--underline) 50%, var(--underline) 85%, transparent 85%, transparent 100%);
+    background-image:   radial-gradient(circle at 50% 50%, transparent 20%, var(--underline) 21%, var(--underline) 22%, transparent 22%),
+                        radial-gradient(circle at 50% 50%, transparent 20%, var(--underline) 21%, var(--underline) 22%, transparent 22%);
     background-repeat: no-repeat;
   }
   
   .highlighter-bg {
-    background-position: 0% 0;
+    background-image:   radial-gradient(circle at 50% 50%, transparent 20%, var(--underline) 21%, var(--underline) 22%, transparent 22%),
+    radial-gradient(circle at 50% 50%, transparent 20%, var(--underline) 21%, var(--underline) 22%, transparent 22%);
+    background-repeat: no-repeat;
+    background-position: 0 0, 15px 15px;
     width: var(--highlighter-width);
     line-height: 2.25rem;
     font-size: 1.9rem;

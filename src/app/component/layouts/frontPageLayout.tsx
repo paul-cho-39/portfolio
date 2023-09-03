@@ -13,6 +13,7 @@ import {
 } from 'framer-motion';
 import { lerp } from 'three/src/math/MathUtils';
 import classNames from '@/app/library/helper';
+import { useDisableBreakPoints } from '@/app/library/hooks/useDisableBreakPoints';
 
 const OPACITY_THRESHOLD = 0.15;
 const SCROLL_THRESHOLD = 0.75;
@@ -33,6 +34,7 @@ const FronPageLayout = ({ children }: { children: React.ReactNode }) => {
 
 const FrontPage = () => {
    const ref = useRef<HTMLSelectElement>(null);
+   const isMediumDisabled = useDisableBreakPoints();
 
    const isInView = useInView(ref, {
       margin: '-250px',
@@ -75,7 +77,7 @@ const FrontPage = () => {
    });
 
    return (
-      <section ref={ref} id='front_page'>
+      <section ref={ref} id='home'>
          <FronPageLayout>
             {/* <motion.div
                style={{ opacity: opacity }}
@@ -90,6 +92,7 @@ const FrontPage = () => {
                <WindowCanvas />
             </motion.div> */}
             <FrontCoverDescription
+               pre={"Hello, I'm"}
                main={
                   <>
                      <span>{'Paul |'}</span>
@@ -101,7 +104,7 @@ const FrontPage = () => {
                   "I'm a self-taught full-stack developer, I've navigated the tech landscape through hands-on experience. My journey into programming has been driven by curiosity and a passion for solving real-world problems"
                }
             />
-            <ArrowDown />
+            {isMediumDisabled && <ArrowDown />}
          </FronPageLayout>
       </section>
    );
