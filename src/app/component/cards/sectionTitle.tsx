@@ -4,10 +4,10 @@ import classNames from '@/app/library/helper';
 import { motion } from 'framer-motion';
 import { ProjectImageProps } from './image';
 import { ArrowRightIcon } from '@heroicons/react/24/outline';
+import { BasicCardProps } from '@/app/constants/@types';
 
-interface SubtitleProps {
+interface SubtitleProps extends Pick<BasicCardProps, 'index'> {
    subtitle: string;
-   index: number;
    isHovered: ProjectImageProps['isHovered'];
 }
 

@@ -14,4 +14,9 @@ export interface PositionRange {
    high: number;
 }
 
+export interface BasicCardProps {
+   index: number;
+   isOdd: (index: number) => boolean;
+}
+
 export type { ContactIconParams };

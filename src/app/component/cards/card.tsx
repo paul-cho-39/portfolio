@@ -1,13 +1,12 @@
 import classNames from '@/app/library/helper';
-import { GithubIcon } from '../fab/contacts';
-import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
-import { useDisableBreakPoints } from '@/app/library/hooks/useDisableBreakPoints';
 
-import { ArrowTopRightOnSquareIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
 import { motion, Variants } from 'framer-motion';
 import { ProjectImage, ProjectImageProps } from './image';
 import MotionTitle from './sectionTitle';
+import MotionDescription from './description';
+import ProjectBadges from './badges';
+import ProjectLinks from './links';
 
 export interface ProjectsProps {
    title: string;
@@ -48,13 +47,6 @@ const Cards = ({ projects }: ProjectCardsProps) => {
       },
    };
 
-   const isSameIndex = (idx: number, type: 'github' | 'project') =>
-      isHovered.idx === idx && isHovered[type];
-
-   const isNotHovered = (idx: number) => {
-      return isSameIndex(idx, 'github') || isSameIndex(idx, 'project');
-   };
-
    return (
       <>
          {projects.map((project: ProjectsProps, index: number) => (
@@ -84,7 +76,7 @@ const Cards = ({ projects }: ProjectCardsProps) => {
                         title={project.title}
                      />
 
-                     {/* CONTENTS HERE -- maybe when hovered show it here*/}
+                     {/* CONTENTS */}
                      <motion.div
                         initial='hidden'
                         whileInView='visible'
@@ -103,105 +95,20 @@ const Cards = ({ projects }: ProjectCardsProps) => {
                            isOdd={isOdd}
                            index={index}
                         />
-                        {/* <motion.div
+                        <MotionDescription
                            variants={headerVariants}
-                           className={classNames(
-                              isOdd(index) ? 'lg:text-right' : 'lg:text-left',
-                              'md:pb-4 flex flex-col w-full'
-                           )}
-                        >
-                           <h3
-                              className={classNames(
-                                 // isOdd(index) ? 'lg:text-left' : 'lg:text-right',
-                                 'font-serif text-3xl md:text-3xl lg:text-4xl xl:text-5xl font-medium z-10'
-                              )}
-                           >
-                              {project.title}
-                           </h3>
-                           <motion.h4 className='w-full font-serif lg:text-lg capitalize z-10'>
-                              {isSameIndex(index, 'github') ? (
-                                 <motion.div
-                                    layout
-                                    initial={{ y: 20, opacity: 0 }}
-                                    animate={{ y: 0, opacity: 1 }}
-                                    transition={{ type: 'tween', duration: 0.25, ease: 'easeOut' }}
-                                 >
-                                    View Github Repo
-                                    <ArrowRightIcon className='inline w-6 h-4' />
-                                 </motion.div>
-                              ) : isSameIndex(index, 'project') ? (
-                                 <motion.div
-                                    layout
-                                    initial={{ y: 20, opacity: 0 }}
-                                    animate={{ y: 0, opacity: 1 }}
-                                    transition={{ type: 'tween', duration: 0.25, ease: 'easeOut' }}
-                                 >
-                                    View project
-                                    <ArrowRightIcon className='inline w-6 h-4' />
-                                 </motion.div>
-                              ) : (
-                                 <motion.span
-                                    initial={{
-                                       opacity: !isNotHovered(index) ? 1 : 0,
-                                       y: !isNotHovered(index) ? 0 : -20,
-                                    }}
-                                    animate={{ y: 0, opacity: 1 }}
-                                    transition={{ type: 'tween', duration: 0.25, ease: 'easeOut' }}
-                                 >
-                                    {project.section}
-                                 </motion.span>
-                              )}
-                           </motion.h4>
-                        </motion.div> */}
-
-                        {/* description */}
-                        <motion.p
-                           variants={headerVariants}
-                           aria-label={project.description}
-                           className={classNames(
-                              isOdd(index) ? 'lg:text-right' : 'lg:text-left',
-                              'font-serif text-lg lg:mb-4 tracking-wide leading-5 py-2 md:leading-6 lg:leading-7 lg:block'
-                           )}
-                        >
-                           {project.description}
-                        </motion.p>
-                        {/* ... */}
-                        <motion.ul
-                           initial={{ opacity: 0 }}
-                           animate={{ opacity: 1 }}
-                           transition={{ duration: 0.7 }}
-                           className={classNames(
-                              isOdd(index)
-                                 ? 'lg:items-end lg:justify-end'
-                                 : 'lg:items-start lg:justify-start',
-                              'flex flex-row gap-x-2 overflow-auto'
-                           )}
-                           role='listitem'
-                        >
-                           {project.badge.map((badge, badgeIndex) => (
-                              <li
-                                 aria-label={badge}
-                                 className='inline-flex flex-wrap items-center rounded-full bg-gray-100 md:px-2 py-1 text-sm font-medium text-blue-800'
-                                 key={badgeIndex}
-                              >
-                                 {badge}
-                              </li>
-                           ))}
-                        </motion.ul>
-                        {/* <div className='absolute inset-0 bg-blue-500 lg:hidden'> */}
-                        <div className='flex flex-row items-start justify-start my-2 gap-x-2 lg:hidden'>
-                           <Link
-                              // className='my-2'
-                              aria-label={`View source code for ${project.title}`}
-                              href={'/'}
-                           >
-                              <GithubIcon className='w-6 h-6' />
-                           </Link>
-                           <Link className='' href={'/'}>
-                              <ArrowTopRightOnSquareIcon className='w-6 h-6' />
-                           </Link>
-                        </div>
-                        {/* </div> */}
+                           description={project.description}
+                           isOdd={isOdd}
+                           index={index}
+                        />
+                        <ProjectBadges badges={project.badge} isOdd={isOdd} index={index} />
+                        {/* resolution smaller than large */}
+                        <ProjectLinks
+                           title={project.title}
+                           githubUrl={project.github}
+                           // projectUrl={project.url}
+                           projectUrl={'/'}
+                        />
                      </motion.div>
                   </div>
                </div>
