@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router';
-import routes from '@/app/utils/routes';
+import ROUTES, { RouteParams, RouteKeys } from '@/app/utils/routes';
 
 interface CustomRouteParams {
-   path?: string;
+   path?: keyof RouteParams | keyof RouteParams['PROJECTS'];
    goBack?: boolean;
 }
 
@@ -11,11 +11,24 @@ function useCustomRoutes(params: CustomRouteParams) {
    const router = useRouter();
 
    if (goBack && path) {
-      throw new Error('Provide only one param to go back or the path');
+      throw new Error('Provide only one of either "path" or "goBack".');
+   }
+
+   if (path === 'PROJECTS') {
+      throw new Error('The path should contain one of nested "PROJECTS". ');
    }
 
    if (path) {
-      router.push(path);
+      let routePath: string;
+
+      if (path in ROUTES.PROJECTS) {
+         // Access nested 'PROJECTS'
+         routePath = ROUTES.PROJECTS[path as keyof typeof ROUTES.PROJECTS];
+      } else {
+         // Else it should be 'HOME'
+         routePath = ROUTES['HOME'];
+      }
+      router.push(routePath);
    }
    if (goBack) {
       router.back();

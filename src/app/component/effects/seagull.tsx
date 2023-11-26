@@ -3,13 +3,9 @@ import { useFrame, useThree } from '@react-three/fiber';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import {
    Vector3,
-   Mesh,
    Group,
-   MathUtils,
    Quaternion,
-   Matrix4,
    CatmullRomCurve3,
-   LineBasicMaterial,
 } from 'three';
 
 const NUMBER_OF_BIDS = 3;

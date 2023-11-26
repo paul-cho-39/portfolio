@@ -8,10 +8,10 @@ export type ThemeContextParams = {
 };
 
 export const Navigation = [
-   { name: 'home', href: '#', num: '01.', current: true },
-   { name: 'about', href: '#', num: '02.', current: false },
-   { name: 'projects', href: '#', num: '03.', current: false },
-   { name: 'contact', href: '#', num: '04.', current: false },
+   { name: 'home', href: '#home', num: '01.', current: true },
+   { name: 'about', href: '#about', num: '02.', current: false },
+   { name: 'projects', href: '#projects', num: '03.', current: false },
+   { name: 'contact', href: '#contact', num: '04.', current: false },
 ] as const;
 
 const IconComponents = {

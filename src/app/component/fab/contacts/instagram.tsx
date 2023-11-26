@@ -1,4 +1,4 @@
-import { ContactIconParams } from '../../../constants/@types';
+import { ContactIconParams } from '@/constants/@types';
 
 const InstagramIcon = ({ className, height, width, hoverColor }: ContactIconParams) => {
    // const color = mode === 'light' ? '#ffffff' : '#000000';

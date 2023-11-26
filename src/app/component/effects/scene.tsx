@@ -1,6 +1,6 @@
 import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import { useHelper, PerspectiveCamera, OrbitControls } from '@react-three/drei';
 import Seagull from './seagull';
 import CustomSky from './emoljiFirework';
@@ -11,24 +11,9 @@ import EmoljiFireworks from './emoljiFireworks';
 const TOTAL_FIREWORKS = 50;
 
 interface CanvasProps {
-   darkMode?: boolean;
    isFireworkHovered?: boolean;
 }
-
-// THINGS TO TEST OUT:
-// 1) using orbitcontrol camera to control the zoom as it zooms in
-// 2) the camera has to zoom into the bird
-// 3) so see if the bird can move whenever there is a scroll detected
-// 4) and so the concept is to keep the bird and have it come down and fly around
-// the tree
-
-// 5) if the bird position cannot be defined, then have to try to use
-
-// 6) about me -- sandy(?) or light blue background(?)
-// a) first let's try white, and play with different background
-// 7) contact me ->
-
-const WindowCanvas = ({ darkMode, isFireworkHovered }: CanvasProps) => {
+const WindowCanvas = ({ isFireworkHovered }: CanvasProps) => {
    // if using jotai there is no need to pass isFrieworkHovered here
    return (
       <Canvas
@@ -37,17 +22,20 @@ const WindowCanvas = ({ darkMode, isFireworkHovered }: CanvasProps) => {
          camera={{ position: [-10, 1, 75], fov: 60, near: 1, far: 1000, castShadow: false }}
          resize={{ scroll: false }}
       >
-         {/* TEST: ensure that every hovered state it will reset back*/}
-         {isFireworkHovered &&
-            Array.from({ length: TOTAL_FIREWORKS }).map((_, index) => {
-               return <EmoljiFireworks key={index} />;
-            })}
-         <Seagull />
-         <Clouds />
-         <OrbitControls enableZoom={true} />
-         {/* <Sampler /> */}
-         {/* <Monitor /> */}
-         <Lights />
+         <Suspense fallback={null}>
+            {/* whether to display this or not */}
+            {/* if used dynamically import this */}
+            {isFireworkHovered &&
+               Array.from({ length: TOTAL_FIREWORKS }).map((_, index) => {
+                  return <EmoljiFireworks key={index} />;
+               })}
+            <Seagull />
+            <Clouds />
+            <OrbitControls enableZoom={false} />
+            {/* <Sampler /> */}
+            {/* <Monitor /> */}
+            <Lights />
+         </Suspense>
       </Canvas>
    );
 };
@@ -56,6 +44,7 @@ const Lights = () => {
    const ref = useRef<THREE.DirectionalLight>(null!);
    const pointRef = useRef<THREE.PointLightHelper>(null!);
 
+   // debugging
    // useHelper(ref, THREE.DirectionalLightHelper, 10, 'yellow');
    // useHelper(pointRef, THREE.PointLightHelper, 10, 'red');
 

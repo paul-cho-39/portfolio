@@ -10,6 +10,7 @@ export const PalmTrees = ({ className, ...props }: ReactIconProps) => {
          height='816'
          preserveAspectRatio='xMidYMid meet'
          version='1.0'
+         aria-hidden
          {...props}
       >
          <defs>

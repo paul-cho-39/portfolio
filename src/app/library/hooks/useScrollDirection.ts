@@ -21,6 +21,7 @@ export function useScrollDirection() {
          lastScrollY = scrollY > 0 ? scrollY : 0;
          setIsTop(lastScrollY === 0);
       };
+
       window.addEventListener('scroll', updateScrollDirection);
 
       return () => {

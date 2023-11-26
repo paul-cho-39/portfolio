@@ -5,26 +5,30 @@ import Navbar from './component/nav/navigation';
 import dynamic from 'next/dynamic';
 
 import About from './component/about';
-import FrontPage from './component/layouts/frontPageLayout';
-import { ProjectSampler } from './component/headers/projects';
 import ProjectCards from './component/cards/project';
 import ContactPage from './component/contact';
-import { ProjectImage } from './component/cards/image';
+import FrontPage from './component/main';
+import { useState } from 'react';
+import LogoImage from './component/nav/logo';
 
-// import Boxes from '../app/component/headers/tester';
-// const DynamicComponentWithNoSSR = dynamic(() => import('../app/component/headers/tester'), {
-//    ssr: false,
-// });
+const DynamicCanvas = dynamic(() => import('@/components/effects/scene'), {
+   ssr: false,
+});
 
 // TODO: dynamically import frontpage because of threeJS
 // TODO: in the front page maybe add framer motion to display the order of components
 
 export default function Home({ Component, pageProps }: AppProps) {
+   const [isCanvasLoaded, setCanvasLoaded] = useState(false);
+
    return (
       <>
          <Navbar />
-         <main className='min-h-screen min-w-screen'>
+         <main className='min-h-full min-w-screen'>
+            {/* TODO: blank with loader screen(?) */}
             <FrontPage />
+            {/* <DynamicCanvas /> */}
+            {/* </FrontPage> */}
             <About />
             <ProjectCards />
             <ContactPage />

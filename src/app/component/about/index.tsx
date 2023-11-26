@@ -8,7 +8,6 @@ import { Skills } from './skills';
 const About = () => {
    const isMediumDisabled = useDisableBreakPoints();
 
-   console.log('is it allowed', isMediumDisabled);
    return (
       // <Section id='about_me'>
       <section

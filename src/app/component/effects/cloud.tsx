@@ -6,8 +6,11 @@ import { generateEvenPosition, generateScale, randomizeVelocity } from '@/librar
 import { vertextShader } from '@/library/shaders/cloud.vert';
 import { fragmentShader } from '@/library/shaders/cloud.frag';
 
+interface CloudParams {
+   onReady: () => () => void;
+}
+
 const TOTAL_CLOUDS = 8;
-// derived from xRange inside generateEvenPosition function
 const BOUNDARY_RIGHT = 9; // x is positive
 const BOUNDARY_LEFT = -15; // x is negative
 
@@ -16,14 +19,6 @@ const Clouds = () => {
    const dimension = [4, 2, 1];
 
    const cloudPos = useMemo(() => generateEvenPosition(TOTAL_CLOUDS), []);
-   // const cloudData = useMemo(() => {
-   //    return Array.from({ length: TOTAL_CLOUDS }).map((_, index) => {
-   //       return {
-   //          scale: generateScale(dimension),
-   //          position: generateRandomPosition(TOTAL_CLOUDS),
-   //       };
-   //    });
-   // }, []);
 
    const clouds = useMemo(() => {
       return cloudPos.map((pos, index) => {
@@ -46,9 +41,16 @@ const Clouds = () => {
 
 export const Cloud = ({ scale, position }: { scale: Vector3; position: Vector3 }) => {
    const ref = useRef<Mesh>(null!);
+   const [isReady, setIsReady] = useState(false);
 
    const t1 = useTexture('/images/cloud1.png');
    const t2 = useTexture('/images/cloud3.jpg');
+
+   useEffect(() => {
+      if (t1 && t2) {
+         setIsReady(true);
+      }
+   }, [t1, t2]);
 
    const uniforms = {
       uTime: { value: 0 },

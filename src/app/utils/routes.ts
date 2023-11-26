@@ -1,6 +1,6 @@
 const PROJECT_ROUTE = '/projects/';
 
-const routes = {
+const ROUTES = {
    HOME: '/',
    PROJECTS: {
       GOOGLE_BOOK_PROJECT: PROJECT_ROUTE + 'google-books',
@@ -13,7 +13,8 @@ const routes = {
 type RoutePaths<T> = {
    [P in keyof T]: T[P] extends string ? T[P] : RoutePaths<T[P]>;
 };
+type RouteParams = RoutePaths<typeof ROUTES>;
+type RouteKeys = keyof typeof ROUTES;
 
-type RouteParams = RoutePaths<typeof routes>;
-
-export default routes;
+export type { RouteParams, RouteKeys };
+export default ROUTES;

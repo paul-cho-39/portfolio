@@ -1,5 +1,5 @@
 import React from 'react';
-import { FrontPageGeneratorItem } from '../../constants';
+import { FrontPageGeneratorItem } from '@/constants';
 
 export const renderElementByTag = (tag: string, content: string, className: string | undefined) => {
    return React.createElement(tag, { className }, content);
