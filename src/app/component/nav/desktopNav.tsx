@@ -1,15 +1,24 @@
-import { Navigation } from '@/app/constants';
+import { navigation } from '@/app/constants';
 import classNames from 'classnames';
-import LogoImage, { HeaderTitle } from './logo';
+import HeaderTitle from './navTitle';
+import WaveyLine from '../svg/wavey-line';
+import { useState } from 'react';
 
 const LargeNavigation = ({ isTop }: { isTop: boolean }) => {
+   const [navItems, setNavItems] = useState(navigation);
+
+   const handleMouseEnter = (name: string) => {
+      setNavItems(navItems.map((item) => (item.name === name ? { ...item, current: true } : item)));
+   };
+
+   const handleMouseLeave = () => {
+      setNavItems(navItems.map((item) => ({ ...item, current: false })));
+   };
+
    return (
       <div className='hidden mx-auto md:h-16 md:flex md:w-full'>
          <div className='flex flex-row justify-stretch items-stretch w-full h-full'>
-            {/* <div className='fixed'> */}
-            {/* <div className='h-full inline-flex items-center justify-center px-6'>Logo</div> */}
             <HeaderTitle />
-            {/* </div> */}
             <div className='flex flex-row items-end justify-end w-full h-full bg-transparent'>
                <nav
                   role='navigation'
@@ -22,20 +31,26 @@ const LargeNavigation = ({ isTop }: { isTop: boolean }) => {
                >
                   <ul
                      role='list'
-                     className='flex flex-row items-center justify-center gap-x-1 h-full'
+                     className='flex flex-row items-center justify-center gap-x-1 h-full group'
                   >
-                     {Navigation.map((item, index) => (
-                        <li className='' key={index}>
+                     {navItems.map((item, index) => (
+                        <li
+                           key={index}
+                           onMouseLeave={handleMouseLeave}
+                           onMouseEnter={() => handleMouseEnter(item.name)}
+                           className='mx-1 '
+                        >
                            <a
                               href={item.href}
                               className={classNames(
-                                 item.current
-                                    ? 'dark:hover:text-slate-700 hover:text-gray-400 text-opacity-75  '
-                                    : 'dark:hover:text-slate-700 hover:text-gray-400 text-opacity-75 ',
-                                 'h-full self-baseline text-lg ease-in-out group flex gap-x-3 p-3 text-md font-medium text-gray-950 dark:text-gray-200/80 group-hover:text-opacity-75'
+                                 'relative h-full self-baseline group flex gap-x-3 p-3 group-hover:text-opacity-60'
                               )}
                            >
-                              {item.name}
+                              <span className='relative text-lg font-medium'>{item.name}</span>
+                              <span>/</span>
+                              <span className='absolute bottom-0 left-2 w-full overflow-hidden'>
+                                 <WaveyLine isHovered={item.current} height={10} />
+                              </span>
                            </a>
                         </li>
                      ))}

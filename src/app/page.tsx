@@ -9,7 +9,7 @@ import ProjectCards from './component/cards/project';
 import ContactPage from './component/contact';
 import FrontPage from './component/main';
 import { useState } from 'react';
-import LogoImage from './component/nav/logo';
+import LogoImage from './component/nav/navTitle';
 
 const DynamicCanvas = dynamic(() => import('@/components/effects/scene'), {
    ssr: false,

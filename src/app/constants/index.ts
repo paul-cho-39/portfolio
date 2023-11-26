@@ -7,12 +7,12 @@ export type ThemeContextParams = {
    setTheme: (value: ColorTheme) => void;
 };
 
-export const Navigation = [
-   { name: 'home', href: '#home', num: '01.', current: true },
+export const navigation = [
+   { name: 'home', href: '#home', num: '01.', current: false },
    { name: 'about', href: '#about', num: '02.', current: false },
    { name: 'projects', href: '#projects', num: '03.', current: false },
    { name: 'contact', href: '#contact', num: '04.', current: false },
-] as const;
+];
 
 const IconComponents = {
    Github: GithubIcon,
