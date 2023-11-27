@@ -4,12 +4,22 @@ import { Container, ContainerInner } from '../layouts/container';
 import { PalmTrees } from '../svg/palm-trees';
 import { Description } from './decription';
 import { Skills } from './skills';
+import { useInView } from 'framer-motion';
+import { useRef } from 'react';
+import MotionPalmTrees from './palmTrees';
 
 const About = () => {
+   const scrollRef = useRef<HTMLDivElement>(null);
+
+   const isInView = useInView(scrollRef, {
+      margin: '20px',
+   });
+
+   console.log('is it in view?: ', isInView);
+
    const isMediumDisabled = useDisableBreakPoints();
 
    return (
-      // <Section id='about_me'>
       <section
          style={{
             backgroundImage: 'url("/white-brushed.png")',
@@ -17,7 +27,7 @@ const About = () => {
          }}
          id='about'
       >
-         <Container className='px-4 lg:mx-12 py-6 md:py-12 lg:py-14'>
+         <Container ref={scrollRef} className='px-4 lg:mx-12 py-6 md:py-12 lg:py-14'>
             <SectionHeader title='About Me' />
             <div className='flex flex-col-reverse lg:flex-row lg:items-stretch lg:justify-stretch'>
                {/* contents */}
@@ -42,13 +52,7 @@ const About = () => {
                </div>
             </div>
             <Skills />
-            {isMediumDisabled && (
-               <>
-                  {/* TODO  */}
-                  <PalmTrees className='absolute rotate-[6deg] opacity-30 w-[24rem] h-[24rem] top-6  -right-32 xl:top-4 xl:-right-24' />
-                  <PalmTrees className='absolute -rotate-[6deg] opacity-30 w-[24rem] h-[24rem] top-6 -left-32  xl:top-4 xl:-left-24 -scale-x-100' />
-               </>
-            )}
+            <MotionPalmTrees isMediumDisabled={isMediumDisabled} isInView={isInView} />
          </Container>
       </section>
    );

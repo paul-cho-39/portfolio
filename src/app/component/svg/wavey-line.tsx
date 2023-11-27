@@ -6,7 +6,6 @@ interface WavyLineProps extends ReactIconProps {
 }
 
 function WaveyLine({ isHovered, className, ...props }: WavyLineProps) {
-   console.log('hovered stat is: ', isHovered);
    return (
       <svg
          width='100%'
