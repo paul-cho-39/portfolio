@@ -12,7 +12,7 @@ import {
 } from 'framer-motion';
 
 import { useDisableBreakPoints } from '@/app/library/hooks/useDisableBreakPoints';
-import { FrontCoverDescription } from './frontCover';
+import { FrontCoverDescription } from './description/frontCoverDescription';
 import { ArrowDown } from './illustrator/arrowDown';
 import classNames from 'classnames';
 
@@ -71,16 +71,16 @@ const FrontPage = ({ children }: { children?: React.ReactNode }) => {
                </Suspense>
             </motion.div>
             <FrontCoverDescription
-               pre={"Hello, I'm"}
+               pre={"Hello there! 👋🏼  I'm"}
                main={
                   <>
                      <span>{'Paul |'}</span>
                      <br />
-                     <span>Software Engineer</span>
+                     <span>Full-stack Developer</span>
                   </>
                }
                description={
-                  "I'm a self-taught full-stack developer, I've navigated the tech landscape through hands-on experience. My journey into programming has been driven by curiosity and a passion for solving real-world problems"
+                  "I'm a self-taught developer, I've navigated the tech landscape through hands-on experience."
                }
             />
             {isMediumDisabled && <ArrowDown />}

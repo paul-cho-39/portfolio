@@ -7,6 +7,7 @@ const ROUTES = {
       PORTFOLIO: PROJECT_ROUTE + 'portfolio',
       MOBILE_PROJECT: PROJECT_ROUTE + 'bookmark-app',
    },
+   ABOUT_ME: '/about',
 };
 
 // recursive set so it avoids union type
