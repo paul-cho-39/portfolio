@@ -3,7 +3,7 @@ import { Container } from './layouts/container';
 import { Divider } from './divider';
 import Link from 'next/link';
 import { SectionHeader } from './headers/sectionHeader';
-import { FrontCoverTitle } from './frontCover';
+import { FrontCoverTitle } from './description/frontCoverDescription';
 
 // determine:
 // 1) whether to change the color to #faebd7

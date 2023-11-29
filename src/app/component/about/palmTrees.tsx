@@ -7,16 +7,16 @@ interface MotionPalmTreesProps {
 
 const MotionPalmTrees = ({ isMediumDisabled }: MotionPalmTreesProps) => {
    const fadeInUp: Variants = {
-      hidden: { opacity: 0, y: -650, rotate: -5 },
+      hidden: { opacity: 0, y: -600, rotate: -5 },
       visible: {
          opacity: 1,
-         y: -750,
+         y: -700,
          rotate: 0,
          transition: {
             type: 'spring',
-            bounce: 0.1,
-            delay: 0.25,
-            duration: 0.8,
+            bounce: 0.3,
+            delay: 0.1,
+            duration: 1,
          },
       },
    };
