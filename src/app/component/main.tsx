@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from 'react';
-import FronPageLayout from './layouts/frontPageLayout';
+import FronPageLayout from './layouts/home/frontSectionLayout';
 import { useEffect, useRef } from 'react';
 
 import {
@@ -22,7 +22,7 @@ const SCROLL_THRESHOLD = 0.75;
 const Canvas = lazy(() => import('./effects/scene'));
 
 const FrontPage = ({ children }: { children?: React.ReactNode }) => {
-   const ref = useRef<HTMLSelectElement>(null);
+   const ref = useRef<HTMLDivElement>(null);
    const isMediumDisabled = useDisableBreakPoints();
 
    const isInView = useInView(ref, {
@@ -53,39 +53,39 @@ const FrontPage = ({ children }: { children?: React.ReactNode }) => {
    });
 
    return (
-      <section ref={ref} id='home'>
-         <FronPageLayout>
-            <motion.div
-               style={{ opacity: opacity }}
-               animate={controls}
-               initial={{ display: 'block' }}
-               className={classNames(
-                  isInView ? 'fixed' : 'invisible',
-                  'inset-0 sky-fade-gradient -z-10'
-               )}
-            >
-               {/* TODO: better fallback  */}
-               <Suspense fallback={<div>Loading...</div>}>
-                  {/* <Canvas /> */}
-                  {children}
-               </Suspense>
-            </motion.div>
-            <FrontCoverDescription
-               pre={"Hello there! 👋🏼  I'm"}
-               main={
-                  <>
-                     <span>{'Paul |'}</span>
-                     <br />
-                     <span>Full-stack Developer</span>
-                  </>
-               }
-               description={
-                  "I'm a self-taught developer, I've navigated the tech landscape through hands-on experience."
-               }
-            />
-            {isMediumDisabled && <ArrowDown />}
-         </FronPageLayout>
-      </section>
+      // <section ref={ref} id='home'>
+      <FronPageLayout ref={ref} id='home'>
+         <motion.div
+            style={{ opacity: opacity }}
+            animate={controls}
+            initial={{ display: 'block' }}
+            className={classNames(
+               isInView ? 'fixed' : 'invisible',
+               'inset-0 sky-fade-gradient -z-10'
+            )}
+         >
+            {/* TODO: better fallback  */}
+            <Suspense fallback={<div>Loading...</div>}>
+               {/* <Canvas /> */}
+               {children}
+            </Suspense>
+         </motion.div>
+         <FrontCoverDescription
+            pre={"Hello there! 👋🏼  I'm"}
+            main={
+               <>
+                  <span>{'Paul |'}</span>
+                  <br />
+                  <span>Full-stack Developer</span>
+               </>
+            }
+            description={
+               "I'm a self-taught developer, I've navigated the tech landscape through hands-on experience."
+            }
+         />
+         {isMediumDisabled && <ArrowDown />}
+      </FronPageLayout>
+      // </section>
    );
 };
 

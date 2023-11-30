@@ -33,3 +33,21 @@ export const Container = forwardRef<
       </ContainerOuter>
    );
 });
+
+export const ContainerWithBackground = forwardRef<
+   React.ElementRef<typeof ContainerOuter>,
+   React.ComponentPropsWithoutRef<typeof ContainerOuter>
+>(function Container({ children, ...props }, ref) {
+   return (
+      <ContainerOuter
+         style={{
+            backgroundImage: 'url("/white-brushed.png")',
+            backgroundColor: 'var(--background-profile)',
+         }}
+         ref={ref}
+         {...props}
+      >
+         <ContainerInner>{children}</ContainerInner>
+      </ContainerOuter>
+   );
+});

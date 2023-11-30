@@ -1,8 +1,8 @@
 // use previousPathName for stacking(?) but I think it already is stack on its own?
 
 import { Router, useRouter } from 'next/router';
-import { Container } from './container';
 import { ArrowLeftIcon } from '@heroicons/react/24/outline';
+import { Container } from '../../container';
 
 // TEST THIS OUT -- for back enability
 // put this in a layout page?
@@ -42,13 +42,3 @@ const ProjectLayout = ({ projects, children }: ProjectLayoutsParam) => {
 };
 
 export default ProjectLayout;
-
-// CONDITIONS:
-// use framer-motion for writing the the
-
-// grids - three grids (?) - the main, reference, and reference table?
-
-// create a container for
-// 1) tags 2) reading time 3) site (if there is a site) 4) view source code
-
-// prev / next unless (project[0]) || project[-1]) should be filtered

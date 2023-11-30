@@ -19,4 +19,8 @@ export interface BasicCardProps {
    isOdd: (index: number) => boolean;
 }
 
-export type { ContactIconParams };
+type ChildrenProps = {
+   children?: React.ReactNode;
+};
+
+export type { ContactIconParams, ChildrenProps };

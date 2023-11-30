@@ -6,6 +6,7 @@ interface MotionPalmTreesProps {
 }
 
 const MotionPalmTrees = ({ isMediumDisabled }: MotionPalmTreesProps) => {
+   // since it is absolute have to adjust the number here
    const fadeInUp: Variants = {
       hidden: { opacity: 0, y: -600, rotate: -5 },
       visible: {
@@ -16,7 +17,7 @@ const MotionPalmTrees = ({ isMediumDisabled }: MotionPalmTreesProps) => {
             type: 'spring',
             bounce: 0.3,
             delay: 0.1,
-            duration: 1,
+            duration: 0.4,
          },
       },
    };

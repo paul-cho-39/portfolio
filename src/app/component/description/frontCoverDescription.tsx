@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { pacifico, montserratAlternatives } from '../fonts';
+import { pacifico, montserratAlternatives } from '../../fonts';
 
 interface Main {
    main: React.ReactElement;
@@ -16,13 +16,14 @@ export const FrontCoverTitle = (props: Main) => {
    return <h1 className={clsx(`${pacifico.className}`, props.className)}>{props.main}</h1>;
 };
 
+// which color goes well with this(?)
 const FrontCoverPre = ({ pre }: { pre: string }) => {
-   return <pre className='text-lg font-serif pl-4'>{pre}</pre>;
+   return <pre className='text-lg font-serif pl-4 my-3 lg:mb-5'>{pre}</pre>;
 };
 
 export const FrontCoverDescription = (props: Description) => {
    return (
-      <div className='absolute top-[25%] left-0 px-6 lg:px-16 lg:top-[28%] selection:bg-blue-800'>
+      <div className='absolute top-[23%] left-0 px-6 lg:px-16 lg:top-[10%] selection:bg-blue-800'>
          <div className='relative md:flex md:flex-col md:w-full md:h-full'>
             <div className='relative md:col-span-1 md:h-full md:w-full top-0 mb-6 lg:mb-8'>
                <FrontCoverPre pre={props.pre} />
