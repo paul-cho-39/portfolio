@@ -1,4 +1,4 @@
-import classNames from '@/app/library/helper';
+import classNames from 'classnames';
 import { useEffect, useRef, useState } from 'react';
 
 import { motion, Variants } from 'framer-motion';

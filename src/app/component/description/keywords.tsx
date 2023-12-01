@@ -1,4 +1,4 @@
-import { BlogContainerProps, IconStyle } from '@/app/constants/@types';
+import { BlogContainerProps, IconStyle } from '@/app/library/@types';
 import { TagIcon } from '@heroicons/react/24/outline';
 
 type KeywordProps = Pick<BlogContainerProps, 'keywords'> & IconStyle;

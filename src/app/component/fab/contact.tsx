@@ -1,4 +1,4 @@
-import classNames from '@/app/library/helper';
+import classNames from 'classnames';
 import { useEffect, useState } from 'react';
 import styles from './../styles.module.css';
 import { ContactItems, ContactItemsParams } from '@/constants';

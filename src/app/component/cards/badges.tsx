@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import classNames from 'classnames';
-import { BasicCardProps } from '@/app/constants/@types';
+import { BasicCardProps } from '@/app/library/@types';
 
 interface ProjectBadgesProps extends BasicCardProps {
    badges: string[];

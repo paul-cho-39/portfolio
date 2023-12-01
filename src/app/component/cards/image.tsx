@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { GithubIcon } from '../fab/contacts';
 import React, { Dispatch, ImgHTMLAttributes, SetStateAction } from 'react';
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
-import classNames from '@/app/library/helper';
+import classNames from 'classnames';
 import { motion, MotionProps, Variants } from 'framer-motion';
 
 export type ProjectImageProps = {

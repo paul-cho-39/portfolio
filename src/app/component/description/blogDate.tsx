@@ -1,4 +1,4 @@
-import { BlogContainerProps, IconStyle } from '@/app/constants/@types';
+import { BlogContainerProps, IconStyle } from '@/app/library/@types';
 import { formatDate } from '@/app/library/helpers/formatDate';
 
 type BlogDateProps = Pick<BlogContainerProps, 'date'>;

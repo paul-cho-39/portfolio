@@ -1,4 +1,4 @@
-import { BlogContainerProps, IconStyle } from '@/app/constants/@types';
+import { BlogContainerProps, IconStyle } from '@/app/library/@types';
 import { ClockIcon } from '@heroicons/react/24/outline';
 
 type TotalReadingTimeProps = Pick<BlogContainerProps, 'totalReadingTime'> & IconStyle;

@@ -1,4 +1,4 @@
-import { BlogContainerProps, IconStyle } from '@/app/constants/@types';
+import { BlogContainerProps, IconStyle } from '@/app/library/@types';
 import TotalReadingTime from '../description/totalReadingTime';
 import BlogDate from '../description/blogDate';
 import Keywords from '../description/keywords';

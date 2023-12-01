@@ -1,10 +1,10 @@
 import { forwardRef } from 'react';
 
-import classNames from '@/app/library/helper';
+import classNames from 'classnames';
 import { motion } from 'framer-motion';
 import { ProjectImageProps } from './image';
 import { ArrowRightIcon } from '@heroicons/react/24/outline';
-import { BasicCardProps } from '@/app/constants/@types';
+import { BasicCardProps } from '@/app/library/@types';
 
 interface SubtitleProps extends Pick<BasicCardProps, 'index'> {
    subtitle: string;

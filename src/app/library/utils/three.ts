@@ -1,4 +1,4 @@
-import { PositionRange } from '@/app/constants/@types';
+import { PositionRange } from '@/app/library/@types';
 import { Vector3 } from 'three';
 
 // store this inside the utils file:

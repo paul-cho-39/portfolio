@@ -1,4 +1,4 @@
-import classNames from '@/library/helper';
+import classNames from 'classnames';
 import { useScrollDirection } from '@/library/hooks/useScrollDirection';
 import { Divider } from '../divider';
 import MobileNavigation from './mobileNav';

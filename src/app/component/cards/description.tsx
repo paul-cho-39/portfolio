@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
-import classNames from '@/app/library/helper';
+import classNames from 'classnames';
 import { motion } from 'framer-motion';
-import { BasicCardProps } from '@/app/constants/@types';
+import { BasicCardProps } from '@/app/library/@types';
 
 interface ProjectDescription extends BasicCardProps {
    description: string;
