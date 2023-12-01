@@ -13,12 +13,10 @@ type MainTitleContainerProps = BlogContainerProps & IconStyle;
 export const MainTitleContainer = (props: MainTitleContainerProps) => {
    const { title, ...rest } = props;
    return (
-      <section id='overview'>
-         <div className='dark:text-slate-100'>
-            <h2 className='text-center p-1 text-2xl'>{title}</h2>
-            <MetaContainer {...rest} />
-         </div>
-      </section>
+      <div className='dark:text-slate-100'>
+         <h2 className='text-center p-1 text-6xl dark:text-gray-200'>{title}</h2>
+         <MetaContainer {...rest} />
+      </div>
    );
 };
 

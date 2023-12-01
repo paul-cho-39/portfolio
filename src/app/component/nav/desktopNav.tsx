@@ -56,7 +56,7 @@ const LargeNavigation = ({ isTop, isHome, bgColor }: LargeNavigationProps) => {
                               <span className='relative text-lg font-medium'>{item.name}</span>
                               <span>/</span>
                               <span className='absolute bottom-0 left-2 w-full overflow-hidden'>
-                                 <WaveyLine isHovered={item.current} height={10} />
+                                 <WaveyLine isHovered={item.current} height={10} width={55} />
                               </span>
                            </Link>
                         </li>

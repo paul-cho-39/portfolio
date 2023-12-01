@@ -3,6 +3,7 @@ import { useScrollDirection } from '@/library/hooks/useScrollDirection';
 import { Divider } from '../divider';
 import MobileNavigation from './mobileNav';
 import LargeNavigation from './desktopNav';
+import { getBgColor, getPosition } from '@/app/library/helpers/getStyling';
 
 // here h-16 / top-16 is the breakpoint for header and main section
 // should set this as constant so its easier to fix(?)
@@ -10,34 +11,18 @@ import LargeNavigation from './desktopNav';
 const Navbar = ({ isHome = true }: { isHome: boolean }) => {
    const { isTop, scrollDirection } = useScrollDirection();
 
-   const HOME_COLOR = 'bg-[#184888]';
-   const DEFAULT_COLOR = 'bg-white dark:bg-slate-900';
-
-   // in home route the navigation position is 'fixed' otherwise relative
-   const getBgColor = () => {
-      if (!isHome) return DEFAULT_COLOR;
-
-      return isTop ? HOME_COLOR : DEFAULT_COLOR;
-   };
-
-   // if it is not home the nav will come down on scroll
-   const getNavigationDisplay = () => {
-      if (isHome) return 'fixed';
-
-      if (scrollDirection === 'down') return 'hidden ';
-
-      if (scrollDirection === 'up') return 'fixed';
-   };
+   const BG_COLOR = getBgColor(isHome, isTop);
+   const POSITION = getPosition(isHome, scrollDirection);
 
    return (
       // declare the color at the parent
-      <header className={classNames(getBgColor())}>
+      <header className={classNames(BG_COLOR, POSITION, 'transition-all duration-200 ease-linear')}>
          <div className='w-full'>
             {/* mobile version */}
             <MobileNavigation isHome={isHome} />
 
             {/* desktop version */}
-            <LargeNavigation bgColor={getBgColor()} isHome={isHome} isTop={isTop} />
+            <LargeNavigation bgColor={BG_COLOR} isHome={isHome} isTop={isTop} />
          </div>
          {/* blurred fixed navigation */}
          {(!isTop || !isHome) && (

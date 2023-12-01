@@ -13,7 +13,7 @@ interface BlogLayoutParams {
    children?: React.ReactNode;
 }
 
-export const BodyLayout = ({ isOpenAside, children }: BlogLayoutParams) => {
+export const BlogLayout = ({ isOpenAside, children }: BlogLayoutParams) => {
    //    const [isOpenAside, setOpenAside] = useState(false);
 
    return (

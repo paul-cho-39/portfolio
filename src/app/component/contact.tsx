@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Container } from './layouts/container';
 import { Divider } from './divider';
 import Link from 'next/link';
-import { SectionHeader } from './headers/sectionHeader';
+import { SectionHeader } from './headers/title';
 import { FrontCoverTitle } from './description/frontCoverDescription';
 
 // determine:

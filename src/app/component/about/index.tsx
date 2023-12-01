@@ -1,5 +1,5 @@
 import { useDisableBreakPoints } from '@/app/library/hooks/useDisableBreakPoints';
-import { SectionHeader } from '../headers/sectionHeader';
+import { SectionHeader } from '../headers/title';
 import { Container, ContainerInner } from '../layouts/container';
 
 import { Skills } from './skills';

@@ -44,7 +44,7 @@ const MobileNavigation = ({ isHome }: { isHome: boolean }) => {
                               >
                                  <span className='sr-only'>Close sidebar</span>
                                  <XMarkIcon
-                                    className='h-6 w-6 text-black dark:text-white hover:scale-105'
+                                    className='h-6 w-6 text-black dark:text-gray-200 hover:scale-105'
                                     aria-hidden='true'
                                  />
                               </button>

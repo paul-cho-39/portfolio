@@ -7,6 +7,9 @@ export type ThemeContextParams = {
    setTheme: (value: ColorTheme) => void;
 };
 
+export const HOME_COLOR = 'bg-[#184888]';
+export const DEFAULT_COLOR = 'bg-white dark:bg-slate-900';
+
 export const navigation = [
    { name: 'home', href: '#home', num: '01.', current: false },
    { name: 'about', href: '#about', num: '02.', current: false },

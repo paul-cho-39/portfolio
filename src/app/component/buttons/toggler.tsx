@@ -20,13 +20,13 @@ export const Toggler = () => {
    };
 
    const isLight = theme === 'light';
-   const sunStyle = 'bg-gradient-to-br from-yellow-300 to-orange-500';
+   const sunStyle = 'bg-gradient-to-br from-yellow-300 to-orange-300';
    const moonStyle = 'bg-gradient-to-br from-gray-300 to-gray-500';
 
    return (
       <div
          className={classNames(
-            isLight ? 'bg-orange-200' : 'bg-slate-600',
+            isLight ? 'bg-orange-100' : 'bg-slate-600',
             'w-8 h-16 p-0 cursor-pointer relative rounded-3xl bg-red-500'
          )}
          onClick={toggleTheme}

@@ -19,10 +19,7 @@ function WaveyLine({ isHovered, className, ...props }: WavyLineProps) {
             stroke='#000'
             fill='transparent'
             d='M0 6 q 5 -10 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0'
-            className={classNames(isHovered ? 'wavy-line z-0' : 'hidden')}
-            // className='hover:stroke-orange-500 hover:wavy-line'
-            // strokeDasharray={1000}
-            // strokeDashoffset={1000}
+            className={classNames(isHovered ? 'wavy-line z-0 dark:text-gray-200' : 'hidden')}
          />
       </svg>
    );

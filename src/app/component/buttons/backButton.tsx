@@ -32,7 +32,7 @@ const BackButton = ({ showBackText }: BackButtonProps) => {
             />
             <span className='sr-only'>Back button</span>
             {showBackText && (
-               <span className={classNames(isHovered ? 'relative top-0 left-2' : 'hidden')}>
+               <span className={classNames(isHovered ? 'relative top-2 left-3' : 'hidden')}>
                   Back
                </span>
             )}
