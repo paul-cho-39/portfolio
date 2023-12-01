@@ -3,8 +3,15 @@ import classNames from 'classnames';
 import HeaderTitle from './navTitle';
 import WaveyLine from '../svg/wavey-line';
 import { useState } from 'react';
+import Link from 'next/link';
 
-const LargeNavigation = ({ isTop }: { isTop: boolean }) => {
+interface LargeNavigationProps {
+   isTop: boolean;
+   isHome: boolean;
+   bgColor: string;
+}
+
+const LargeNavigation = ({ isTop, isHome, bgColor }: LargeNavigationProps) => {
    const [navItems, setNavItems] = useState(navigation);
 
    const handleMouseEnter = (name: string) => {
@@ -16,7 +23,7 @@ const LargeNavigation = ({ isTop }: { isTop: boolean }) => {
    };
 
    return (
-      <div className='hidden mx-auto md:h-16 md:flex md:w-full bg-[#184888] '>
+      <div className={classNames(bgColor, 'hidden mx-auto md:h-16 md:flex md:w-full')}>
          <div className='flex flex-row justify-stretch items-stretch w-full h-full'>
             <HeaderTitle />
             <div className='flex flex-row items-end justify-end w-full h-full bg-transparent'>
@@ -40,8 +47,8 @@ const LargeNavigation = ({ isTop }: { isTop: boolean }) => {
                            onMouseEnter={() => handleMouseEnter(item.name)}
                            className='mx-1 '
                         >
-                           <a
-                              href={item.href}
+                           <Link
+                              href={isHome ? item.href : '/' + item.href}
                               className={classNames(
                                  'relative h-full self-baseline group flex gap-x-3 p-3 group-hover:text-opacity-60'
                               )}
@@ -51,7 +58,7 @@ const LargeNavigation = ({ isTop }: { isTop: boolean }) => {
                               <span className='absolute bottom-0 left-2 w-full overflow-hidden'>
                                  <WaveyLine isHovered={item.current} height={10} />
                               </span>
-                           </a>
+                           </Link>
                         </li>
                      ))}
                   </ul>

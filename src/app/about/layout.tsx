@@ -1,13 +1,26 @@
 'use client';
 
+import BackButton from '../component/buttons/backButton';
+import { Toggler } from '../component/buttons/toggler';
+import { Container } from '../component/layouts/container';
 import Navbar from '../component/nav/navigation';
 
 export default function AboutMeLayout({ children }: { children: React.ReactNode }) {
    return (
-      <section className='bg-red-500 min-h-screen'>
-         <Navbar />
-         <div className='min-h-full w-full'>{children}</div>
-         {/* Include shared UI here e.g. a header or sidebar */}
-      </section>
+      <div>
+         <Navbar isHome={false} />
+         <section
+            style={{
+               backgroundImage: 'url("/white-brushed.png")',
+               // backgroundColor: 'var(--background-profile',
+            }}
+         >
+            <Container className='h-full w-full dark:bg-slate-800 min-h-screen'>
+               <BackButton showBackText={true} />
+               <Toggler />
+               {children}
+            </Container>
+         </section>
+      </div>
    );
 }

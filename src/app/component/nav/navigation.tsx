@@ -11,13 +11,13 @@ const Navbar = ({ isHome = true }: { isHome: boolean }) => {
    const { isTop, scrollDirection } = useScrollDirection();
 
    const HOME_COLOR = 'bg-[#184888]';
-   const DEFAULT_COLOR = 'bg-[##1E5099]';
+   const DEFAULT_COLOR = 'bg-white';
 
    // in home route the navigation position is 'fixed' otherwise relative
    const getBgColor = () => {
       if (!isHome) return DEFAULT_COLOR;
 
-      return isTop ? HOME_COLOR : 'bg-transparent';
+      return isTop ? HOME_COLOR : DEFAULT_COLOR;
    };
 
    const getNavigationDisplay = () => {
@@ -33,10 +33,10 @@ const Navbar = ({ isHome = true }: { isHome: boolean }) => {
       <header className={classNames(getBgColor())}>
          <div className='w-full'>
             {/* mobile version */}
-            <MobileNavigation />
+            <MobileNavigation isHome={isHome} />
 
             {/* desktop version */}
-            <LargeNavigation isTop={isTop} />
+            <LargeNavigation bgColor={getBgColor()} isHome={isHome} isTop={isTop} />
          </div>
          {/* blurred fixed navigation */}
          {(!isTop || !isHome) && (

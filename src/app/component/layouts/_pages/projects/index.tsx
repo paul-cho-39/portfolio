@@ -20,6 +20,7 @@ const ProjectLayout = ({ projects, children }: ProjectLayoutsParam) => {
          <div className='xl:relative'>
             {/* fill in the logic here */}
             <div className='mx-auto max-w-2xl'>
+               {/* use this back button for the common layout */}
                <button
                   type='button'
                   onClick={() => router.back()}

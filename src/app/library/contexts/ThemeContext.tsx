@@ -1,7 +1,5 @@
-'use client';
-
+import { ColorTheme, ThemeContextParams } from '@/app/constants';
 import { createContext, useState, useEffect } from 'react';
-import { ColorTheme, ThemeContextParams } from '@/constants';
 
 export const ThemeContext = createContext<ThemeContextParams | undefined>(undefined);
 

@@ -23,7 +23,7 @@ export default function Home({ Component, pageProps }: AppProps) {
 
    return (
       <>
-         <Navbar />
+         <Navbar isHome={true} />
          {/* TODO: blank with loader screen(?) */}
          <FrontPage />
          {/* <DynamicCanvas /> */}

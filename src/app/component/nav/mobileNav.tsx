@@ -1,12 +1,12 @@
-import { Fragment, SetStateAction, useState } from 'react';
+import { Fragment, SetStateAction, useCallback, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { navigation } from '@/app/constants';
 import classNames from 'classnames';
+import Link from 'next/link';
 
-const MobileNavigation = () => {
+const MobileNavigation = ({ isHome }: { isHome: boolean }) => {
    const [sidebarOpen, setSidebarOpen] = useState(false);
-
    return (
       <>
          <MobileNavBar setSidebarOpen={setSidebarOpen} />
@@ -56,8 +56,8 @@ const MobileNavigation = () => {
                                        className='inline-flex justify-start items-start mt-auto w-full text-center align-middle self-center'
                                        key={item.name}
                                     >
-                                       <a
-                                          href={item.href}
+                                       <Link
+                                          href={isHome ? item.href : '/' + item.href}
                                           className={classNames(
                                              // item.current
                                              //    ? 'bg-sky-200 dark:bg-blue-500'
@@ -75,7 +75,7 @@ const MobileNavigation = () => {
                                           >
                                              {item.name}
                                           </span>
-                                       </a>
+                                       </Link>
                                     </li>
                                  ))}
                               </ul>
