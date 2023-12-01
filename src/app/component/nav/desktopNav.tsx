@@ -16,7 +16,7 @@ const LargeNavigation = ({ isTop }: { isTop: boolean }) => {
    };
 
    return (
-      <div className='hidden mx-auto md:h-16 md:flex md:w-full'>
+      <div className='hidden mx-auto md:h-16 md:flex md:w-full bg-[#184888] '>
          <div className='flex flex-row justify-stretch items-stretch w-full h-full'>
             <HeaderTitle />
             <div className='flex flex-row items-end justify-end w-full h-full bg-transparent'>
