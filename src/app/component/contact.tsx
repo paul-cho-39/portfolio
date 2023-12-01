@@ -10,14 +10,7 @@ import { FrontCoverTitle } from './description/frontCoverDescription';
 // 2) whether to add canvas here as well
 const ContactPage = () => {
    return (
-      <section
-         id='contact'
-         className='sky-fade-gradient min-h-screen min-w-fit'
-         // style={{
-         //    backgroundImage: 'url("/white-brushed.png")',
-         //    backgroundColor: '#faebd7',
-         // }}
-      >
+      <section id='contact' className='sky-fade-gradient min-h-screen min-w-fit'>
          <Container className='py-8 px-4 lg:mx-12 lg:px-8'>
             <div className='w-full h-full flex flex-col items-center justify-center'>
                <div className='pt-6 pb-12 md:pt-10 lg:pt-14'>

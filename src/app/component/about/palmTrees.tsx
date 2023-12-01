@@ -8,7 +8,7 @@ interface MotionPalmTreesProps {
 const MotionPalmTrees = ({ isMediumDisabled }: MotionPalmTreesProps) => {
    // since it is absolute have to adjust the number here
    const fadeInUp: Variants = {
-      hidden: { opacity: 0, y: -600, rotate: -5 },
+      hidden: { opacity: 0, y: -660, rotate: -5 },
       visible: {
          opacity: 1,
          y: -700,

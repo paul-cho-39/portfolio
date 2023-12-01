@@ -6,10 +6,11 @@ import { SectionHeader } from '../headers/sectionHeader';
 
 const ProjectCards = ({}) => {
    return (
-      // TODO: change bg-color(?)
       <ProjectLayout>
          <SectionHeader title='Some Stuff I Built' />
-         <Cards projects={data.projects} />
+         <main>
+            <Cards projects={data.projects} />
+         </main>
       </ProjectLayout>
    );
 };

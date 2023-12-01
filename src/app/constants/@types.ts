@@ -19,8 +19,12 @@ export interface BasicCardProps {
    isOdd: (index: number) => boolean;
 }
 
-type ChildrenProps = {
-   children?: React.ReactNode;
-};
+type IconStyle = { iconStyle?: string };
+export interface BlogContainerProps {
+   title: string;
+   keywords: string[];
+   totalReadingTime: number;
+   date: Date;
+}
 
-export type { ContactIconParams, ChildrenProps };
+export type { ContactIconParams, IconStyle };

@@ -88,11 +88,3 @@ const ProjectHeaders = () => {
       </div>
    );
 };
-
-export const ProjectSampler = () => {
-   return (
-      <Container>
-         <ProjectHeaders />
-      </Container>
-   );
-};

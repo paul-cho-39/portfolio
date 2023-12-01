@@ -24,15 +24,13 @@ export default function Home({ Component, pageProps }: AppProps) {
    return (
       <>
          <Navbar />
-         <main className='min-h-full min-w-screen'>
-            {/* TODO: blank with loader screen(?) */}
-            <FrontPage />
-            {/* <DynamicCanvas /> */}
-            {/* </FrontPage> */}
-            <About />
-            <ProjectCards />
-            <ContactPage />
-         </main>
+         {/* TODO: blank with loader screen(?) */}
+         <FrontPage />
+         {/* <DynamicCanvas /> */}
+         {/* </FrontPage> */}
+         <About />
+         <ProjectCards />
+         <ContactPage />
       </>
    );
 }

@@ -11,9 +11,9 @@ const AboutMeDescription = () => {
             <br /> When {"I'm not coding, you'll"} find me at the gym, catching up on sports, or
             reading whatever piques my curiosity at the time
             {/* link to /about */}
-            <div className='inline'>
+            <div className='inline underline underline-offset-1 before:contents-[" "] decoration-blue-300'>
                <Link href={'/about'} as={'/about'}>
-                  Continue to bio
+                  Read complete bio
                </Link>
             </div>
          </p>
