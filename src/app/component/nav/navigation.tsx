@@ -16,7 +16,13 @@ const Navbar = ({ isHome = true }: { isHome: boolean }) => {
 
    return (
       // declare the color at the parent
-      <header className={classNames(BG_COLOR, POSITION, 'transition-all duration-200 ease-linear')}>
+      <header
+         className={classNames(
+            // BG_COLOR,
+            POSITION,
+            'transition-all duration-200 ease-linear'
+         )}
+      >
          <div className='w-full'>
             {/* mobile version */}
             <MobileNavigation isHome={isHome} />

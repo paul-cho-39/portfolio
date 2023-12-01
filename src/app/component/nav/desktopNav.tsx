@@ -22,6 +22,8 @@ const LargeNavigation = ({ isTop, isHome, bgColor }: LargeNavigationProps) => {
       setNavItems(navItems.map((item) => ({ ...item, current: false })));
    };
 
+   console.log('bg color is: ', bgColor);
+
    return (
       <div className={classNames(bgColor, 'hidden mx-auto md:h-16 md:flex md:w-full')}>
          <div className='flex flex-row justify-stretch items-stretch w-full h-full'>

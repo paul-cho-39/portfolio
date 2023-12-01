@@ -67,7 +67,7 @@ const FrontPage = ({ children }: { children?: React.ReactNode }) => {
       setTheme('light');
 
       // eslint-disable-next-line react-hooks/exhaustive-deps
-   }, [path]);
+   }, []);
 
    return (
       // <section ref={ref} id='home'>

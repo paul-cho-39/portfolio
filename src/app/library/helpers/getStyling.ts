@@ -3,18 +3,18 @@ import { Scroll } from '../hooks/useScrollDirection';
 
 export function getPosition(
    isHome: boolean,
-   scrollDirection: Scroll | null,
-   position: 'relative' | 'fixed' = 'relative'
+   scrollDirection: Scroll | null
+   // position: 'relative' | 'fixed' = 'relative'
 ) {
-   if (isHome) return 'fixed';
+   if (isHome) return '';
 
    if (scrollDirection === 'down') return 'hidden ';
 
-   if (scrollDirection === 'up') return position;
+   if (scrollDirection === 'up') return 'relative';
 }
 
 export function getBgColor(isHome: boolean, isTop: boolean) {
    if (!isHome) return DEFAULT_COLOR;
 
-   return isTop ? HOME_COLOR : DEFAULT_COLOR;
+   return HOME_COLOR;
 }
