@@ -26,8 +26,8 @@ export const Toggler = () => {
    return (
       <div
          className={classNames(
-            isLight ? 'bg-white' : 'bg-slate-600',
-            'w-12 h-20 p-0 cursor-pointer relative rounded-3xl bg-red-500'
+            isLight ? 'bg-orange-200' : 'bg-slate-600',
+            'w-8 h-16 p-0 cursor-pointer relative rounded-3xl bg-red-500'
          )}
          onClick={toggleTheme}
       >
@@ -39,7 +39,7 @@ export const Toggler = () => {
             }}
             className={classNames(
                isLight ? sunStyle : moonStyle,
-               'bg-white absolute left-0 w-12 h-12 rounded-full'
+               'bg-white absolute left-0 w-8 h-8 rounded-full'
             )}
             layout
             transition={spring}

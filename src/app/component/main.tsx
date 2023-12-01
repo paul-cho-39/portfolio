@@ -15,6 +15,8 @@ import { useDisableBreakPoints } from '@/app/library/hooks/useDisableBreakPoints
 import { FrontCoverDescription } from './description/frontCoverDescription';
 import { ArrowDown } from './illustrator/arrowDown';
 import classNames from 'classnames';
+import useDarkTheme from '../library/hooks/useDarkTheme';
+import { usePathname } from 'next/navigation';
 
 const OPACITY_THRESHOLD = 0.15;
 const SCROLL_THRESHOLD = 0.75;
@@ -24,6 +26,8 @@ const Canvas = lazy(() => import('./effects/scene'));
 const FrontPage = ({ children }: { children?: React.ReactNode }) => {
    const ref = useRef<HTMLDivElement>(null);
    const isMediumDisabled = useDisableBreakPoints();
+   const { setTheme } = useDarkTheme();
+   const path = usePathname();
 
    const isInView = useInView(ref, {
       margin: '-250px',
@@ -51,6 +55,19 @@ const FrontPage = ({ children }: { children?: React.ReactNode }) => {
          }
       }
    });
+
+   useEffect(() => {
+      /**
+       * light mode is the default mode
+       * inside home path there is no option to toggle
+       * and whenever the path is home set it back to the default theme
+       */
+      if (!path || path !== '/') return;
+
+      setTheme('light');
+
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, [path]);
 
    return (
       // <section ref={ref} id='home'>

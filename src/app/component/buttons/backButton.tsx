@@ -18,7 +18,7 @@ const BackButton = ({ showBackText }: BackButtonProps) => {
    };
 
    return (
-      <div className='fixed inset-20 dark:text-slate-200'>
+      <div className='dark:text-slate-200'>
          <button
             onClick={() => router.back()}
             onMouseEnter={handleMouseEnter}
@@ -28,7 +28,7 @@ const BackButton = ({ showBackText }: BackButtonProps) => {
          >
             <ArrowLeftIcon
                aria-hidden={true}
-               className='h-6 w-6 hover:outline-2 hover:outline-black'
+               className='h-10 w-10 hover:outline-2 hover:outline-black'
             />
             <span className='sr-only'>Back button</span>
             {showBackText && (

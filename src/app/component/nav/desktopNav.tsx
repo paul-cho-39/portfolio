@@ -45,7 +45,7 @@ const LargeNavigation = ({ isTop, isHome, bgColor }: LargeNavigationProps) => {
                            key={index}
                            onMouseLeave={handleMouseLeave}
                            onMouseEnter={() => handleMouseEnter(item.name)}
-                           className='mx-1 '
+                           className='mx-1 dark:text-gray-200'
                         >
                            <Link
                               href={isHome ? item.href : '/' + item.href}

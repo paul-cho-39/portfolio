@@ -11,7 +11,7 @@ const Navbar = ({ isHome = true }: { isHome: boolean }) => {
    const { isTop, scrollDirection } = useScrollDirection();
 
    const HOME_COLOR = 'bg-[#184888]';
-   const DEFAULT_COLOR = 'bg-white';
+   const DEFAULT_COLOR = 'bg-white dark:bg-slate-900';
 
    // in home route the navigation position is 'fixed' otherwise relative
    const getBgColor = () => {
@@ -20,6 +20,7 @@ const Navbar = ({ isHome = true }: { isHome: boolean }) => {
       return isTop ? HOME_COLOR : DEFAULT_COLOR;
    };
 
+   // if it is not home the nav will come down on scroll
    const getNavigationDisplay = () => {
       if (isHome) return 'fixed';
 
