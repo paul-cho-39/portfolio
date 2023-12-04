@@ -2,12 +2,12 @@
     "projects": 
     [
         {
-            "title": "book keeper",
+            "title": "Google-Books Library",
             "section": "feature project",
             "image": "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2102&q=80",
             "description": "Gravida quam mi erat tortor neque molestie. Auctor aliquet at porttitor a enim nunc suscipit tincidunt nunc. Et non lorem tortor posuere.",
-            "url": "",
-            "github": "" ,
+            "url": "googlebooks",
+            "github": "https://github.com/paul-cho-39/google-books-library" ,
             "badge": [
                 "react",
                 "nextJS",
@@ -15,12 +15,12 @@
             ]
         }, 
         {
-            "title": "book keeper",
+            "title": "Bookmarker-App",
             "section": "feature project",
             "image": "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2102&q=80",
             "description": "Gravida quam mi erat tortor neque molestie. Auctor aliquet at porttitor a enim nunc suscipit tincidunt nunc. Et non lorem tortor posuere.",   
-            "url": "",
-            "github": "" ,
+            "url": "bookmarker",
+            "github": "https://github.com/paul-cho-39/bookmark-app" ,
             "badge": [
                 "react",
                 "nextJS",
@@ -28,25 +28,12 @@
             ]
         },
         {
-            "title": "book keeper",
+            "title": "Portfolio Website",
             "section": "feature project",
             "image": "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2102&q=80",
             "description": "Gravida quam mi erat tortor neque molestie. Auctor aliquet at porttitor a enim nunc suscipit tincidunt nunc. Et non lorem tortor posuere. Nunc eu scelerisque interdum eget tellus non nibh scelerisque bibendum.",   
-            "url": "",
-            "github": "" ,
-            "badge": [
-                "react",
-                "nextJS",
-                "express"
-            ]
-        },
-        {
-            "title": "book keeper",
-            "section": "feature project",
-            "image": "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2102&q=80",
-            "description": "Gravida quam mi erat tortor neque molestie. Auctor aliquet at porttitor a enim nunc suscipit tincidunt nunc. Et non lorem tortor posuere. Nunc eu scelerisque interdum eget tellus non nibh scelerisque bibendum.",   
-            "url": "",
-            "github": "" ,
+            "url": "portfolio",
+            "github": "https://github.com/paul-cho-39/portfolio" ,
             "badge": [
                 "react",
                 "nextJS",

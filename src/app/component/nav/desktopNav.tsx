@@ -33,7 +33,7 @@ const LargeNavigation = ({ isTop, isHome, bgColor }: LargeNavigationProps) => {
                   role='navigation'
                   className={classNames(
                      isTop
-                        ? 'h-16 bg-transparent text-gray-950' // opacty bg-blur
+                        ? 'h-16 bg-transparent text-gray-900' // opacty bg-blur
                         : 'h-16',
                      'z-50 bg-transparent fixed transition-all duration-100 ease-in px-10'
                   )}

@@ -26,8 +26,8 @@ export const Toggler = () => {
    return (
       <div
          className={classNames(
-            isLight ? 'bg-orange-100' : 'bg-slate-600',
-            'w-8 h-16 p-0 cursor-pointer relative rounded-3xl bg-red-500'
+            isLight ? 'bg-orange-200/40' : 'bg-slate-600',
+            'w-8 h-16 p-0 cursor-pointer relative rounded-3xl'
          )}
          onClick={toggleTheme}
       >

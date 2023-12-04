@@ -9,21 +9,23 @@ import classNames from 'classnames';
  */
 
 interface BlogLayoutParams {
-   isOpenAside: boolean;
+   isOpenAside?: boolean;
    children?: React.ReactNode;
 }
+
+export const TitleContainer = ({ children }: { children: React.ReactNode }) => {
+   return <div className='my-4 lg:my-8'>{children} </div>;
+};
 
 export const BlogLayout = ({ isOpenAside, children }: BlogLayoutParams) => {
    //    const [isOpenAside, setOpenAside] = useState(false);
 
    return (
-      <Container>
-         <div className={classNames(isOpenAside ? 'max-w-2xl' : 'max-w-4xl', 'mx-auto p-5')}>
-            <main>
-               <article>{children}</article>
-            </main>
+      <main>
+         <div className='dark:text-gray-300 text-lg'>
+            <article>{children}</article>
          </div>
-      </Container>
+      </main>
    );
 };
 
