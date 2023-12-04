@@ -13,7 +13,7 @@ export interface ProjectsProps {
    section: string;
    image: string;
    description: string;
-   url: string | undefined;
+   url: string;
    github: string;
    badge: string[];
 }
@@ -67,6 +67,7 @@ const Cards = ({ projects }: ProjectCardsProps) => {
                         'flex flex-col px-6 py-2'
                      )}
                   >
+                     {/* github links and project link in desktop */}
                      <ProjectImage
                         src={project.image}
                         alt={project.title}
@@ -74,6 +75,8 @@ const Cards = ({ projects }: ProjectCardsProps) => {
                         index={index}
                         setIsHovered={setIsHovered}
                         title={project.title}
+                        githubUrl={project.github}
+                        projectUrl={project.url}
                      />
 
                      {/* CONTENTS */}
@@ -103,11 +106,12 @@ const Cards = ({ projects }: ProjectCardsProps) => {
                         />
                         <ProjectBadges badges={project.badge} isOdd={isOdd} index={index} />
                         {/* resolution smaller than large */}
+
+                        {/* github links and project link in small screen resolution */}
                         <ProjectLinks
                            title={project.title}
                            githubUrl={project.github}
-                           // projectUrl={project.url}
-                           projectUrl={'/'}
+                           projectUrl={project.url}
                         />
                      </motion.div>
                   </div>

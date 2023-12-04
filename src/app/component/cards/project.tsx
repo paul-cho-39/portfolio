@@ -8,9 +8,7 @@ const ProjectCards = ({}) => {
    return (
       <ProjectLayout>
          <SectionHeader title='Some Stuff I Built' />
-         <main>
-            <Cards projects={data.projects} />
-         </main>
+         <Cards projects={data.projects} />
       </ProjectLayout>
    );
 };

@@ -4,22 +4,24 @@ import React, { Dispatch, ImgHTMLAttributes, SetStateAction } from 'react';
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
 import classNames from 'classnames';
 import { motion, MotionProps, Variants } from 'framer-motion';
+import { ProjectActionsProps } from './links';
 
 export type ProjectImageProps = {
-   title: string;
    index: number;
    isHovered: { idx: number | null; github: boolean; project: boolean };
    setIsHovered: Dispatch<SetStateAction<ProjectImageProps['isHovered']>>;
 
    // handleHoverImage: (type: 'github' | 'project' | 'none') => void;
-} & ImgHTMLAttributes<HTMLImageElement>;
+} & ImgHTMLAttributes<HTMLImageElement> &
+   ProjectActionsProps;
 
 export const ProjectImage = ({
    title,
    index,
    isHovered,
    setIsHovered,
-   // handleHoverImage,
+   githubUrl,
+   projectUrl,
    ...props
 }: ProjectImageProps) =>
    // props?: ImageProps
@@ -57,7 +59,6 @@ export const ProjectImage = ({
             variants={imgVariants}
             viewport={{ once: true }}
             className='relative group aspect-[7/4] w-full sm:w-[29.6rem] md:w-[31.6rem] lg:max-w-md lg:flex-none lg:w-[28rem] overflow-hidden'
-            // className='relative group max-w-xs w-[100%] md:max-w-sm lg:max-w-md lg:flex-none lg:w-[50%] xl:w-[55%] overflow-hidden'
          >
             {/* eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text */}
             <img
@@ -72,8 +73,9 @@ export const ProjectImage = ({
                      isHovered && isHovered.github ? 'opacity-80' : 'opacity-20',
                      'row-span-1 border-b-[0.5px] border-slate-800 z-30'
                   )}
-                  href='#'
-                  aria-label={`View source code for github`}
+                  href={githubUrl}
+                  target='_blank'
+                  aria-label={`View source code for ${title}`}
                   onMouseEnter={() => handleHoverImage('github', index)}
                   onMouseLeave={() => handleHoverImage('none', null)}
                >
@@ -84,8 +86,8 @@ export const ProjectImage = ({
                      isHovered && isHovered.project ? 'opacity-80' : 'opacity-20',
                      'row-span-2  z-30'
                   )}
-                  href='#'
-                  aria-label={`Go to the project ${title}`}
+                  href={`/projects/${projectUrl}`}
+                  aria-label={`View project ${title}`}
                   onMouseEnter={() => handleHoverImage('project', index)}
                   onMouseLeave={() => handleHoverImage('none', null)}
                >
