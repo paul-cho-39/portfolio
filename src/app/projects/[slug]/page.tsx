@@ -6,8 +6,8 @@ export default function ProjectsPage(props: any) {
    //
    const slug = props.params.slug;
 
-   //    const [MDXContent, setMDXContent] = useState<JSX.Element | undefined>(undefined);
-   const [MDXContent, setMDXContent] = useState<JSX.Element | null>(null);
+   //    const [MDXComponent, setMDXComponent] = useState<JSX.Element | undefined>(undefined);
+   const [MDXComponent, setMDXComponent] = useState<JSX.Element | null>(null);
    const [error, setError] = useState(false);
 
    useEffect(() => {
@@ -15,9 +15,16 @@ export default function ProjectsPage(props: any) {
          try {
             // dynamically import the MDX file based on the slug
             const content = await import(`./../../posts/projects/${slug}.mdx`);
-            // console.log('the content is: ', content.default());
 
-            setMDXContent(content.default());
+            console.log('when calling the content is: ', content.default());
+            console.log('-------------------');
+            console.log('-------------------');
+            console.log('-------------------');
+            console.log('when NOT the content is: ', content.default);
+            console.log('-------------------');
+            console.log('-------------------');
+
+            setMDXComponent(content.default());
          } catch (err) {
             // handling error for fallback component
             setError(true);
@@ -28,15 +35,17 @@ export default function ProjectsPage(props: any) {
       loadMDX();
    }, [slug]);
 
+   // TODO: return 404 page here
    if (error) {
       return (
          <div className='text-2xl dark:text-gray-300'>Cannot find the page you are looking for</div>
       );
    }
 
-   if (!MDXContent) return <div>Loading...</div>;
+   // TODO: return loading page here
+   if (!MDXComponent) return <div>Loading...</div>;
 
-   return <div>{MDXContent && cloneElement(MDXContent, { key: slug })}</div>;
+   return <div>{MDXComponent && cloneElement(MDXComponent, { key: slug })}</div>;
 }
 
 // dynamic approach(?)

@@ -2,9 +2,9 @@ import fs from 'fs';
 import path from 'path';
 
 // the types here represent folder names
-type FolderParms = 'about' | 'projects' | 'blogs';
+type FolderParms = 'projects' | 'blogs';
 
-const getMdxFiles = (folder: FolderParms) => {
+const getMdxMetaData = (folder: FolderParms) => {
    try {
       // constructing the path to the folder
       const folderPath = path.join(__dirname, 'posts', folder);
@@ -21,4 +21,7 @@ const getMdxFiles = (folder: FolderParms) => {
    }
 };
 
-export default getMdxFiles;
+export default getMdxMetaData;
+
+// gray-matter
+// markdown-to-jsx
