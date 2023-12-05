@@ -1,29 +1,14 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import { BlogContainerProps } from '../@types';
 
 // the types here represent folder names
 type FolderParms = 'projects' | 'blogs';
 
-interface MarkdownMetaPros {
-   title: string;
-   date: number | string | Date;
+interface MarkdownMetaPros extends BlogContainerProps {
    slug: string;
 }
-
-// const getMarkdownMetaData = (folder: FolderParms) => {
-//    const markdown = getMdxMetaData(folder);
-//    return markdown.map((file) => {
-//       const contents = fs.readFileSync(`posts/${folder}/${file}.mdx`, 'utf8');
-//       const result = matter(contents);
-//       return {
-//          title: result.data.title,
-//          date: result.data.date,
-//          slug: file.replace('.mdx', ''),
-//          // TODO: add the types in @types
-//       };
-//    });
-// };
 
 const getMarkdownMetaData = (folder: FolderParms) => {
    const markdownDirectory = path.join(process.cwd(), `posts/${folder}`);
@@ -40,7 +25,9 @@ const getMarkdownMetaData = (folder: FolderParms) => {
 
          return {
             title: result.data.title as string,
-            date: result.data.date as number,
+            date: result.data.date as string,
+            totalReadingTime: result.data.totalReadingTime,
+            keywords: result.data.keywords,
             slug: filename.replace('.mdx', ''),
             // ... other metadata
          };

@@ -22,9 +22,9 @@ export interface BasicCardProps {
 type IconStyle = { iconStyle?: string };
 export interface BlogContainerProps {
    title: string;
+   date: string | number;
+   totalReadingTime: number;
    keywords?: string[];
-   totalReadingTime?: number;
-   date?: Date;
 }
 
 export type { ContactIconParams, IconStyle };

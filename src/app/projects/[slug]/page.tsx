@@ -1,4 +1,8 @@
+import { MainTitleContainer } from '@/app/component/headers/blog';
 import getMarkdownMetaData, { getMarkdownContent } from '@/app/library/mdx/getMarkdownData';
+
+import { ClockIcon, CalendarIcon, TagIcon } from '@heroicons/react/24/outline';
+
 import Markdown from 'markdown-to-jsx';
 
 export function generateStaticParams() {
@@ -10,17 +14,37 @@ export function generateStaticParams() {
 
 export default function Projects({ params }: { params: { slug: string } }) {
    const slug = params.slug;
-   console.log('THE SLUG IS CORRECTLY IDENTIFIED', slug);
-
    const content = getMarkdownContent('projects', slug);
 
    if (!content || !content.content) {
       return <div className='text-4xl text-red-500'>Not Found</div>;
    }
 
+   const metaDataItems = [
+      {
+         icon: ClockIcon,
+         title: 'Total Time',
+         value: content.data.totalReadingTime,
+      },
+      {
+         icon: CalendarIcon,
+         title: 'Date',
+         value: content.data.date,
+      },
+      {
+         icon: TagIcon,
+         title: 'Keywords',
+         value: content.data.keywords,
+      },
+   ];
+
    return (
-      <div className='prose'>
-         <h1 className='prose-2xl prose-h1:text-4xl'>{content.data.title}</h1>
+      <div className='max-w-2xl lg:max-w-[52rem] xl:max-w-[54rem] prose lg:text-lg'>
+         <MainTitleContainer
+            // title='How does it feel like it is at the end?'
+            title={content.data.title}
+            items={metaDataItems}
+         />
          <Markdown options={{ wrapper: 'article' }}>{content.content}</Markdown>
       </div>
    );

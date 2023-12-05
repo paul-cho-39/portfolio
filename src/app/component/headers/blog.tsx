@@ -1,37 +1,29 @@
-import { BlogContainerProps, IconStyle } from '@/app/library/@types';
-import TotalReadingTime from '../description/totalReadingTime';
-import BlogDate from '../description/blogDate';
-import Keywords from '../description/keywords';
+import MetaDataDescription, { MetaDataDescriptionProps } from '../description/metaDataDescription';
 
-/**
- * Title page
- * All data below should be represented in .json file.
- * For assigning keywords and connecting them from one idea to another it may be useful to think of fibonacci concept where the screen gets smaller for each idea(?)
- */
+type MainTitleContainerProps = MetaDataDescriptionProps & { title: string };
+// export const MainTitleContainer = (props: MainTitleContainerProps) => {
+//    const { title, items } = props;
+//    return (
+//       // <div className='dark:text-slate-100'>
+//       <div className='flex flex-col lg:flex-row justify-around items-center w-full p-4 dark:bg-slate-800 bg-slate-100'>
+//          {/* <h1 className='text-center lg:text-left font-semibold text-3xl lg:text-4xl dark:text-gray-200'> */}
+//          <h1 className='text-center lg:text-left font-semibold text-3xl lg:text-4xl dark:text-gray-200 mb-4 lg:mb-0'>
+//             {title}
+//          </h1>
+//          <MetaDataDescription items={items} />
+//       </div>
+//    );
+// };
 
-type MainTitleContainerProps = BlogContainerProps & IconStyle;
 export const MainTitleContainer = (props: MainTitleContainerProps) => {
-   const { title, ...rest } = props;
+   const { title, items } = props;
    return (
-      <div className='dark:text-slate-100'>
-         <h2 className='text-center p-1 text-6xl dark:text-gray-200'>{title}</h2>
-         <MetaContainer {...rest} />
-      </div>
-   );
-};
-
-// source code link
-// having to write this as 'aside' and then fold it for each
-// of the keyword 'maximum' nest should be 4
-type MetaContainerProps = Omit<BlogContainerProps, 'title'> & IconStyle;
-const MetaContainer = (props: MetaContainerProps) => {
-   const { date, keywords, totalReadingTime, iconStyle } = props;
-   return (
-      <div className='flex flex-col w-full bg-red-500'>
-         <div className='grid grid-cols-3 text-lg dark:text-slate-100 bg-yellow-500'>
-            <TotalReadingTime totalReadingTime={totalReadingTime} iconStyle={iconStyle} />
-            <BlogDate date={date} />
-            <Keywords iconStyle={iconStyle} keywords={keywords} />
+      <div className='flex flex-col lg:flex-row items-center w-full justify-around p-4 lg:px-8 lg:grid lg:grid-cols-5 shadow-lg border-[1px] dark:bg-slate-800 bg-slate-50'>
+         <h1 className='text-center leading-relaxed lg:text-left font-semibold text-3xl lg:text-4xl lg:col-span-3 dark:text-gray-200 mb-4 lg:mb-0'>
+            {title}
+         </h1>
+         <div className='lg:col-span-2 w-full'>
+            <MetaDataDescription items={items} />
          </div>
       </div>
    );
