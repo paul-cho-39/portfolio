@@ -50,13 +50,17 @@ const LargeNavigation = ({ isTop, isHome, bgColor }: LargeNavigationProps) => {
                            <Link
                               href={isHome ? item.href : '/' + item.href}
                               className={classNames(
-                                 'relative h-full self-baseline group flex gap-x-3 p-3 group-hover:text-opacity-60'
+                                 'relative h-full self-baseline group flex gap-x-3 p-3 hover:font-bold group-hover:text-opacity-60'
                               )}
                            >
                               <span className='relative text-lg font-medium'>{item.name}</span>
-                              <span>/</span>
                               <span className='absolute bottom-0 left-2 w-full overflow-hidden'>
-                                 <WaveyLine isHovered={item.current} height={10} width={55} />
+                                 <WaveyLine
+                                    className='dark:text-gray-200'
+                                    isHovered={item.current}
+                                    height={10}
+                                    width={60}
+                                 />
                               </span>
                            </Link>
                         </li>

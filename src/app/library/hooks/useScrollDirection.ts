@@ -11,8 +11,6 @@ export function useScrollDirection() {
    useEffect(() => {
       let lastScrollY = window.scrollY;
 
-      console.log('last scroll Y is: ', lastScrollY);
-
       const updateScrollDirection = () => {
          const scrollY = window.scrollY;
          const direction = scrollY > lastScrollY ? 'down' : 'up';

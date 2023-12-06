@@ -2,7 +2,12 @@ import { Variants, motion } from 'framer-motion';
 import classNames from 'classnames';
 import useDarkTheme from '@/app/library/hooks/useDarkTheme';
 
-export const Toggler = () => {
+interface TogglerProps {
+   isHidden: boolean;
+   isVertical?: boolean;
+}
+
+export const Toggler = ({ isHidden, isVertical }: TogglerProps) => {
    const { theme, setTheme } = useDarkTheme();
 
    const toggleTheme = () => {
@@ -20,14 +25,14 @@ export const Toggler = () => {
    };
 
    const isLight = theme === 'light';
-   const sunStyle = 'bg-gradient-to-br from-yellow-300 to-orange-300';
+   const sunStyle = 'bg-gradient-to-br from-yellow-200 to-orange-200';
    const moonStyle = 'bg-gradient-to-br from-gray-300 to-gray-500';
 
    return (
       <div
          className={classNames(
             isLight ? 'bg-orange-200/40' : 'bg-slate-600',
-            'w-8 h-16 p-0 cursor-pointer relative rounded-3xl'
+            'w-8 h-20 p-0 cursor-pointer relative rounded-3xl'
          )}
          onClick={toggleTheme}
       >
@@ -36,14 +41,39 @@ export const Toggler = () => {
             animate={{
                top: isLight ? '100%' : '0%',
                y: isLight ? '-100%' : '0%',
+               display: isHidden ? 'none' : 'block',
             }}
             className={classNames(
                isLight ? sunStyle : moonStyle,
-               'bg-white absolute left-0 w-8 h-8 rounded-full'
+               'bg-white relative left-0 w-8 h-8 rounded-full'
             )}
             layout
             transition={spring}
          />
       </div>
    );
+
+   // return (
+   //    <div
+   //       className={classNames(
+   //          isLight ? 'bg-orange-200/40' : 'bg-slate-600',
+   //          'w-8 h-16 p-0 cursor-pointer relative rounded-3xl'
+   //       )}
+   //       onClick={toggleTheme}
+   //    >
+   //       <motion.div
+   //          initial={false}
+   //          animate={{
+   //             top: isLight ? '100%' : '0%',
+   //             y: isLight ? '-100%' : '0%',
+   //          }}
+   //          className={classNames(
+   //             isLight ? sunStyle : moonStyle,
+   //             'bg-white absolute left-0 w-8 h-8 rounded-full'
+   //          )}
+   //          layout
+   //          transition={spring}
+   //       />
+   //    </div>
+   // );
 };

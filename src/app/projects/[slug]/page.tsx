@@ -49,11 +49,11 @@ export default function Projects({ params }: { params: { slug: string } }) {
 
    return (
       <div className='max-w-2xl lg:max-w-[52rem] xl:max-w-[54rem] prose lg:text-lg'>
-         <NavigationButton
+         {/* <NavigationButton
             navType='next'
             next={nextSlug as string}
             className='absolute top-[50%] left-6 bg-red-500'
-         />
+         /> */}
          <MainTitleContainer
             // title='How does it feel like it is at the end?'
             title={content.data.title}

@@ -16,10 +16,14 @@ function WaveyLine({ isHovered, className, ...props }: WavyLineProps) {
       >
          <path
             id='wavy'
-            stroke='#000'
+            // stroke='#000'
             fill='transparent'
             d='M0 6 q 5 -10 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0'
-            className={classNames(isHovered ? 'wavy-line z-0 dark:text-gray-200' : 'hidden')}
+            className={classNames(
+               isHovered
+                  ? 'wavy-line -z-10 dark:text-gray-200 stroke-black dark:stroke-gray-200'
+                  : 'hidden'
+            )}
          />
       </svg>
    );

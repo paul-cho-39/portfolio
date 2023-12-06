@@ -5,8 +5,13 @@ import { Toggler } from '@/app/component/buttons/toggler';
 import { Container } from '@/app/component/layouts/container';
 import Navbar from '@/app/component/nav/navigation';
 import classNames from 'classnames';
+import { useScrollDirection } from '../library/hooks/useScrollDirection';
 
 export default function ProjectLayouts({ children }: { children: React.ReactNode }) {
+   const { isTop, scrollDirection } = useScrollDirection();
+
+   const hideAside = !isTop && scrollDirection === 'down';
+
    return (
       <div className='min-h-screen w-full'>
          <Navbar isHome={false} />
@@ -15,14 +20,20 @@ export default function ProjectLayouts({ children }: { children: React.ReactNode
             <aside className='col-span-1 md:mt-2 lg:mt-4'>
                <div
                   className={classNames(
-                     'fixed md:min-h-[80%] lg:w-20 md:w-16 md:flex flex-col p-4 hidden items-center justify-center'
+                     hideAside ? 'hidden' : 'fixed',
+                     'md:min-h-[80%] lg:w-20 md:w-16 md:flex flex-col p-4 hidden items-center justify-center transition-all duration-200 ease-linear'
                   )}
                >
                   <div className='absolute top-4 left-[50%]'>
                      <BackButton showBackText={true} />
                   </div>
-                  <div className='absolute top-[40%] left-[50%]'>
-                     <Toggler />
+                  <div
+                     className={classNames(
+                        hideAside ? 'hidden' : 'absolute',
+                        'top-[40%] left-[50%]'
+                     )}
+                  >
+                     <Toggler isHidden={hideAside} />
                   </div>
                </div>
             </aside>
