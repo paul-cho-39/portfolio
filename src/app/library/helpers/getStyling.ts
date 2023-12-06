@@ -3,12 +3,13 @@ import { Scroll } from '../hooks/useScrollDirection';
 
 export function getPosition(
    isHome: boolean,
+   isTop: boolean,
    scrollDirection: Scroll | null
    // position: 'relative' | 'fixed' = 'relative'
 ) {
    if (isHome) return '';
 
-   if (scrollDirection === 'down') return 'hidden ';
+   if (!isTop && scrollDirection === 'down') return 'hidden ';
 
    if (scrollDirection === 'up') return 'relative';
 }

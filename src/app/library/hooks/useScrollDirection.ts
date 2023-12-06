@@ -2,12 +2,16 @@ import { useEffect, useState } from 'react';
 
 export type Scroll = 'up' | 'down';
 
+const THRESHOLD = 75;
+
 export function useScrollDirection() {
    const [scrollDirection, setScrollDirection] = useState<Scroll | null>(null);
    const [isTop, setIsTop] = useState(true);
 
    useEffect(() => {
       let lastScrollY = window.scrollY;
+
+      console.log('last scroll Y is: ', lastScrollY);
 
       const updateScrollDirection = () => {
          const scrollY = window.scrollY;
@@ -19,7 +23,7 @@ export function useScrollDirection() {
             setScrollDirection(direction);
          }
          lastScrollY = scrollY > 0 ? scrollY : 0;
-         setIsTop(lastScrollY === 0);
+         setIsTop(lastScrollY <= THRESHOLD);
       };
 
       window.addEventListener('scroll', updateScrollDirection);

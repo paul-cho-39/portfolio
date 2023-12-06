@@ -4,6 +4,7 @@ import getMarkdownMetaData, { getMarkdownContent } from '@/app/library/mdx/getMa
 import { ClockIcon, CalendarIcon, TagIcon } from '@heroicons/react/24/outline';
 
 import Markdown from 'markdown-to-jsx';
+import { notFound } from 'next/navigation';
 
 export function generateStaticParams() {
    const contents = getMarkdownMetaData('projects');
@@ -17,7 +18,7 @@ export default function Projects({ params }: { params: { slug: string } }) {
    const content = getMarkdownContent('projects', slug);
 
    if (!content || !content.content) {
-      return <div className='text-4xl text-red-500'>Not Found</div>;
+      return notFound();
    }
 
    const metaDataItems = [

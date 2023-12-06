@@ -26,7 +26,7 @@ const Canvas = lazy(() => import('./effects/scene'));
 const FrontPage = ({ children }: { children?: React.ReactNode }) => {
    const ref = useRef<HTMLDivElement>(null);
    const isMediumDisabled = useDisableBreakPoints();
-   const { setTheme } = useDarkTheme();
+   const { theme, setTheme } = useDarkTheme();
    const path = usePathname();
 
    const isInView = useInView(ref, {
@@ -67,7 +67,7 @@ const FrontPage = ({ children }: { children?: React.ReactNode }) => {
       setTheme('light');
 
       // eslint-disable-next-line react-hooks/exhaustive-deps
-   }, []);
+   }, [path, theme]);
 
    return (
       // <section ref={ref} id='home'>

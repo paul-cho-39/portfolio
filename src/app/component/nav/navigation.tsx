@@ -12,7 +12,7 @@ const Navbar = ({ isHome = true }: { isHome: boolean }) => {
    const { isTop, scrollDirection } = useScrollDirection();
 
    const BG_COLOR = getBgColor(isHome, isTop);
-   const POSITION = getPosition(isHome, scrollDirection);
+   const POSITION = getPosition(isHome, isTop, scrollDirection);
 
    return (
       // declare the color at the parent
