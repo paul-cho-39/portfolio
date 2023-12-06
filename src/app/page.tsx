@@ -6,7 +6,7 @@ import dynamic from 'next/dynamic';
 
 import About from './component/about';
 import ProjectCards from './component/cards/project';
-import ContactPage from './component/contact';
+import ContactPage from './component/footer/contact';
 import FrontPage from './component/main';
 import { useState } from 'react';
 import LogoImage from './component/nav/navTitle';

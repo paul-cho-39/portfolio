@@ -1,4 +1,4 @@
-import useMousePosition from '../library/hooks/useMousePosition';
+import useMousePosition from '../../library/hooks/useMousePosition';
 
 interface PointerProps {
    radius: number;

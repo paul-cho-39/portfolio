@@ -59,5 +59,17 @@ const getMarkdownContent = (folder: FolderParms, slug: string) => {
    }
 };
 
-export { getMarkdownContent };
+// if blogs are added to the mix combine the slugs into an array
+// then make sure the list is correct
+function getNextAndPrevMdx(currentSlug: string, allSlugs: string[]) {
+   const totalSlugs = allSlugs.length - 1;
+   const currentIndex = allSlugs.indexOf(currentSlug);
+
+   const nextSlug = currentIndex !== totalSlugs ? allSlugs[currentIndex + 1] : allSlugs[0];
+   const prevSlug = currentIndex > 0 ? allSlugs[currentIndex - 1] : allSlugs[totalSlugs];
+
+   return { nextSlug, prevSlug };
+}
+
+export { getMarkdownContent, getNextAndPrevMdx };
 export default getMarkdownMetaData;

@@ -9,7 +9,7 @@ const AboutSectionLayout = ({ children }: { children: React.ReactNode }) => {
          }}
          id='about'
       >
-         <Container className='px-4 lg:mx-12 py-6 md:py-12 lg:py-14'>{children}</Container>
+         <Container className='px-4 lg:mx-6 py-6 md:py-12 lg:py-14'>{children}</Container>
       </section>
    );
 };

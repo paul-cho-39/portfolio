@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { useScrollDirection } from '@/library/hooks/useScrollDirection';
-import { Divider } from '../divider';
+import { Divider } from '../layouts/divider';
 import MobileNavigation from './mobileNav';
 import LargeNavigation from './desktopNav';
 import { getBgColor, getPosition } from '@/app/library/helpers/getStyling';

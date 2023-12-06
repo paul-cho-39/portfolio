@@ -1,5 +1,10 @@
+import NavigationButton from '@/app/component/buttons/navigationButton';
 import { MainTitleContainer } from '@/app/component/headers/blog';
-import getMarkdownMetaData, { getMarkdownContent } from '@/app/library/mdx/getMarkdownData';
+import WebPagePreview from '@/app/component/webPagePreview';
+import getMarkdownMetaData, {
+   getMarkdownContent,
+   getNextAndPrevMdx,
+} from '@/app/library/mdx/getMarkdownData';
 
 import { ClockIcon, CalendarIcon, TagIcon } from '@heroicons/react/24/outline';
 
@@ -15,6 +20,9 @@ export function generateStaticParams() {
 
 export default function Projects({ params }: { params: { slug: string } }) {
    const slug = params.slug;
+
+   const allSlugs = getMarkdownMetaData('projects').map((content) => content.slug);
+   const { prevSlug, nextSlug } = getNextAndPrevMdx(slug, allSlugs);
    const content = getMarkdownContent('projects', slug);
 
    if (!content || !content.content) {
@@ -41,6 +49,11 @@ export default function Projects({ params }: { params: { slug: string } }) {
 
    return (
       <div className='max-w-2xl lg:max-w-[52rem] xl:max-w-[54rem] prose lg:text-lg'>
+         <NavigationButton
+            navType='next'
+            next={nextSlug as string}
+            className='absolute top-[50%] left-6 bg-red-500'
+         />
          <MainTitleContainer
             // title='How does it feel like it is at the end?'
             title={content.data.title}

@@ -1,7 +1,7 @@
 // pretend that the layout is already applied
 import { CircleStackIcon, ComputerDesktopIcon } from '@heroicons/react/24/outline';
 import ReactIcon from '../svg/reactIcon';
-import { Divider } from '../divider';
+import { Divider } from '../layouts/divider';
 
 // TODO: let's highlight the important part and highlight that part
 const SkillsSection = [

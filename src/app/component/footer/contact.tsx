@@ -1,9 +1,9 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { Container } from './layouts/container';
-import { Divider } from './divider';
+import { Container } from '../layouts/container';
+import { Divider } from '../layouts/divider';
 import Link from 'next/link';
-import { SectionHeader } from './headers/title';
-import { FrontCoverTitle } from './description/frontCoverDescription';
+import { SectionHeader } from '../headers/title';
+import { FrontCoverTitle } from '../description/frontCoverDescription';
 
 // determine:
 // 1) whether to change the color to #faebd7

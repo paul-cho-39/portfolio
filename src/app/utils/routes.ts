@@ -7,6 +7,7 @@ const ROUTES = {
       GOOGLE_BOOK_PROJECT: PROJECT_ROUTE + 'google-books',
       PORTFOLIO: PROJECT_ROUTE + 'portfolio',
       MOBILE_PROJECT: PROJECT_ROUTE + 'bookmark-app',
+      NEXT_PROJECT: (slug: string) => PROJECT_ROUTE + slug,
    },
 };
 
