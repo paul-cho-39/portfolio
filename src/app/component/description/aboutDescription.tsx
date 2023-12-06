@@ -1,3 +1,4 @@
+import ROUTES from '@/app/utils/routes';
 import Link from 'next/link';
 
 const AboutMeDescription = () => {
@@ -12,9 +13,7 @@ const AboutMeDescription = () => {
             reading whatever piques my curiosity at the time
             {/* link to /about */}
             <span className='inline underline underline-offset-1 before:contents-[" "] decoration-blue-300'>
-               <Link href={'/about'} as={'/about'}>
-                  Read complete bio
-               </Link>
+               <Link href={ROUTES.PROJECTS.ABOUT_ME}>Read complete bio</Link>
             </span>
          </p>
       </div>

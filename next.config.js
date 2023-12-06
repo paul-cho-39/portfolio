@@ -14,6 +14,14 @@ const nextConfig = {
 
       return config;
    },
+   async rewrites() {
+      return [
+         {
+            source: '/about',
+            destination: '/projects/about',
+         },
+      ];
+   },
 };
 
 module.exports = withMDX(nextConfig);

@@ -1,5 +1,3 @@
-import { Container } from '../container';
-import { useState } from 'react';
 import classNames from 'classnames';
 
 /**
@@ -12,10 +10,6 @@ interface BlogLayoutParams {
    isOpenAside?: boolean;
    children?: React.ReactNode;
 }
-
-export const TitleContainer = ({ children }: { children: React.ReactNode }) => {
-   return <div className='my-4 lg:my-8'>{children} </div>;
-};
 
 export const BlogLayout = ({ isOpenAside, children }: BlogLayoutParams) => {
    //    const [isOpenAside, setOpenAside] = useState(false);
@@ -37,9 +31,14 @@ export const SideContentLayout = ({ isOpenAside, children }: BlogLayoutParams) =
    );
 };
 
+// only for /about page
+export const TitleContainer = ({ children }: { children: React.ReactNode }) => {
+   return <div className='my-4 lg:my-8'>{children} </div>;
+};
+
 // at the bottom create 'contact me'
-// button
-const ContactSection = () => {
+// email, insta, fb
+export const ContactSection = () => {
    return (
       <div>
          Have questions? Want to connect? Shoot me a mail!

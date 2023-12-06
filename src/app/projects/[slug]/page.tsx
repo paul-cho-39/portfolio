@@ -50,6 +50,10 @@ export default function Projects({ params }: { params: { slug: string } }) {
    );
 }
 
+/**
+ * Using just @next/mdx but I don't know how it will be statically generated
+ * So changing it to where it will be statically loaded
+ */
 // export default function ProjectsPage(props: any) {
 //    //
 //    const slug = props.params.slug;
@@ -86,5 +90,3 @@ export default function Projects({ params }: { params: { slug: string } }) {
 
 //    return <div>{MDXComponent && cloneElement(MDXComponent, { key: slug })}</div>;
 // }
-
-// dynamic approach(?)
