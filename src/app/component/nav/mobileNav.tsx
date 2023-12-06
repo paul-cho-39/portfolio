@@ -4,6 +4,7 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { navigation } from '@/app/constants';
 import classNames from 'classnames';
 import Link from 'next/link';
+import { Toggler } from '../buttons/toggler';
 
 const MobileNavigation = ({ isHome }: { isHome: boolean }) => {
    const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -49,6 +50,7 @@ const MobileNavigation = ({ isHome }: { isHome: boolean }) => {
                                  />
                               </button>
                            </div>
+                           {/* list of navigation items */}
                            <nav className='flex flex-1 flex-col items-center justify-center'>
                               <ul role='list' className='flex flex-col mt-8 space-y-2 text-center'>
                                  {navigation.map((item) => (
@@ -78,6 +80,12 @@ const MobileNavigation = ({ isHome }: { isHome: boolean }) => {
                                        </Link>
                                     </li>
                                  ))}
+                              </ul>
+                              <ul className='text-center mt-24'>
+                                 <span className='block dark:text-gray-300 text-gray-700'>
+                                    <Toggler isHidden={false} isVertical={false} />
+                                    <span className='mt-2 block'>toggle theme</span>
+                                 </span>
                               </ul>
                               <ul className='mt-auto text-center'>
                                  <span>Made with care by Paul Cho</span>
