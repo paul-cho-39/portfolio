@@ -26,17 +26,17 @@ const IconComponents = {
 export const ContactItems = [
    {
       name: 'Github',
-      href: '#',
+      href: 'https://github.com',
       Icon: IconComponents['Github'],
    },
    {
       name: 'LinkedIn',
-      href: '#',
+      href: 'https://linkedin.com',
       Icon: IconComponents['LinkedIn'],
    },
    {
       name: 'Instagram',
-      href: '#',
+      href: 'https://instagram.com',
       Icon: IconComponents['Instagram'],
    },
 ] as const;

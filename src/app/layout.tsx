@@ -5,6 +5,7 @@ import type { Metadata } from 'next';
 import { Montserrat_Alternates, Barlow_Condensed } from 'next/font/google';
 import { ThemeProvider } from './library/contexts/ThemeContext';
 import Navbar from './component/nav/navigation';
+import Footer from './component/footer';
 
 export const montserratAlternatives = Montserrat_Alternates({
    display: 'swap',
@@ -35,6 +36,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
          <body className={(montserratAlternatives.variable, barlowCondensed.variable)}>
             <ThemeProvider>{children}</ThemeProvider>
          </body>
+         <Footer />
       </html>
    );
 }

@@ -1,8 +1,8 @@
 import classNames from 'classnames';
 import { useEffect, useState } from 'react';
 import styles from './../styles.module.css';
-import { ContactItems, ContactItemsParams } from '@/constants';
 import Link from 'next/link';
+import { ContactItems } from '@/app/constants';
 
 interface ContactMeFabProps {
    position?: 'top' | 'bottom';
