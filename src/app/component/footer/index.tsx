@@ -1,7 +1,8 @@
 import { ContactItems } from '@/app/constants';
 import Link from 'next/link';
 
-const Footer = () => {
+// TODO: have it as like a wavy line (like the ocean)
+const Footer = ({ isHome }: { isHome?: boolean }) => {
    return (
       <footer className='bg-blue-500 text-center py-6'>
          <div className='flex justify-center space-x-4 mb-4'>
@@ -19,7 +20,7 @@ const Footer = () => {
             ))}
          </div>
 
-         <div className='text-center'>Built and designed by Paul Cho</div>
+         <p className='text-center'>Built and designed by Paul Cho</p>
       </footer>
    );
 };

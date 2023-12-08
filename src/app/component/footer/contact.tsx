@@ -1,10 +1,11 @@
 import { motion, AnimatePresence } from 'framer-motion';
+
+import {
+   ContactButton,
+   ContactDescription,
+   ContactHeader,
+} from '../description/contactDescription';
 import { Container } from '../layouts/container';
-import { Divider } from '../layouts/divider';
-import Link from 'next/link';
-import { SectionHeader } from '../headers/title';
-import { FrontCoverTitle } from '../description/frontCoverDescription';
-import { ContactHeader } from '../description/contactDescription';
 
 // determine:
 // 1) whether to change the color to #faebd7
@@ -12,9 +13,11 @@ import { ContactHeader } from '../description/contactDescription';
 const ContactPage = () => {
    return (
       <section id='contact'>
-         <div className='sky-fade-gradient min-h-[50vh] min-w-fit'>
+         <Container className='sky-fade-gradient min-h-[50vh] min-w-fit'>
             <ContactHeader />
-         </div>
+            <ContactDescription />
+            <ContactButton />
+         </Container>
       </section>
    );
 };

@@ -17,6 +17,7 @@ import { ArrowDown } from './illustrator/arrowDown';
 import classNames from 'classnames';
 import useDarkTheme from '../library/hooks/useDarkTheme';
 import { usePathname } from 'next/navigation';
+import MotionSun from './about/sun';
 
 const OPACITY_THRESHOLD = 0.15;
 const SCROLL_THRESHOLD = 0.75;
@@ -60,7 +61,7 @@ const FrontPage = ({ children }: { children?: React.ReactNode }) => {
       /**
        * light mode is the default mode
        * inside home path there is no option to toggle
-       * and whenever the path is home set it back to the default theme
+       * when the path is home set it back to the default theme
        */
       if (!path || path !== '/') return;
 
@@ -88,7 +89,7 @@ const FrontPage = ({ children }: { children?: React.ReactNode }) => {
             </Suspense>
          </motion.div>
          <FrontCoverDescription
-            pre={"Hello there! 👋🏼  I'm"}
+            intro={"Hello there! 👋🏼  I'm"}
             main={
                <>
                   <span>{'Paul |'}</span>
@@ -101,6 +102,7 @@ const FrontPage = ({ children }: { children?: React.ReactNode }) => {
             }
          />
          {isMediumDisabled && <ArrowDown />}
+         <MotionSun containerRef={ref} />
       </FronPageLayout>
       // </section>
    );

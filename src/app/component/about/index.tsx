@@ -6,18 +6,26 @@ import { Skills } from './skills';
 import MotionPalmTrees from './palmTrees';
 import AboutSectionLayout from '../layouts/home/aboutSectionLayout';
 import AboutMeDescription from '../description/aboutDescription';
+import { useRef } from 'react';
+import MotionSun from './sun';
 
 const About = () => {
+   const targetRef = useRef<HTMLDivElement | null>(null);
    const isMediumDisabled = useDisableBreakPoints();
+
    return (
-      <AboutSectionLayout>
+      <AboutSectionLayout ref={targetRef}>
          <SectionHeader title='About Me' />
          <MotionPalmTrees isMediumDisabled={isMediumDisabled} />
+         {/* <SunSvg /> */}
+         <MotionSun targetRef={targetRef} isMediumDisabled={isMediumDisabled} />
+
+         {/* possibility the ref may be changed? */}
          <div className='flex flex-col-reverse lg:flex-row lg:items-stretch lg:justify-stretch'>
             {/* contents */}
             <AboutMeDescription />
 
-            {/* images */}
+            {/* AboutMeImage */}
             <div className='mb-12 inline-flex justify-center self-center items-center lg:inline-flex lg:justify-center bg-red-500'>
                {/* TODO: use image here */}
                <img

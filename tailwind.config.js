@@ -12,8 +12,14 @@ module.exports = {
          backgroundImage: {
             'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
             'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-            'custom-url':
-               'url(https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2102&q=80)',
+            'gradient-circle-strong':
+               'radial-gradient(circle, #ff8800 0%, #ff6600 50%, #cc2200 100%)',
+            'gradient-circle-medium':
+               'radial-gradient(circle, #ffaa00 0%, #ff8800 50%, #ff6600 100%)',
+            'gradient-circle-light':
+               'radial-gradient(circle, #ffcc00 0%, #ffaa00 50%, #ff8800 100%)',
+            'gradient-circle-normal':
+               'radial-gradient(circle, #ffdd00 0%, #ffcc00 50%, #ffaa00 100%)',
          },
          animation: {
             'fade-in': 'fadeIn 0.5s ease-in forwards',

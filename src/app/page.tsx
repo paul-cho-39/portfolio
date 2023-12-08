@@ -10,6 +10,7 @@ import ContactPage from './component/footer/contact';
 import FrontPage from './component/main';
 import { useState } from 'react';
 import LogoImage from './component/nav/navTitle';
+import Footer from './component/footer';
 
 const DynamicCanvas = dynamic(() => import('@/components/effects/scene'), {
    ssr: false,
@@ -31,6 +32,9 @@ export default function Home({ Component, pageProps }: AppProps) {
          <About />
          <ProjectCards />
          <ContactPage />
+         <Footer />
       </>
    );
 }
+
+// using useTransition effect to first load the other components?
