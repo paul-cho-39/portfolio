@@ -33,7 +33,7 @@ export const Skills = () => {
             {SkillsSection.map((skill, index) => (
                <div
                   key={index}
-                  className='border-[6px] border-gray-300 rounded-md p-4 h-auto min-h-[200px] sm:max-h-[400px]'
+                  className='border-[6px] border-blue-500/50 rounded-md p-4 h-auto min-h-[200px] sm:max-h-[400px]'
                >
                   <div className='flex flex-col items-center'>
                      <skill.icons

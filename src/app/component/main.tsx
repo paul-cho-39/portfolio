@@ -102,7 +102,7 @@ const FrontPage = ({ children }: { children?: React.ReactNode }) => {
             }
          />
          {isMediumDisabled && <ArrowDown />}
-         <MotionSun containerRef={ref} />
+         {/* <MotionSun containerRef={ref} /> */}
       </FronPageLayout>
       // </section>
    );
