@@ -34,11 +34,7 @@ const ProjectTitleRef = forwardRef<HTMLDivElement, ProjectTitleProps>((props, re
 });
 
 const Title = ({ title }: { title: string }) => {
-   return (
-      <h3 className='font-serif text-3xl md:text-3xl lg:text-4xl xl:text-5xl font-medium z-10'>
-         {title}
-      </h3>
-   );
+   return <h3 className='font-serif text-xl md:text-2xl font-medium z-10'>{title}</h3>;
 };
 
 const Subtitle = ({ subtitle, index, isHovered }: SubtitleProps) => {
@@ -53,6 +49,7 @@ const Subtitle = ({ subtitle, index, isHovered }: SubtitleProps) => {
          {isSameIndex(index, 'github') ? (
             <motion.div
                layout
+               className='text-blue-600'
                initial={{ y: 20, opacity: 0 }}
                animate={{ y: 0, opacity: 1 }}
                aria-label='View Github repo'
@@ -64,6 +61,7 @@ const Subtitle = ({ subtitle, index, isHovered }: SubtitleProps) => {
          ) : isSameIndex(index, 'project') ? (
             <motion.div
                layout
+               className='text-blue-600'
                initial={{ y: 20, opacity: 0 }}
                animate={{ y: 0, opacity: 1 }}
                aria-label='View project'

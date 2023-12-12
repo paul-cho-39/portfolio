@@ -84,7 +84,7 @@ const FrontPage = ({ children }: { children?: React.ReactNode }) => {
          >
             {/* TODO: better fallback  */}
             <Suspense fallback={<div>Loading...</div>}>
-               {/* <Canvas /> */}
+               <Canvas />
                {children}
             </Suspense>
          </motion.div>

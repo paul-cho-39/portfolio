@@ -79,7 +79,7 @@ export const ProjectImage = ({
                   onMouseEnter={() => handleHoverImage('github', index)}
                   onMouseLeave={() => handleHoverImage('none', null)}
                >
-                  <GithubIcon className='absolute top-2 right-2 w-8 h-8 hover:stroke-slate-400 hover:fill-slate-400' />
+                  <GithubIcon className='absolute top-2 right-2 w-8 h-8 ' />
                </Link>
                <Link
                   className={classNames(
@@ -91,7 +91,7 @@ export const ProjectImage = ({
                   onMouseEnter={() => handleHoverImage('project', index)}
                   onMouseLeave={() => handleHoverImage('none', null)}
                >
-                  <ArrowTopRightOnSquareIcon className='absolute top-[53%] right-2 w-8 h-8 hover:stroke-slate-400' />
+                  <ArrowTopRightOnSquareIcon className='absolute top-[53%] right-2 w-8 h-8 ' />
                </Link>
             </div>
          </motion.div>

@@ -57,7 +57,7 @@ const Cards = ({ projects }: ProjectCardsProps) => {
                viewport={{ once: true, margin: '-16%' }}
                className={classNames(
                   isOdd(index) ? 'lg:flex-row-reverse ' : 'lg:flex-row',
-                  'mx-auto flex w-full flex-col items-center mb-2 lg:mb-0'
+                  'mx-auto flex w-full py-3 flex-col items-center mb-2 lg:mb-0'
                )}
             >
                <div className={classNames('lg:w-full lg:max-w-4xl lg:mb-6 xl:mb-8 py-2')}>

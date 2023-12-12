@@ -7,6 +7,7 @@ interface TogglerProps {
    isVertical?: boolean;
 }
 
+// a switch toggler compatible for both vertical and horizontal
 export const Toggler = ({ isHidden, isVertical = true }: TogglerProps) => {
    const { theme, setTheme } = useDarkTheme();
 
@@ -43,7 +44,7 @@ export const Toggler = ({ isHidden, isVertical = true }: TogglerProps) => {
    return (
       <div
          className={classNames(
-            isVertical ? 'w-8 h-20' : 'h-8 w-16',
+            isVertical ? 'w-10 h-16' : 'h-8 w-14 lg:w-14 lg:h-10',
             isLight ? 'bg-orange-200/40' : 'bg-slate-600',
             'p-0 cursor-pointer relative rounded-3xl'
          )}
@@ -54,7 +55,7 @@ export const Toggler = ({ isHidden, isVertical = true }: TogglerProps) => {
             animate={togglePosition}
             className={classNames(
                isLight ? sunStyle : moonStyle,
-               'bg-white relative left-0 w-8 h-8 rounded-full'
+               'bg-white relative left-0 w-8 h-8 lg:w-10 lg:h-10 rounded-full'
             )}
             layout
             transition={spring}
