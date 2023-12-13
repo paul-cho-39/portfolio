@@ -6,15 +6,19 @@ import { Container } from '@/app/component/layouts/container';
 import Navbar from '@/app/component/nav/navigation';
 import classNames from 'classnames';
 import { useScrollDirection } from '../library/hooks/useScrollDirection';
+import { useState } from 'react';
+import { NAVIGATION, NavigationParams } from '../constants';
 
 export default function ProjectLayouts({ children }: { children: React.ReactNode }) {
    const { isTop, scrollDirection } = useScrollDirection();
+
+   const [navigation, setNavigation] = useState<NavigationParams>(NAVIGATION);
 
    const hideAside = !isTop && scrollDirection === 'down';
 
    return (
       <div className='min-h-screen w-full'>
-         <Navbar isHome={false} />
+         <Navbar navigation={navigation} setNavigation={setNavigation} isHome={false} />
          <section className='w-full md:grid md:grid-cols-12 md:gap-0 dark:bg-zinc-800 bg-white overflow-hidden'>
             {/* side content only in larger screen */}
             <aside className='col-span-1 md:mt-2 lg:mt-4'>

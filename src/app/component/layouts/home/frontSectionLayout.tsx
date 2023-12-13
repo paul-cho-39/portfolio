@@ -24,12 +24,12 @@ import React, { forwardRef } from 'react';
 const FrontPageLayout = forwardRef<React.ElementRef<'div'>, React.ComponentPropsWithoutRef<'div'>>(
    function OuterContainer({ children, ...props }, ref) {
       return (
-         <section>
+         <section id='home'>
             <div
                ref={ref}
                style={{
                   width: '100%',
-                  height: '100vh',
+                  height: '150vh',
                   overflow: 'hidden',
                }}
                className='sky-gradient relative inset-0 z-20'

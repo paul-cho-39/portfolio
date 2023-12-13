@@ -17,27 +17,32 @@ import { ArrowDown } from './illustrator/arrowDown';
 import classNames from 'classnames';
 import useDarkTheme from '../library/hooks/useDarkTheme';
 import { usePathname } from 'next/navigation';
-import MotionSun from './about/sun';
+import { NavigationParams } from '../constants';
 
-const OPACITY_THRESHOLD = 0.125;
-const SCROLL_THRESHOLD = 0.75;
+const OPACITY_THRESHOLD = 0.15;
+const SCROLL_THRESHOLD = 0.58;
 
 const Canvas = lazy(() => import('./effects/scene'));
 
-const FrontPage = ({ children }: { children?: React.ReactNode }) => {
+const FrontPage = ({
+   homeNav,
+   children,
+}: {
+   homeNav: NavigationParams | undefined;
+   children?: React.ReactNode;
+}) => {
    const ref = useRef<HTMLDivElement>(null);
    const isMediumDisabled = useDisableBreakPoints();
    const { theme, setTheme } = useDarkTheme();
    const path = usePathname();
 
    const isInView = useInView(ref, {
-      margin: '-250px',
+      margin: '-300px',
    });
 
    const controls = useAnimation();
    const { scrollY } = useScroll();
    const opacity = useMotionValue(1);
-   let currentOpacity = 1;
 
    useMotionValueEvent(scrollY, 'change', (latest) => {
       if (!ref.current || !isInView) return;
@@ -45,18 +50,32 @@ const FrontPage = ({ children }: { children?: React.ReactNode }) => {
       const sectionHeight = ref.current?.scrollHeight;
       const scrollPercentage = Math.max((sectionHeight - latest) / sectionHeight, 0);
 
-      if (scrollPercentage < SCROLL_THRESHOLD) {
-         const targetOpacity = Math.pow(scrollPercentage, 1.8);
-         console.log('THE CURRENT TARGET OPACITY IS: ', targetOpacity);
-         opacity.set(targetOpacity);
+      if (!homeNav || (homeNav && !homeNav.current)) {
+         // detach the entire component from the tree
+         controls.set({ display: 'none' });
+      }
 
-         if (currentOpacity <= OPACITY_THRESHOLD) {
-            controls.start({ display: 'none' });
-         } else {
-            controls.start({ display: 'block' });
+      if (homeNav && homeNav.current) {
+         controls.start({ display: 'block' });
+         opacity.set(scrollPercentage);
+         if (scrollPercentage < SCROLL_THRESHOLD) {
+            // accelerates the opacity as it scrolls down
+            console.log('the scroll percentage is now: ', scrollPercentage);
+            const targetOpacity = Math.pow(scrollPercentage, 1.6);
+            opacity.set(targetOpacity);
          }
       }
    });
+
+   useEffect(() => {
+      // when 'home' is active and navigated to 'home' it should set the
+      // opacity back to 1
+      const scrollY = window.screenY;
+      if (homeNav && homeNav.current && scrollY <= 50) {
+         controls.start({ display: 'block' });
+         opacity.set(1);
+      }
+   }, [homeNav, controls, opacity]);
 
    useEffect(() => {
       /**
@@ -70,6 +89,10 @@ const FrontPage = ({ children }: { children?: React.ReactNode }) => {
 
       // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [path, theme]);
+
+   // if it is mobile device then have it so that when 'pressedIn' it will trigger the event to create ripple effect
+   // and if it is mobile device then have it so that it will be onClick that will be trigger
+   // with setTimeout
 
    return (
       <FronPageLayout ref={ref} id='home'>
@@ -102,9 +125,7 @@ const FrontPage = ({ children }: { children?: React.ReactNode }) => {
             }
          />
          {isMediumDisabled && <ArrowDown />}
-         {/* <MotionSun containerRef={ref} /> */}
       </FronPageLayout>
-      // </section>
    );
 };
 

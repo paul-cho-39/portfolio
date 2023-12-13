@@ -1,12 +1,15 @@
 import { Fragment, SetStateAction, useCallback, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { navigation } from '@/app/constants';
 import classNames from 'classnames';
 import Link from 'next/link';
+
 import { Toggler } from '../buttons/toggler';
 
-const MobileNavigation = ({ isHome }: { isHome: boolean }) => {
+import type { NavigationParams } from '@/app/constants';
+import { NavigationProps } from './navigation';
+
+const MobileNavigation = ({ navigation, isHome }: Omit<NavigationProps, 'setNavigation'>) => {
    const [sidebarOpen, setSidebarOpen] = useState(false);
    return (
       <>

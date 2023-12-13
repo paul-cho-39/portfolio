@@ -19,7 +19,7 @@ const ContactDescription = ({ onClick }: ContactDescriptionProps) => {
             </p>
             <RippleEffectButton
                name='Drop a Message'
-               className='bg-blue-600/50'
+               className='sky-fade-gradient'
                onClick={handleEmailClick}
                rippleColor='dodgerblue'
             />

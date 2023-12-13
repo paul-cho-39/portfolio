@@ -1,20 +1,13 @@
 import { GithubIcon, LinkedInIcon, InstagramIcon } from '@/components/fab/contacts';
 
-export type ColorTheme = 'light' | 'dark';
-
-export type ThemeContextParams = {
-   theme: ColorTheme;
-   setTheme: (value: ColorTheme) => void;
-};
-
 export const HOME_COLOR = 'bg-[#184888]';
 export const DEFAULT_COLOR = 'bg-white dark:bg-zinc-900';
 
-export const navigation = [
-   { name: 'home', href: '#home', num: '01.', current: false },
-   { name: 'about', href: '#about', num: '02.', current: false },
-   { name: 'projects', href: '#projects', num: '03.', current: false },
-   { name: 'contact', href: '#contact', num: '04.', current: false },
+export const NAVIGATION: NavigationParams[] = [
+   { name: 'home', href: '#home', current: false, hovered: false },
+   { name: 'about', href: '#about', current: false, hovered: false },
+   { name: 'projects', href: '#projects', current: false, hovered: false },
+   { name: 'contact', href: '#contact', current: false, hovered: false },
 ];
 
 const IconComponents = {
@@ -40,7 +33,6 @@ export const ContactItems = [
       Icon: IconComponents['Instagram'],
    },
 ] as const;
-export type ContactItemsParams = (typeof ContactItems)[keyof typeof ContactItems];
 
 export const FrontPageGenerator = [
    {
@@ -62,4 +54,30 @@ export const FrontPageGenerator = [
       className: '',
    },
 ];
-export type FrontPageGeneratorItem = (typeof FrontPageGenerator)[number];
+
+type ColorTheme = 'light' | 'dark';
+
+type ThemeContextParams = {
+   theme: ColorTheme;
+   setTheme: (value: ColorTheme) => void;
+};
+
+type ContactItemsParams = (typeof ContactItems)[keyof typeof ContactItems];
+
+type FrontPageGeneratorItem = (typeof FrontPageGenerator)[number];
+
+type NavigationNames = 'home' | 'about' | 'projects' | 'contact';
+type NavigationParams = {
+   name: NavigationNames;
+   href: string;
+   current: boolean;
+   hovered: boolean;
+};
+
+export type {
+   NavigationParams,
+   FrontPageGeneratorItem,
+   ColorTheme,
+   ThemeContextParams,
+   ContactItemsParams,
+};

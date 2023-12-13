@@ -1,25 +1,35 @@
-import { navigation } from '@/app/constants';
 import classNames from 'classnames';
-import HeaderTitle from './navTitle';
-import WaveyLine from '../svg/wavey-line';
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import Link from 'next/link';
 
-interface LargeNavigationProps {
+import HeaderTitle from './navTitle';
+import WaveyLine from '../svg/wavey-line';
+
+import type { NavigationParams } from '@/app/constants';
+import { NavigationProps } from './navigation';
+
+interface LargeNavigationProps extends NavigationProps {
    isTop: boolean;
-   isHome: boolean;
    bgColor: string;
 }
 
-const LargeNavigation = ({ isTop, isHome, bgColor }: LargeNavigationProps) => {
-   const [navItems, setNavItems] = useState(navigation);
+const LargeNavigation = ({
+   navigation,
+   setNavigation,
+   isTop,
+   isHome,
+   bgColor,
+}: LargeNavigationProps) => {
+   // const [navItems, setNavItems] = useState(navigation);
 
    const handleMouseEnter = (name: string) => {
-      setNavItems(navItems.map((item) => (item.name === name ? { ...item, current: true } : item)));
+      setNavigation(
+         navigation.map((item) => (item.name === name ? { ...item, hovered: true } : item))
+      );
    };
 
    const handleMouseLeave = () => {
-      setNavItems(navItems.map((item) => ({ ...item, current: false })));
+      setNavigation(navigation.map((item) => ({ ...item, hovered: false })));
    };
 
    return (
@@ -40,7 +50,7 @@ const LargeNavigation = ({ isTop, isHome, bgColor }: LargeNavigationProps) => {
                      role='list'
                      className='flex flex-row items-center justify-center gap-x-1 h-full group'
                   >
-                     {navItems.map((item, index) => (
+                     {navigation.map((item, index) => (
                         <li
                            key={index}
                            onMouseLeave={handleMouseLeave}
@@ -57,7 +67,7 @@ const LargeNavigation = ({ isTop, isHome, bgColor }: LargeNavigationProps) => {
                               <span className='absolute bottom-0 left-2 w-full overflow-hidden'>
                                  <WaveyLine
                                     className='dark:text-gray-200'
-                                    isHovered={item.current}
+                                    isHovered={item.hovered}
                                     height={10}
                                     width={60}
                                  />

@@ -43,6 +43,8 @@ const RippleEffectButton = ({
    const counterRef = useRef(0);
 
    useEffect(() => {
+      console.log('BEING HOVERED');
+
       let interval: NodeJS.Timer;
       if (mousePosition.x !== 0 && mousePosition.y !== 0) {
          interval = setInterval(() => {
