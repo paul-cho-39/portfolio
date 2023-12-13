@@ -14,7 +14,6 @@ interface CanvasProps {
    isFireworkHovered?: boolean;
 }
 const WindowCanvas = ({ isFireworkHovered }: CanvasProps) => {
-   // if using jotai there is no need to pass isFrieworkHovered here
    return (
       <Canvas
          frameloop='always'

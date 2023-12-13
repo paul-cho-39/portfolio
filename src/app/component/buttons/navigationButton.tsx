@@ -7,15 +7,19 @@ import { capitalizeFirstLetter } from '@/app/library/helpers/formatChar';
 interface NavigationButtonProps {
    next: string;
    navType: 'next' | 'prev';
+   isDisplayed: boolean;
    className?: string;
 }
 
-const NavigationButton = ({ next, navType, className }: NavigationButtonProps) => {
+/**
+ * when user scrolls down
+ */
+const NavigationButton = ({ next, navType, isDisplayed, className }: NavigationButtonProps) => {
    const SR_TEXT = navType === 'next' ? 'next project' : 'previous project';
    const HOVER_TEXT = navType === 'next' ? 'Next' : 'Previous';
 
    return (
-      <div className={className}>
+      <div className={classNames(className, isDisplayed ? 'visible' : 'invisible')}>
          <Link href={ROUTES.PROJECTS.NEXT_PROJECT(next)} className='group'>
             {navType === 'next' ? (
                <ChevronRightIcon className='w-8 h-8 dark:text-gray-300' />
@@ -25,7 +29,6 @@ const NavigationButton = ({ next, navType, className }: NavigationButtonProps) =
             <span className='sr-only'>{SR_TEXT}</span>
             <span
                className={classNames(
-                  //   navType === 'next' ? '-translate-x-4' : 'translate-x-4',
                   'hidden group-hover:block group-hover:opacity-100 absolute translate-y-3 transition-all duration-100 ease-in'
                )}
             >

@@ -19,7 +19,7 @@ import useDarkTheme from '../library/hooks/useDarkTheme';
 import { usePathname } from 'next/navigation';
 import MotionSun from './about/sun';
 
-const OPACITY_THRESHOLD = 0.15;
+const OPACITY_THRESHOLD = 0.125;
 const SCROLL_THRESHOLD = 0.75;
 
 const Canvas = lazy(() => import('./effects/scene'));
@@ -46,7 +46,8 @@ const FrontPage = ({ children }: { children?: React.ReactNode }) => {
       const scrollPercentage = Math.max((sectionHeight - latest) / sectionHeight, 0);
 
       if (scrollPercentage < SCROLL_THRESHOLD) {
-         const targetOpacity = Math.pow(scrollPercentage, 2.5);
+         const targetOpacity = Math.pow(scrollPercentage, 1.8);
+         console.log('THE CURRENT TARGET OPACITY IS: ', targetOpacity);
          opacity.set(targetOpacity);
 
          if (currentOpacity <= OPACITY_THRESHOLD) {
@@ -71,7 +72,6 @@ const FrontPage = ({ children }: { children?: React.ReactNode }) => {
    }, [path, theme]);
 
    return (
-      // <section ref={ref} id='home'>
       <FronPageLayout ref={ref} id='home'>
          <motion.div
             style={{ opacity: opacity }}

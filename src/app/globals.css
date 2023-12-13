@@ -163,6 +163,20 @@ body {
   }
 }
 
+@keyframes ripple {
+  0% {
+    opacity: 0.5;
+}
+25% {
+    opacity: 0.7;
+}
+100% {
+    transform: scale(6);
+    /* padding-bottom: 200%; */
+    opacity: 0;
+}
+}
+
 @keyframes sunpulse {
 	from {
 		box-shadow: 0 0 100px #ff0, 0 0 100px #ff0;
