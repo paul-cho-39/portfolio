@@ -1,12 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 
-import {
-   ContactButton,
-   ContactDescription,
-   ContactHeader,
-} from '../description/contactDescription';
+import { ContactDescription, ContactHeader } from '../description/contactDescription';
 import { Container } from '../layouts/container';
-import RippleEffectButton from '../buttons/rippleEffectButton';
 
 // determine:
 // 1) whether to change the color to #faebd7
@@ -16,8 +11,9 @@ const ContactPage = () => {
       <section id='contact'>
          <Container className='sky-fade-gradient min-h-[50vh] min-w-fit'>
             <ContactHeader />
+
             <ContactDescription />
-            <RippleEffectButton name='Drop a Message' className=' text-white shadow-md' />
+            {/* <RippleEffectButton name='Drop a Message' className=' text-white shadow-md' /> */}
          </Container>
       </section>
    );

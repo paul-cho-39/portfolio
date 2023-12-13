@@ -5,7 +5,9 @@ interface RippleEffectButtonProps {
    name: string;
    onClick: () => void;
    rippleSize?: number;
-   rippleColor?: string;
+   rippleColor?: React.CSSProperties['backgroundColor'];
+   rippleTime?: number;
+   rippleInterval?: number;
    className?: string;
 }
 
@@ -15,12 +17,14 @@ type RippleEffect = {
 };
 
 const DEFAULT_SIZE = 50;
+const DEFAULT_TIME = 800;
+const DEFAULT_RIPPLE_INTERVAL = 500;
 const OFFSET_BY = 40;
 
 /**
  * Sets ripple effect with customizable color and size when hovered over.
  * The effect will persist as long as the user hovers over the button.
- * @param {object} {name, onClick, rippleSize, rippleColor, className}
+ * @param {object} {name, onClick, rippleSize, rippleColor, rippleTime, rippleInterval, className}
  * @returns JSX.Element
  */
 const RippleEffectButton = ({
@@ -28,6 +32,8 @@ const RippleEffectButton = ({
    onClick,
    rippleSize = DEFAULT_SIZE,
    rippleColor = 'blue',
+   rippleTime,
+   rippleInterval,
    className,
 }: RippleEffectButtonProps) => {
    const [ripples, setRipples] = useState<RippleEffect[]>([]);
@@ -46,8 +52,8 @@ const RippleEffectButton = ({
 
             setTimeout(() => {
                setRipples((prev) => prev.filter((ripple) => ripple.key !== newRipple.key));
-            }, 1000);
-         }, 500);
+            }, rippleTime || DEFAULT_TIME);
+         }, rippleInterval || DEFAULT_RIPPLE_INTERVAL);
       }
 
       return () => {
@@ -65,14 +71,16 @@ const RippleEffectButton = ({
 
          const x = mouseX - rect.left;
          const y = mouseY - rect.top;
-         const size = Math.min(Math.max(button.clientHeight, button.clientWidth), rippleSize);
+         //  if 'rippleSize' is assigned and if over minit sets the maximum size to either height/width
+         const maxSize = Math.max(button.clientHeight, button.clientWidth);
+         const size = Math.min(maxSize, rippleSize);
          const offset = (size - OFFSET_BY) / 2;
 
          return {
             key: `${Date.now()}-${counterRef.current++}`,
             style: {
-               top: `${y - offset}px`,
-               left: `${x - offset}px`,
+               top: `${y}px`,
+               left: `${x}px`,
                height: `${size}px`,
                width: `${size}px`,
                transform: 'scale(0) translate(-50%, -50%)',
@@ -102,7 +110,7 @@ const RippleEffectButton = ({
          onMouseEnter={handleMouseEnter}
          onMouseLeave={handleMouseLeave}
          className={classNames(
-            'bg-white relative overflow-hidden font-semibold py-2 px-4 rounded-lg text-center transition-all duration-300 ease-in-out shadow-md hover:shadow-2xl',
+            'relative overflow-hidden font-semibold py-2 px-4 rounded-lg text-center transition-all duration-300 ease-in-out shadow-md hover:shadow-2xl',
             className
          )}
       >
