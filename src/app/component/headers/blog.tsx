@@ -2,7 +2,10 @@ import MetaDataDescription, { MetaDataDescriptionProps } from '../description/me
 
 type MainTitleContainerProps = MetaDataDescriptionProps & { title: string };
 
-// container for blog title and metaData
+/**
+ * This component is a container wrapper for MDX meta data file
+ *
+ */
 export const MainTitleContainer = (props: MainTitleContainerProps) => {
    const { title, items } = props;
    return (

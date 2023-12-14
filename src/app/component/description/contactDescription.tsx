@@ -16,7 +16,7 @@ const ContactDescription = ({}) => {
             <RippleEffectButton
                name='Drop a Message'
                rippleSize={70}
-               className='sky-fade-gradient border-blue-400 border-spacing-1 border-2 my-2 lg:my-4 hover:text-blue-700'
+               className='sky-fade-gradient border-blue-600 border-spacing-1 border-2 my-2 lg:my-4 hover:text-blue-700 hover:border-blue-800'
                createRippleOnClick={true}
                onClick={handleEmailClick}
                rippleColor='dodgerblue'

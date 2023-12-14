@@ -21,7 +21,7 @@ function WaveyLine({ isHovered, className, ...props }: WavyLineProps) {
             d='M0 6 q 5 -10 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0'
             className={classNames(
                isHovered
-                  ? 'wavy-line -z-10 dark:text-gray-200 stroke-black dark:stroke-gray-200'
+                  ? 'wavy-line -z-10 dark:text-gray-200 stroke-blue-800 dark:stroke-gray-200'
                   : 'hidden'
             )}
          />

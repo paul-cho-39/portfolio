@@ -9,6 +9,10 @@ export type MetaDataDescriptionProps = {
 };
 
 // TODO: Link the tags?
+/**
+ *
+ * This component is used to display meta description from MDX files
+ */
 const MetaDataDescription = ({ items }: MetaDataDescriptionProps) => {
    return (
       <div className='flex flex-col justify-around items-start w-full lg:ml-4 p-2'>

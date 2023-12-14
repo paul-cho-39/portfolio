@@ -13,6 +13,7 @@ interface ContactsProps {
    strokeWidth?: number;
    emailColor?: string;
    iconColor?: string;
+   className?: string;
 }
 
 const sizeClasses = {
@@ -40,14 +41,17 @@ const getNextLargerSize = (currentSize: Size): Size => {
  * @param {string} [props.emailColor]
  * @param {string} [props.stroke] - stroke applies only to 'LinkedIn' svg.
  * @param {number} [props.strokeWidth] - strokeWidth applies only to 'LinkedIn' svg.
+ * @param {string} [props.className]
+ *
  */
-const Contacts = ({
+const ContactIcons = ({
    displayEmail,
    size,
    iconColor,
    emailColor,
    stroke,
    strokeWidth,
+   className,
 }: ContactsProps) => {
    const handleEmailClick = () => {
       const emailAddress = 'chosung2loud@gmail.com';
@@ -60,7 +64,7 @@ const Contacts = ({
    const envelopeSize = sizeClasses[nextSize] || sizeClasses.lg;
 
    return (
-      <div className='flex justify-center items-center space-x-6'>
+      <div className={classNames(className, 'flex justify-center items-center space-x-6')}>
          {ContactItems.map((link, index) => (
             <Link key={index} href={link.href} className='hover:scale-110 transition-transform'>
                <span className='sr-only'>{link.name}</span>
@@ -78,6 +82,8 @@ const Contacts = ({
          {displayEmail && (
             <button onClick={handleEmailClick}>
                <EnvelopeIcon
+                  aria-disabled={true}
+                  title='Email'
                   className={classNames(
                      envelopeSize,
                      emailColor,
@@ -91,4 +97,4 @@ const Contacts = ({
    );
 };
 
-export default Contacts;
+export default ContactIcons;

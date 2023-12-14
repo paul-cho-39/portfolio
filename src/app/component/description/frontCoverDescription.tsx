@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { pacifico, montserratAlternatives } from '../../fonts';
-import Contacts from '../fab/contact';
+import ContactIcons from '../contact/icons/contactIcons';
 
 interface Main {
    main: React.ReactElement;
@@ -17,14 +17,13 @@ const Title = (props: Main) => {
    return <h1 className={clsx(`${pacifico.className}`, props.className)}>{props.main}</h1>;
 };
 
-// which color goes well with this(?)
 const Intro = ({ intro }: { intro: string }) => {
-   return <p className='text-lg font-serif pl-4 my-3 lg:mb-5'>{intro}</p>;
+   return <p className='text-base lg:text-lg font-serif pl-4 my-3 lg:mb-5'>{intro}</p>;
 };
 
 const Description = ({ description }: { description: string }) => {
    return (
-      <div className='py-2 sm:pl-6 sm:pr-14 md:py-8 md:pl-10 md:pr-48 md:tracking-wide lg:py-8 lg:pr-[35%] xl:pr-[40%]'>
+      <div className='py-2 px-10 sm:pl-6 sm:pr-14 md:py-8 md:pl-10 md:pr-48 md:tracking-wide lg:py-8 lg:pr-[35%] xl:pr-[40%]'>
          <p
             className={clsx(
                'text-xl font-sans tracking-wide text-gray-800 lg:leading-relaxed xl:text-3xl'
@@ -45,7 +44,13 @@ export const FrontCoverDescription = (props: Description) => {
                   <Intro intro={props.intro} />
                   <Title className=' text-5xl md:text-6xl lg:text-8xl' main={props.main} />
                   <div className='mt-6 lg:mt-10 items-center justify-start inline-flex'>
-                     <Contacts displayEmail={true} stroke='black' strokeWidth={0.8} />
+                     <ContactIcons
+                        displayEmail={true}
+                        stroke='black'
+                        strokeWidth={0.8}
+                        iconColor='hover:stroke-blue-800 hover:fill-blue-800'
+                        emailColor='hover:text-blue-800 '
+                     />
                   </div>
                </div>
                <Description description={props.description} />

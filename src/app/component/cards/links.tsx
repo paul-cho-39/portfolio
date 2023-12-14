@@ -1,6 +1,6 @@
 import { ArrowTopRightOnSquareIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
-import { GithubIcon } from '../fab/icons';
+import { GithubIcon } from '../contact/icons';
 
 export interface ProjectActionsProps {
    title: string;

@@ -24,7 +24,7 @@ const Navbar = ({ navigation, setNavigation, isHome = true }: NavigationProps) =
    // const [nav, setNav] = useState<NavigationParams[]>(NAVIGATION);
 
    // intersection observer to track the position and the current section
-   // mainly for re-starting the animation in the 'home' section
+   // mainly for re-starting the animation when navigating back 'home' section
    useEffect(() => {
       // only takes effect in home
       if (!isHome) return;
@@ -53,8 +53,6 @@ const Navbar = ({ navigation, setNavigation, isHome = true }: NavigationProps) =
       return () => observer.disconnect();
       // eslint-disable-next-line react-hooks/exhaustive-deps
    }, []);
-
-   // console.log('the current NAV is: ', navigation);
 
    const BG_COLOR = getBgColor(isHome, isTop);
    const POSITION = getPosition(isHome, isTop, scrollDirection);

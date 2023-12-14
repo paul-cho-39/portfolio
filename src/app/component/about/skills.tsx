@@ -59,7 +59,7 @@ export const Skills = () => {
 const SkillsHeader = () => {
    return (
       <h3 className='relative my-2 md:my-5 lg:my-8 text-center w-full font-semibold text-xl md:text-2xl lg:text-3xl whitespace-nowrap'>
-         My Skills
+         Skills
       </h3>
    );
 };

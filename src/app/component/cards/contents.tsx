@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
-import { GithubIcon } from '../fab/icons';
+import { GithubIcon } from '../contact/icons';
 
 interface SourceCodeProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
    index: number;

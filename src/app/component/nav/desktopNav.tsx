@@ -24,7 +24,10 @@ const LargeNavigation = ({
 
    const handleMouseEnter = (name: string) => {
       setNavigation(
-         navigation.map((item) => (item.name === name ? { ...item, hovered: true } : item))
+         navigation.map((item) => ({
+            ...item,
+            hovered: item.name === name,
+         }))
       );
    };
 
@@ -66,7 +69,7 @@ const LargeNavigation = ({
                               <span className='relative text-lg font-medium'>{item.name}</span>
                               <span className='absolute bottom-0 left-2 w-full overflow-hidden'>
                                  <WaveyLine
-                                    className='dark:text-gray-200'
+                                    className='dark:text-gray-200 text-blue-700'
                                     isHovered={item.hovered}
                                     height={10}
                                     width={60}
