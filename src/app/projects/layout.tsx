@@ -12,7 +12,7 @@ import { NAVIGATION, NavigationParams } from '../constants';
 export default function ProjectLayouts({ children }: { children: React.ReactNode }) {
    const { isTop, scrollDirection } = useScrollDirection();
 
-   const [navigation, setNavigation] = useState<NavigationParams>(NAVIGATION);
+   const [navigation, setNavigation] = useState<NavigationParams[]>(NAVIGATION);
 
    const hideAside = !isTop && scrollDirection === 'down';
 

@@ -60,7 +60,6 @@ const FrontPage = ({
          opacity.set(scrollPercentage);
          if (scrollPercentage < SCROLL_THRESHOLD) {
             // accelerates the opacity as it scrolls down
-            console.log('the scroll percentage is now: ', scrollPercentage);
             const targetOpacity = Math.pow(scrollPercentage, 1.6);
             opacity.set(targetOpacity);
          }
@@ -106,10 +105,10 @@ const FrontPage = ({
             )}
          >
             {/* TODO: better fallback  */}
-            <Suspense fallback={<div>Loading...</div>}>
-               <Canvas />
-               {children}
-            </Suspense>
+            {/* <Suspense fallback={<div>Loading...</div>}>
+               <Canvas /> */}
+            {children}
+            {/* </Suspense> */}
          </motion.div>
          <FrontCoverDescription
             intro={"Hello there! 👋🏼  I'm"}

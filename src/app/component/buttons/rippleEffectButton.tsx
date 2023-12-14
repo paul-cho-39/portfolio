@@ -144,7 +144,7 @@ const RippleEffectButton = ({
          // cleanup ripple after animation
          setTimeout(() => {
             setRipples((prev) => prev.filter((ripple) => ripple.key !== newRipple.key));
-         }, 500);
+         }, 400);
       }
 
       // cleaning up ripple effect

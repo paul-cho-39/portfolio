@@ -3,20 +3,18 @@ import Link from 'next/link';
 
 const AboutMeDescription = () => {
    return (
-      <div className='w-full max-w-4xl px-2 mt-6 my-8 z-10 md:px-6 lg:pb-8 lg:pl-8 lg:pr-2 xl:pl-10'>
-         <p className='font-serif text-2xl tracking-wide indent-12 lg:leading-normal text-gray-600 xl:text-3xl'>
-            Hi!My self-driven journey in tech has equipped me with a unique perspective in building
-            efficient applications in both the web and mobile. <br /> My programming journey started
-            off first
-            <br /> Currently, I am freelancing and actively looking for a job.
-            <br /> When {"I'm not coding, you'll"} find me at the gym, catching up on sports, or
-            reading whatever piques my curiosity at the time
-            {/* link to /about */}
-            <span className='inline underline underline-offset-1 before:contents-[" "] decoration-blue-300'>
-               <Link href={ROUTES.PROJECTS.ABOUT_ME}>Read complete bio</Link>
-            </span>
-         </p>
-      </div>
+      <p className='font-serif text-2xl tracking-wide lg:indent-12 lg:leading-normal text-gray-600 xl:text-3xl'>
+         Hi!My self-driven journey in tech has equipped me with a unique perspective in building
+         efficient applications in both the web and mobile. <br /> My programming journey started
+         off first
+         <br /> Currently, I am freelancing and actively looking for a job.
+         <br /> When {"I'm not coding, you'll"} find me at the gym, catching up on sports, or
+         reading whatever piques my curiosity at the time
+         {/* link to /about */}
+         <span className='inline underline underline-offset-1 before:contents-[" "] decoration-blue-300'>
+            <Link href={ROUTES.PROJECTS.ABOUT_ME}>Read complete bio</Link>
+         </span>
+      </p>
    );
 };
 
