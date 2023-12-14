@@ -1,16 +1,10 @@
 import RippleEffectButton from '../buttons/rippleEffectButton';
 import { SectionHeader } from '../headers/sectionHeader';
 
-interface ContactDescriptionProps {
-   onClick?: () => void;
-}
-
-const ContactDescription = ({ onClick }: ContactDescriptionProps) => {
+const ContactDescription = ({}) => {
    const handleEmailClick = () => {
       const emailAddress = 'chosung2loud@gmail.com';
       window.location.href = `mailto:${emailAddress}`;
-
-      // console.log('PRESSED HERE');
    };
 
    return (

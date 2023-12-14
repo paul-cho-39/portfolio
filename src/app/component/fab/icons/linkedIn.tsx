@@ -1,6 +1,11 @@
 import { ContactIconParams } from '@/app/library/@types';
 
-const LinkedInIcon = ({ className, height, width, hoverColor }: ContactIconParams) => {
+interface LinkedInIconProps extends ContactIconParams {
+   stroke?: string;
+   strokeWidth?: number;
+}
+
+const LinkedInIcon = ({ className, height, width, stroke, strokeWidth }: LinkedInIconProps) => {
    // const color = mode === 'light' ? '#ffffff' : '#000000';
    return (
       <svg
@@ -12,11 +17,15 @@ const LinkedInIcon = ({ className, height, width, hoverColor }: ContactIconParam
          id='Capa_1'
          xmlns='http://www.w3.org/2000/svg'
          viewBox='0 0 45.959 45.959'
+         aria-disabled
+         stroke={stroke}
+         strokeWidth={strokeWidth}
       >
          <title>LinkedIn</title>
          <g>
             <g>
                <path
+                  fillRule='evenodd'
                   d='M5.392,0.492C2.268,0.492,0,2.647,0,5.614c0,2.966,2.223,5.119,5.284,5.119c1.588,0,2.956-0.515,3.957-1.489
 			c0.96-0.935,1.489-2.224,1.488-3.653C10.659,2.589,8.464,0.492,5.392,0.492z M7.847,7.811C7.227,8.414,6.34,8.733,5.284,8.733
 			C3.351,8.733,2,7.451,2,5.614c0-1.867,1.363-3.122,3.392-3.122c1.983,0,3.293,1.235,3.338,3.123

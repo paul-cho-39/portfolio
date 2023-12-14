@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 
 import { motion, Variants } from 'framer-motion';
 import { ProjectImage, ProjectImageProps } from './image';
-import MotionTitle from './sectionTitle';
+import MotionTitle from './cardTitle';
 import MotionDescription from './description';
 import ProjectBadges from './badges';
 import ProjectLinks from './links';

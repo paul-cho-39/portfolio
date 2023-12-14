@@ -4,13 +4,12 @@ const InstagramIcon = ({ className, height, width, hoverColor }: ContactIconPara
    // const color = mode === 'light' ? '#ffffff' : '#000000';
    return (
       <svg
-         // stroke={!hoverColor ? color : hoverColor}
-         // fill={!hoverColor ? color : hoverColor}
+         aria-disabled
          className={className}
          height={height}
          width={width}
-         strokeWidth='0.1'
-         role='img'
+         stroke='black'
+         strokeWidth={0.01}
          viewBox='0 0 24 24'
          xmlns='http://www.w3.org/2000/svg'
       >

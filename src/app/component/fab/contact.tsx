@@ -1,67 +1,94 @@
-import classNames from 'classnames';
-import { useEffect, useState } from 'react';
-import styles from './../styles.module.css';
 import Link from 'next/link';
-import { ContactItems } from '@/app/constants';
+import { EnvelopeIcon, EnvelopeOpenIcon } from '@heroicons/react/24/outline';
 
-interface ContactMeFabProps {
-   position?: 'top' | 'bottom';
+import { ContactItems } from '@/app/constants';
+import classNames from 'classnames';
+
+type Size = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+
+interface ContactsProps {
+   displayEmail: boolean;
+   size?: Size;
+   stroke?: string;
+   strokeWidth?: number;
+   emailColor?: string;
+   iconColor?: string;
 }
 
-const ContactMeFab = ({ position = 'bottom' }: ContactMeFabProps) => {
-   const [isHovered, setIsHovered] = useState(false);
+const sizeClasses = {
+   xs: 'w-4 h-4 lg:w-5 lg:h-5',
+   sm: 'w-5 h-5 lg:w-6 lg:h-6',
+   md: 'w-6 h-6 lg:w-7 lg:h-7',
+   lg: 'w-8 h-8 lg:w-9 lg:h-9',
+   xl: 'w-10 h-10 lg:w-12 lg:h-12',
+};
+
+const getNextLargerSize = (currentSize: Size): Size => {
+   const sizes = ['xs', 'sm', 'md', 'lg', 'xl'];
+   const currentIndex = sizes.indexOf(currentSize);
+   // ensure it doesn't go beyond the largest size
+   const nextIndex = Math.min(currentIndex + 1, sizes.length - 1);
+   return sizes[nextIndex] as Size;
+};
+
+/**
+ *
+ * @param {Object} props
+ * @param {boolean} props.displayEmail
+ * @param {Object} props.size
+ * @param {string} [props.iconColor]
+ * @param {string} [props.emailColor]
+ * @param {string} [props.stroke] - stroke applies only to 'LinkedIn' svg.
+ * @param {number} [props.strokeWidth] - strokeWidth applies only to 'LinkedIn' svg.
+ */
+const Contacts = ({
+   displayEmail,
+   size,
+   iconColor,
+   emailColor,
+   stroke,
+   strokeWidth,
+}: ContactsProps) => {
+   const handleEmailClick = () => {
+      const emailAddress = 'chosung2loud@gmail.com';
+      window.location.href = `mailto:${emailAddress}`;
+   };
+
+   const iconSize = sizeClasses[size || 'md'] || sizeClasses.md;
+   // adjusting for envelope size
+   const nextSize = getNextLargerSize(size || 'md');
+   const envelopeSize = sizeClasses[nextSize] || sizeClasses.lg;
 
    return (
-      <div
-         className={classNames(`
-        ${isHovered ? 'h-full' : 'h-10'} 
-        lg:bg-red-300 lg:fixed lg:right-10 lg:bottom-16 dark:text-white text-black h-16
-        `)}
-      >
-         <button onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
-            <span className='absolute bottom-16 right-10 origin-bottom bg-red-500'>
-               CONTACT ME ICON
-            </span>
-            <span className='sr-only'>Hover for contact lists</span>
-            {isHovered && (
-               <ul
+      <div className='flex justify-center items-center space-x-6'>
+         {ContactItems.map((link, index) => (
+            <Link key={index} href={link.href} className='hover:scale-110 transition-transform'>
+               <span className='sr-only'>{link.name}</span>
+               {link.name === 'LinkedIn' ? (
+                  <link.Icon
+                     className={classNames(iconSize, iconColor, 'dark:text-gray-300')}
+                     stroke={stroke}
+                     strokeWidth={strokeWidth}
+                  />
+               ) : (
+                  <link.Icon className={classNames(iconSize, iconColor, 'dark:text-gray-300')} />
+               )}
+            </Link>
+         ))}
+         {displayEmail && (
+            <button onClick={handleEmailClick}>
+               <EnvelopeIcon
                   className={classNames(
-                     `${position === 'bottom' ? 'bottom-28' : 'top-20'} 
-                     ${isHovered ? 'scale-100' : 'scale-0'}
-                     absolute right-10 transition-all duration-300 origin-bottom my-0`
+                     envelopeSize,
+                     emailColor,
+                     'hover:scale-110 transition-transform dark:text-gray-300'
                   )}
-                  role='list'
-               >
-                  {ContactItems.map((item, index) => {
-                     const Icon = item.Icon;
-                     const itemClass = [styles.animateFadeInDown];
-                     const delayClasses = [
-                        styles.delayFirst,
-                        styles.delaySecond,
-                        styles.delayThird,
-                     ];
-                     if (index < delayClasses.length) {
-                        itemClass.push(delayClasses[index]);
-                     }
-                     return (
-                        <li key={item.name} className={itemClass.join(' ')}>
-                           <div className='group items-center px-5 py-1 hover:transition-transform hover:-translate-y-1'>
-                              <Link href={item.href} className='-px-2'>
-                                 <Icon
-                                    className='stroke-stone-700 fill-stone-700 dark:stroke-gray-200/80 dark:fill-gray-200/80 group-hover:stroke-stone-400 group-hover:fill-stone-400 dark:group-hover:stroke-slate-600 dark:group-hover:fill-slate-600'
-                                    height={28}
-                                    width={34}
-                                 />
-                              </Link>
-                           </div>
-                        </li>
-                     );
-                  })}
-               </ul>
-            )}
-         </button>
+               />
+               <span className='sr-only'>Email</span>
+            </button>
+         )}
       </div>
    );
 };
 
-export default ContactMeFab;
+export default Contacts;

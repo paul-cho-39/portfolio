@@ -29,7 +29,8 @@ const SkillsSection = [
 export const Skills = () => {
    return (
       <div className='px-0'>
-         <div className='grid grid-cols-1 gap-2 sm:grid-cols-2 md:px-6 lg:grid-cols-3 lg:gap-4 xl:gap-6'>
+         <SkillsHeader />
+         <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 md:px-6 lg:grid-cols-3 lg:gap-5 xl:gap-6'>
             {SkillsSection.map((skill, index) => (
                <div
                   key={index}
@@ -40,7 +41,7 @@ export const Skills = () => {
                         strokeWidth={skill.icons === ReactIcon ? 1 : 0.9}
                         className='h-12 w-12 mb-4'
                      />
-                     <h3 className='text-xl font-medium mb-2 text-center overflow-x-hidden lg:text-2xl'>
+                     <h3 className='text-xl highlight font-medium mb-2 text-center overflow-x-hidden lg:text-2xl'>
                         {skill.section}
                      </h3>
                   </div>
@@ -52,5 +53,13 @@ export const Skills = () => {
             ))}
          </div>
       </div>
+   );
+};
+
+const SkillsHeader = () => {
+   return (
+      <h3 className='relative my-2 md:my-5 lg:my-8 text-center w-full font-semibold text-xl md:text-2xl lg:text-3xl whitespace-nowrap'>
+         My Skills
+      </h3>
    );
 };

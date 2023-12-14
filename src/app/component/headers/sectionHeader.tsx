@@ -9,7 +9,3 @@ export const SectionHeader = ({ title }: HeaderProps) => {
       </h2>
    );
 };
-
-export const Title = ({ title }: HeaderProps) => {
-   return <h2 className='text-6xl font-mono font-semibold mb-4 dark:text-gray-200'>{title}</h2>;
-};

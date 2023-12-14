@@ -5,6 +5,7 @@ const GithubIcon = ({ className, height, width }: ContactIconParams) => {
    return (
       <svg
          enableBackground='new 0 0 512 512'
+         aria-disabled
          height={height}
          width={width}
          strokeWidth={0.1}

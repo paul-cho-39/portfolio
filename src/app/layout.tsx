@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import './globals.css';
 import type { Metadata } from 'next';
 import { Montserrat_Alternates, Barlow_Condensed } from 'next/font/google';

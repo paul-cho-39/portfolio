@@ -1,4 +1,4 @@
-import { GithubIcon, LinkedInIcon, InstagramIcon } from '@/components/fab/contacts';
+import { GithubIcon, LinkedInIcon, InstagramIcon } from '@/app/component/fab/icons';
 
 export const HOME_COLOR = 'bg-[#184888]';
 export const DEFAULT_COLOR = 'bg-white dark:bg-zinc-900';
