@@ -9,7 +9,7 @@ import { Container } from '../layouts/container';
 const ContactPage = () => {
    return (
       <section id='contact'>
-         <Container className='sky-fade-gradient min-h-[50vh] min-w-fit'>
+         <Container className='sky-fade-gradient min-h-full min-w-fit px-4 lg:px-6'>
             <ContactHeader />
 
             <ContactDescription />

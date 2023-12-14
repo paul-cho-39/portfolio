@@ -10,6 +10,7 @@ import FrontPage from './component/main';
 import { useState } from 'react';
 import Footer from './component/footer';
 import { NAVIGATION, NavigationParams } from './constants';
+import { ThemeProvider } from './library/contexts/ThemeContext';
 
 // TODO: dynamically import frontpage because of threeJS
 // TODO: in the front page maybe add framer motion to display the order of components
@@ -21,14 +22,14 @@ export default function Home({ Component, pageProps }: AppProps) {
    const homeNav = navigation.find((nav) => nav.name === 'home');
 
    return (
-      <>
+      <ThemeProvider>
          <Navbar navigation={navigation} setNavigation={setNavigation} isHome={true} />
          <FrontPage homeNav={homeNav} />
          <About />
          <ProjectCards />
          <ContactPage />
          <Footer />
-      </>
+      </ThemeProvider>
    );
 }
 

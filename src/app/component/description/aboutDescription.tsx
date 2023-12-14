@@ -3,8 +3,8 @@ import Link from 'next/link';
 
 const AboutMeDescription = () => {
    return (
-      <p className='font-serif text-2xl tracking-wide lg:indent-12 lg:leading-normal text-gray-600 xl:text-3xl'>
-         Hi!My self-driven journey in tech has equipped me with a unique perspective in building
+      <p className='font-sans text-lg leading-normal md:text-2xl md:tracking-wider lg:text-3xl lg:font-medium'>
+         Hi! My self-driven journey in tech has equipped me with a unique perspective in building
          efficient applications in both the web and mobile. <br /> My programming journey started
          off first
          <br /> Currently, I am freelancing and actively looking for a job.
@@ -12,7 +12,7 @@ const AboutMeDescription = () => {
          reading whatever piques my curiosity at the time
          {/* link to /about */}
          <span className='inline underline underline-offset-1 before:contents-[" "] decoration-blue-300'>
-            <Link href={ROUTES.PROJECTS.ABOUT_ME}>Read complete bio</Link>
+            <Link href={ROUTES.PROJECTS.ABOUT_ME}> Read complete bio</Link>
          </span>
       </p>
    );

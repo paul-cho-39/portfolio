@@ -28,25 +28,25 @@ const SkillsSection = [
 // TODO: create a divider
 export const Skills = () => {
    return (
-      <div className='px-2 lg:px-0'>
-         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4'>
+      <div className='px-0'>
+         <div className='grid grid-cols-1 gap-2 sm:grid-cols-2 md:px-6 lg:grid-cols-3 lg:gap-4 xl:gap-6'>
             {SkillsSection.map((skill, index) => (
                <div
                   key={index}
-                  className='border-[6px] border-blue-500/50 rounded-md p-4 h-auto min-h-[200px] sm:max-h-[400px]'
+                  className='font-sans border-[6px] border-blue-500/50 rounded-md p-4 h-auto sm:max-h-[400px]'
                >
                   <div className='flex flex-col items-center'>
                      <skill.icons
                         strokeWidth={skill.icons === ReactIcon ? 1 : 0.9}
                         className='h-12 w-12 mb-4'
                      />
-                     <h3 className='text-2xl mb-2 text-center overflow-x-hidden'>
+                     <h3 className='text-xl font-medium mb-2 text-center overflow-x-hidden lg:text-2xl'>
                         {skill.section}
                      </h3>
                   </div>
                   <Divider position='relative' top='top-0' className='bg-[#000333]' />
                   <div className='py-2'>
-                     <p className='text-center'>{skill.description}</p>
+                     <p className='text-center lg:text-xl'>{skill.description}</p>
                   </div>
                </div>
             ))}

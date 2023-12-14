@@ -26,6 +26,7 @@ type RippleParams = {
 const DEFAULT_SIZE = 50;
 const DEFAULT_TIME = 800;
 const DEFAULT_RIPPLE_INTERVAL = 500;
+const DEFAULT_ANIMATION_TIME = 500;
 
 /**
  * Sets ripple effect with customizable color and size when hovered over.
@@ -144,13 +145,16 @@ const RippleEffectButton = ({
          // cleanup ripple after animation
          setTimeout(() => {
             setRipples((prev) => prev.filter((ripple) => ripple.key !== newRipple.key));
-         }, 400);
+         }, DEFAULT_ANIMATION_TIME);
       }
 
       // cleaning up ripple effect
       handleMouseLeave();
 
-      onClick();
+      setTimeout(() => {
+         onClick();
+      }, DEFAULT_ANIMATION_TIME);
+      5;
    };
 
    return (

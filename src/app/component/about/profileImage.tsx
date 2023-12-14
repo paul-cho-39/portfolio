@@ -4,17 +4,16 @@ const ProfileImage = () => {
    return (
       <Image
          style={{
-            // clipPath: 'polygon(0 0, 100% 0, 100% 80%, 0 100%);', // doesnt look too good
-            borderRadius: '25%',
+            borderRadius: '10%',
          }}
-         className='lg:w-[90%] w-full overflow-hidden h-auto'
+         className='w-full overflow-hidden h-auto'
          src='/images/about_me.jpg'
          alt='Photo of Paul Cho'
          width={75}
          height={75}
-         sizes='100vw'
+         objectFit='true'
          priority
-         // layout='responsive'
+         layout='responsive'
          // placeholder='blur'
          //   blurDataURL={smallImageDataUrl} // low-res image or data URL
       />

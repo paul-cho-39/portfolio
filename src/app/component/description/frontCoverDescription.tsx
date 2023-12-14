@@ -36,7 +36,7 @@ export const FrontCoverDescription = (props: Description) => {
                <div className='py-4 sm:pl-6 sm:pr-14 md:indent-36 md:py-8 md:pl-10 md:pr-48 md:tracking-wide lg:py-8 lg:indent-64 lg:pr-[43%] xl:pr-[50%]'>
                   <p
                      className={clsx(
-                        'text-xl font-serif indent-24 tracking-wide text-gray-800 lg:leading-relaxed xl:text-3xl'
+                        'text-xl font-sans indent-24 tracking-wide text-gray-800 lg:leading-relaxed xl:text-3xl'
                      )}
                   >
                      {props.description}
