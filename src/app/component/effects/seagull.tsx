@@ -1,12 +1,7 @@
 import { useGLTF, Clone, useAnimations } from '@react-three/drei';
 import { useFrame, useThree } from '@react-three/fiber';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import {
-   Vector3,
-   Group,
-   Quaternion,
-   CatmullRomCurve3,
-} from 'three';
+import { Vector3, Group, Quaternion, CatmullRomCurve3 } from 'three';
 
 const NUMBER_OF_BIDS = 3;
 
@@ -119,22 +114,6 @@ const Seagull = ({ count = 10 }: { count?: number }) => {
       />
    );
 };
-
-// const Seagulls = () => {
-//    const seagull = useGLTF('/glb/bird.glb');
-
-//    return (
-//       <group>
-//          {Array.from({ length: NUMBER_OF_BIDS }).map((_, index) => {
-//             const cloneSeagull = seagull.scene.clone();
-
-//             // line up the seaguls?
-
-//             return <Seagull key={index} glsl={cloneSeagull} position={}  />
-//          })}
-//       </group>
-//    )
-// }
 
 useGLTF.preload('/glb/bird.glb');
 

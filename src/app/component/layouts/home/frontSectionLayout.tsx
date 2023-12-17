@@ -5,7 +5,6 @@ const FrontPageLayout = forwardRef<React.ElementRef<'div'>, React.ComponentProps
    function OuterContainer({ children, ...props }, ref) {
       const isMedium = useDisableBreakPoints();
       const HEIGHT = !isMedium ? '100vh' : '150vh';
-      console.log('is it medium currently?: ', isMedium);
       return (
          <section id='home'>
             <div

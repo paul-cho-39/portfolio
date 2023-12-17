@@ -55,7 +55,7 @@ export const Toggler = ({ isHidden, isVertical = true }: TogglerProps) => {
             animate={togglePosition}
             className={classNames(
                isLight ? sunStyle : moonStyle,
-               'bg-white relative left-0 w-8 h-8 lg:w-10 lg:h-10 rounded-full'
+               'bg-white relative left-0 w-8 h-8 md:w-10 md:h-10 rounded-full'
             )}
             layout
             transition={spring}

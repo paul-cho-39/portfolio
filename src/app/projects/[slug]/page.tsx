@@ -9,7 +9,19 @@ import getMarkdownMetaData, {
 import { ClockIcon, CalendarIcon, TagIcon } from '@heroicons/react/24/outline';
 
 import Markdown from 'markdown-to-jsx';
+import { Metadata, ResolvingMetadata } from 'next';
 import { notFound } from 'next/navigation';
+
+export async function generateMetadata(
+   { params }: { params: { slug: string } },
+   parent: ResolvingMetadata
+): Promise<Metadata> {
+   const project = getMarkdownMetaData('projects').find((project) => project.slug === params.slug);
+   return {
+      title: project?.title,
+      authors: { name: 'Paul Cho' },
+   };
+}
 
 export function generateStaticParams() {
    const contents = getMarkdownMetaData('projects');
@@ -48,59 +60,40 @@ export default function Projects({ params }: { params: { slug: string } }) {
    ];
 
    return (
-      <div className='max-w-2xl lg:max-w-[52rem] xl:max-w-[54rem] prose lg:text-lg'>
+      <div className='w-full h-auto mx-auto md:grid md:grid-cols-5 lg:grid-cols-7 bg-blue-200'>
+         {/* <div className='px-2 md:px-6 w-full col-start-1 col-end-5 lg:grid-cols-7 bg-slate-300'> */}
+         <div className='px-2 md:px-6 md:py-4 w-full md:col-span-4 lg:col-span-5 bg-slate-300'>
+            <div className='bg-lime-400 px-2 md:px-4 lg:px-8 xl:px-10 flex flex-col items-center justify-center'>
+               <div className='w-full lg:flex lg:flex-col lg:items-start lg:justify-center max-w-4xl bg-purple-300 '>
+                  <MainTitleContainer title={content.data.title} items={metaDataItems} />
+                  <Markdown options={{ wrapper: 'article' }}>{content.content}</Markdown>
+               </div>
+            </div>
+         </div>
          {/* <NavigationButton
             navType='next'
             next={nextSlug as string}
             className='absolute top-[50%] left-6 bg-red-500'
          /> */}
-         <MainTitleContainer
-            // title='How does it feel like it is at the end?'
-            title={content.data.title}
-            items={metaDataItems}
-         />
-         <Markdown options={{ wrapper: 'article' }}>{content.content}</Markdown>
+         <aside className='bg-red-500 col-span-1 lg:col-span-2'>
+            <div className='px-2'></div>
+         </aside>
       </div>
+      // <div className='w-full'>
+      //    <div className='px-6 lg:px-6 max-w-2xl lg:max-w-[52rem] xl:max-w-[54rem] w-full bg-slate-300'>
+      //       <div className='max-w-2xl lg:max-w-[52rem] xl:max-w-[54rem] prose lg:text-lg bg-yellow-500'>
+      //          <MainTitleContainer title={content.data.title} items={metaDataItems} />
+      //          <Markdown options={{ wrapper: 'article' }}>{content.content}</Markdown>
+      //       </div>
+      //    </div>
+      //          {/* <NavigationButton
+      //       navType='next'
+      //       next={nextSlug as string}
+      //       className='absolute top-[50%] left-6 bg-red-500'
+      //    /> */}
+      //    <aside className='bg-red-500'></aside>
+      // </div>
    );
 }
 
-/**
- * Using just @next/mdx but I don't know how it will be statically generated
- * So changing it to where it will be statically loaded
- */
-// export default function ProjectsPage(props: any) {
-//    //
-//    const slug = props.params.slug;
-
-//    //    const [MDXComponent, setMDXComponent] = useState<JSX.Element | undefined>(undefined);
-//    const [MDXComponent, setMDXComponent] = useState<JSX.Element | null>(null);
-//    const [error, setError] = useState(false);
-
-//    useEffect(() => {
-//       const loadMDX = async () => {
-//          try {
-//             // dynamically import the MDX file based on the slug
-//             const content = await import(`./../../posts/projects/${slug}.mdx`);
-//             setMDXComponent(content.default());
-//          } catch (err) {
-//             // handling error for fallback component
-//             setError(true);
-//             console.error('Error loading MDX file:', err);
-//          }
-//       };
-
-//       loadMDX();
-//    }, [slug]);
-
-//    // TODO: return 404 page here
-//    if (error) {
-//       return (
-//          <div className='text-2xl dark:text-gray-300'>Cannot find the page you are looking for</div>
-//       );
-//    }
-
-//    // TODO: return loading page here
-//    if (!MDXComponent) return <div>Loading...</div>;
-
-//    return <div>{MDXComponent && cloneElement(MDXComponent, { key: slug })}</div>;
-// }
+// providing a key and a value?

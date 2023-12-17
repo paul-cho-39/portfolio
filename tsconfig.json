@@ -25,6 +25,7 @@
       "@/components/*": ["./src/app/component/*"], 
       "@/library/*": ["./src/app/library/*"],
       "@/constants/*": ["./src/app/constants/*"],
+      "@/posts/*": ["/posts/*"]
     }
   },
   "include": ["next-env.d.ts", "index.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "mdx.d.ts"],

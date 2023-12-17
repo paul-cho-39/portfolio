@@ -1,43 +1,36 @@
-import { Canvas, useFrame } from '@react-three/fiber';
+import { Suspense, forwardRef, lazy, useEffect, useMemo, useRef, useState } from 'react';
 import * as THREE from 'three';
-import { Suspense, useEffect, useMemo, useRef, useState } from 'react';
+import { Canvas, useFrame } from '@react-three/fiber';
 import { useHelper, PerspectiveCamera, OrbitControls } from '@react-three/drei';
+
 import Seagull from './seagull';
-import CustomSky from './emoljiFirework';
 import { Monitor } from './monitor';
-import Clouds, { Cloud } from './cloud';
-import EmoljiFireworks from './emoljiFireworks';
+// import Clouds, { Cloud } from './cloud';
 
-const TOTAL_FIREWORKS = 50;
+const Clouds = lazy(() => import('./cloud'));
 
-interface CanvasProps {
-   isFireworkHovered?: boolean;
-}
-const WindowCanvas = ({ isFireworkHovered }: CanvasProps) => {
+const WindowCanvas = forwardRef<
+   React.ElementRef<'canvas'>,
+   React.ComponentPropsWithoutRef<'canvas'>
+>(function WindowCanvas({ ...props }, ref) {
    return (
       <Canvas
+         ref={ref}
          frameloop='always'
          shadows='soft'
          camera={{ position: [-10, 1, 75], fov: 60, near: 1, far: 1000, castShadow: false }}
          resize={{ scroll: false }}
       >
          <Suspense fallback={null}>
-            {/* whether to display this or not */}
-            {/* if used dynamically import this */}
-            {isFireworkHovered &&
-               Array.from({ length: TOTAL_FIREWORKS }).map((_, index) => {
-                  return <EmoljiFireworks key={index} />;
-               })}
             <Seagull />
             <Clouds />
-            <OrbitControls enableZoom={false} />
-            {/* <Sampler /> */}
+            <OrbitControls autoRotateSpeed={100} enableZoom={false} />
             {/* <Monitor /> */}
             <Lights />
          </Suspense>
       </Canvas>
    );
-};
+});
 
 const Lights = () => {
    const ref = useRef<THREE.DirectionalLight>(null!);
