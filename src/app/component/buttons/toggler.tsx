@@ -14,6 +14,8 @@ export const Toggler = ({ isHidden, isVertical = true }: TogglerProps) => {
    const toggleTheme = () => {
       const newTheme = theme === 'light' ? 'dark' : 'light';
 
+      console.log('toggling theme');
+
       setTheme(newTheme);
    };
 
