@@ -161,6 +161,18 @@ body {
     animation: sunpulse 2s alternate infinite; 
     -webkit-animation: sunpulse 2s alternate infinite; 
   }
+  .skills-container-gradient {
+      background-image: 
+        radial-gradient(circle at 80% 0, #ffcc33, transparent 50%);
+      background-size: contain;
+      transform-origin: top;
+  }
+  .skills-container-cloud {
+    background-image: 
+      linear-gradient(135deg, rgba(255,255,255,0) 49%, #000333 50%);
+    background-size: contain;
+    transform-origin: top;
+}
 }
 
 @keyframes ripple {

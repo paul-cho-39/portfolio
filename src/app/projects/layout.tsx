@@ -18,10 +18,10 @@ export default function ProjectLayouts({ children }: { children: React.ReactNode
             <Navbar navigation={navigation} setNavigation={setNavigation} isHome={false} />
 
             {/* section here - desktop version contains 12 columns grids */}
-            <section className='w-full md:grid md:grid-cols-12 md:gap-0 dark:bg-zinc-800 bg-white overflow-hidden'>
+            <section className='w-full h-full md:grid md:grid-cols-12 md:gap-0 dark:bg-zinc-800 bg-white overflow-hidden'>
                <AsideWrapper />
                {/* main content. Also, containing side-content (ref, dictionary, etc.) */}
-               <div className='md:col-span-10 dark:bg-zinc-800 min-h-screen text-base md:text-lg w-full'>
+               <div className='w-full md:col-span-10 h-full dark:bg-zinc-800 min-h-screen text-base md:text-lg'>
                   <div className='mt-14 lg:mt-8 md:col-start-1 md:col-end-10'>
                      {/* <div className='px-6 lg:px-6 max-w-2xl lg:max-w-[52rem] xl:max-w-[54rem] w-full bg-slate-300'> */}
                      {children}

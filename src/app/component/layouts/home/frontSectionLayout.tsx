@@ -4,7 +4,7 @@ import { useDisableBreakPoints } from '@/app/library/hooks/useDisableBreakPoints
 const FrontPageLayout = forwardRef<React.ElementRef<'div'>, React.ComponentPropsWithoutRef<'div'>>(
    function OuterContainer({ children, ...props }, ref) {
       const isMedium = useDisableBreakPoints();
-      const HEIGHT = !isMedium ? '100vh' : '150vh';
+      const HEIGHT = !isMedium ? '100vh' : '175vh';
       return (
          <section id='home'>
             <div

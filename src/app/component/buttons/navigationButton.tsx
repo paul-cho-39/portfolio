@@ -22,9 +22,9 @@ const NavigationButton = ({ next, navType, isDisplayed, className }: NavigationB
       <div className={classNames(className, isDisplayed && isDisplayed ? 'visible' : 'invisible')}>
          <Link href={ROUTES.PROJECTS.NEXT_PROJECT(next)} className='group'>
             {navType === 'next' ? (
-               <ChevronRightIcon className='w-8 h-8 dark:text-gray-300' />
+               <ChevronRightIcon className='w-8 h-8 lg:w-10 lg:h-10 dark:text-gray-300' />
             ) : (
-               <ChevronLeftIcon className='w-8 h-8 dark:text-gray-300' />
+               <ChevronLeftIcon className='w-8 h-8 lg:w-10 lg:h-10 dark:text-gray-300' />
             )}
             <span className='sr-only'>{SR_TEXT}</span>
             <span

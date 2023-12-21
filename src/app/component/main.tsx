@@ -19,10 +19,10 @@ import classNames from 'classnames';
 import useDarkTheme from '../library/hooks/useDarkTheme';
 import { NavigationParams } from '../constants';
 // import dynamic from 'next/dynamic';
-import WindowCanvas from './effects/scene';
+// import WindowCanvas from './effects/scene';
 
 const OPACITY_THRESHOLD = 0.15;
-const SCROLL_THRESHOLD = 0.58;
+const SCROLL_THRESHOLD = 0.55;
 
 // const Canvas = dynamic(() => import('./effects/scene'));
 const Canvas = lazy(() => import('./effects/scene'));
@@ -35,12 +35,10 @@ const FrontPage = ({
    children?: React.ReactNode;
 }) => {
    const ref = useRef<HTMLDivElement>(null);
-   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-
-   const [isLoaded, setIsLoaded] = useState(false);
    const isMediumDisabled = useDisableBreakPoints();
    const { theme, setTheme } = useDarkTheme();
    const path = usePathname();
+   const router = useRouter();
 
    const isInView = useInView(ref, {
       margin: '-300px',
@@ -58,11 +56,13 @@ const FrontPage = ({
 
       if (!homeNav || (homeNav && !homeNav.current)) {
          // detach the entire component from the tree
+
+         console.log('IT IS NOT HOME ANYMORE');
          controls.set({ display: 'none' });
       }
 
       if (homeNav && homeNav.current) {
-         controls.start({ display: 'block' });
+         controls.start({ display: 'flex' });
          opacity.set(scrollPercentage);
          if (scrollPercentage < SCROLL_THRESHOLD) {
             // accelerates the opacity as it scrolls down
@@ -77,10 +77,26 @@ const FrontPage = ({
       // opacity back to 1
       const scrollY = window.screenY;
       if (homeNav && homeNav.current && scrollY <= 50) {
-         controls.start({ display: 'block' });
+         controls.start({ display: 'flex' });
          opacity.set(1);
       }
    }, [homeNav, controls, opacity]);
+
+   useEffect(() => {
+      /**
+       * light mode is the default mode
+       * inside home path there is no option to toggle
+       * when the path is home set it back to the default theme
+       */
+      if (!path || path !== '/') return;
+
+      setTheme('light');
+
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, [path, theme]);
+
+   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+   const [isLoaded, setIsLoaded] = useState(false);
 
    useEffect(() => {
       if (ref.current) {
@@ -91,38 +107,42 @@ const FrontPage = ({
 
    return (
       <FronPageLayout ref={ref} id='home'>
-         {/* <Suspense fallback={<div></div>}> */}
-         {/* {isLoaded && (
-               <> */}
-         <motion.div
-            style={{ opacity: opacity }}
-            animate={controls}
-            initial={{ display: 'block' }}
-            className={classNames(
-               isInView ? 'fixed' : 'invisible',
-               'inset-0 sky-fade-gradient -z-10'
-            )}
-         >
-            <WindowCanvas ref={canvasRef} />
-            {children}
-         </motion.div>
-         <FrontCoverDescription
-            intro={"Hello there! 👋🏼  I'm"}
-            main={
+         <Suspense fallback={<div></div>}>
+            {isLoaded && (
                <>
-                  <span>{'Paul |'}</span>
-                  <br />
-                  <span>Full-stack Developer</span>
+                  <motion.div
+                     style={{
+                        opacity: opacity,
+                     }}
+                     animate={controls}
+                     initial={{ display: 'block' }}
+                     className={classNames(
+                        isInView ? 'fixed' : 'invisible',
+                        'inset-0 sky-fade-gradient -z-10'
+                     )}
+                  >
+                     {/* <Suspense fallback={<span>Loading...</span>}> */}
+                     {/* <Canvas /> */}
+                     <Canvas ref={canvasRef} />
+                     {children}
+                  </motion.div>
+                  <FrontCoverDescription
+                     intro={"Hello there! 👋🏼  I'm"}
+                     title={
+                        <>
+                           <span>{'Paul |'}</span>
+                           <br />
+                           <span>Full-stack Developer</span>
+                        </>
+                     }
+                     description={
+                        "I'm a self-taught developer, I've navigated the tech landscape through hands-on experience."
+                     }
+                  />
+                  {isMediumDisabled && <ArrowDown />}
                </>
-            }
-            description={
-               "I'm a self-taught developer, I've navigated the tech landscape through hands-on experience."
-            }
-         />
-         {/* </>
-            )} */}
-         {/* </Suspense> */}
-         {isLoaded && isMediumDisabled && <ArrowDown />}
+            )}
+         </Suspense>
       </FronPageLayout>
    );
 };

@@ -16,7 +16,7 @@ const MotionPalmTrees = ({ isMediumDisabled }: MotionPalmTreesProps) => {
          transition: {
             type: 'spring',
             bounce: 0.3,
-            delay: 0.1,
+            delay: 0.25,
             duration: 0.4,
          },
       },
@@ -28,7 +28,11 @@ const MotionPalmTrees = ({ isMediumDisabled }: MotionPalmTreesProps) => {
    }
 
    return (
-      <motion.div viewport={{ once: true, margin: '25px' }} initial='hidden' whileInView='visible'>
+      <motion.div
+         viewport={{ once: true, margin: '-170px' }}
+         initial='hidden'
+         whileInView='visible'
+      >
          <motion.div variants={fadeInUp}>
             {/* <PalmTrees className='absolute rotate-[6deg] opacity-30 w-[24rem] h-[24rem] top-6  -right-32 xl:top-4 xl:-right-24' /> */}
             <PalmTrees className='absolute -rotate-[6deg] opacity-30 w-[28rem] h-[28rem] top-2 -left-44 xl:-left-30 -scale-x-100' />

@@ -1,9 +1,11 @@
 import clsx from 'clsx';
 import { pacifico, montserratAlternatives } from '../../fonts';
 import ContactIcons from '../contact/icons/contactIcons';
+import { motion } from 'framer-motion';
 
 interface Main {
-   main: React.ReactElement;
+   title: React.ReactElement;
+   // title: string;
    className?: string;
 }
 
@@ -13,25 +15,67 @@ interface Description extends Main {
 }
 
 // maybe use this for section header in general?
-const Title = (props: Main) => {
-   return <h1 className={clsx(`${pacifico.className}`, props.className)}>{props.main}</h1>;
+// const Title = (props: Main) => {
+//    return <h1 className={clsx(`${pacifico.className}`, props.className)}>{props.main}</h1>;
+// };
+
+// const Intro = ({ intro }: { intro: string }) => {
+//    return <p className='text-base lg:text-lg font-serif pl-4 my-3 lg:mb-5'>{intro}</p>;
+// };
+
+// const Description = ({ description }: { description: string }) => {
+//    return (
+//       <div className='py-2 px-10 sm:pl-6 sm:pr-14 md:py-8 md:pl-10 md:pr-48 md:tracking-wide lg:py-8 lg:pr-[35%] xl:pr-[40%]'>
+//          <p
+//             className={clsx(
+//                'text-xl font-sans tracking-wide text-gray-800 lg:leading-relaxed xl:text-3xl'
+//             )}
+//          >
+//             {description}
+//          </p>
+//       </div>
+//    );
+// };
+
+const Title = ({ title, className }: Main) => {
+   return (
+      <motion.h1
+         initial={{ rotateY: 90, scale: 0.9, opacity: 0 }}
+         animate={{ rotateY: 0, scale: 1, opacity: 1 }}
+         transition={{ delay: 0.4, duration: 0.5, ease: 'backInOut' }}
+         className={clsx(className)}
+      >
+         {title}
+      </motion.h1>
+   );
 };
 
 const Intro = ({ intro }: { intro: string }) => {
-   return <p className='text-base lg:text-lg font-serif pl-4 my-3 lg:mb-5'>{intro}</p>;
+   return (
+      <motion.p
+         initial={{ opacity: 0 }}
+         animate={{ opacity: 1 }}
+         transition={{ duration: 0.5, ease: 'easeInOut' }}
+         className='text-base lg:text-lg font-serif pl-4 my-3 lg:mb-5'
+      >
+         {intro}
+      </motion.p>
+   );
 };
 
 const Description = ({ description }: { description: string }) => {
    return (
-      <div className='py-2 px-10 sm:pl-6 sm:pr-14 md:py-8 md:pl-10 md:pr-48 md:tracking-wide lg:py-8 lg:pr-[35%] xl:pr-[40%]'>
-         <p
-            className={clsx(
-               'text-xl font-sans tracking-wide text-gray-800 lg:leading-relaxed xl:text-3xl'
-            )}
-         >
+      <motion.div
+         initial={{ opacity: 0, scale: 0.9, rotate: -10 }}
+         animate={{ opacity: 1, scale: 1, rotate: 0 }}
+         transition={{ delay: 0.8, duration: 0.7, type: 'spring', stiffness: 120 }}
+         // transition={{ delay: 0.8, duration: 0.5 }}
+         className='py-2 px-10 sm:pl-6 sm:pr-14 md:py-8 md:pl-10 md:pr-48 md:tracking-wide lg:py-8 lg:pr-[35%] xl:pr-[40%]'
+      >
+         <p className='text-xl font-sans tracking-wide text-gray-800 lg:leading-relaxed xl:text-3xl'>
             {description}
          </p>
-      </div>
+      </motion.div>
    );
 };
 
@@ -42,14 +86,14 @@ export const FrontCoverDescription = (props: Description) => {
             <div className='relative md:flex md:flex-col md:w-full md:h-full'>
                <div className='relative md:col-span-1 md:h-full md:w-full top-0 mb-4 lg:mb-8'>
                   <Intro intro={props.intro} />
-                  <Title className=' text-5xl md:text-6xl lg:text-8xl' main={props.main} />
+                  <Title className=' text-5xl md:text-6xl lg:text-8xl' title={props.title} />
                   <div className='mt-6 lg:mt-10 items-center justify-start inline-flex'>
                      <ContactIcons
                         displayEmail={true}
                         stroke='black'
                         strokeWidth={0.8}
                         iconColor='hover:stroke-blue-800 hover:fill-blue-800'
-                        emailColor='hover:text-blue-800 '
+                        emailColor='text-black dark:text-black hover:text-blue-800 '
                      />
                   </div>
                </div>
