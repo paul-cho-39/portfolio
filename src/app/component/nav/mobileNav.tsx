@@ -9,11 +9,15 @@ import { Toggler } from '../buttons/toggler';
 import type { NavigationParams } from '@/app/constants';
 import { NavigationProps } from './navigation';
 
-const MobileNavigation = ({ navigation, isHome }: Omit<NavigationProps, 'setNavigation'>) => {
+interface MobileNavigationProps extends Omit<NavigationProps, 'setNavigation'> {
+   isTop: boolean;
+}
+
+const MobileNavigation = ({ navigation, isHome, isTop }: MobileNavigationProps) => {
    const [sidebarOpen, setSidebarOpen] = useState(false);
    return (
       <>
-         <MobileNavBar setSidebarOpen={setSidebarOpen} />
+         <MobileNavBar isHome={isHome} isTop={isTop} setSidebarOpen={setSidebarOpen} />
          <Transition.Root show={sidebarOpen} as={Fragment}>
             <Dialog as='div' className='relative z-50 md:hidden w-full' onClose={setSidebarOpen}>
                <Transition.Child
@@ -84,14 +88,16 @@ const MobileNavigation = ({ navigation, isHome }: Omit<NavigationProps, 'setNavi
                                     </li>
                                  ))}
                               </ul>
-                              <ul className='text-center mt-24'>
-                                 <span className='block dark:text-gray-300 text-gray-700'>
-                                    <Toggler isHidden={false} isVertical={false} />
-                                    <span className='mt-2 block'>toggle theme</span>
-                                 </span>
-                              </ul>
+                              {!isHome && (
+                                 <ul className='text-center mt-24'>
+                                    <span className='block dark:text-gray-300 text-gray-700'>
+                                       <Toggler isHidden={!sidebarOpen} isVertical={false} />
+                                       <span className='mt-2 block'>toggle theme</span>
+                                    </span>
+                                 </ul>
+                              )}
                               <ul className='mt-auto text-center'>
-                                 <span>Made with care by Paul Cho</span>
+                                 <span>Designed and Made by Paul Cho</span>
                               </ul>
                            </nav>
                         </div>
@@ -106,17 +112,22 @@ const MobileNavigation = ({ navigation, isHome }: Omit<NavigationProps, 'setNavi
 
 const MobileNavBar = ({
    setSidebarOpen,
+   isHome,
+   isTop,
 }: {
    setSidebarOpen: (value: SetStateAction<boolean>) => void;
+   isHome: boolean;
+   isTop: boolean;
 }) => {
    return (
       <div
          className={classNames(
-            // isTop ? 'h-16' : 'top-0 h-16 z-50',
+            isTop && !isHome ? 'bg-[#f2f0f0] dark:bg-slate-800' : 'bg-transparent',
+            // 'bg-transparent',
             'z-50 md:h-0 fixed transition-all duration-250 ease-in flex flex-1 w-full justify-end items-center px-6'
          )}
       >
-         <div className='h-14 md:hidden inline-flex items-center'>
+         <div className='h-16 md:hidden inline-flex items-center'>
             <button
                type='button'
                className='w-10 h-10 -m-1.5 pl-2 hover:rounded-full hover:bg-gray-300/30'
