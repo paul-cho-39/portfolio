@@ -1,8 +1,5 @@
 import { GithubIcon, LinkedInIcon, InstagramIcon } from '@/app/component/contact/icons';
 
-export const HOME_COLOR = 'bg-[#184888]';
-export const DEFAULT_COLOR = 'bg-white dark:bg-zinc-900';
-
 export const NAVIGATION: NavigationParams[] = [
    { name: 'home', href: '#home', current: false, hovered: false },
    { name: 'about', href: '#about', current: false, hovered: false },
@@ -58,7 +55,7 @@ export const FrontPageGenerator = [
 type ColorTheme = 'light' | 'dark';
 
 type ThemeContextParams = {
-   theme: ColorTheme;
+   theme: ColorTheme | null;
    setTheme: (value: ColorTheme) => void;
 };
 

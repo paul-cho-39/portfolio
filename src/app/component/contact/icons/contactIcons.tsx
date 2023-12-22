@@ -6,7 +6,7 @@ import classNames from 'classnames';
 
 type Size = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
-interface ContactsProps {
+export interface ContactsProps {
    displayEmail: boolean;
    size?: Size;
    stroke?: string;
@@ -24,6 +24,7 @@ const sizeClasses = {
    xl: 'w-10 h-10 lg:w-12 lg:h-12',
 };
 
+// the email icon size looks smaller and this function is to make it one size bigger
 const getNextLargerSize = (currentSize: Size): Size => {
    const sizes = ['xs', 'sm', 'md', 'lg', 'xl'];
    const currentIndex = sizes.indexOf(currentSize);
@@ -70,12 +71,22 @@ const ContactIcons = ({
                <span className='sr-only'>{link.name}</span>
                {link.name === 'LinkedIn' ? (
                   <link.Icon
-                     className={classNames(iconSize, iconColor, 'dark:text-gray-300')}
+                     className={classNames(
+                        iconSize,
+                        iconColor,
+                        'dark:stroke-gray-300 dark:fill-gray-300 '
+                     )}
                      stroke={stroke}
                      strokeWidth={strokeWidth}
                   />
                ) : (
-                  <link.Icon className={classNames(iconSize, iconColor, 'dark:text-gray-300')} />
+                  <link.Icon
+                     className={classNames(
+                        iconSize,
+                        iconColor,
+                        'dark:stroke-gray-300 dark:fill-gray-300'
+                     )}
+                  />
                )}
             </Link>
          ))}

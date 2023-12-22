@@ -3,11 +3,11 @@ import React from 'react';
 
 const WebPagePreview = ({ url }: { url: string }) => {
    return (
-      <div className='w-[400px] h-[300px] relative'>
+      <div className='w-[100px] h-[200px] relative'>
          <iframe
             src={url}
             title='Webpage Preview'
-            className='h-full w-full overflow-hidden opacity-0 hover:opacity-100 transition-opacity duration-300 ease-in-out'
+            className='absolute inset-0 h-full w-full overflow-hidden opacity-0 hover:opacity-100 transition-opacity duration-300 ease-in-out'
             allowTransparency={true}
          ></iframe>
       </div>

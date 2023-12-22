@@ -8,6 +8,7 @@ import { Toggler } from '../buttons/toggler';
 
 import type { NavigationParams } from '@/app/constants';
 import { NavigationProps } from './navigation';
+import { DEFAULT_COLOR } from '@/app/library/helpers/getStyling';
 
 interface MobileNavigationProps extends Omit<NavigationProps, 'setNavigation'> {
    isTop: boolean;
@@ -44,7 +45,12 @@ const MobileNavigation = ({ navigation, isHome, isTop }: MobileNavigationProps) 
                   >
                      <Dialog.Panel className='relative flex max-w-[16rem] flex-1'>
                         {/* Sidebar component */}
-                        <div className='flex flex-grow flex-col gap-y-3 overflow-y-hidden bg-[#f2f0f0] dark:bg-slate-800 lg:bg-transparent px-6 pb-5'>
+                        <div
+                           className={classNames(
+                              DEFAULT_COLOR,
+                              'flex flex-grow flex-col gap-y-3 overflow-y-hidden lg:bg-transparent px-6 pb-5'
+                           )}
+                        >
                            <div className='flex flex-row-reverse h-14 items-center'>
                               <button
                                  className='-m-2.5 p-2.5 hover:rounded-full hover:bg-gray-300/30 '
@@ -122,12 +128,12 @@ const MobileNavBar = ({
    return (
       <div
          className={classNames(
-            isTop && !isHome ? 'bg-[#f2f0f0] dark:bg-slate-800' : 'bg-transparent',
-            // 'bg-transparent',
-            'z-50 md:h-0 fixed transition-all duration-250 ease-in flex flex-1 w-full justify-end items-center px-6'
+            isTop && !isHome ? DEFAULT_COLOR : 'bg-transparent',
+            'bg-transparent',
+            'z-50 md:h-0 fixed transition-all duration-250 ease-in flex flex-1 w-full justify-end items-center'
          )}
       >
-         <div className='h-16 md:hidden inline-flex items-center'>
+         <div className='h-16 md:hidden inline-flex items-center  px-6'>
             <button
                type='button'
                className='w-10 h-10 -m-1.5 pl-2 hover:rounded-full hover:bg-gray-300/30'

@@ -68,7 +68,7 @@ const Navbar = ({ navigation, setNavigation, isHome = true }: NavigationProps) =
       >
          <div className='w-full'>
             {/* mobile version */}
-            <MobileNavigation bgColor={BG_COLOR} navigation={navigation} isHome={isHome} />
+            <MobileNavigation isTop={isTop} navigation={navigation} isHome={isHome} />
 
             {/* desktop version */}
             <LargeNavigation
@@ -80,7 +80,7 @@ const Navbar = ({ navigation, setNavigation, isHome = true }: NavigationProps) =
             />
          </div>
          {/* blurred fixed navigation divider */}
-         {(!isTop || !isHome) && (
+         {(!isTop || isHome) && (
             <div className='fixed top-0 bottom-0 h-16 w-full bg-[rgba(19, 19, 19,.15)] z-40 opacity-[0.95] backdrop-blur-xl blur-lg'></div>
          )}{' '}
          <Divider position='fixed' className='bg-slate-200/30 dark:bg-slate-300' />

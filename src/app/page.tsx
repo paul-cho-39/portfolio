@@ -28,7 +28,7 @@ export default function Home({ Component, pageProps }: AppProps) {
          <AboutLazy />
          <ProjectCardsLazy />
          <ContactPage />
-         <FooterLazy bgColor='bg-blue-500/60' />
+         <FooterLazy className='bg-blue-500/60' />
       </ThemeProvider>
    );
 }

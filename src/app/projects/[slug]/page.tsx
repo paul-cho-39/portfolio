@@ -63,7 +63,7 @@ export default function Projects({ params }: { params: { slug: string } }) {
       <div className='w-full h-full mx-auto md:grid md:grid-cols-5 lg:grid-cols-7 bg-blue-200'>
          <div className='px-2 md:px-6 md:py-4 w-full md:col-span-4 lg:col-span-5 bg-slate-300'>
             <div className='bg-lime-400 px-2 md:px-4 lg:px-8 xl:px-10 flex flex-col items-center justify-center'>
-               <div className='w-full lg:flex lg:flex-col lg:items-start lg:justify-center max-w-4xl bg-purple-300 '>
+               <div className='w-full lg:flex lg:flex-col lg:items-start lg:justify-center max-w-4xl prose bg-purple-300 '>
                   <MainTitleContainer title={content.data.title} items={metaDataItems} />
                   <Markdown options={{ wrapper: 'article' }}>{content.content}</Markdown>
                </div>

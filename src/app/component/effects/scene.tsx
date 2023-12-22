@@ -5,9 +5,9 @@ import { useHelper, PerspectiveCamera, OrbitControls } from '@react-three/drei';
 
 import Seagull from './seagull';
 import { Monitor } from './monitor';
-// import Clouds, { Cloud } from './cloud';
+import Clouds, { Cloud } from './cloud';
 
-const Clouds = lazy(() => import('./cloud'));
+// const Clouds = lazy(() => import('./cloud'));
 
 const WindowCanvas = forwardRef<
    React.ElementRef<'canvas'>,
@@ -21,13 +21,13 @@ const WindowCanvas = forwardRef<
          camera={{ position: [-10, 1, 75], fov: 60, near: 1, far: 1000, castShadow: false }}
          resize={{ scroll: false }}
       >
-         <Suspense fallback={null}>
-            <Seagull />
-            <Clouds />
-            <OrbitControls autoRotateSpeed={100} enableZoom={false} />
-            {/* <Monitor /> */}
-            <Lights />
-         </Suspense>
+         {/* <Suspense fallback={null}> */}
+         <Seagull />
+         <Clouds />
+         <OrbitControls autoRotateSpeed={100} enableZoom={false} />
+         {/* <Monitor /> */}
+         <Lights />
+         {/* </Suspense> */}
       </Canvas>
    );
 });

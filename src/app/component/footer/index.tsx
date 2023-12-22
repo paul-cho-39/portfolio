@@ -1,17 +1,26 @@
+import classNames from 'classnames';
 import { ContactItems } from '@/app/constants';
 import Link from 'next/link';
-import ContactIcons from '../contact/icons/contactIcons';
+import ContactIcons, { ContactsProps } from '../contact/icons/contactIcons';
 
-interface FooterProps {
-   bgColor?: 'bg-blue-500' | string;
+interface FooterProps extends Partial<ContactsProps> {
+   className?: string;
 }
 
-const Footer = ({ bgColor }: FooterProps) => {
+const Footer = ({ className, ...props }: FooterProps) => {
    return (
       <footer>
-         <div className='py-6 overflow-hidden bg-blue-500'>
-            <ContactIcons className='my-2' displayEmail={false} stroke='black' strokeWidth={1.1} />
-            <p className='py-2 text-center'>© Built and designed by Paul Cho</p>
+         <div className={classNames(className, 'py-6 overflow-hidden bg-blue-500')}>
+            <ContactIcons
+               className='my-2'
+               displayEmail={false}
+               stroke='black'
+               strokeWidth={1.1}
+               {...props}
+            />
+            <p className='py-2 text-center dark:text-gray-300'>
+               © Built with Next.js | Hosted with Vercel | Designed by Paul Cho
+            </p>
          </div>
       </footer>
    );

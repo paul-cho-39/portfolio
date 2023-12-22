@@ -126,23 +126,24 @@ const FrontPage = ({
                      <Canvas ref={canvasRef} />
                      {children}
                   </motion.div>
-                  <FrontCoverDescription
-                     intro={"Hello there! 👋🏼  I'm"}
-                     title={
-                        <>
-                           <span>{'Paul |'}</span>
-                           <br />
-                           <span>Full-stack Developer</span>
-                        </>
-                     }
-                     description={
-                        "I'm a self-taught developer, I've navigated the tech landscape through hands-on experience."
-                     }
-                  />
-                  {isMediumDisabled && <ArrowDown />}
                </>
             )}
          </Suspense>
+
+         <FrontCoverDescription
+            intro={"Hello there! 👋🏼  I'm"}
+            title={
+               <>
+                  <span>{'Paul |'}</span>
+                  <br />
+                  <span>Full-stack Developer</span>
+               </>
+            }
+            description={
+               "I'm a self-taught developer, I've navigated the tech landscape through hands-on experience."
+            }
+         />
+         {isMediumDisabled && <ArrowDown />}
       </FronPageLayout>
    );
 };

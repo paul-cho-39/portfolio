@@ -1,5 +1,7 @@
-import { DEFAULT_COLOR, HOME_COLOR } from '@/app/constants';
 import { Scroll } from '../hooks/useScrollDirection';
+
+export const HOME_COLOR = 'bg-[#184888]';
+export const DEFAULT_COLOR = 'bg-gray-400 dark:bg-zinc-800';
 
 export function getPosition(
    isHome: boolean,

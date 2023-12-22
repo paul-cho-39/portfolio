@@ -35,16 +35,18 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-draggable": "^4.4.5",
+    "remark": "^15.0.1",
     "three": "^0.154.0",
     "three-stdlib": "^2.24.2",
-    "typescript": "5.1.6"
+    "typescript": "5.1.6",
+    "unified": "^11.0.4"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.10",
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.26",
     "tailwindcss": "^3.3.3"
-  }, 
+  },
   "browser": {
     "fs": false,
     "os": false,
