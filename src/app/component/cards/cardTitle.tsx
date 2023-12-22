@@ -39,7 +39,7 @@ const Title = ({ title, projectUrl }: { title: string; projectUrl: string }) => 
    return (
       <h3 className='font-sans text-2xl md:text-3xl font-semibold z-10 pb-2 lg:pb-3'>
          <Link
-            className='hover:text-blue-600 hover:decoration-blue-300 hover:underline hover:decoration-4 '
+            className='hover:text-blue-500 hover:decoration-blue-600 hover:underline hover:decoration-4 '
             href={`/projects/${projectUrl}`}
             aria-label={`View project ${title}`}
          >

@@ -9,6 +9,8 @@
   --top-sun: 25%;
   --background-profile: #faebd7;
   --underline: #57659e;
+  --href-color: rgb(48, 123, 245);
+  --href-underline:  #2563eb;
   --highlighter-width: 11rem;
 }
 
@@ -161,18 +163,22 @@ body {
     animation: sunpulse 2s alternate infinite; 
     -webkit-animation: sunpulse 2s alternate infinite; 
   }
-  .skills-container-gradient {
-      background-image: 
-        radial-gradient(circle at 80% 0, #ffcc33, transparent 50%);
-      background-size: contain;
-      transform-origin: top;
+  .blue-highlight {
+    color: var(--href-color);
   }
-  .skills-container-cloud {
-    background-image: 
-      linear-gradient(135deg, rgba(255,255,255,0) 49%, #000333 50%);
-    background-size: contain;
-    transform-origin: top;
-}
+  .blue-highlight::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 4px;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+  }
+  .blue-highlight:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--href-underline);
+    text-decoration-thickness: 4px;
+  }
 }
 
 @keyframes ripple {

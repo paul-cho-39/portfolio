@@ -12,7 +12,7 @@ const AboutMeDescription = () => {
          in the ever-changing tech landscape.
          <br />
          <br /> Off the clock, I find joy in books, fitness, and meaningful conversations.
-         <span className='inline underline underline-offset-1 before:contents-[" "] decoration-blue-300 hover:opacity-75'>
+         <span className='inline blue-highlight'>
             <Link href={ROUTES.PROJECTS.ABOUT_ME}>Read complete bio</Link>
          </span>
       </p>
