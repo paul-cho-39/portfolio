@@ -1,6 +1,7 @@
 import { Variants, motion } from 'framer-motion';
 import classNames from 'classnames';
 import useDarkTheme from '@/app/library/hooks/useDarkTheme';
+import { MoonIcon, SunIcon } from '@heroicons/react/24/outline';
 
 interface TogglerProps {
    isHidden: boolean;
@@ -13,9 +14,6 @@ export const Toggler = ({ isHidden, isVertical = true }: TogglerProps) => {
 
    const toggleTheme = () => {
       const newTheme = theme === 'light' ? 'dark' : 'light';
-
-      console.log('toggling theme');
-
       setTheme(newTheme);
    };
 
@@ -63,5 +61,34 @@ export const Toggler = ({ isHidden, isVertical = true }: TogglerProps) => {
             transition={spring}
          />
       </div>
+   );
+};
+
+/**
+ * NOTE: because of layout shift in the navigation from 'hidden' to 'fixed'
+ * the toggling circle wont paint the layout correctly
+ */
+export const DarkThemeButton = () => {
+   const { theme, setTheme } = useDarkTheme();
+
+   const toggleTheme = () => {
+      const newTheme = theme === 'light' ? 'dark' : 'light';
+      setTheme(newTheme);
+   };
+
+   return (
+      <button aria-hidden onClick={toggleTheme} className='text-2xl'>
+         {theme === 'dark' ? (
+            <SunIcon
+               title='Toggle to light theme'
+               className='w-6 h-6 lg:w-8 lg:h-8 text-gray-700 dark:text-gray-300'
+            />
+         ) : (
+            <MoonIcon
+               title='Toggle to dark theme'
+               className='w-6 h-6 lg:w-8 lg:h-8 text-gray-700 dark:text-gray-300'
+            />
+         )}
+      </button>
    );
 };

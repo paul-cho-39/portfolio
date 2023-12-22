@@ -93,6 +93,7 @@ const Cards = ({ projects }: ProjectCardsProps) => {
                         <MotionTitle
                            variants={headerVariants}
                            isHovered={isHovered}
+                           projectUrl={project.url}
                            title={project.title}
                            subtitle={project.section}
                            isOdd={isOdd}

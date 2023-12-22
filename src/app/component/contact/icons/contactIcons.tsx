@@ -3,6 +3,7 @@ import { EnvelopeIcon, EnvelopeOpenIcon } from '@heroicons/react/24/outline';
 
 import { ContactItems } from '@/app/constants';
 import classNames from 'classnames';
+import { forwardRef } from 'react';
 
 type Size = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
@@ -45,15 +46,9 @@ const getNextLargerSize = (currentSize: Size): Size => {
  * @param {string} [props.className]
  *
  */
-const ContactIcons = ({
-   displayEmail,
-   size,
-   iconColor,
-   emailColor,
-   stroke,
-   strokeWidth,
-   className,
-}: ContactsProps) => {
+const ContactIcons = forwardRef<HTMLDivElement, ContactsProps>((props, ref) => {
+   const { displayEmail, size, iconColor, emailColor, stroke, strokeWidth, className } = props;
+
    const handleEmailClick = () => {
       const emailAddress = 'chosung2loud@gmail.com';
       window.location.href = `mailto:${emailAddress}`;
@@ -65,7 +60,10 @@ const ContactIcons = ({
    const envelopeSize = sizeClasses[nextSize] || sizeClasses.lg;
 
    return (
-      <div className={classNames(className, 'flex justify-center items-center space-x-6')}>
+      <div
+         ref={ref}
+         className={classNames(className, 'flex justify-center items-center space-x-6')}
+      >
          {ContactItems.map((link, index) => (
             <Link key={index} href={link.href} className='hover:scale-110 transition-transform'>
                <span className='sr-only'>{link.name}</span>
@@ -106,6 +104,7 @@ const ContactIcons = ({
          )}
       </div>
    );
-};
+});
 
+ContactIcons.displayName = 'ContactIcons';
 export default ContactIcons;

@@ -4,29 +4,19 @@ import Link from 'next/link';
 const AboutMeDescription = () => {
    return (
       <p className='font-sans text-lg leading-normal md:text-2xl md:tracking-wider lg:text-3xl lg:font-medium'>
-         Hi! My self-driven journey in tech has equipped me with a unique perspective in building
-         efficient applications in both the web and mobile. <br /> My programming journey started
-         off first
-         <br /> Currently, I am freelancing and actively looking for a job.
-         <br /> When {"I'm not coding, you'll"} find me at the gym, catching up on sports, or
-         reading whatever piques my curiosity at the time
-         {/* link to /about */}
-         <span className='inline underline underline-offset-1 before:contents-[" "] decoration-blue-300'>
-            <Link href={ROUTES.PROJECTS.ABOUT_ME}> Read complete bio</Link>
+         {
+            "Hello! I'm Paul, a self-taught developer whose passion for creating engaging web and mobile applications has been fueled by an unconventional, yet enriching learning journey."
+         }
+         <br />
+         <br /> Today, I thrive on the thrill of solving complex problems and continuously evolving
+         in the ever-changing tech landscape.
+         <br />
+         <br /> Off the clock, I find joy in books, fitness, and meaningful conversations.
+         <span className='inline underline underline-offset-1 before:contents-[" "] decoration-blue-300 hover:opacity-75'>
+            <Link href={ROUTES.PROJECTS.ABOUT_ME}>Read complete bio</Link>
          </span>
       </p>
    );
 };
 
 export default AboutMeDescription;
-
-// introduction of who i am
-// I love challenges
-/**
- * Hello! My name is Paul. I am a self-taught developer with experience in mobile development and web application. I wanted to transition job and started learned programming in my own time. In the beginning, my goal was to deploy an application. It was not entirely a success, but I was reborn a better programmer. The
- * Currently, I am looking to jumpstart a career in software.
- * If you do not catch me
- */
-// story telling of where I stand
-//
-//  My journey into programming has been driven largely by curiosity, challenging myself, and a passion for building web-based applications.

@@ -57,27 +57,27 @@ const Navbar = ({ navigation, setNavigation, isHome = true }: NavigationProps) =
    const BG_COLOR = getBgColor(isHome, isTop);
    const POSITION = getPosition(isHome, isTop, scrollDirection);
 
+   const navProps = {
+      isTop: isTop,
+      navigation: navigation,
+      isHome: isHome,
+   };
+
    return (
       // declare the color at the parent
       <header
          className={classNames(
             // BG_COLOR,
-            POSITION,
-            'transition-all duration-200 ease-linear'
+            POSITION
+            // 'transition-all duration-200 ease-linear'
          )}
       >
          <div className='w-full'>
             {/* mobile version */}
-            <MobileNavigation isTop={isTop} navigation={navigation} isHome={isHome} />
+            <MobileNavigation {...navProps} />
 
             {/* desktop version */}
-            <LargeNavigation
-               navigation={navigation}
-               setNavigation={setNavigation}
-               bgColor={BG_COLOR}
-               isHome={isHome}
-               isTop={isTop}
-            />
+            <LargeNavigation setNavigation={setNavigation} bgColor={BG_COLOR} {...navProps} />
          </div>
          {/* blurred fixed navigation divider */}
          {(!isTop || isHome) && (

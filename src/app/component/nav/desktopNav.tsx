@@ -7,6 +7,7 @@ import WaveyLine from '../svg/wavey-line';
 
 import type { NavigationParams } from '@/app/constants';
 import { NavigationProps } from './navigation';
+import { DarkThemeButton } from '../buttons/toggler';
 
 interface LargeNavigationProps extends NavigationProps {
    isTop: boolean;
@@ -66,7 +67,9 @@ const LargeNavigation = ({
                                  'relative h-full self-baseline group flex gap-x-3 p-3 hover:font-bold group-hover:text-opacity-60'
                               )}
                            >
-                              <span className='relative text-lg font-medium'>{item.name}</span>
+                              <span className='relative text-lg xl:text-xl font-medium'>
+                                 {item.name}
+                              </span>
                               <span className='absolute bottom-0 left-2 w-full overflow-hidden'>
                                  <WaveyLine
                                     className='dark:text-gray-200 text-blue-700'
@@ -78,6 +81,12 @@ const LargeNavigation = ({
                            </Link>
                         </li>
                      ))}
+                     {/* toggler at the projects */}
+                     {!isHome && (
+                        <li aria-hidden className='inline-flex items-center justify-center'>
+                           <DarkThemeButton />
+                        </li>
+                     )}
                   </ul>
                </nav>
             </div>

@@ -71,5 +71,12 @@ function getNextAndPrevMdx(currentSlug: string, allSlugs: string[]) {
    return { nextSlug, prevSlug };
 }
 
-export { getMarkdownContent, getNextAndPrevMdx };
+// TODO:
+// if projects/posts get too large then write another function to filter that out
+function getAllMdxNotCurrent(currentSlug: string, allSlugs: string[]) {
+   const restProjects = allSlugs.filter((slug) => slug !== currentSlug);
+   return restProjects;
+}
+
+export { getMarkdownContent, getNextAndPrevMdx, getAllMdxNotCurrent };
 export default getMarkdownMetaData;

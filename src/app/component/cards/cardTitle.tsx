@@ -3,8 +3,9 @@ import { forwardRef } from 'react';
 import classNames from 'classnames';
 import { motion } from 'framer-motion';
 import { ProjectImageProps } from './image';
-import { ArrowRightIcon } from '@heroicons/react/24/outline';
+import { ArrowRightIcon, ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
 import { BasicCardProps } from '@/app/library/@types';
+import Link from 'next/link';
 
 interface SubtitleProps extends Pick<BasicCardProps, 'index'> {
    subtitle: string;
@@ -13,11 +14,12 @@ interface SubtitleProps extends Pick<BasicCardProps, 'index'> {
 
 interface ProjectTitleProps extends SubtitleProps {
    title: string;
+   projectUrl: string;
    isOdd: (index: number) => boolean;
 }
 
 const ProjectTitleRef = forwardRef<HTMLDivElement, ProjectTitleProps>((props, ref) => {
-   const { title, index, isOdd, isHovered, subtitle } = props;
+   const { index, isOdd, isHovered, subtitle, ...rest } = props;
 
    return (
       <div
@@ -27,14 +29,24 @@ const ProjectTitleRef = forwardRef<HTMLDivElement, ProjectTitleProps>((props, re
             'md:pb-4 flex flex-col w-full'
          )}
       >
-         <Title title={title} />
+         <Title {...rest} />
          <Subtitle subtitle={subtitle} index={index} isHovered={isHovered} />
       </div>
    );
 });
 
-const Title = ({ title }: { title: string }) => {
-   return <h3 className='font-sans text-2xl md:text-3xl font-semibold z-10'>{title}</h3>;
+const Title = ({ title, projectUrl }: { title: string; projectUrl: string }) => {
+   return (
+      <h3 className='font-sans text-2xl md:text-3xl font-semibold z-10 pb-2 lg:pb-3'>
+         <Link
+            className='hover:text-blue-600'
+            href={`/projects/${projectUrl}`}
+            aria-label={`View project ${title}`}
+         >
+            {title}
+         </Link>
+      </h3>
+   );
 };
 
 const Subtitle = ({ subtitle, index, isHovered }: SubtitleProps) => {

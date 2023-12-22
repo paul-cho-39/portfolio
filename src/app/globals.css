@@ -137,8 +137,8 @@ body {
   .wavy-line {
     stroke-dasharray: 1000;
     stroke-dashoffset: 1000;
-    animation: slide 0.4s ease forwards;
-    -webkit-animation: slide 0.4s ease forwards;
+    animation: slide 0.7s ease forwards;
+    -webkit-animation: slide 0.7s ease forwards;
   }
   .wavy-line-animate {
     animation: slide 0.2s ease forwards;

@@ -19,17 +19,20 @@ export default function ProjectLayouts({ children }: { children: React.ReactNode
             <Navbar navigation={navigation} setNavigation={setNavigation} isHome={false} />
 
             {/* section here - desktop version contains 12 columns grids */}
-            <section className='w-full h-full md:grid md:grid-cols-12 md:gap-0 dark:bg-zinc-800 bg-gray-100 overflow-hidden'>
-               <AsideWrapper />
-               {/* main content. Also, containing side-content (ref, dictionary, etc.) */}
-               <div className='w-full md:col-span-10 h-full dark:bg-zinc-800 min-h-screen text-base md:text-lg'>
-                  <div className='mt-14 lg:mt-8 md:col-start-1 md:col-end-10'>
-                     {/* <div className='px-6 lg:px-6 max-w-2xl lg:max-w-[52rem] xl:max-w-[54rem] w-full bg-slate-300'> */}
-                     {children}
-                     {/* </div> */}
-                  </div>
+            {/* <section className='w-full h-full md:grid md:grid-cols-12 md:gap-0 dark:bg-zinc-800 bg-gray-100 overflow-hidden'> */}
+            {/* <AsideWrapper /> */}
+            {/* main content. Also, containing side-content (ref, dictionary, etc.) */}
+            {/* <div className='w-full md:col-span-10 h-full dark:bg-zinc-800 min-h-screen text-base md:text-lg'>
+                  <div className='mt-14 lg:mt-8 md:col-start-1 md:col-end-10'> */}
+            {/* <div className='px-6 lg:px-6 max-w-2xl lg:max-w-[52rem] xl:max-w-[54rem] w-full bg-slate-300'> */}
+            {/* {children} */}
+            {/* </div> */}
+            {/* </div>
                </div>
-            </section>
+            </section> */}
+            <div className='container mx-auto px-6 pt-10 pb-12 dark:bg-zinc-800 bg-gray-100'>
+               {children}
+            </div>
             <Footer displayEmail={true} className='bg-white dark:bg-zinc-600' />
          </div>
       </ThemeProvider>

@@ -4,7 +4,7 @@
         {
             "title": "Google-Books Library",
             "section": "feature project",
-            "image": "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2102&q=80",
+            "image": "/images/projects/googlebooks.png",
             "description": "Gravida quam mi erat tortor neque molestie. Auctor aliquet at porttitor a enim nunc suscipit tincidunt nunc. Et non lorem tortor posuere.",
             "url": "googlebooks",
             "github": "https://github.com/paul-cho-39/google-books-library" ,

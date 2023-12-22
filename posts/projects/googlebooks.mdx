@@ -5,8 +5,29 @@ totalReadingTime: '5 mins'
 keywords: '[Next.js, Three.JS]'
 ---
 
+
+![Picture of the Image](/images/projects/googlebooks.png "Scenic View")
+
+Explore the latest published books by category and browse through any books found in Google Books!
+[See this website live!](https://google-books-library.vercel.app/)
+
 ## Introduction
-This is a testing run and seeing if it works as intended
+The website is a personal full-stack project hosted by Vercel. It integrates Google Books API and New York Times API for real-time data on books. It features full CRUDs applications enabling users to create, add, and update books and rating of a book, and browsing books, browsing by categories and weekly popular list from New York Times. 
+
+The project is built on Next.js framework and styled with Tailwind CSS. For database, it uses PostgreSQL and Prisma ORM to interact with the database. Working with Prisma seamlessly integrates with next/auth[link] for secure user authentication. With a focus on caching and user experience, the website performs efficient client-side caching using react-query [link] and fetching and rendering Google Books data with static site generation and ensuring that API rate limit is not exceeded. 
 
 ## What I have learned
-Why is it that it wont work sometimes?
+Through this project, I have honed my skills in:
+-	Enhancing user experience with effective caching strategies and optimistic updates
+-	Utilizing third-party APIs and understanding how to deal with rate limitations.
+-	Implementing authentication ensuring secure access. 
+-	Handling data integrity across different pages and with different sets of data.
+
+## Challenges
+The biggest challenge is finding the appropriate caching strategies that won’t exceed the rate limit and serving the data. I experimented with different strategies like server-side rendering and other caching strategies like LRU-cache[link].
+The problem with serving the data inside the ‘getServerSideProps’ is that it will fetch the data each time the page is visited. 
+
+In the project, it fetches categories of books in batches, which counts as hitting the API once per category. The LRU-cache did not persist data unless persisting using ‘sessionStorage’ or ‘localStorage’ (this method is not good either because of size limitation, more complexity, and application performance). 
+
+The mentioned approaches had limitations in data persistence and risked exceeding API rate limits. Ultimately, I had to settle by statically generating the data coupled with react-query’s caching capabilities. 
+
