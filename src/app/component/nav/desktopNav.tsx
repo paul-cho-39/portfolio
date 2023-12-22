@@ -6,36 +6,14 @@ import HeaderTitle from './navTitle';
 import WaveyLine from '../svg/wavey-line';
 
 import type { NavigationParams } from '@/app/constants';
-import { NavigationProps } from './navigation';
 import { DarkThemeButton } from '../buttons/toggler';
+import { MobileNavigationProps } from './mobileNav';
 
-interface LargeNavigationProps extends NavigationProps {
-   isTop: boolean;
+interface LargeNavigationProps extends MobileNavigationProps {
    bgColor: string;
 }
 
-const LargeNavigation = ({
-   navigation,
-   setNavigation,
-   isTop,
-   isHome,
-   bgColor,
-}: LargeNavigationProps) => {
-   // const [navItems, setNavItems] = useState(navigation);
-
-   const handleMouseEnter = (name: string) => {
-      setNavigation(
-         navigation.map((item) => ({
-            ...item,
-            hovered: item.name === name,
-         }))
-      );
-   };
-
-   const handleMouseLeave = () => {
-      setNavigation(navigation.map((item) => ({ ...item, hovered: false })));
-   };
-
+const LargeNavigation = ({ navigation, isTop, isHome, bgColor }: LargeNavigationProps) => {
    return (
       <div className={classNames(bgColor, 'hidden mx-auto md:h-16 md:flex md:w-full')}>
          <div className='flex flex-row justify-stretch items-stretch w-full h-full'>
@@ -55,31 +33,7 @@ const LargeNavigation = ({
                      className='flex flex-row items-center justify-center gap-x-1 h-full group'
                   >
                      {navigation.map((item, index) => (
-                        <li
-                           key={index}
-                           onMouseLeave={handleMouseLeave}
-                           onMouseEnter={() => handleMouseEnter(item.name)}
-                           className='mx-1 dark:text-gray-200'
-                        >
-                           <Link
-                              href={isHome ? item.href : '/' + item.href}
-                              className={classNames(
-                                 'relative h-full self-baseline group flex gap-x-3 p-3 hover:font-bold group-hover:text-opacity-60'
-                              )}
-                           >
-                              <span className='relative text-lg xl:text-xl font-medium'>
-                                 {item.name}
-                              </span>
-                              <span className='absolute bottom-0 left-2 w-full overflow-hidden'>
-                                 <WaveyLine
-                                    className='dark:text-gray-200 text-blue-700'
-                                    isHovered={item.hovered}
-                                    height={10}
-                                    width={60}
-                                 />
-                              </span>
-                           </Link>
-                        </li>
+                        <NavItem key={index} item={item} isHome={isHome} />
                      ))}
                      {/* toggler at the projects */}
                      {!isHome && (
@@ -92,6 +46,33 @@ const LargeNavigation = ({
             </div>
          </div>
       </div>
+   );
+};
+
+const NavItem = ({ item, isHome }: { item: NavigationParams; isHome: boolean }) => {
+   const [isHovered, setIsHovered] = useState(false);
+
+   return (
+      <li
+         onMouseEnter={() => setIsHovered(true)}
+         onMouseLeave={() => setIsHovered(false)}
+         className='mx-1 dark:text-gray-200'
+      >
+         <Link
+            href={isHome ? item.href : '/' + item.href}
+            className='relative h-full self-baseline group flex gap-x-3 p-3 hover:font-bold group-hover:text-opacity-60'
+         >
+            <span className='relative text-lg xl:text-xl font-medium'>{item.name}</span>
+            <span className='absolute bottom-0 left-2 w-full overflow-hidden'>
+               <WaveyLine
+                  className='dark:text-gray-200 text-blue-700'
+                  isHovered={isHovered}
+                  height={10}
+                  width={60}
+               />
+            </span>
+         </Link>
+      </li>
    );
 };
 

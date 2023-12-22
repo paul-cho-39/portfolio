@@ -10,7 +10,7 @@ import type { NavigationParams } from '@/app/constants';
 import { NavigationProps } from './navigation';
 import { DEFAULT_COLOR } from '@/app/library/helpers/getStyling';
 
-interface MobileNavigationProps extends Omit<NavigationProps, 'setNavigation'> {
+export interface MobileNavigationProps extends Omit<NavigationProps, 'setNavigation'> {
    isTop: boolean;
 }
 

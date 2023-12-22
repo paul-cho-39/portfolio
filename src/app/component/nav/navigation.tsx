@@ -77,7 +77,7 @@ const Navbar = ({ navigation, setNavigation, isHome = true }: NavigationProps) =
             <MobileNavigation {...navProps} />
 
             {/* desktop version */}
-            <LargeNavigation setNavigation={setNavigation} bgColor={BG_COLOR} {...navProps} />
+            <LargeNavigation bgColor={BG_COLOR} {...navProps} />
          </div>
          {/* blurred fixed navigation divider */}
          {(!isTop || isHome) && (

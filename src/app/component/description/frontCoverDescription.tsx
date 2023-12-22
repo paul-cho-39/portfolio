@@ -3,6 +3,7 @@ import { pacifico, montserratAlternatives } from '../../fonts';
 import ContactIcons from '../contact/icons/contactIcons';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import Waves from '../svg/wave';
 
 interface Main {
    title: React.ReactElement;
