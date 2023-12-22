@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { NAVIGATION, NavigationParams } from '../constants';
 import { ThemeProvider } from '../library/contexts/ThemeContext';
 import AsideWrapper from '../component/layouts/_pages/asideWrap';
+import Footer from '../component/footer';
 
 export default function ProjectLayouts({ children }: { children: React.ReactNode }) {
    const [navigation, setNavigation] = useState<NavigationParams[]>(NAVIGATION);
@@ -18,7 +19,7 @@ export default function ProjectLayouts({ children }: { children: React.ReactNode
             <Navbar navigation={navigation} setNavigation={setNavigation} isHome={false} />
 
             {/* section here - desktop version contains 12 columns grids */}
-            <section className='w-full h-full md:grid md:grid-cols-12 md:gap-0 dark:bg-zinc-800 bg-white overflow-hidden'>
+            <section className='w-full h-full md:grid md:grid-cols-12 md:gap-0 dark:bg-zinc-800 bg-gray-100 overflow-hidden'>
                <AsideWrapper />
                {/* main content. Also, containing side-content (ref, dictionary, etc.) */}
                <div className='w-full md:col-span-10 h-full dark:bg-zinc-800 min-h-screen text-base md:text-lg'>
@@ -29,6 +30,7 @@ export default function ProjectLayouts({ children }: { children: React.ReactNode
                   </div>
                </div>
             </section>
+            <Footer displayEmail={true} className='bg-white dark:bg-zinc-600' />
          </div>
       </ThemeProvider>
    );
