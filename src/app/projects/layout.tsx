@@ -15,7 +15,7 @@ export default function ProjectLayouts({ children }: { children: React.ReactNode
 
    return (
       <ThemeProvider>
-         <div className='min-h-screen w-full'>
+         <div className='min-h-screen w-full dark:bg-zinc-800 bg-white'>
             <Navbar navigation={navigation} setNavigation={setNavigation} isHome={false} />
 
             {/* section here - desktop version contains 12 columns grids */}
@@ -30,10 +30,8 @@ export default function ProjectLayouts({ children }: { children: React.ReactNode
             {/* </div>
                </div>
             </section> */}
-            <div className='container mx-auto px-6 pt-10 pb-12 dark:bg-zinc-800 bg-gray-100'>
-               {children}
-            </div>
-            <Footer displayEmail={true} className='bg-white dark:bg-zinc-600' />
+            <div className='container mx-auto px-6 pt-10 pb-12'>{children}</div>
+            <Footer displayEmail={true} className='bg-gray-100 dark:bg-zinc-600' />
          </div>
       </ThemeProvider>
    );

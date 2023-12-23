@@ -23,7 +23,7 @@ const MetaDataDescription = ({ items }: MetaDataDescriptionProps) => {
             >
                <item.icon className='w-6 h-6 lg:w-8 lg:h-8 dark:text-gray-300' />
                <span className='sr-only'>{item.title}</span>
-               <span className='text-sm md:text-md ml-6 px-1 dark:text-gray-300'>{`${item.value}`}</span>
+               <span className='text-base font-medium ml-6 px-1 dark:text-gray-300'>{`${item.value}`}</span>
             </div>
          ))}
       </div>

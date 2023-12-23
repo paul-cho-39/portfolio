@@ -1,10 +1,10 @@
 import NavigationButton from '@/app/component/buttons/navigationButton';
-import { MainTitleContainer } from '@/app/component/headers/blog';
-import WebPagePreview from '@/app/component/webPagePreview';
+import { MainTitleContainer } from '@/app/component/headers/blogTitle';
+import DisplayOtherPosts from '@/app/component/headers/post';
+import formatDate from '@/app/library/helpers/formatDate';
 import getMarkdownMetaData, {
    getAllMdxNotCurrent,
    getMarkdownContent,
-   getNextAndPrevMdx,
 } from '@/app/library/mdx/getMarkdownData';
 
 import { ClockIcon, CalendarIcon, TagIcon } from '@heroicons/react/24/outline';
@@ -43,8 +43,6 @@ export default function Projects({ params }: { params: { slug: string } }) {
       return notFound();
    }
 
-   console.log('all the other projects are: ', otherProjects);
-
    const metaDataItems = [
       {
          icon: ClockIcon,
@@ -54,7 +52,7 @@ export default function Projects({ params }: { params: { slug: string } }) {
       {
          icon: CalendarIcon,
          title: 'Date',
-         value: content.data.date,
+         value: formatDate(content.data.date),
       },
       {
          icon: TagIcon,
@@ -64,15 +62,16 @@ export default function Projects({ params }: { params: { slug: string } }) {
    ];
 
    return (
-      <div className='w-full h-full mx-auto flex justify-center bg-blue-200'>
+      <div className='w-full h-full mx-auto flex justify-center'>
          <main
             className={classNames(
-               'prose-a:decoration-blue-500',
-               'w-full max-w-2xl prose text-lg prose-p:leading-8 bg-purple-300 '
+               'prose-a:no-underline prose-a:blue-highlight',
+               'w-full max-w-2xl prose text-lg prose-p:leading-8 '
             )}
          >
             <MainTitleContainer title={content.data.title} items={metaDataItems} />
             <Markdown options={{ wrapper: 'article' }}>{content.content}</Markdown>
+            <DisplayOtherPosts posts={otherProjects} />
          </main>
       </div>
    );

@@ -5,6 +5,10 @@ import { BlogContainerProps } from '../@types';
 
 // the types here represent folder names
 type FolderParms = 'projects' | 'blogs' | 'about';
+type GrayMatterContent = {
+   slug: string;
+   contents: matter.GrayMatterFile<string> | null;
+};
 
 interface MarkdownMetaProps extends BlogContainerProps {
    slug: string;
@@ -74,9 +78,22 @@ function getNextAndPrevMdx(currentSlug: string, allSlugs: string[]) {
 // TODO:
 // if projects/posts get too large then write another function to filter that out
 function getAllMdxNotCurrent(currentSlug: string, allSlugs: string[]) {
+   const allContents: GrayMatterContent[] = [];
    const restProjects = allSlugs.filter((slug) => slug !== currentSlug);
-   return restProjects;
+
+   restProjects.forEach((next) => {
+      const project = getMarkdownContent('projects', next);
+      const slug = next;
+      allContents.push({
+         contents: project,
+         slug,
+      });
+   });
+
+   return allContents;
 }
 
 export { getMarkdownContent, getNextAndPrevMdx, getAllMdxNotCurrent };
+export type { GrayMatterContent, FolderParms };
+1;
 export default getMarkdownMetaData;

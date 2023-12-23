@@ -7,6 +7,13 @@ module.exports = {
    ],
    darkMode: 'class',
    theme: {
+      listStyleType: {
+         none: 'none',
+         disc: 'disc',
+         decimal: 'decimal',
+         square: 'square',
+         roman: 'upper-roman',
+      },
       extend: {
          color: {},
          backgroundImage: {
