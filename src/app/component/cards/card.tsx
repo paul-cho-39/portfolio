@@ -60,11 +60,15 @@ const Cards = ({ projects }: ProjectCardsProps) => {
                   'mx-auto flex w-full py-3 flex-col items-center mb-2 lg:mb-0'
                )}
             >
-               <div className={classNames('lg:w-full lg:max-w-4xl lg:mb-6 xl:mb-8 py-2')}>
+               <div
+                  className={classNames(
+                     'lg:w-full lg:max-w-[50rem] xl:max-w-[58rem] lg:mb-6 xl:mb-8 py-2'
+                  )}
+               >
                   <div
                      className={classNames(
-                        isOdd(index) ? 'lg:flex-row-reverse ' : 'lg:flex-row',
-                        'flex flex-col px-6 py-2'
+                        isOdd(index) ? 'lg:flex-row-reverse' : 'lg:flex-row',
+                        'flex flex-col px-6 lg:px-2 py-2'
                      )}
                   >
                      {/* github links and project link in desktop */}
@@ -85,7 +89,8 @@ const Cards = ({ projects }: ProjectCardsProps) => {
                         whileInView='visible'
                         viewport={{ once: true }}
                         className={classNames(
-                           'lg:max-w-2xl lg:-px-6 xl:max-w-xl ',
+                           // 'lg:-px-6 xl:max-w-xl bg-yellow-300',
+                           'lg:-px-6 w-full lg:max-w-md xl:max-w-lg',
                            'flex-grow items-center justify-start align-top self-start w-full',
                            'md:py-2 lg:mx-4 '
                         )}

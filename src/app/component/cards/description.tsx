@@ -15,6 +15,7 @@ const ProjectDescriptionRef = forwardRef<HTMLDivElement, ProjectDescription>((pr
          aria-label={description}
          className={classNames(
             isOdd(index) ? 'lg:text-right' : 'lg:text-left',
+            // 'font-sans text-lg lg:mb-4 tracking-wide leading-5 py-2 md:leading-6 lg:leading-7 lg:inline-flex'
             'font-sans text-lg lg:mb-4 tracking-wide leading-5 py-2 md:leading-6 lg:leading-7 lg:block'
          )}
       >

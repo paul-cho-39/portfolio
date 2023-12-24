@@ -5,7 +5,7 @@
             "title": "Google-Books Library",
             "section": "Full-Stack Web Application",
             "image": "/images/projects/googlebooks.png",
-            "description": "Gravida quam mi erat tortor neque molestie. Auctor aliquet at porttitor a enim nunc suscipit tincidunt nunc. Et non lorem tortor posuere.",
+            "description": "A web app that integrates Google Books and New York Times API, offering the latest published books. Browse through any books, save the books, and rate them.",
             "url": "googlebooks",
             "github": "https://github.com/paul-cho-39/google-books-library" ,
             "badge": [
@@ -15,6 +15,7 @@
                 "Prisma",
                 "NextAuth",
                 "Google Books API",
+                "NYT API",
                 "React Query"
             ]
         }, 
@@ -22,7 +23,7 @@
             "title": "Bookmarker-App",
             "section": "Full-Stack Mobile Application",
             "image": "/images/projects/bookmarker_logo.png",
-            "description": "Gravida quam mi erat tortor neque molestie. Auctor aliquet at porttitor a enim nunc suscipit tincidunt nunc. Et non lorem tortor posuere.",   
+            "description": "While this project is currently under wraps and in development mode, explore my first major undertaking of developing a mobile application. It aims to tracks users reading habits. It's designed to track the reader's, featuring capabilities to log the current book, montiro time and pages read per session, rate each reading experience, and compile notes linked to specific sessions. ",
             "url": "bookmarker",
             "github": "https://github.com/paul-cho-39/bookmark-app" ,
             "badge": [
@@ -30,17 +31,16 @@
                 "React Native",
                 "Firebase",
                 "Neo4j",
-                "express",
-                "expo",
-                "zustand",
-                "realm"
+                "Express",
+                "Zustand",
+                "Realm"
             ]
         },
         {
             "title": "Portfolio Website",
             "section": "Front-End Web Application",
             "image": "/images/projects/portfolio.png",
-            "description": "Gravida quam mi erat tortor neque molestie. Auctor aliquet at porttitor a enim nunc suscipit tincidunt nunc. Et non lorem tortor posuere. Nunc eu scelerisque interdum eget tellus non nibh scelerisque bibendum.",   
+            "description": "A digital showcase of my latest works, developed using Next.js. This website is inspired by the serene, relaxed coastal landscape with a hint of beachy theme.",   
             "url": "portfolio",
             "github": "https://github.com/paul-cho-39/portfolio" ,
             "badge": [

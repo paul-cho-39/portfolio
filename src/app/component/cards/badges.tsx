@@ -15,7 +15,7 @@ const ProjectBadges = ({ badges, index, isOdd }: ProjectBadgesProps) => {
          transition={{ duration: 0.7 }}
          className={classNames(
             isOdd(index) ? 'lg:items-end lg:justify-end' : 'lg:items-start lg:justify-start',
-            'flex flex-row gap-x-1 overflow-auto'
+            'flex flex-row flex-wrap gap-x-1 overflow-auto'
          )}
          role='list'
       >
@@ -23,7 +23,7 @@ const ProjectBadges = ({ badges, index, isOdd }: ProjectBadgesProps) => {
             <li
                key={badgeIndex}
                aria-label={badge}
-               className='inline-flex flex-wrap items-center rounded-full bg-gray-100 md:px-2 py-1 text-sm font-medium text-blue-500'
+               className='font-serif px-1 inline-flex items-center rounded-full bg-gray-200 md:px-2 py-1 md:py-2 text-sm font-medium text-blue-600'
             >
                {badge}
             </li>
