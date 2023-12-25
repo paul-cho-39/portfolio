@@ -10,8 +10,10 @@ const ContactDescription = ({}) => {
    return (
       <div className='w-full mx-auto flex'>
          <div className='font-sans flex w-full flex-col items-center justify-center py-4 lg:py-8'>
-            <p className='text-lg mb-4 opacity-95 text-center'>
-               {"Interested in collaborating? I'm open to freelance and project opportunities!"}
+            <p className='text-lg lg:text-xl mb-4 lg:mb-8 opacity-95 text-center'>
+               {
+                  "Have a project in mind? I’d love to hear about it! I'm open for freelance work and exploring new job opportunities."
+               }
             </p>
             <RippleEffectButton
                name='Drop a Message'
