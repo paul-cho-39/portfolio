@@ -29,7 +29,7 @@ const MotionPalmTrees = ({ isMediumDisabled }: MotionPalmTreesProps) => {
 
    return (
       <motion.div
-         viewport={{ once: true, margin: '-170px' }}
+         viewport={{ once: true, margin: '-250px' }}
          initial='hidden'
          whileInView='visible'
       >

@@ -15,8 +15,8 @@ const ContactDescription = ({}) => {
             </p>
             <RippleEffectButton
                name='Drop a Message'
-               rippleSize={70}
-               className='sky-fade-gradient border-2 border-transparent hover:text-blue-800 hover:border-blue-800'
+               rippleSize={120}
+               className='border-2 border-blue-200 w-42 h-14 lg:w-52 lg:h-16 hover:text-blue-800 hover:border-blue-800'
                createRippleOnClick={true}
                onClick={handleEmailClick}
                rippleColor='dodgerblue'
@@ -28,7 +28,7 @@ const ContactDescription = ({}) => {
 
 const ContactHeader = () => {
    return (
-      <div className='pt-12 text-center py-6 lg:py-10'>
+      <div className='pt-12 text-center py-6 lg:py-14'>
          <h2 className='font-serif font-bold text-3xl lg:text-5xl'>
             <span>{"Let's"}</span>
             <br />

@@ -1,15 +1,54 @@
 ---
 title: 'Bookmarker React Native'
 date: '2023-12-12'
-totalReadingTime: '5 mins'
-keywords: [Next.js, Three.JS]
+totalReadingTime: '~5 mins'
+section: 'Mobile Application'
+keywords: React Native, Neo4j, Zustand
 ---
 
 ## Introduction
-I am an avid reader. So, I imagined creating a bookmark with NFC (Near Field Communication) where if the user taps it,
-it will automatically record the starting time, and thereafter when
+This is my first big project that I worked on. Working on this ambitious project marked a significant milestone in my software development career. While the ultimate goal was to launch the app on Google Play Store, the journey itself proved to be an invaluable learning experience. 
+
+Despite the effort and progress, the project remains in development and is not yet publicly accessible. However, I invite you to explore the [source code]( https://github.com/paul-cho-39/bookmark-app/tree/main) to understand the depth and breadth of the work involved!
+
+## Stacks
+-	**Backend**: Developed using Express, with Neo4j for the database management.
+-	**Authentication**: Firebase SDK
+-	**Frontend**: Designed with React Native and integrated [React-navigation]( https://reactnavigation.org/docs/getting-started/) for routing between screens
+-	**State Management**: Light weight library, [Zustand]( https://github.com/pmndrs/zustand),  for user-settings, timer, notes, and integration with [Realm]( https://realm.io/).
+
+## Objectives
+1.	Build a user interface where it can track the users reading time, choice of book, rating their emotion or feel for their book per reading session, and notes that can be connected to users’ reading session. 
+2.	Build an interactive chart to visually represent users’ daily reading habits and offer a unique insight to their reading journey.
+3.	Deploy the app to the Google Play Store and possibly monetize from the app.
 
 
-## Learned Lesson
+## Key Features
+Users can search the books or manually enter details of the book that they are reading.
+<img src="/images/projects/bookmarker_search.jpg" alt="Demo of search screen" width="200" height="300" />
 
+Upon selecting a, ‘Read now’ option, the book’s information is saved to the Realm database for offline access.
+<img src="/images/projects/bookmarker_select.jpg" alt="Demo of select book screen" width="200" height="300" />
+
+Implemented a reading timer that increments the total pages read during a session and an option to edit the pages.
+<img src="/images/projects/bookmarker_timer.jpg" alt="Demo of timer screen" width="200" height="300" />
+
+Users can optionally attach notes to their reading session. 
+<img src="/images/projects/bookmarker_notes.jpg" alt="Demo of note-taking screen" width="200" height="300" />
+
+
+## Challenges
+The project’s scale brought significant challenges. As the application got bigger, the more debugging got difficult and sometimes difficult to trace and left me hours and days wandering where it went wrong.
+1.	Organization and file structure (using state management like Zustand) 
+2.	Mobile native challenges. This included understanding Expo workflow, its limitation of building with Expo, and the tradeoff between Expo workflow and native code 
+
+Although I aspired to deploy an app to the Google Play Store, it did not go according to plan. As the application got larger, it added a layer of complexity. As it got more complex, the lack of testing clearly showed the vulnerable state of the project. Without testing and the overwhelming codebase resulted in a decision to pause the project. However, this experience was far from fruitless. It taught me invaluable lessons in:
+-	Mobile app design, including gesture handling, cache management, offline access, and webview integration.
+-	App development intricacies like navigation, network management in low-connectivity scenarios, and security aspects.
+-	The need for robust testing for scalability and maintainability.
+-	Effective state management using the Zustand library.
+-	Mastery of Cypher, the query language for Neo4j.
+-	Maintaining cleaner, more efficient code.
+
+While the project did not reach its final deployment stage, the skills and knowledge I gained have been transformative. I emerged from this experience not just as a more proficient programmer but also with a deeper understanding of the complexities and challenges of full-scale app development.
 

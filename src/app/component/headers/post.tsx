@@ -26,7 +26,7 @@ const DisplayOtherPosts = ({ posts }: PostsProps) => {
                      <span className='after:content-[" "]'>
                         {''} | {''}
                      </span>
-                     <span>{post.contents?.data.keywords}</span>
+                     <span>{post.contents?.data.section}</span>
                   </span>
                </li>
             ))}

@@ -66,7 +66,10 @@ export default function Projects({ params }: { params: { slug: string } }) {
          <main
             className={classNames(
                'prose-a:no-underline prose-a:blue-highlight',
-               'w-full max-w-2xl prose text-lg prose-p:leading-8 '
+               'prose-p:leading-8',
+               'prose-img:mx-auto prose-img:block',
+               'prose-headings:dark:text-gray-300 prose-headings:dark:font-bold',
+               'prose w-full max-w-2xl text-lg dark:text-gray-100'
             )}
          >
             <MainTitleContainer title={content.data.title} items={metaDataItems} />
