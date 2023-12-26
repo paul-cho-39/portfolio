@@ -2,7 +2,6 @@ import classNames from 'classnames';
 import './globals.css';
 import type { Metadata } from 'next';
 import { Montserrat_Alternates, Barlow_Condensed } from 'next/font/google';
-import { Head } from 'next/document';
 
 export const montserratAlternatives = Montserrat_Alternates({
    display: 'swap',
@@ -36,9 +35,6 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
    return (
       <html lang='en'>
-         {/* <Head>
-            <link rel='shortcut icon' href='/favicon.ico' />
-         </Head> */}
          <body className={(montserratAlternatives.variable, barlowCondensed.variable)}>
             {children}
          </body>

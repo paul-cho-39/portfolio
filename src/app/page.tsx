@@ -17,7 +17,7 @@ const AboutLazy = dynamic(() => import('./component/about'));
 const ProjectCardsLazy = dynamic(() => import('./component/cards'));
 const FooterLazy = dynamic(() => import('./component/footer'));
 
-export default function Home({ Component, pageProps }: AppProps) {
+export default function Home({}) {
    const [navigation, setNavigation] = useState<NavigationParams[]>(NAVIGATION);
    const homeNav = navigation.find((nav) => nav.name === 'home');
 
@@ -32,5 +32,3 @@ export default function Home({ Component, pageProps }: AppProps) {
       </ThemeProvider>
    );
 }
-
-// using useTransition effect to first load the other components?

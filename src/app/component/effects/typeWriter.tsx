@@ -1,8 +1,13 @@
 import { useEffect, useState } from 'react';
-import { FrontPageGeneratorItem } from '@/constants';
 import * as utils from './../../library/utils/typewrite';
 import styles from './../styles.module.css';
+import { FrontPageGeneratorItem } from '@/app/constants';
 
+/**
+ *
+ * This component creates an effect, like a type writer. This component won't be used in the build or production.
+ * @returns
+ */
 const TypeWriter = ({ wordGenerator }: { wordGenerator: FrontPageGeneratorItem[] }) => {
    const [state, setState] = useState({
       sentenceIndex: 0,
