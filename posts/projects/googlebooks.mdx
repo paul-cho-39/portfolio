@@ -13,29 +13,35 @@ This is a full-stack project built using Next.js and hosted on Vercel. It integr
 
 ## Key Features
 -	It features full CRUDs applications enabling users to create, add, and update books and rating of a book, and browsing books - by categories and weekly popular list from New York Times. 
--	Powered by PostgreSQL with Prisma ORM, for enhancing type safety and streamlining the development flow 
--	Secure authentication using [NextAuth](https://next-auth.js.org/v3/adapters/prisma),
+-	Powered by PostgreSQL with Prisma ORM, for enhancing type safety and streamlining the development flow.
+-	Secure authentication using [NextAuth](https://next-auth.js.org/v3/adapters/prisma).
 -	Responsive design, styled using Tailwind CSS.
 
 ## Challenges
-Initially, I was faced with adhering to API rate limits while ensuring rapid data retrieval. I tried different methods for loading the data more quickly like server-side rendering to pre-render data. However, this did not solve the problem as it fetched the data each time page is reloaded or navigated to the page wrapped in ```getServerSideProps```. This method would pose the threat of reaching the API rate limit, which would crash the entire application.
-Ultimately, I used [static generation](https://nextjs.org/docs/pages/building-your-application/rendering/static-site-generation) coupled with techniques with react-query’s caching capabilities.
+In this project, two challenges were at the forefront: managing client-side caching and implementing [optimistic updates](https://tanstack.com/query/v4/docs/react/guides/optimistic-updates). React Query was instrumental in addressing the two challenges, which significantly simplified the process.
 
-For instance, inside ```/search ```, when searching for a book titled, “react”, it will first check the cache with relevant key. Only if the data is not found inside the cache, it will request the data to Google Books. The following response is now saved in [‘QueryCache’]( https://tanstack.com/query/v4/docs/react/reference/QueryCache) where it stays active until garbabge collected or data is invalidated.
-![Outline](/images/projects/googlebooks_chart_before.png “general outline”)
+#### Caching
+The primary issue I faced was adhering to API rate limits while minimizing data loading times. I tried different methods for loading the data more quickly like server-side rendering to pre-render data. However, this did not solve the problem as it fetched the data on each page reload. This method would pose serious problems because it would exhaust the API rate limist, which would crash the page rendered using the API.
 
-From ```/search ```, when routing the page to ```books/[bookId]``` instead of hitting the Google Books API again and waiting for the response, it checks the cache and serves the data from the cache, which will serve the data more quickly! 
-![Outline](/images/projects/googlebooks_chart_after.png “general outline”)
+To resolve this, I integrated [static generation](https://nextjs.org/docs/pages/building-your-application/rendering/static-site-generation) coupled with react-query’s caching features and throttling each request to Google Books.
 
-Addressing the intricacies of optimistic data handling was a pivotal aspect of this project, especially in the context of server-client communication. The challenge here was not just about maintaining a responsive and intuitive interface, but also about ensuring the integrity and consistency of data in real-time, a task that demands a deep understanding of both front-end and back-end systems.
+For instance, when routed to ```/search ``` and searching for a book titled, “react”, would prompt a cache check with a relevant key. The application would request data from Google Books only if it wasn't already cached. Subsequently, the following response would be stored in [‘QueryCache’]( https://tanstack.com/query/v4/docs/react/reference/QueryCache).
+![Diagram of before caching](/images/projects/googlebooks_chart_before.png “general outline”)
 
-In my approach of dealing with optimistic data for this current project, these were the main considerations:
-    1) Provide user feedback when a user initiates an action.
-    2) Updates the client-side state to reflect the expected result. 
-    3) Include rollback mechanism to gracefully revert to its previous state.
-    4) Cache invalidation to reflect the new state of the data.
+The data is now cached in the browser's memory. If the user navigates from the current path, ```/search ```, to ```books/[bookId]```, it checks the cache and serves the data from the cache instead of making another API request, which would lead to faster page rendering and reduced API load. 
+![Diagram of after caching](/images/projects/googlebooks_chart_after.png “general outline”)
 
-A side-note here is that concurrent updates from multiple users may present a more complex challenge. The discrepencies that may arise from such scenarios require a more sophisticated strategy.
+#### Optimistic Updates
+
+Another critical aspect of this project was handling optimistic updates. The challenge here was not just about maintaining a responsive and intuitive interface, but also about ensuring the integrity and consistency of data in real-time in features like updating users' library or rating book ratings. The idea here is before the server responds users' action, the client side will optimistically handle this and reflect the changes in the state.
+
+The implementation of optimistic updates involved four key considerations:
+1. **Immediate Feedback**: Provide user feedback when a user initiates an action.
+2. **State Update**: Updates the client-side state to reflect the expected result. 
+3. **Rollback**: Include rollback mechanism to gracefully revert to its previous state.
+4. **Cache Invalidation**: Cache invalidation to reflect the new state of the data.
+
+There is one consideration that should be handled, which is handling concurrent updates. Concurrent updates from multiple users may present a more complex challenge. The discrepencies that may arise from such scenarios require a more sophisticated strategy.
 
 ## What I have learned
 Through this project, I have honed my skills in:

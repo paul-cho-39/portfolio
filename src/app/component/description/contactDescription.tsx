@@ -30,7 +30,7 @@ const ContactDescription = ({}) => {
 
 const ContactHeader = () => {
    return (
-      <div className='pt-12 text-center py-6 lg:py-14'>
+      <div className='pt-12 text-center py-6'>
          <h2 className='font-serif font-bold text-3xl lg:text-5xl'>
             <span>{"Let's"}</span>
             <br />

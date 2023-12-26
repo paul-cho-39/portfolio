@@ -1,5 +1,6 @@
 import { Metadata, ResolvingMetadata } from 'next';
 import AboutMe from '@/posts/about/title.mdx';
+import classNames from 'classnames';
 
 type Props = {
    params: { id: string };
@@ -20,7 +21,13 @@ export default function Page(props: any) {
    return (
       <main className='w-full h-full mx-auto flex justify-center '>
          {/* <div className='bg-lime-400 px-2 md:px-4 lg:px-8 xl:px-10 flex flex-col items-center justify-center prose'> */}
-         <div className='w-full lg:max-w-2xl prose text-lg prose-p:leading-8'>
+         <div
+            className={classNames(
+               'prose-a:no-underline prose-a:blue-highlight',
+               'prose-headings:dark:text-gray-300 prose-headings:dark:font-bold',
+               'w-full lg:max-w-2xl prose text-lg prose-p:leading-8'
+            )}
+         >
             <AboutMe />
          </div>
       </main>

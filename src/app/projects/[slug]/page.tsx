@@ -68,7 +68,9 @@ export default function Projects({ params }: { params: { slug: string } }) {
                'prose-a:no-underline prose-a:blue-highlight',
                'prose-p:leading-8',
                'prose-img:mx-auto prose-img:block',
-               'prose-headings:dark:text-gray-300 prose-headings:dark:font-bold',
+               'prose-headings:dark:text-white prose-headings:dark:font-bold',
+               'dark:prose-strong:text-white',
+               'dark:prose-code:text-stone-400',
                'prose w-full max-w-2xl text-lg dark:text-gray-100'
             )}
          >

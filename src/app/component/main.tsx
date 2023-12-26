@@ -18,8 +18,6 @@ import { ArrowDown } from './illustrator/arrowDown';
 import classNames from 'classnames';
 import useDarkTheme from '../library/hooks/useDarkTheme';
 import { NavigationParams } from '../constants';
-// import dynamic from 'next/dynamic';
-// import WindowCanvas from './effects/scene';
 
 const OPACITY_THRESHOLD = 0.15;
 const SCROLL_THRESHOLD = 0.55;
@@ -38,7 +36,6 @@ const FrontPage = ({
    const isMediumDisabled = useDisableBreakPoints();
    const { theme, setTheme } = useDarkTheme();
    const path = usePathname();
-   const router = useRouter();
 
    const isInView = useInView(ref, {
       margin: '-300px',
@@ -57,7 +54,6 @@ const FrontPage = ({
       if (!homeNav || (homeNav && !homeNav.current)) {
          // detach the entire component from the tree
 
-         console.log('IT IS NOT HOME ANYMORE');
          controls.set({ display: 'none' });
       }
 
@@ -107,7 +103,7 @@ const FrontPage = ({
 
    return (
       <FronPageLayout ref={ref} id='home'>
-         <Suspense fallback={<div></div>}>
+         <Suspense fallback={<div className='fixed inset-0 sky-fade-gradient -z-10'></div>}>
             {isLoaded && (
                <>
                   <motion.div
@@ -121,8 +117,6 @@ const FrontPage = ({
                         'inset-0 sky-fade-gradient -z-10'
                      )}
                   >
-                     {/* <Suspense fallback={<span>Loading...</span>}> */}
-                     {/* <Canvas /> */}
                      <Canvas ref={canvasRef} />
                      {children}
                   </motion.div>

@@ -26,8 +26,8 @@ const Title = ({ title, className }: Main) => {
             type: 'spring',
             stiffness: 50,
             damping: 10,
-            delay: 0.4,
-            duration: 0.5,
+            delay: 0.7,
+            duration: 0.8,
          }}
          className={clsx(className)}
       >
@@ -41,7 +41,7 @@ const Intro = ({ intro }: { intro: string }) => {
       <motion.p
          initial={{ opacity: 0 }}
          animate={{ opacity: 1 }}
-         transition={{ duration: 0.5, ease: 'easeInOut' }}
+         transition={{ duration: 1, ease: 'easeInOut' }}
          className='text-base lg:text-lg font-serif pl-4 my-3 lg:mb-5'
       >
          {intro}
@@ -54,7 +54,7 @@ const Description = ({ description }: { description: string }) => {
       <motion.div
          initial={{ opacity: 0, scale: 0.9, rotate: -5 }}
          animate={{ opacity: 1, scale: 1, rotate: 0 }}
-         transition={{ delay: 0.8, duration: 0.7, type: 'spring', stiffness: 120 }}
+         transition={{ delay: 1, duration: 0.7, type: 'spring', stiffness: 120 }}
          // transition={{ delay: 0.8, duration: 0.5 }}
          className='py-2 px-10 sm:pl-6 sm:pr-14 md:py-8 md:pl-10 md:pr-48 md:tracking-wide lg:py-8 lg:pr-[35%] xl:pr-[40%]'
       >
@@ -90,7 +90,7 @@ export const FrontCoverDescription = (props: Description) => {
                         <MotionContactIcons
                            initial={{ opacity: 0 }}
                            animate={{ opacity: 1 }}
-                           transition={{ duration: 1, ease: 'easeIn' }}
+                           transition={{ duration: 1, delay: 1, ease: 'easeIn' }}
                            displayEmail={true}
                            stroke='black'
                            strokeWidth={1}

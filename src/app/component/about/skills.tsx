@@ -4,57 +4,26 @@ import { CircleStackIcon, ComputerDesktopIcon } from '@heroicons/react/24/outlin
 import ReactIcon from '../svg/reactIcon';
 import { Divider } from '../layouts/divider';
 
-// TODO: let's highlight the important part and highlight that part
 const SkillsSection = [
    {
       section: 'Web & Mobile Development',
       icons: ReactIcon,
       description:
-         'Specialize in building scalable web applications and cross-platform mobile apps using Django, NodeJS, Express, React, and React Native.',
+         'Skilled in building web applications and cross-platform mobile apps using Django, NodeJS, Express, React, and React Native.',
    },
    {
       section: 'Database Management',
       icons: CircleStackIcon,
       description:
-         'Experienced in Postgresql, AWS, and Firebase for robust database and cloud infrastructures.',
+         'Experienced in Postgresql, Neo4j, AWS, and Firebase for database and cloud infrastructure.',
    },
    {
       section: 'Programming Languages & Tools',
       icons: ComputerDesktopIcon,
       description:
-         'Skilled in TypeScript, Python, JavaScript, HTML, CSS, and dev tools like Git for well-rounded software development.',
+         'Adept in variety of programming languages like TypeScript, Python, JavaScript, HTML, and CSS.',
    },
 ] as const;
-
-// const SkillWrap = () => {
-//    return (
-//       <div className='px-0'>
-//          <SkillsHeader />
-//          <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 md:px-6 lg:grid-cols-3 lg:gap-5 xl:gap-6'>
-//             {SkillsSection.map((skill, index) => (
-//                <div
-//                   key={index}
-//                   className='font-sans border-[6px] border-blue-500/50 rounded-md p-4 h-auto sm:max-h-[400px] skills-container-gradient'
-//                >
-//                   <div className='flex flex-col items-center'>
-//                      <skill.icons
-//                         strokeWidth={skill.icons === ReactIcon ? 1 : 0.9}
-//                         className='h-12 w-12 mb-4'
-//                      />
-//                      <h3 className='text-xl highlight font-medium mb-2 text-center overflow-x-hidden lg:text-2xl'>
-//                         {skill.section}
-//                      </h3>
-//                   </div>
-//                   <Divider position='relative' top='top-0' className='bg-[#000333]' />
-//                   <div className='py-2'>
-//                      <p className='text-center lg:text-xl'>{skill.description}</p>
-//                   </div>
-//                </div>
-//             ))}
-//          </div>
-//       </div>
-//    );
-// };
 
 const SkillWrap = () => {
    return (
@@ -73,10 +42,6 @@ const Skills = (props: { skillSection: typeof SkillsSection }) => {
                key={index}
                className='font-sans border-[6px] border-blue-500/50 rounded-md p-4 h-auto sm:max-h-[400px] relative'
             >
-               {/* <div className='absolute inset-0 opacity-60 skills-container-gradient h-4 w-full'></div>
-               <div className='absolute left-0 opacity-60 top-10 h-4 w-full skills-container-cloud'>
-               </div> */}
-               {/* <CloudSvg /> */}
                <div className='flex flex-col items-center'>
                   <skill.icons
                      strokeWidth={skill.icons === ReactIcon ? 1 : 0.9}
@@ -87,8 +52,8 @@ const Skills = (props: { skillSection: typeof SkillsSection }) => {
                   </h3>
                </div>
                <Divider position='relative' top='top-0' className='bg-[#000333]' />
-               <div className='py-2'>
-                  <p className='text-center lg:text-xl'>{skill.description}</p>
+               <div className='py-4 md:py-6 lg:py-8'>
+                  <p className='text-center lg:text-xl lg:leading-8'>{skill.description}</p>
                </div>
             </div>
          ))}
