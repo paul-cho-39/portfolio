@@ -21,7 +21,7 @@
         }, 
         {
             "title": "Bookmarker-App",
-            "section": "Full-Stack Mobile Application",
+            "section": "Mobile Application",
             "image": "/images/projects/bookmarker_logo.png",
             "description": "While this project is currently under wraps and in development mode, explore my first major undertaking of developing a mobile application. It aims to tracks users reading habits. It's designed to track the reader's, featuring capabilities to log the current book, montiro time and pages read per session, rate each reading experience, and compile notes linked to specific sessions. ",
             "url": "bookmarker",

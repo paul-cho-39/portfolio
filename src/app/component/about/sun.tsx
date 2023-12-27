@@ -66,9 +66,7 @@ const MotionSun = ({ targetRef, isMediumDisabled, containerRef }: MotionSunProps
    }
 
    return (
-      <div
-      //   ref={targetRef}
-      >
+      <motion.div>
          <motion.svg
             style={{
                scaleX,
@@ -80,13 +78,13 @@ const MotionSun = ({ targetRef, isMediumDisabled, containerRef }: MotionSunProps
                // boxShadow: boxShadow,
                // boxShadow: '0px 0px 2px 1px yellow',
             }}
-            className='w-12 h-12 rounded-full '
+            className='w-12 h-12 rounded-full'
             viewBox='0 0 50 50'
             xmlns='http://www.w3.org/2000/svg'
          >
             <circle cx='25' cy='25' r='15' fill='yellow' />
          </motion.svg>
-      </div>
+      </motion.div>
    );
 };
 
