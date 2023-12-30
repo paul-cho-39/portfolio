@@ -21,7 +21,7 @@ This is a full-stack project built using Next.js and hosted on Vercel. It integr
 In this project, two challenges were at the forefront: managing client-side caching and implementing [optimistic updates](https://tanstack.com/query/v4/docs/react/guides/optimistic-updates). React Query was instrumental in addressing the two challenges, which significantly simplified the process.
 
 #### Caching
-The primary issue I faced was adhering to API rate limits while minimizing data loading times. I tried different methods for loading the data more quickly like server-side rendering to pre-render data. However, this did not solve the problem as it fetched the data on each page reload. This method would pose serious problems because it would exhaust the API rate limist, which would crash the page rendered using the API.
+The primary issue I faced was adhering to API rate limits while minimizing data loading times. I tried different methods for loading the data more quickly like server-side rendering to pre-render data. However, this did not solve the problem as it fetched the data on each page reload. This method would pose serious problems because it would exhaust the API rate limit, which would crash the page rendered using the API.
 
 To resolve this, I integrated [static generation](https://nextjs.org/docs/pages/building-your-application/rendering/static-site-generation) coupled with react-query’s caching features and throttling each request to Google Books.
 

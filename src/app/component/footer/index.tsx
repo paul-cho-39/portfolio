@@ -18,7 +18,7 @@ const Footer = ({ className, ...props }: FooterProps) => {
                strokeWidth={1.1}
                {...props}
             />
-            <p className='py-2 text-center dark:text-gray-300'>© Designed by Paul Cho</p>
+            <p className='py-2 text-center dark:text-gray-300'>© Designed and Made by Paul Cho</p>
          </div>
       </footer>
    );

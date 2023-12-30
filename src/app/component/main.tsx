@@ -33,9 +33,10 @@ const FrontPage = ({
    children?: React.ReactNode;
 }) => {
    const ref = useRef<HTMLDivElement>(null);
+   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+   const [isLoaded, setIsLoaded] = useState(false);
+   
    const isMediumDisabled = useDisableBreakPoints();
-   const { theme, setTheme } = useDarkTheme();
-   const path = usePathname();
 
    const isInView = useInView(ref, {
       margin: '-300px',
@@ -77,22 +78,6 @@ const FrontPage = ({
          opacity.set(1);
       }
    }, [homeNav, controls, opacity]);
-
-   useEffect(() => {
-      /**
-       * light mode is the default mode
-       * inside home path there is no option to toggle
-       * when the path is home set it back to the default theme
-       */
-      if (!path || path !== '/') return;
-
-      setTheme('light');
-
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-   }, [path, theme]);
-
-   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-   const [isLoaded, setIsLoaded] = useState(false);
 
    useEffect(() => {
       if (ref.current) {

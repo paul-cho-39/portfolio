@@ -50,16 +50,6 @@ const MotionSun = ({ targetRef, isMediumDisabled, containerRef }: MotionSunProps
       [1, 0.8, 0.65, 0.3, 0.1]
    );
 
-   const bgImage = useTransform(
-      scrollYProgress,
-      [0, 0.1, 0.4],
-      [
-         'radial-gradient(circle, rgba(255, 210, 0, 0.89) 10%, yellow)',
-         'radial-gradient(circle, rgba(255, 210, 0, 0.89) 10%, yellow)',
-         'none',
-      ]
-   );
-
    // display with screen size for medium or more
    if (!isMediumDisabled) {
       return null;

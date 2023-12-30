@@ -15,7 +15,6 @@ const BOUNDARY_RIGHT = 9; // x is positive
 const BOUNDARY_LEFT = -15; // x is negative
 
 const Clouds = () => {
-   const [pos] = useState(() => new Vector3(0, 3, -5));
    const dimension = [4, 2, 1];
 
    const cloudPos = useMemo(() => generateEvenPosition(TOTAL_CLOUDS), []);
@@ -94,7 +93,6 @@ export const Cloud = ({ scale, position }: { scale: Vector3; position: Vector3 }
 
    return (
       <mesh ref={ref} scale={scale} position={position} rotation={[0, -Math.PI * 2, 0]}>
-         {/* <Sphere /> */}
          <planeGeometry attach='geometry' args={[1, 1, 1, 5]} />
          <primitive object={material} attach='material' />
       </mesh>
