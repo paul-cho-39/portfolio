@@ -5,7 +5,6 @@ import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
 import classNames from 'classnames';
 import { motion, MotionProps, Variants } from 'framer-motion';
 import { ProjectActionsProps } from './links';
-import { useDisableBreakPoints } from '@/app/library/hooks/useDisableBreakPoints';
 import Image, { ImageProps } from 'next/image';
 
 // export type ProjectImageProps = {
@@ -54,12 +53,10 @@ ProjectImageProps) =>
          },
       };
 
-      const isMedium = useDisableBreakPoints();
-
       const handleHoverImage = (type: 'github' | 'project' | 'none', i: number | null) => {
          const newState: ProjectImageProps['isHovered'] = { idx: i, github: false, project: false };
 
-         if (isMedium && type !== 'none') {
+         if (type !== 'none') {
             // newState.idx = i;
             newState[type] = true;
          }
@@ -80,7 +77,7 @@ ProjectImageProps) =>
                {...props}
             /> */}
             <Image
-               className='h-full w-full object-cover rounded-lg transform group-hover:opacity-60 group-hover:scale-110 group-hover:rounded-3xl transition-all duration-500 ease-in-out'
+               className='h-full w-full object-cover rounded-lg transform md:group-hover:opacity-60 md:group-hover:scale-110 md:group-hover:rounded-3xl transition-all duration-500 ease-in-out'
                height={150}
                width={150}
                alt={alt}
@@ -88,7 +85,7 @@ ProjectImageProps) =>
                // {...props}
             />
 
-            <div className='absolute inset-0 h-full w-full grid grid-rows-2 opacity-0 group-hover:opacity-95 transition-opacity duration-150 ease-in'>
+            <div className='absolute inset-0 h-full w-full grid grid-rows-2 opacity-0 md:group-hover:opacity-95 transition-opacity duration-150 ease-in'>
                <Link
                   // className='row-span-1 border-b-[0.5px] border-slate-800'
                   className={classNames(
