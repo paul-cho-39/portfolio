@@ -1,5 +1,6 @@
 import { easeIn, motion, useScroll, useTransform, useViewportScroll } from 'framer-motion';
 import { RefObject, useRef } from 'react';
+import Sun from '../svg/sun';
 
 interface MotionSunProps {
    targetRef: RefObject<HTMLElement>;
@@ -56,8 +57,17 @@ const MotionSun = ({ targetRef, isMediumDisabled, containerRef }: MotionSunProps
    }
 
    return (
-      <motion.div>
-         <motion.svg
+      <motion.div
+         style={{
+            scaleX,
+            scaleY,
+            opacity,
+            translateX,
+            translateY,
+         }}
+      >
+         <Sun />
+         {/* <motion.svg
             style={{
                scaleX,
                scaleY,
@@ -73,7 +83,7 @@ const MotionSun = ({ targetRef, isMediumDisabled, containerRef }: MotionSunProps
             xmlns='http://www.w3.org/2000/svg'
          >
             <circle cx='25' cy='25' r='15' fill='yellow' />
-         </motion.svg>
+         </motion.svg> */}
       </motion.div>
    );
 };
