@@ -80,6 +80,7 @@ ProjectImageProps) =>
                className='h-full w-full object-cover rounded-lg transform md:group-hover:opacity-60 md:group-hover:scale-110 md:group-hover:rounded-3xl transition-all duration-500 ease-in-out'
                height={150}
                width={150}
+               priority
                alt={alt}
                src={src}
                // {...props}

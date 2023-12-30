@@ -51,6 +51,10 @@ const MotionSun = ({ targetRef, isMediumDisabled, containerRef }: MotionSunProps
       [1, 0.8, 0.65, 0.3, 0.1]
    );
 
+   console.log('the scroll progress is: ', scrollYProgress);
+   console.log('the scroll is: ', scaleX);
+   console.log('the scroll is: ', scaleY);
+
    // display with screen size for medium or more
    if (!isMediumDisabled) {
       return null;

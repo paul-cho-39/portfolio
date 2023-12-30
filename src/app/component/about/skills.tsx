@@ -9,13 +9,13 @@ const SkillsSection = [
       section: 'Web & Mobile Development',
       icons: ReactIcon,
       description:
-         'Skilled in building web applications and cross-platform mobile apps using Django, NodeJS, Express, React, and React Native.',
+         'Skilled in building web applications and cross-platform mobile apps using Django, Node, Express, React, and React Native.',
    },
    {
       section: 'Database Management',
       icons: CircleStackIcon,
       description:
-         'Experienced in Postgresql, Neo4j, AWS, and Firebase for database and cloud infrastructure.',
+         'Experienced in database management with Postgresql and Neo4j, and proficient in AWS services including EC2, Lambda, S3, alongside Firebase for real-time applications and hosting.',
    },
    {
       section: 'Programming Languages & Tools',
