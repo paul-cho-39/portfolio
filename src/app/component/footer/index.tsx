@@ -10,7 +10,7 @@ interface FooterProps extends Partial<ContactsProps> {
 const Footer = ({ className, ...props }: FooterProps) => {
    return (
       <footer>
-         <div className={classNames(className, 'py-6 overflow-hidden bg-blue-500')}>
+         <div className={classNames(className, 'py-6 overflow-hidden')}>
             <ContactIcons
                className='my-2'
                displayEmail={false}

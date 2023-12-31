@@ -16,10 +16,10 @@ const MotionSun = ({ targetRef, isMediumDisabled, containerRef }: MotionSunProps
    const { scrollYProgress } = useScroll({
       target: targetRef,
       axis: 'y',
-      // container:
-      // offset is not recognized here
-      //@ts-expect-error
-      offset: ['start end', '150vh end'],
+      // // container:
+      // // offset is not recognized here
+      // // @ts-expect-error
+      // // offset: ['start end', '150vh end'],
    });
 
    // SCALE
@@ -52,10 +52,10 @@ const MotionSun = ({ targetRef, isMediumDisabled, containerRef }: MotionSunProps
       [1, 0.8, 0.65, 0.3, 0.1]
    );
 
-   // console.log('the scroll progress is: ', scrollYProgress);
+   console.log('the scroll progress is: ', scrollYProgress);
 
-   // console.log('the SCROLL X IS: ', scaleX);
-   // console.log('the SCROLL Y IS:', scaleY);
+   console.log('the SCROLL X IS: ', scaleX);
+   console.log('the SCROLL Y IS:', scaleY);
 
    // display with screen size for medium or more
    if (!isMediumDisabled) {

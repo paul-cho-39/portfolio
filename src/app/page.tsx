@@ -25,7 +25,7 @@ export default function Home({}) {
          <About />
          <ProjectCardsLazy />
          <ContactLazy />
-         <FooterLazy className='bg-blue-500/60 text-black dark:text-black' />
+         <FooterLazy className='bg-blue-500/60 text-black dark:text-black bg-blue-500 dark:bg-blue-500' />
       </ThemeProvider>
    );
 }
