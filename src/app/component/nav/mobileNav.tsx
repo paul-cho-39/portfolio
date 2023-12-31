@@ -64,29 +64,32 @@ const MobileNavigation = ({ navigation, isHome, isTop }: MobileNavigationProps) 
                               </button>
                            </div>
                            {/* list of navigation items */}
-                           <nav className='flex flex-1 flex-col items-center justify-center'>
-                              <ul role='list' className='flex flex-col mt-8 space-y-2 text-center'>
+                           <nav
+                              className={classNames(
+                                 isHome
+                                    ? 'text-black dark:text-black'
+                                    : 'text-gray-700 dark:text-gray-200',
+                                 'flex flex-1 flex-col items-center justify-center'
+                              )}
+                           >
+                              <ul
+                                 role='list'
+                                 className='w-full flex flex-col mt-8 space-y-2 items-center justify-center'
+                              >
                                  {navigation.map((item) => (
                                     <li
-                                       className='inline-flex justify-start items-start mt-auto w-full text-center align-middle self-center'
+                                       // className='inline-flex justify-start items-start mt-auto w-full text-center align-middle self-center bg-red-500'
+                                       className='w-full p-4 text-center items-center justify-center'
                                        key={item.name}
                                     >
-                                       <Link
-                                          href={isHome ? item.href : '/' + item.href}
-                                          className={classNames(
-                                             // item.current
-                                             //    ? 'bg-sky-200 dark:bg-blue-500'
-                                             'text-gray-700 hover:bg-gray-300/30',
-                                             'text-center group flex gap-x-3 p-4 leading-6 font-medium dark:text-gray-200'
-                                          )}
-                                       >
+                                       <Link href={isHome ? item.href : '/' + item.href}>
                                           <span
                                              onClick={() =>
                                                 setTimeout(() => {
                                                    setSidebarOpen(false);
                                                 }, 150)
                                              }
-                                             className='font-serif text-lg text-center tracking-tight'
+                                             className='flex items-center justify-center text-lg leading-6 font-medium hover:bg-gray-300/30'
                                           >
                                              {item.name}
                                           </span>

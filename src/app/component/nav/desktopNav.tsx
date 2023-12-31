@@ -56,7 +56,10 @@ const NavItem = ({ item, isHome }: { item: NavigationParams; isHome: boolean }) 
       <li
          onMouseEnter={() => setIsHovered(true)}
          onMouseLeave={() => setIsHovered(false)}
-         className='mx-1 dark:text-gray-200'
+         className={classNames(
+            isHome ? 'text-black dark:text-black' : 'dark:text-gray-200',
+            'mx-1 dark:text-gray-200'
+         )}
       >
          <Link
             href={isHome ? item.href : '/' + item.href}
