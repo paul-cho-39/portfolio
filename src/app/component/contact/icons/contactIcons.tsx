@@ -65,7 +65,7 @@ const ContactIcons = forwardRef<HTMLDivElement, ContactsProps>((props, ref) => {
          className={classNames(className, 'flex justify-center items-center space-x-6')}
       >
          {ContactItems.map((link, index) => (
-            <Link key={index} href={link.href} className='hover:scale-110 transition-transform'>
+            <Link key={index} href={link.href} target='_blank' className='hover:scale-110 transition-transform'>
                <span className='sr-only'>{link.name}</span>
                {link.name === 'LinkedIn' ? (
                   <link.Icon

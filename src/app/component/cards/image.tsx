@@ -5,15 +5,7 @@ import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
 import classNames from 'classnames';
 import { motion, MotionProps, Variants } from 'framer-motion';
 import { ProjectActionsProps } from './links';
-import Image, { ImageProps } from 'next/image';
-
-// export type ProjectImageProps = {
-//    index: number;
-//    isHovered: { idx: number | null; github: boolean; project: boolean };
-//    setIsHovered: Dispatch<SetStateAction<ProjectImageProps['isHovered']>>;
-
-// } & ImgHTMLAttributes<HTMLImageElement> &
-//    ProjectActionsProps;
+import { useDisableBreakPoints } from '@/app/library/hooks/useDisableBreakPoints';
 
 export type ProjectImageProps = {
    index: number;
@@ -36,6 +28,7 @@ export const ProjectImage = ({
 ProjectImageProps) =>
    // props?: ImageProps
    {
+      const isMediumSize = useDisableBreakPoints();
       const imgVariants: Variants = {
          offscreen: {
             y: 150,
@@ -71,19 +64,11 @@ ProjectImageProps) =>
             className='relative group w-full sm:w-[29.6rem] md:w-[31.6rem] lg:max-w-md lg:flex-none lg:w-[24rem] xl:w-[28rem] overflow-hidden'
          >
             {/* eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text */}
-            {/* <img
+            <img
                // className='lg:absolute lg:inset-0 h-full w-full object-cover rounded-lg transform group-hover:opacity-60 group-hover:scale-110 group-hover:rounded-3xl transition-all duration-500 ease-in-out'
                className='h-full w-full object-cover rounded-lg transform group-hover:opacity-60 group-hover:scale-110 group-hover:rounded-3xl transition-all duration-500 ease-in-out'
-               {...props}
-            /> */}
-            <Image
-               className='h-full w-full object-cover rounded-lg transform md:group-hover:opacity-60 md:group-hover:scale-110 md:group-hover:rounded-3xl transition-all duration-500 ease-in-out'
-               height={150}
-               width={150}
-               priority
                alt={alt}
                src={src}
-               // {...props}
             />
 
             <div className='absolute inset-0 h-full w-full grid grid-rows-2 opacity-0 md:group-hover:opacity-95 transition-opacity duration-150 ease-in'>

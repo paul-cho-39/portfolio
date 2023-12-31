@@ -23,7 +23,7 @@ const ProjectBadges = ({ badges, index, isOdd }: ProjectBadgesProps) => {
             <li
                key={badgeIndex}
                aria-label={badge}
-               className='font-serif px-1 inline-flex items-center rounded-full bg-gray-200 md:px-2 py-1 md:py-2 text-sm font-medium text-blue-600'
+               className='font-serif mx-[0.05rem] my-1 px-1 inline-flex items-center rounded-full bg-gray-200 md:px-2 py-1 md:py-2 text-sm font-medium text-blue-600'
             >
                {badge}
             </li>

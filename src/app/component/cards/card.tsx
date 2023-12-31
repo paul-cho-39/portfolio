@@ -20,7 +20,6 @@ export interface ProjectsProps {
 
 interface ProjectCardsProps {
    projects: ProjectsProps[];
-   badgeColor?: '';
 }
 
 const Cards = ({ projects }: ProjectCardsProps) => {

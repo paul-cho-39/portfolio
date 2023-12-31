@@ -11,7 +11,7 @@ export const montserratAlternatives = Montserrat_Alternates({
 });
 
 const barlowCondensed = Barlow_Condensed({
-   weight: '400',
+   weight: ['400', '500'],
    display: 'swap',
    variable: '--font-barlow-condensed',
    style: ['normal', 'italic'],

@@ -15,7 +15,7 @@ const SkillsSection = [
       section: 'Database Management',
       icons: CircleStackIcon,
       description:
-         'Experienced in database management with Postgresql and Neo4j, and proficient in AWS services including EC2, Lambda, S3, alongside Firebase for real-time applications and hosting.',
+         'Experienced in database management with Postgresql and Neo4j, and AWS services including EC2, Lambda, S3, alongside Firebase for real-time applications and hosting.',
    },
    {
       section: 'Programming Languages & Tools',
@@ -40,7 +40,7 @@ const Skills = (props: { skillSection: typeof SkillsSection }) => {
          {props.skillSection.map((skill, index) => (
             <div
                key={index}
-               className='font-sans border-[6px] border-blue-500/50 rounded-md p-4 h-auto sm:max-h-[400px] relative'
+               className='font-sans border-[6px] border-blue-500/50 rounded-md p-4 h-auto relative'
             >
                <div className='flex flex-col items-center'>
                   <skill.icons
@@ -66,27 +66,6 @@ const SkillsHeader = () => {
       <h3 className='relative my-2 md:my-5 lg:my-8 text-center w-full font-semibold text-xl md:text-2xl lg:text-3xl whitespace-nowrap'>
          Skills
       </h3>
-   );
-};
-
-const CloudSvg = () => {
-   return (
-      <svg width='200' height='100' viewBox='0 0 200 100' xmlns='http://www.w3.org/2000/svg'>
-         <path
-            d='M40,50 
-             Q60,20 80,50 
-             T120,50
-             Q140,10 160,50
-             Q180,30 200,50
-             Q170,70 160,50
-             Q140,90 120,50
-             Q100,70 80,50
-             Q60,80 40,50
-             Q20,40 0,50
-             Q20,60 40,50 Z'
-            fill='#d1d8e0'
-         />
-      </svg>
    );
 };
 

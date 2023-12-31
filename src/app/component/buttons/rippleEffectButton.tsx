@@ -164,7 +164,7 @@ const RippleEffectButton = ({
          onMouseEnter={handleMouseEnter}
          onMouseLeave={handleMouseLeave}
          className={classNames(
-            'relative overflow-hidden font-semibold py-2 px-4 rounded-lg text-center transition-all duration-300 ease-in-out shadow-md hover:shadow-2xl',
+            'relative overflow-hidden py-2 px-4 rounded-lg text-center transition-all duration-300 ease-in-out shadow-md hover:shadow-2xl',
             className
          )}
       >

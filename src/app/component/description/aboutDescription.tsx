@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 const AboutMeDescription = () => {
    return (
-      <p className='font-sans text-lg leading-normal md:text-2xl md:tracking-wider lg:text-3xl lg:font-medium'>
+      <p className='font-sans text-lg leading-normal md:text-2xl md:tracking-wider lg:text-3xl'>
          {
             "Hello! I'm Paul, a self-taught developer whose passion for creating engaging web and mobile applications has been fueled by an unconventional, yet enriching learning journey."
          }

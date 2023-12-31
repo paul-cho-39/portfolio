@@ -21,18 +21,5 @@ export default function useDarkTheme() {
       }
    }, [theme]);
 
-   useEffect(() => {
-      /**
-       * light mode is the default mode
-       * inside home path there is no option to toggle
-       * when the path is home set it back to the default theme
-       */
-      if (!path || path !== '/') return;
-
-      setTheme('light');
-
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-   }, [path, theme]);
-
    return { theme, setTheme };
 }

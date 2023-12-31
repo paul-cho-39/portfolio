@@ -16,17 +16,17 @@ const IconComponents = {
 export const ContactItems = [
    {
       name: 'Github',
-      href: 'https://github.com',
+      href: 'https://github.com/paul-cho-39?tab=repositories',
       Icon: IconComponents['Github'],
    },
    {
       name: 'LinkedIn',
-      href: 'https://linkedin.com',
+      href: 'https://www.linkedin.com/in/paul-cho-0244a61ab/',
       Icon: IconComponents['LinkedIn'],
    },
    {
       name: 'Instagram',
-      href: 'https://instagram.com',
+      href: 'https://www.instagram.com/paullchooo/',
       Icon: IconComponents['Instagram'],
    },
 ] as const;
