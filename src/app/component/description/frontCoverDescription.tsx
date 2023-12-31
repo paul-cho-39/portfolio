@@ -80,7 +80,7 @@ export const FrontCoverDescription = (props: Description) => {
 
    return (
       <main>
-         <div className='absolute top-[23%] left-0 px-6 lg:px-16 lg:top-[10%]'>
+         <div className='absolute top-[23%] left-0 px-6 lg:px-16 lg:top-[10%] text-black dark:text-black'>
             <div className='relative md:flex md:flex-col md:w-full md:h-full'>
                <div className='relative md:col-span-1 md:h-full md:w-full top-0 mb-4 lg:mb-8'>
                   <Intro intro={props.intro} />

@@ -7,7 +7,10 @@ const ContactSectionLayout = forwardRef<
 >(function ContactSectionLayout({ children, ...props }, ref) {
    return (
       <section id='contact'>
-         <Container ref={ref} className='sky-fade-gradient min-h-full min-w-fit px-4 lg:px-6'>
+         <Container
+            ref={ref}
+            className='sky-fade-gradient min-h-full min-w-fit px-4 lg:px-6 text-black dark:text-black'
+         >
             {children}
          </Container>
       </section>

@@ -10,7 +10,9 @@ export const ProjectLayout = ({ children }: { children: React.ReactNode }) => {
             }}
             className='py-6'
          >
-            <div className='z-10 mt-8 px-2 sm:pb-16 md:px-12 lg:mt-28'>{children}</div>
+            <div className='z-10 mt-8 px-2 sm:pb-16 md:px-12 lg:mt-28 text-black dark:text-black'>
+               {children}
+            </div>
          </Container>
       </section>
    );

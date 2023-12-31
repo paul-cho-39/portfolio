@@ -16,7 +16,7 @@ const AboutSectionLayout = forwardRef<
             <Container
                ref={ref}
                {...props}
-               className='px-4 lg:mx-6 py-6 md:py-12 lg:py-14 lg:overflow-hidden'
+               className='px-4 lg:mx-6 py-6 md:py-12 lg:py-14 lg:overflow-hidden text-black dark:text-black'
             >
                {children}
             </Container>

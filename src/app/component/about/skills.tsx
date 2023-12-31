@@ -53,7 +53,9 @@ const Skills = (props: { skillSection: typeof SkillsSection }) => {
                </div>
                <Divider position='relative' top='top-0' className='bg-[#000333]' />
                <div className='py-4 md:py-6 lg:py-8'>
-                  <p className='text-center lg:text-xl lg:leading-8'>{skill.description}</p>
+                  <p className='text-center text-black lg:text-xl lg:leading-8'>
+                     {skill.description}
+                  </p>
                </div>
             </div>
          ))}
@@ -63,7 +65,7 @@ const Skills = (props: { skillSection: typeof SkillsSection }) => {
 
 const SkillsHeader = () => {
    return (
-      <h3 className='relative my-2 md:my-5 lg:my-8 text-center w-full font-semibold text-xl md:text-2xl lg:text-3xl whitespace-nowrap'>
+      <h3 className='relative my-2 md:my-5 lg:my-8 text-center w-full font-semibold text-xl text-black md:text-2xl lg:text-3xl whitespace-nowrap'>
          Skills
       </h3>
    );
