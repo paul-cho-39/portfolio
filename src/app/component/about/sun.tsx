@@ -18,8 +18,8 @@ const MotionSun = ({ targetRef, isMediumDisabled, containerRef }: MotionSunProps
       axis: 'y',
       // // container:
       // // offset is not recognized here
-      // // @ts-expect-error
-      // // offset: ['start end', '150vh end'],
+      // @ts-expect-error
+      offset: ['start end', '150vh end'],
    });
 
    // SCALE
