@@ -1,4 +1,4 @@
-import { easeIn, motion, useScroll, useTransform, useViewportScroll } from 'framer-motion';
+import { easeIn, motion, useScroll, useTransform } from 'framer-motion';
 import { RefObject, useRef } from 'react';
 import Sun from '../svg/sun';
 
@@ -22,12 +22,13 @@ const MotionSun = ({
    containerRef,
 }: MotionSunProps) => {
    const { scrollYProgress } = useScroll({
+      layoutEffect: false,
       target: targetRef,
       axis: 'y',
+      container: containerRef,
       // // container:
       // // offset is not recognized here
-      // @ts-expect-error
-      offset: offset,
+      offset: ['start end', '150vh end'],
       // offset: ['start end', '150vh end'],
    });
 
@@ -61,10 +62,10 @@ const MotionSun = ({
       [1, 0.8, 0.65, 0.3, 0.1]
    );
 
-   console.log(`Inside the COMPONENT ${stateName} the scroll progress is: `, scrollYProgress);
+   // console.log(`Inside the COMPONENT ${stateName} the scroll progress is: `, scrollYProgress);
 
-   console.log(`Inside the COMPONENT ${stateName} the SCROLL X IS: `, scaleX);
-   console.log(`Inside the COMPONENT ${stateName} the SCROLL Y IS:`, scaleY);
+   console.log(`Inside the COMPONENT ${stateName} the SCROLL X IS: `, translateX);
+   console.log(`Inside the COMPONENT ${stateName} the SCROLL Y IS:`, translateY);
 
    // display with screen size for medium or more
    if (!isMediumDisabled) {
@@ -80,6 +81,7 @@ const MotionSun = ({
             translateX,
             translateY,
          }}
+         className='absolute inset-0'
       >
          <Sun />
          {/* <motion.svg

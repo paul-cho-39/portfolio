@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import Navbar from './component/nav/navigation';
 
 import About from './component/about';
@@ -16,6 +16,7 @@ const ProjectCardsLazy = dynamic(() => import('./component/cards'), {
 
 export default function Home({}) {
    const [navigation, setNavigation] = useState<NavigationParams[]>(NAVIGATION);
+
    const homeNav = navigation.find((nav) => nav.name === 'home');
 
    return (

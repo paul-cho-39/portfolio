@@ -9,9 +9,10 @@ const ProfileImage = () => {
             alt='Photo of Paul Cho'
             width={75}
             height={75}
+            sizes='100vw'
             priority
             objectFit='cover'
-            layout='responsive'
+            // layout='responsive'
          />
       </div>
    );
