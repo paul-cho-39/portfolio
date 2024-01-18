@@ -27,18 +27,6 @@ const About = () => {
             targetRef={targetRef}
             isMediumDisabled={isMediumDisabled}
          />
-         <MotionSun
-            stateName={'START END 150vh END'}
-            offset={['start end', '150vh end']}
-            targetRef={targetRef}
-            isMediumDisabled={isMediumDisabled}
-         />
-         <MotionSun
-            stateName={'START END START END'}
-            offset={['start end', 'start end']}
-            targetRef={targetRef}
-            isMediumDisabled={isMediumDisabled}
-         />
          <AboutDescriptionWrapLazy />
          <SkillWrap />
       </AboutSectionLayout>

@@ -26,10 +26,7 @@ const MotionSun = ({
       target: targetRef,
       axis: 'y',
       container: containerRef,
-      // // container:
-      // // offset is not recognized here
       offset: ['start end', '150vh end'],
-      // offset: ['start end', '150vh end'],
    });
 
    // SCALE
@@ -39,21 +36,20 @@ const MotionSun = ({
    // TRANSLATE
    const translateX = useTransform(
       scrollYProgress,
-      [0, 0.25, 0.5, 0.75],
-      ['-150%', '0%', '100%', '150%'],
+      [0, 0.25, 0.5, 0.75, 0.9],
+      ['0%', '17%', '36%', '75%', '90%'],
       {
          ease: easeIn,
       }
    );
    const translateY = useTransform(
       scrollYProgress,
-      [0, 0.4, 0.5, 0.8, 0.9],
-      ['-125%', '0%', '100%', '300%', '450%'],
+      [0, 0.25, 0.5, 0.75, 0.9],
+      ['0%', '20%', '35%', '50%', '70%'],
       {
          ease: easeIn,
       }
    );
-   // CURRENT IS 0.4888
 
    // OPACITY AND BOX SHADOW
    const opacity = useTransform(
@@ -84,23 +80,6 @@ const MotionSun = ({
          className='absolute inset-0'
       >
          <Sun />
-         {/* <motion.svg
-            style={{
-               scaleX,
-               scaleY,
-               opacity,
-               translateX,
-               translateY,
-               // backgroundImage: bgImage,
-               // boxShadow: boxShadow,
-               // boxShadow: '0px 0px 2px 1px yellow',
-            }}
-            className='w-12 h-12 rounded-full'
-            viewBox='0 0 50 50'
-            xmlns='http://www.w3.org/2000/svg'
-         >
-            <circle cx='25' cy='25' r='15' fill='yellow' />
-         </motion.svg> */}
       </motion.div>
    );
 };

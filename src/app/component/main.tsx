@@ -84,7 +84,7 @@ const FrontPage = ({
 
    return (
       <FronPageLayout ref={ref} id='home'>
-         <Suspense fallback={<div className='fixed inset-0 sky-fade-gradient -z-10'></div>}>
+         {/* <Suspense fallback={<div className='fixed inset-0 sky-fade-gradient -z-10'></div>}>
             {isLoaded && (
                <motion.div
                   style={{
@@ -101,7 +101,7 @@ const FrontPage = ({
                   {children}
                </motion.div>
             )}
-         </Suspense>
+         </Suspense> */}
 
          <FrontCoverDescriptionWrapper
             title={
