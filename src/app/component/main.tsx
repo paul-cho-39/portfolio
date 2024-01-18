@@ -1,7 +1,6 @@
 import React, { Suspense, lazy, useState } from 'react';
 import FronPageLayout from './layouts/home/frontSectionLayout';
 import { useEffect, useRef } from 'react';
-import { usePathname, useRouter } from 'next/navigation';
 
 import {
    useAnimation,
@@ -13,10 +12,8 @@ import {
 } from 'framer-motion';
 
 import { useDisableBreakPoints } from '@/app/library/hooks/useDisableBreakPoints';
-import { FrontCoverDescription } from './description/frontCoverDescription';
-import { ArrowDown } from './illustrator/arrowDown';
+import { FrontCoverDescriptionWrapper } from './description/frontCoverDescription';
 import classNames from 'classnames';
-import useDarkTheme from '../library/hooks/useDarkTheme';
 import { NavigationParams } from '../constants';
 
 const OPACITY_THRESHOLD = 0.15;
@@ -87,7 +84,7 @@ const FrontPage = ({
 
    return (
       <FronPageLayout ref={ref} id='home'>
-         <Suspense fallback={<div className='fixed inset-0 sky-fade-gradient -z-10'></div>}>
+         {/* <Suspense fallback={<div className='fixed inset-0 sky-fade-gradient -z-10'></div>}>
             {isLoaded && (
                <motion.div
                   style={{
@@ -104,10 +101,9 @@ const FrontPage = ({
                   {children}
                </motion.div>
             )}
-         </Suspense>
+         </Suspense> */}
 
-         <FrontCoverDescription
-            intro={"Hello there! 👋🏼  I'm"}
+         <FrontCoverDescriptionWrapper
             title={
                <div>
                   <span>{'Paul |'}</span>
@@ -115,11 +111,12 @@ const FrontPage = ({
                   <span>Full-stack Developer</span>
                </div>
             }
-            description={
-               "I'm a self-taught developer, I've navigated the tech landscape through hands-on experience."
-            }
+            description={[
+               // "I'm a self-taught developer. I've navigated the tech landscape through hands-on experience.",
+               "I'm a self-taught developer. I've",
+               'navigated the tech landscape through hands-on experience.',
+            ]}
          />
-         {/* {isMediumDisabled && <ArrowDown />} */}
       </FronPageLayout>
    );
 };

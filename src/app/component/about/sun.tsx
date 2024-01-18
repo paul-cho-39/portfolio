@@ -40,15 +40,15 @@ const MotionSun = ({
    const translateX = useTransform(
       scrollYProgress,
       [0, 0.25, 0.5, 0.75],
-      ['-345%', '-200%', '-50%', '72%'],
+      ['-150%', '0%', '100%', '150%'],
       {
          ease: easeIn,
       }
    );
    const translateY = useTransform(
       scrollYProgress,
-      [0, 0.2, 0.4, 0.5, 0.65, 0.8, 0.9],
-      ['-345%', '-225%', '-120%', '30%', '60%', '300%', '450%'],
+      [0, 0.4, 0.5, 0.8, 0.9],
+      ['-125%', '0%', '100%', '300%', '450%'],
       {
          ease: easeIn,
       }

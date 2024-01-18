@@ -65,8 +65,14 @@ const ContactIcons = forwardRef<HTMLDivElement, ContactsProps>((props, ref) => {
          className={classNames(className, 'flex justify-center items-center space-x-6')}
       >
          {ContactItems.map((link, index) => (
-            <Link key={index} href={link.href} target='_blank' className='hover:scale-110 transition-transform'>
+            <Link
+               key={index}
+               href={link.href}
+               target='_blank'
+               className='hover:scale-110 transition-transform'
+            >
                <span className='sr-only'>{link.name}</span>
+               {/* linkedIn is a bit different than the other icons */}
                {link.name === 'LinkedIn' ? (
                   <link.Icon
                      className={classNames(
@@ -88,6 +94,8 @@ const ContactIcons = forwardRef<HTMLDivElement, ContactsProps>((props, ref) => {
                )}
             </Link>
          ))}
+
+         {/* displays the email icon */}
          {displayEmail && (
             <button onClick={handleEmailClick}>
                <EnvelopeIcon
