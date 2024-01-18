@@ -1,12 +1,17 @@
-import classNames from 'classnames';
 import { useEffect, useRef, useState } from 'react';
-
+import dynamic from 'next/dynamic';
+import classNames from 'classnames';
 import { motion, Variants } from 'framer-motion';
-import { ProjectImage, ProjectImageProps } from './image';
+
+import { ProjectImageProps } from './image';
 import MotionTitle from './cardTitle';
 import MotionDescription from './description';
 import ProjectBadges from './badges';
 import ProjectLinks from './links';
+
+const ProjectImage = dynamic(() => import('./image'), {
+   loading: () => <div></div>,
+});
 
 export interface ProjectsProps {
    title: string;

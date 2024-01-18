@@ -22,7 +22,6 @@ import { NavigationParams } from '../constants';
 const OPACITY_THRESHOLD = 0.15;
 const SCROLL_THRESHOLD = 0.55;
 
-// const Canvas = dynamic(() => import('./effects/scene'));
 const Canvas = lazy(() => import('./effects/scene'));
 
 const FrontPage = ({
@@ -35,7 +34,7 @@ const FrontPage = ({
    const ref = useRef<HTMLDivElement>(null);
    const canvasRef = useRef<HTMLCanvasElement | null>(null);
    const [isLoaded, setIsLoaded] = useState(false);
-   
+
    const isMediumDisabled = useDisableBreakPoints();
 
    const isInView = useInView(ref, {
@@ -90,39 +89,37 @@ const FrontPage = ({
       <FronPageLayout ref={ref} id='home'>
          <Suspense fallback={<div className='fixed inset-0 sky-fade-gradient -z-10'></div>}>
             {isLoaded && (
-               <>
-                  <motion.div
-                     style={{
-                        opacity: opacity,
-                     }}
-                     animate={controls}
-                     initial={{ display: 'block' }}
-                     className={classNames(
-                        isInView ? 'fixed' : 'invisible',
-                        'inset-0 sky-fade-gradient -z-10'
-                     )}
-                  >
-                     <Canvas ref={canvasRef} />
-                     {children}
-                  </motion.div>
-               </>
+               <motion.div
+                  style={{
+                     opacity: opacity,
+                  }}
+                  animate={controls}
+                  initial={{ display: 'block' }}
+                  className={classNames(
+                     isInView ? 'fixed' : 'invisible',
+                     'inset-0 sky-fade-gradient -z-10'
+                  )}
+               >
+                  <Canvas ref={canvasRef} />
+                  {children}
+               </motion.div>
             )}
          </Suspense>
 
          <FrontCoverDescription
             intro={"Hello there! 👋🏼  I'm"}
             title={
-               <>
+               <div>
                   <span>{'Paul |'}</span>
                   <br />
                   <span>Full-stack Developer</span>
-               </>
+               </div>
             }
             description={
                "I'm a self-taught developer, I've navigated the tech landscape through hands-on experience."
             }
          />
-         {isMediumDisabled && <ArrowDown />}
+         {/* {isMediumDisabled && <ArrowDown />} */}
       </FronPageLayout>
    );
 };

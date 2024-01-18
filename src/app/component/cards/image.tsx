@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import { motion, MotionProps, Variants } from 'framer-motion';
 import { ProjectActionsProps } from './links';
 import { useDisableBreakPoints } from '@/app/library/hooks/useDisableBreakPoints';
+import Image from 'next/image';
 
 export type ProjectImageProps = {
    index: number;
@@ -15,7 +16,7 @@ export type ProjectImageProps = {
    alt: string;
 } & ProjectActionsProps;
 
-export const ProjectImage = ({
+const ProjectImage = ({
    title,
    index,
    isHovered,
@@ -28,7 +29,7 @@ export const ProjectImage = ({
 ProjectImageProps) =>
    // props?: ImageProps
    {
-      const isMediumSize = useDisableBreakPoints();
+      const isLargerThanMed = useDisableBreakPoints();
       const imgVariants: Variants = {
          offscreen: {
             y: 150,
@@ -57,20 +58,46 @@ ProjectImageProps) =>
          setIsHovered(newState);
       };
 
+      const getImageSize = () => {
+         if (isLargerThanMed) return;
+
+         return {
+            width: 250,
+            height: 175,
+         };
+      };
+
       return (
          <motion.div
             variants={imgVariants}
             viewport={{ once: true }}
             className='relative group w-full sm:w-[29.6rem] md:w-[31.6rem] lg:max-w-md lg:flex-none lg:w-[24rem] xl:w-[28rem] overflow-hidden'
          >
-            {/* eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text */}
-            <img
-               // className='lg:absolute lg:inset-0 h-full w-full object-cover rounded-lg transform group-hover:opacity-60 group-hover:scale-110 group-hover:rounded-3xl transition-all duration-500 ease-in-out'
-               className='h-full w-full object-cover rounded-lg transform group-hover:opacity-60 group-hover:scale-110 group-hover:rounded-3xl transition-all duration-500 ease-in-out'
-               alt={alt}
-               src={src}
-            />
-
+            {isLargerThanMed ? (
+               <Image
+                  fill={true}
+                  className={classNames(
+                     'rounded-lg transform group-hover:opacity-60 group-hover:scale-110 group-hover:rounded-3xl transition-all duration-500 ease-in-out'
+                  )}
+                  alt={alt}
+                  src={src}
+               />
+            ) : (
+               <Image
+                  width={200}
+                  height={250}
+                  sizes='100%'
+                  style={{
+                     width: '100%',
+                     height: '100%',
+                  }}
+                  fill={false}
+                  objectFit='cover'
+                  alt={alt}
+                  src={src}
+                  className='rounded-lg transform group-hover:opacity-60 group-hover:scale-110 group-hover:rounded-3xl transition-all duration-500 ease-in-out'
+               />
+            )}
             <div className='absolute inset-0 h-full w-full grid grid-rows-2 opacity-0 md:group-hover:opacity-95 transition-opacity duration-150 ease-in'>
                <Link
                   // className='row-span-1 border-b-[0.5px] border-slate-800'
@@ -103,10 +130,4 @@ ProjectImageProps) =>
       );
    };
 
-// initial idea:
-// when hovered, github and link icons will appear
-// the icons should be absolute and have lower z-index
-// once it is hovered, the opacity of image lowers and the hover button appears
-// use isHovered state then on the bottom small <p>show project</p>
-
-// TWO THINGS TO FIX:
+export default ProjectImage;
