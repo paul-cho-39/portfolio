@@ -2,7 +2,7 @@
     "projects": 
     [
         {
-            "title": "Google-Books Library",
+            "title": "RateABook",
             "section": "Full-Stack Web Application",
             "image": "/images/projects/googlebooks.png",
             "description": "A web app that integrates Google Books and New York Times API, offering the latest published books. Browse through any books, save the books, and rate them.",

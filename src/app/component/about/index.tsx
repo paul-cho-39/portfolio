@@ -27,7 +27,7 @@ const About = () => {
             targetRef={targetRef}
             isMediumDisabled={isMediumDisabled}
          />
-         <AboutDescriptionWrapLazy />
+         <AboutDescriptionWrapLazy className='xl:mb-6' />
          <SkillWrap />
       </AboutSectionLayout>
    );

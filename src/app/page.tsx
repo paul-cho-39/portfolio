@@ -9,6 +9,7 @@ import { NAVIGATION, NavigationParams } from './constants';
 import dynamic from 'next/dynamic';
 import Contact from './component/contact';
 import Footer from './component/footer';
+import { ThemeProvider } from './library/contexts/ThemeContext';
 
 const ProjectCardsLazy = dynamic(() => import('./component/cards'), {
    loading: () => <div></div>,
@@ -20,13 +21,15 @@ export default function Home({}) {
    const homeNav = navigation.find((nav) => nav.name === 'home');
 
    return (
-      <main>
-         <Navbar navigation={navigation} setNavigation={setNavigation} isHome={true} />
-         <FrontPage homeNav={homeNav} />
-         <About />
-         <ProjectCardsLazy />
-         <Contact />
-         <Footer className='bg-blue-500/60 text-black dark:text-black bg-blue-500 dark:bg-blue-500' />
-      </main>
+      <ThemeProvider>
+         <main>
+            <Navbar navigation={navigation} setNavigation={setNavigation} isHome={true} />
+            <FrontPage homeNav={homeNav} />
+            <About />
+            <ProjectCardsLazy />
+            <Contact />
+            <Footer className='bg-blue-500/60 text-black dark:text-black bg-blue-500 dark:bg-blue-500' />
+         </main>
+      </ThemeProvider>
    );
 }

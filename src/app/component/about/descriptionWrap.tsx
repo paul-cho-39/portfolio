@@ -1,9 +1,15 @@
+import classNames from 'classnames';
 import AboutMeDescription from '../description/aboutDescription';
 import ProfileImage from './profileImage';
 
-const AboutDescriptionWrap = () => {
+const AboutDescriptionWrap = ({ className }: { className?: string }) => {
    return (
-      <div className='flex flex-col-reverse lg:my-6 lg:grid lg:grid-cols-8 xl:grid-cols-9'>
+      <div
+         className={classNames(
+            'flex flex-col-reverse lg:my-6 lg:grid lg:grid-cols-8 xl:grid-cols-9',
+            className
+         )}
+      >
          {/* contents */}
          <div className='mt-6 my-8 md:px-6 lg:col-span-5 lg:pb-8 xl:col-span-5'>
             <AboutMeDescription />

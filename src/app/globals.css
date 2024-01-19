@@ -10,7 +10,7 @@
   --background-profile: #faebd7;
   --underline: #57659e;
   --href-color: rgb(48, 123, 245);
-  --href-underline:  #2563eb;
+  --underline-text:  #2563eb;
   --highlighter-width: 11rem;
 }
 
@@ -78,16 +78,23 @@ body {
 @layer utilities {  
   .animate-underline {
     background: none repeat scroll 0 0 transparent;
-    bottom: 0;
     content: "";
-    display: block;
+    /* display: block; */
     height: 2px;
-    right: 0;
+    bottom: 0;
+    left: 0;
     position: absolute;
-    background: #0045a0;
+    background: var(--underline-text);
     transition: width 0.3s ease 0s, right 0.5s ease 0s;
+    transition-delay: 150ms;
     width: 0;
   }
+  .animate-underline::after {
+    /* width: 100%; */
+    animation: underlineAnimation 0.3s ease forwards;
+    animation-delay: 0.5s; 
+  }
+
   .underline-blur {
     background: none repeat scroll 0 0 transparent;
     bottom: 0.1px;
@@ -159,10 +166,6 @@ body {
     animation: floating 3s ease-in-out infinite;
     -webkit-animation: floating 3s ease-in-out infinite;
   }
-  .sun-pulse {
-    animation: sunpulse 2s alternate infinite; 
-    -webkit-animation: sunpulse 2s alternate infinite; 
-  }
   .blue-highlight {
     color: var(--href-color);
   }
@@ -173,6 +176,45 @@ body {
     text-decoration: underline;
     text-decoration-color: var(--href-underline);
     text-decoration-thickness: 4px;
+  }
+  .spinner {
+    animation: spin 2s linear infinite;
+  }
+
+  .animate-write {
+    animation: write 2s linear forwards infinite;
+  }
+  .animate-data-stack {
+    animation: dataStack 2s ease-in-out infinite;
+  }
+}
+
+@keyframes underlineAnimation {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes dataStack {
+  0% {
+    transform: scale(1) rotate(0deg);
+    stroke:  var(--underline-text);
+  }
+  50% {
+    stroke: #0d236a;
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1) rotate(360deg);
+    stroke:  var(--underline-text);
+  }
+}
+
+@keyframes write {
+  0% {
+    clip-path: polygon(0 0, 0 100%, 0 100%, 0 0);
+  }
+  100% {
+    clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 0);
   }
 }
 

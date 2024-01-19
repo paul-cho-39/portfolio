@@ -37,7 +37,7 @@ const MotionSun = ({
    const translateX = useTransform(
       scrollYProgress,
       [0, 0.25, 0.5, 0.75, 0.9],
-      ['0%', '17%', '36%', '75%', '90%'],
+      ['-10%', '17%', '36%', '75%', '90%'],
       {
          ease: easeIn,
       }
@@ -45,23 +45,19 @@ const MotionSun = ({
    const translateY = useTransform(
       scrollYProgress,
       [0, 0.25, 0.5, 0.75, 0.9],
-      ['0%', '20%', '35%', '50%', '70%'],
+      ['-10%', '20%', '35%', '50%', '70%'],
       {
          ease: easeIn,
       }
    );
 
    // OPACITY AND BOX SHADOW
-   const opacity = useTransform(
-      scrollYProgress,
-      [0, 0.3, 0.65, 0.8, 0.9],
-      [1, 0.8, 0.65, 0.3, 0.1]
-   );
+   const opacity = useTransform(scrollYProgress, [0, 0.3, 0.5, 0.8, 0.9], [1, 0.8, 0.4, 0.2, 0.1]);
 
    // console.log(`Inside the COMPONENT ${stateName} the scroll progress is: `, scrollYProgress);
 
-   console.log(`Inside the COMPONENT ${stateName} the SCROLL X IS: `, translateX);
-   console.log(`Inside the COMPONENT ${stateName} the SCROLL Y IS:`, translateY);
+   // console.log(`Inside the COMPONENT ${stateName} the SCROLL X IS: `, translateX);
+   // console.log(`Inside the COMPONENT ${stateName} the SCROLL Y IS:`, translateY);
 
    // display with screen size for medium or more
    if (!isMediumDisabled) {
