@@ -1,4 +1,4 @@
-import clsx from 'clsx';
+import classNames from 'classnames';
 import ContactIcons from '../contact/icons/contactIcons';
 import { Variants, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
@@ -33,7 +33,7 @@ const Title = ({ title, className }: Main) => {
             damping: 10,
             duration: 0,
          }}
-         className={clsx(className)}
+         className={classNames(className)}
       >
          {title}
       </motion.h1>
@@ -41,13 +41,14 @@ const Title = ({ title, className }: Main) => {
 };
 
 /** No animation on the intro */
-const Intro = () => {
+const Intro = (className: { className: string }) => {
    return (
       <motion.div
          initial={{ opacity: 0 }}
          animate={{ opacity: 1 }}
          transition={{ ease: 'easeIn', duration: 0.2 }}
-         className='text-base lg:text-lg font-serif pl-4 my-3 lg:mb-5'
+         className={classNames(className)}
+         // className='text-base lg:text-lg font-serif pl-4 my-3 lg:mb-5'
       >
          <span>Hello there!</span>
          <span>👋🏼</span>
@@ -76,9 +77,7 @@ export const FrontCoverDescriptionWrapper = (props: Description) => {
          <div className='absolute top-[23%] left-0 px-6 lg:px-16 lg:top-[10%] text-black dark:text-black'>
             <div className='relative md:flex md:flex-col md:w-full md:h-full'>
                <div className='relative md:col-span-1 md:h-full md:w-full top-0 mb-4 lg:mb-8'>
-                  <Intro
-                  // intro={props.intro}
-                  />
+                  <Intro className='text-base font-serif my-3 pl-2 lg:mb-8' />
                   <Title className=' text-5xl md:text-6xl lg:text-8xl' title={props.title} />
                   <div className='mt-6 lg:mt-10 items-center justify-start inline-flex'>
                      {ready ? (

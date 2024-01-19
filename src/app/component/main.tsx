@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useState } from 'react';
+import React, { Suspense, lazy, useLayoutEffect, useState } from 'react';
 import FronPageLayout from './layouts/home/frontSectionLayout';
 import { useEffect, useRef } from 'react';
 
@@ -11,12 +11,10 @@ import {
    useInView,
 } from 'framer-motion';
 
-import { useDisableBreakPoints } from '@/app/library/hooks/useDisableBreakPoints';
 import { FrontCoverDescriptionWrapper } from './description/frontCoverDescription';
 import classNames from 'classnames';
 import { NavigationParams } from '../constants';
 
-const OPACITY_THRESHOLD = 0.15;
 const SCROLL_THRESHOLD = 0.55;
 
 const Canvas = lazy(() => import('./effects/scene'));
@@ -30,9 +28,6 @@ const FrontPage = ({
 }) => {
    const ref = useRef<HTMLDivElement>(null);
    const canvasRef = useRef<HTMLCanvasElement | null>(null);
-   const [isLoaded, setIsLoaded] = useState(false);
-
-   const isMediumDisabled = useDisableBreakPoints();
 
    const isInView = useInView(ref, {
       margin: '-300px',
@@ -75,32 +70,47 @@ const FrontPage = ({
       }
    }, [homeNav, controls, opacity]);
 
-   useEffect(() => {
-      if (ref.current) {
-         // loading the entire component when it finishes rendering
-         setIsLoaded(true);
-      }
+   const unlockScroll = () => {
+      document.documentElement.style.overflow = 'visible';
+      document.body.style.overflow = 'visible';
+      document.documentElement.style.height = '';
+      document.body.style.height = '';
+   };
+
+   useLayoutEffect(() => {
+      window.scroll({
+         top: 0,
+         behavior: 'instant',
+      });
+
+      let timer: NodeJS.Timeout;
+
+      // Unlock scroll after 1200ms if on the home section
+      timer = setTimeout(unlockScroll, 1000);
+
+      // Cleanup function to clear the timer
+      return () => {
+         clearTimeout(timer);
+      };
    }, []);
 
    return (
       <FronPageLayout ref={ref} id='home'>
          <Suspense fallback={<div className='fixed inset-0 sky-fade-gradient -z-10'></div>}>
-            {isLoaded && (
-               <motion.div
-                  style={{
-                     opacity: opacity,
-                  }}
-                  animate={controls}
-                  initial={{ display: 'block' }}
-                  className={classNames(
-                     isInView ? 'fixed' : 'invisible',
-                     'inset-0 sky-fade-gradient -z-10'
-                  )}
-               >
-                  <Canvas ref={canvasRef} />
-                  {children}
-               </motion.div>
-            )}
+            <motion.div
+               style={{
+                  opacity: opacity,
+               }}
+               animate={controls}
+               initial={{ display: 'block' }}
+               className={classNames(
+                  isInView ? 'fixed' : 'invisible',
+                  'inset-0 sky-fade-gradient -z-10'
+               )}
+            >
+               <Canvas ref={canvasRef} />
+               {children}
+            </motion.div>
          </Suspense>
 
          <FrontCoverDescriptionWrapper

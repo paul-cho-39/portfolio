@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import Navbar from './component/nav/navigation';
 
 import About from './component/about';

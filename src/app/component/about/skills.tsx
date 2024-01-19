@@ -104,7 +104,6 @@ const Skills = (props: { skillSection: typeof SkillsSection }) => {
       setHovered(true);
    };
 
-   console.log('is group hovered: ', isComputerSectionHovered);
    return (
       <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 md:px-6 lg:grid-cols-3 lg:gap-5 xl:gap-6'>
          {props.skillSection.map((skill, index) => (

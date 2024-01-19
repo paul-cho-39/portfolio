@@ -28,7 +28,7 @@ html {
 }
 
 html::selection {
-  background-color: #5499ee;
+  background-color: #071525;
   color: white;
 }
 
@@ -40,6 +40,11 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+}
+
+html, body {
+  overflow: hidden;
+  height: 100%;
 }
 
 ::-webkit-scrollbar {

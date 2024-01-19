@@ -6,9 +6,15 @@ interface AnimatedDescriptionProps {
    descriptions: string[];
    isSingleLine?: boolean;
    delay?: number;
+   className?: string;
 }
 
-const AnimatedDescription = ({ delay, descriptions, isSingleLine }: AnimatedDescriptionProps) => {
+const AnimatedDescription = ({
+   delay,
+   descriptions,
+   isSingleLine,
+   className,
+}: AnimatedDescriptionProps) => {
    const containerVariants: Variants = {
       hidden: {
          opacity: 0,
@@ -49,7 +55,7 @@ const AnimatedDescription = ({ delay, descriptions, isSingleLine }: AnimatedDesc
                <Fragment key={index}>
                   <motion.p
                      key={index}
-                     className='text-xl font-sans tracking-wide text-gray-800 lg:leading-relaxed xl:text-3xl'
+                     className='text-xl font-sans tracking-wide text-gray-800 lg:leading-relaxed lg:text-2xl xl:text-3xl'
                      variants={childVariants}
                   >
                      {item}
