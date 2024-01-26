@@ -21,16 +21,17 @@ export const ContactItems = [
    },
    {
       name: 'LinkedIn',
-      href: 'https://www.linkedin.com/in/paul-cho-0244a61ab/',
+      href: 'https://www.linkedin.com/in/sung-hyun-cho-0244a61ab/',
       Icon: IconComponents['LinkedIn'],
    },
-   {
-      name: 'Instagram',
-      href: 'https://www.instagram.com/paullchooo/',
-      Icon: IconComponents['Instagram'],
-   },
+   // {
+   //    name: 'Instagram',
+   //    href: 'https://www.instagram.com/paullchooo/',
+   //    Icon: IconComponents['Instagram'],
+   // },
 ] as const;
 
+// words for generating the front page
 export const FrontPageGenerator = [
    {
       words: ['Welcome, my name is'],

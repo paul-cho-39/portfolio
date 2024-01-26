@@ -78,6 +78,7 @@ const FrontPage = ({
    };
 
    useLayoutEffect(() => {
+      // on page reload the screen always start at the top
       window.scroll({
          top: 0,
          behavior: 'instant',

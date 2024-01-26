@@ -11,7 +11,7 @@ const AboutDescriptionWrap = ({ className }: { className?: string }) => {
          )}
       >
          {/* contents */}
-         <div className='mt-6 my-8 md:px-6 lg:col-span-5 lg:pb-8 xl:col-span-5'>
+         <div className='mt-6 my-8 md:px-6 lg:col-span-5 lg:pb-8 xl:col-span-5 z-50'>
             <AboutMeDescription />
          </div>
 

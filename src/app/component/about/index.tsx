@@ -22,7 +22,6 @@ const About = () => {
          <SectionHeader title='About Me' />
          <MotionPalmTrees isMediumDisabled={isMediumDisabled} />
          <MotionSun
-            stateName={'START END END END'}
             offset={['start end', 'end end']}
             targetRef={targetRef}
             isMediumDisabled={isMediumDisabled}

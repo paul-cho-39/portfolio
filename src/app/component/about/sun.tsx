@@ -73,7 +73,7 @@ const MotionSun = ({
             translateX,
             translateY,
          }}
-         className='absolute inset-0'
+         className='absolute inset-0 z-0'
       >
          <Sun />
       </motion.div>
