@@ -42,10 +42,10 @@ body {
     rgb(var(--background-start-rgb));
 }
 
-html, body {
+/* html, body {
   overflow: hidden;
   height: 100%;
-}
+} */
 
 ::-webkit-scrollbar {
   width: 7px; /* Width of the scrollbar */

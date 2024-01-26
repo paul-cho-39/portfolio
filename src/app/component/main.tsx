@@ -1,7 +1,5 @@
-import React, { Suspense, lazy, useLayoutEffect, useState } from 'react';
-import FronPageLayout from './layouts/home/frontSectionLayout';
-import { useEffect, useRef } from 'react';
-
+import React, { Suspense, lazy, useLayoutEffect, useRef, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import {
    useAnimation,
    useScroll,
@@ -10,9 +8,10 @@ import {
    useMotionValue,
    useInView,
 } from 'framer-motion';
-
-import { FrontCoverDescriptionWrapper } from './description/frontCoverDescription';
 import classNames from 'classnames';
+
+import FronPageLayout from './layouts/home/frontSectionLayout';
+import { FrontCoverDescriptionWrapper } from './description/frontCoverDescription';
 import { NavigationParams } from '../constants';
 
 const SCROLL_THRESHOLD = 0.55;
@@ -27,6 +26,7 @@ const FrontPage = ({
    children?: React.ReactNode;
 }) => {
    const ref = useRef<HTMLDivElement>(null);
+   const pathName = usePathname();
    const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
    const isInView = useInView(ref, {
@@ -70,30 +70,34 @@ const FrontPage = ({
       }
    }, [homeNav, controls, opacity]);
 
-   const unlockScroll = () => {
-      document.documentElement.style.overflow = 'visible';
-      document.body.style.overflow = 'visible';
-      document.documentElement.style.height = '';
-      document.body.style.height = '';
+   const initPageLoad = (type: 'lock' | 'unlock') => {
+      const styles =
+         type === 'lock' ? { overflow: 'hidden', height: '100%' } : { overflow: '', height: '' };
+      Object.assign(document.documentElement.style, styles);
+      Object.assign(document.body.style, styles);
    };
 
    useLayoutEffect(() => {
       // on page reload the screen always start at the top
-      window.scroll({
-         top: 0,
-         behavior: 'instant',
-      });
+      if (pathName === '/') {
+         window.scroll({
+            top: 0,
+            behavior: 'instant',
+         });
 
-      let timer: NodeJS.Timeout;
+         initPageLoad('lock');
 
-      // Unlock scroll after 1200ms if on the home section
-      timer = setTimeout(unlockScroll, 1000);
+         let timer: NodeJS.Timeout;
 
-      // Cleanup function to clear the timer
-      return () => {
-         clearTimeout(timer);
-      };
-   }, []);
+         // Unlock scroll after 1200ms if on the home section
+         timer = setTimeout(() => initPageLoad('unlock'), 1100);
+
+         // Cleanup function to clear the timer
+         return () => {
+            clearTimeout(timer);
+         };
+      }
+   }, [pathName]);
 
    return (
       <FronPageLayout ref={ref} id='home'>
