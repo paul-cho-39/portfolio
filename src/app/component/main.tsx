@@ -70,34 +70,34 @@ const FrontPage = ({
       }
    }, [homeNav, controls, opacity]);
 
-   const initPageLoad = (type: 'lock' | 'unlock') => {
-      const styles =
-         type === 'lock' ? { overflow: 'hidden', height: '100%' } : { overflow: '', height: '' };
-      Object.assign(document.documentElement.style, styles);
-      Object.assign(document.body.style, styles);
-   };
+   // const initPageLoad = (type: 'lock' | 'unlock') => {
+   //    const styles =
+   //       type === 'lock' ? { overflow: 'hidden', height: '100%' } : { overflow: '', height: '' };
+   //    Object.assign(document.documentElement.style, styles);
+   //    Object.assign(document.body.style, styles);
+   // };
 
-   useLayoutEffect(() => {
-      // on page reload the screen always start at the top
-      if (pathName === '/') {
-         window.scroll({
-            top: 0,
-            behavior: 'instant',
-         });
+   // useLayoutEffect(() => {
+   //    // on page reload the screen always start at the top
+   //    if (pathName === '/' && homeNav && homeNav.current) {
+   //       // window.scroll({
+   //       //    top: 0,
+   //       //    behavior: 'instant',
+   //       // });
 
-         initPageLoad('lock');
+   //       initPageLoad('lock');
 
-         let timer: NodeJS.Timeout;
+   //       let timer: NodeJS.Timeout;
 
-         // Unlock scroll after 1200ms if on the home section
-         timer = setTimeout(() => initPageLoad('unlock'), 1100);
+   //       // Unlock scroll after 1200ms if on the home section
+   //       timer = setTimeout(() => initPageLoad('unlock'), 1100);
 
-         // Cleanup function to clear the timer
-         return () => {
-            clearTimeout(timer);
-         };
-      }
-   }, [pathName]);
+   //       // Cleanup function to clear the timer
+   //       return () => {
+   //          clearTimeout(timer);
+   //       };
+   //    }
+   // }, [pathName, homeNav]);
 
    return (
       <FronPageLayout ref={ref} id='home'>
