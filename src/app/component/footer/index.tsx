@@ -11,7 +11,7 @@ interface FooterProps extends Partial<ContactsProps> {
 const Footer = ({ withWaveBg, className, ...props }: FooterProps) => {
    return (
       <footer>
-         <div className={classNames(className, 'py-3 md:py-8 lg:py-12 xl:py-24 overflow-hidden')}>
+         <div className={classNames(className, 'py-3 overflow-hidden')}>
             <div className='relative z-30'>
                <ContactIcons
                   className='my-2'

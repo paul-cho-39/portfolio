@@ -11,7 +11,7 @@ const Contact = () => {
          </div>
          <Footer
             withWaveBg={true}
-            className='relative bg-transparent h-full text-black dark:text-black'
+            className='relative md:py-8 lg:py-12 xl:py-20 bg-transparent h-full text-black dark:text-black'
          />
       </ContactSectionLayout>
    );
