@@ -28,7 +28,8 @@ export default function Home({}) {
             <About />
             <ProjectCardsLazy />
             <Contact />
-            <Footer className='bg-blue-500/60 text-black dark:text-black bg-blue-500 dark:bg-blue-500' />
+            {/* <Footer className='sky-fade-gradient bg-blue-500/60 text-black dark:text-black bg-blue-500 dark:bg-blue-500' /> */}
+            {/* <Footer className='relative bg-transparent text-black dark:text-black' /> */}
          </main>
       </ThemeProvider>
    );

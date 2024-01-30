@@ -3,7 +3,6 @@ import { RefObject, useRef } from 'react';
 import Sun from '../svg/sun';
 
 interface MotionSunProps {
-   stateName: string;
    offset: string[];
    targetRef: RefObject<HTMLElement>;
    isMediumDisabled: boolean;
@@ -14,13 +13,7 @@ interface MotionSunProps {
 // and then it comes to the palm tree
 // then the sun sets as it scrolls
 
-const MotionSun = ({
-   stateName,
-   offset,
-   targetRef,
-   isMediumDisabled,
-   containerRef,
-}: MotionSunProps) => {
+const MotionSun = ({ offset, targetRef, isMediumDisabled, containerRef }: MotionSunProps) => {
    const { scrollYProgress } = useScroll({
       layoutEffect: false,
       target: targetRef,

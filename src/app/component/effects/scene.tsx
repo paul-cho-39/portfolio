@@ -20,9 +20,9 @@ const WindowCanvas = forwardRef<
          camera={{ position: [-10, 1, 75], fov: 60, near: 1, far: 1000, castShadow: false }}
          resize={{ scroll: false }}
       >
-         <Suspense fallback={null}>
-            <Clouds />
-         </Suspense>
+         {/* <Suspense fallback={null}> */}
+         <Clouds />
+         {/* </Suspense> */}
          <Seagull />
          <OrbitControls autoRotateSpeed={100} enableZoom={false} />
          {/* <Monitor /> */}

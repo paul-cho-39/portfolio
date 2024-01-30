@@ -1,11 +1,18 @@
 import { ContactDescription, ContactHeader } from '../description/contactDescription';
+import Footer from '../footer';
 import ContactSectionLayout from '../layouts/home/contactSectionLayout';
 
 const Contact = () => {
    return (
       <ContactSectionLayout>
-         <ContactHeader />
-         <ContactDescription />
+         <div className='w-full px-6 lg:px-10 py-0 mb-4 flex flex-col items-center justify-center'>
+            <ContactHeader />
+            <ContactDescription />
+         </div>
+         <Footer
+            withWaveBg={true}
+            className='relative bg-transparent h-full text-black dark:text-black'
+         />
       </ContactSectionLayout>
    );
 };

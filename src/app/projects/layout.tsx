@@ -1,13 +1,9 @@
 'use client';
 
-import BackButton from '@/app/component/buttons/backButton';
-import { Toggler } from '@/app/component/buttons/toggler';
-import { Container } from '@/app/component/layouts/container';
 import Navbar from '@/app/component/nav/navigation';
 import { useState } from 'react';
 import { NAVIGATION, NavigationParams } from '../constants';
 import { ThemeProvider } from '../library/contexts/ThemeContext';
-import AsideWrapper from '../component/layouts/_pages/asideWrap';
 import Footer from '../component/footer';
 
 export default function ProjectLayouts({ children }: { children: React.ReactNode }) {
@@ -31,7 +27,11 @@ export default function ProjectLayouts({ children }: { children: React.ReactNode
                </div>
             </section> */}
             <div className='container mx-auto px-6 pt-10 pb-12'>{children}</div>
-            <Footer displayEmail={true} className='bg-gray-100 dark:bg-zinc-600' />
+            <Footer
+               withWaveBg={false}
+               displayEmail={true}
+               className='bg-gray-100 dark:bg-zinc-600'
+            />
          </div>
       </ThemeProvider>
    );
