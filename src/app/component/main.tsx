@@ -13,6 +13,7 @@ import classNames from 'classnames';
 import FronPageLayout from './layouts/home/frontSectionLayout';
 import { FrontCoverDescriptionWrapper } from './description/frontCoverDescription';
 import { NavigationParams } from '../constants';
+import { useDisableBreakPoints } from '../library/hooks/useDisableBreakPoints';
 
 const SCROLL_THRESHOLD = 0.55;
 
@@ -33,6 +34,7 @@ const FrontPage = ({
       margin: '-300px',
    });
 
+   const isSizeBiggerThanMid = useDisableBreakPoints();
    const controls = useAnimation();
    const { scrollY } = useScroll();
    const opacity = useMotionValue(1);
@@ -101,23 +103,25 @@ const FrontPage = ({
 
    return (
       <FronPageLayout ref={ref} id='home'>
-         <Suspense fallback={<div className='fixed inset-0 sky-fade-gradient -z-10'></div>}>
-            <motion.div
-               style={{
-                  opacity: opacity,
-               }}
-               animate={controls}
-               initial={{ display: 'block' }}
-               className={classNames(
-                  isInView ? 'fixed' : 'invisible',
-                  'inset-0 sky-fade-gradient -z-10'
-               )}
-            >
-               <Canvas ref={canvasRef} />
-               {children}
-            </motion.div>
-         </Suspense>
-
+         {/* canvas not displayed in smaller screens */}
+         {isSizeBiggerThanMid && (
+            <Suspense fallback={<div className='fixed inset-0 sky-fade-gradient -z-10'></div>}>
+               <motion.div
+                  style={{
+                     opacity: opacity,
+                  }}
+                  animate={controls}
+                  initial={{ display: 'block' }}
+                  className={classNames(
+                     isInView ? 'fixed' : 'invisible',
+                     'inset-0 sky-fade-gradient -z-10'
+                  )}
+               >
+                  <Canvas ref={canvasRef} />
+                  {children}
+               </motion.div>
+            </Suspense>
+         )}
          <FrontCoverDescriptionWrapper
             title={
                <div>
